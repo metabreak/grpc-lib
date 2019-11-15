@@ -1,0 +1,24 @@
+{
+  "plugins": [
+    "@semantic-release/commit-analyzer",
+    "@semantic-release/release-notes-generator",
+    "@semantic-release/changelog",
+    [
+      "@semantic-release/exec",
+      {
+        "verifyConditionsCmd": "node custom-publish/verify.js",
+        "prepareCmd": "./custom-publish/prepare.sh \"${nextRelease.version}\"",
+        "publishCmd": "./custom-publish/publish.sh"
+      }
+    ],
+    [
+      "@semantic-release/git",
+      {
+        "assets": [
+          "CHANGELOG.md"
+        ],
+        "message": "chore: release ${nextRelease.version} [ci skip]"
+      }
+    ]
+  ]
+}

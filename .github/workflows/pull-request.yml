@@ -1,0 +1,31 @@
+name: Push
+
+on:
+  pull_request:
+    branches:
+      - master
+      - develop
+
+jobs:
+  main:
+    name: Build and test
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, '[ci skip]')"
+    steps:
+      - name: Clone
+        uses: actions/checkout@v1
+      - name: Install node
+        uses: actions/setup-node@v1
+        with:
+          node-version: "14"
+      - name: Install dependencies
+        run: npm ci
+      - name: Build
+        run: npm run build
+      - name: Test
+        run: |
+          npm run test:lib:protoc-gen-ng:generate
+          npm run test:lib:protoc-gen-ng:generate-grpc-web
+          npm run test
+      - name: Lint
+        run: npm run lint

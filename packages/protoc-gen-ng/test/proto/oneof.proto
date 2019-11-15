@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+message OneofTestSub {
+  oneof oneOf {
+    string testString = 1;
+  }
+}
+
+message OneofTest {
+  oneof oneOf {
+    string testString = 1;
+    int64 testInt = 2;
+    OneofTestSub testMessage = 3;
+  }
+}
