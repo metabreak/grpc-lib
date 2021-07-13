@@ -18,6 +18,7 @@
     "winston": "3.3.3"
   },
   "devDependencies": {
+    "@metabreak/grpc-worker": "workspace:*",
     "@metabreak/grpc-worker-client": "workspace:*",
     "@metabreak/grpc-worker-common": "workspace:*",
     "@metabreak/grpc-worker-core": "workspace:*",

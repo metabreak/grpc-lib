@@ -50,7 +50,7 @@ export class Struct implements GrpcMessage {
           const msg_1 = {} as any;
           _reader.readMessage(
             msg_1,
-            Struct.FieldsEntry.deserializeBinaryFromReader,
+            Struct.FieldsEntry.deserializeBinaryFromReader
           );
           _instance.fields = _instance.fields || {};
           _instance.fields[msg_1.key] = msg_1.value;
@@ -80,7 +80,7 @@ export class Struct implements GrpcMessage {
         _writer.writeRepeatedMessage(
           1,
           repeated_1,
-          Struct.FieldsEntry.serializeBinaryToWriter,
+          Struct.FieldsEntry.serializeBinaryToWriter
         );
       }
     }
@@ -100,7 +100,7 @@ export class Struct implements GrpcMessage {
             ...r,
             [k]: _value!.fields![k] ? new Value(_value!.fields![k]) : undefined,
           }),
-          {},
+          {}
         )
       : {}),
       Struct.refineValues(this);
@@ -133,7 +133,7 @@ export class Struct implements GrpcMessage {
               ...r,
               [k]: this.fields![k] ? this.fields![k].toObject() : undefined,
             }),
-            {},
+            {}
           )
         : {},
     };
@@ -153,7 +153,7 @@ export class Struct implements GrpcMessage {
    */
   toProtobufJSON(
     // @ts-ignore
-    options?: ToProtobufJSONOptions,
+    options?: ToProtobufJSONOptions
   ): Struct.AsProtobufJSON {
     return this.fields
       ? Object.keys(this.fields).reduce(
@@ -161,7 +161,7 @@ export class Struct implements GrpcMessage {
             ...r,
             [k]: this.fields![k] ? this.fields![k].toProtobufJSON(options) : {},
           }),
-          {},
+          {}
         )
       : {};
   }
@@ -193,7 +193,7 @@ export module Struct {
       const instance = new FieldsEntry();
       FieldsEntry.deserializeBinaryFromReader(
         instance,
-        new BinaryReader(bytes),
+        new BinaryReader(bytes)
       );
       return instance;
     }
@@ -214,7 +214,7 @@ export module Struct {
      */
     static deserializeBinaryFromReader(
       _instance: FieldsEntry,
-      _reader: BinaryReader,
+      _reader: BinaryReader
     ) {
       while (_reader.nextField()) {
         if (_reader.isEndGroup()) break;
@@ -227,7 +227,7 @@ export module Struct {
             _instance.value = new Value();
             _reader.readMessage(
               _instance.value,
-              Value.deserializeBinaryFromReader,
+              Value.deserializeBinaryFromReader
             );
             break;
           default:
@@ -245,7 +245,7 @@ export module Struct {
      */
     static serializeBinaryToWriter(
       _instance: FieldsEntry,
-      _writer: BinaryWriter,
+      _writer: BinaryWriter
     ) {
       if (_instance.key) {
         _writer.writeString(1, _instance.key);
@@ -254,7 +254,7 @@ export module Struct {
         _writer.writeMessage(
           2,
           _instance.value as any,
-          Value.serializeBinaryToWriter,
+          Value.serializeBinaryToWriter
         );
       }
     }
@@ -319,7 +319,7 @@ export module Struct {
      */
     toProtobufJSON(
       // @ts-ignore
-      options?: ToProtobufJSONOptions,
+      options?: ToProtobufJSONOptions
     ): FieldsEntry.AsProtobufJSON {
       return {
         key: this.key,
@@ -394,14 +394,14 @@ export class Value implements GrpcMessage {
           _instance.structValue = new Struct();
           _reader.readMessage(
             _instance.structValue,
-            Struct.deserializeBinaryFromReader,
+            Struct.deserializeBinaryFromReader
           );
           break;
         case 6:
           _instance.listValue = new ListValue();
           _reader.readMessage(
             _instance.listValue,
-            ListValue.deserializeBinaryFromReader,
+            ListValue.deserializeBinaryFromReader
           );
           break;
         default:
@@ -434,14 +434,14 @@ export class Value implements GrpcMessage {
       _writer.writeMessage(
         5,
         _instance.structValue as any,
-        Struct.serializeBinaryToWriter,
+        Struct.serializeBinaryToWriter
       );
     }
     if (_instance.listValue) {
       _writer.writeMessage(
         6,
         _instance.listValue as any,
-        ListValue.serializeBinaryToWriter,
+        ListValue.serializeBinaryToWriter
       );
     }
   }
@@ -605,7 +605,7 @@ export class Value implements GrpcMessage {
    */
   toProtobufJSON(
     // @ts-ignore
-    options?: ToProtobufJSONOptions,
+    options?: ToProtobufJSONOptions
   ): Value.AsProtobufJSON {
     switch (this.kind) {
       case Value.KindCase.nullValue:
@@ -692,7 +692,7 @@ export class ListValue implements GrpcMessage {
    */
   static deserializeBinaryFromReader(
     _instance: ListValue,
-    _reader: BinaryReader,
+    _reader: BinaryReader
   ) {
     while (_reader.nextField()) {
       if (_reader.isEndGroup()) break;
@@ -702,7 +702,7 @@ export class ListValue implements GrpcMessage {
           const messageInitializer1 = new Value();
           _reader.readMessage(
             messageInitializer1,
-            Value.deserializeBinaryFromReader,
+            Value.deserializeBinaryFromReader
           );
           (_instance.values = _instance.values || []).push(messageInitializer1);
           break;
@@ -724,7 +724,7 @@ export class ListValue implements GrpcMessage {
       _writer.writeRepeatedMessage(
         1,
         _instance.values as any,
-        Value.serializeBinaryToWriter,
+        Value.serializeBinaryToWriter
       );
     }
   }
@@ -780,10 +780,10 @@ export class ListValue implements GrpcMessage {
    */
   toProtobufJSON(
     // @ts-ignore
-    options?: ToProtobufJSONOptions,
+    options?: ToProtobufJSONOptions
   ): ListValue.AsProtobufJSON {
     return (this.values || []).map((v) =>
-      v ? v.toProtobufJSON(options) : null,
+      v ? v.toProtobufJSON(options) : null
     );
   }
 }

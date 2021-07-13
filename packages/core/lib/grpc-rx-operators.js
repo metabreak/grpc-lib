@@ -19,8 +19,6 @@ function takeMessages() {
     return (source$) => source$.pipe(operators_1.filter((event) => {
         return event instanceof grpc_worker_common_1.GrpcDataEvent;
     }), operators_1.map((event) => {
-        return event;
-    }), operators_1.map((event) => {
         return event.data;
     }));
 }

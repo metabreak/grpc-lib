@@ -1,4 +1,5 @@
 {
+  "name": "@metabreak/grpc-worker-example-back",
   "private": true,
   "scripts": {
     "start": "ts-node src/main.ts",

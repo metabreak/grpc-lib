@@ -9,9 +9,9 @@ import {
   ToProtobufJSONOptions,
 } from '@metabreak/grpc-worker-common';
 import { BinaryReader, BinaryWriter, ByteSource } from 'google-protobuf';
-import * as googleProtobuf000 from './any.pb';
-import * as googleProtobuf001 from './source-context.pb';
-import * as googleProtobuf002 from './type.pb';
+import * as googleProtobuf000 from '../../google/protobuf/any.pb';
+import * as googleProtobuf001 from '../../google/protobuf/source-context.pb';
+import * as googleProtobuf002 from '../../google/protobuf/type.pb';
 /**
  * Well known type, more at https://developers.google.com/protocol-buffers/docs/reference/google.protobuf
  */
@@ -59,20 +59,20 @@ export class Api implements GrpcMessage {
           const messageInitializer2 = new Method();
           _reader.readMessage(
             messageInitializer2,
-            Method.deserializeBinaryFromReader,
+            Method.deserializeBinaryFromReader
           );
           (_instance.methods = _instance.methods || []).push(
-            messageInitializer2,
+            messageInitializer2
           );
           break;
         case 3:
           const messageInitializer3 = new googleProtobuf002.Option();
           _reader.readMessage(
             messageInitializer3,
-            googleProtobuf002.Option.deserializeBinaryFromReader,
+            googleProtobuf002.Option.deserializeBinaryFromReader
           );
           (_instance.options = _instance.options || []).push(
-            messageInitializer3,
+            messageInitializer3
           );
           break;
         case 4:
@@ -82,14 +82,14 @@ export class Api implements GrpcMessage {
           _instance.sourceContext = new googleProtobuf001.SourceContext();
           _reader.readMessage(
             _instance.sourceContext,
-            googleProtobuf001.SourceContext.deserializeBinaryFromReader,
+            googleProtobuf001.SourceContext.deserializeBinaryFromReader
           );
           break;
         case 6:
           const messageInitializer6 = new Mixin();
           _reader.readMessage(
             messageInitializer6,
-            Mixin.deserializeBinaryFromReader,
+            Mixin.deserializeBinaryFromReader
           );
           (_instance.mixins = _instance.mixins || []).push(messageInitializer6);
           break;
@@ -117,14 +117,14 @@ export class Api implements GrpcMessage {
       _writer.writeRepeatedMessage(
         2,
         _instance.methods as any,
-        Method.serializeBinaryToWriter,
+        Method.serializeBinaryToWriter
       );
     }
     if (_instance.options && _instance.options.length) {
       _writer.writeRepeatedMessage(
         3,
         _instance.options as any,
-        googleProtobuf002.Option.serializeBinaryToWriter,
+        googleProtobuf002.Option.serializeBinaryToWriter
       );
     }
     if (_instance.version) {
@@ -134,14 +134,14 @@ export class Api implements GrpcMessage {
       _writer.writeMessage(
         5,
         _instance.sourceContext as any,
-        googleProtobuf001.SourceContext.serializeBinaryToWriter,
+        googleProtobuf001.SourceContext.serializeBinaryToWriter
       );
     }
     if (_instance.mixins && _instance.mixins.length) {
       _writer.writeRepeatedMessage(
         6,
         _instance.mixins as any,
-        Mixin.serializeBinaryToWriter,
+        Mixin.serializeBinaryToWriter
       );
     }
     if (_instance.syntax) {
@@ -166,7 +166,7 @@ export class Api implements GrpcMessage {
     this.name = _value.name;
     this.methods = (_value.methods || []).map((m) => new Method(m));
     this.options = (_value.options || []).map(
-      (m) => new googleProtobuf002.Option(m),
+      (m) => new googleProtobuf002.Option(m)
     );
     this.version = _value.version;
     this.sourceContext = _value.sourceContext
@@ -260,7 +260,7 @@ export class Api implements GrpcMessage {
    */
   toProtobufJSON(
     // @ts-ignore
-    options?: ToProtobufJSONOptions,
+    options?: ToProtobufJSONOptions
   ): Api.AsProtobufJSON {
     return {
       name: this.name,
@@ -362,10 +362,10 @@ export class Method implements GrpcMessage {
           const messageInitializer6 = new googleProtobuf002.Option();
           _reader.readMessage(
             messageInitializer6,
-            googleProtobuf002.Option.deserializeBinaryFromReader,
+            googleProtobuf002.Option.deserializeBinaryFromReader
           );
           (_instance.options = _instance.options || []).push(
-            messageInitializer6,
+            messageInitializer6
           );
           break;
         case 7:
@@ -404,7 +404,7 @@ export class Method implements GrpcMessage {
       _writer.writeRepeatedMessage(
         6,
         _instance.options as any,
-        googleProtobuf002.Option.serializeBinaryToWriter,
+        googleProtobuf002.Option.serializeBinaryToWriter
       );
     }
     if (_instance.syntax) {
@@ -432,7 +432,7 @@ export class Method implements GrpcMessage {
     this.responseTypeUrl = _value.responseTypeUrl;
     this.responseStreaming = _value.responseStreaming;
     this.options = (_value.options || []).map(
-      (m) => new googleProtobuf002.Option(m),
+      (m) => new googleProtobuf002.Option(m)
     );
     this.syntax = _value.syntax;
     Method.refineValues(this);
@@ -519,7 +519,7 @@ export class Method implements GrpcMessage {
    */
   toProtobufJSON(
     // @ts-ignore
-    options?: ToProtobufJSONOptions,
+    options?: ToProtobufJSONOptions
   ): Method.AsProtobufJSON {
     return {
       name: this.name,
@@ -683,7 +683,7 @@ export class Mixin implements GrpcMessage {
    */
   toProtobufJSON(
     // @ts-ignore
-    options?: ToProtobufJSONOptions,
+    options?: ToProtobufJSONOptions
   ): Mixin.AsProtobufJSON {
     return {
       name: this.name,

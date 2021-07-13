@@ -713,6 +713,7 @@ __metadata:
     "@metabreak/grpc-worker-core": "workspace:*"
     grpc-web: 1.2.1
     rimraf: 3.0.2
+    rxjs: 7.2.0
     typescript: 4.3.5
   languageName: unknown
   linkType: soft
@@ -753,6 +754,20 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@metabreak/grpc-worker-example-back@workspace:examples/back":
+  version: 0.0.0-use.local
+  resolution: "@metabreak/grpc-worker-example-back@workspace:examples/back"
+  dependencies:
+    "@types/google-protobuf": 3.15.3
+    "@types/node": 16.3.1
+    google-protobuf: 3.17.3
+    grpc: 1.24.10
+    grpc-tools: 1.11.2
+    grpc_tools_node_protoc_ts: 5.3.0
+    typescript: 4.3.5
+  languageName: unknown
+  linkType: soft
+
 "@metabreak/grpc-worker-example-front@workspace:examples/front":
   version: 0.0.0-use.local
   resolution: "@metabreak/grpc-worker-example-front@workspace:examples/front"
@@ -776,6 +791,7 @@ __metadata:
   resolution: "@metabreak/grpc-worker-wkt@workspace:packages/well-known-types"
   dependencies:
     "@metabreak/grpc-worker-common": "workspace:*"
+    "@metabreak/protoc-gen-worker": "workspace:*"
     "@types/google-protobuf": 3.15.3
     google-protobuf: 3.17.3
     rimraf: 3.0.2
@@ -798,6 +814,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@metabreak/protoc-gen-worker@workspace:packages/protoc-gen-worker"
   dependencies:
+    "@metabreak/grpc-worker": "workspace:*"
     "@metabreak/grpc-worker-client": "workspace:*"
     "@metabreak/grpc-worker-common": "workspace:*"
     "@metabreak/grpc-worker-core": "workspace:*"
@@ -2770,20 +2787,6 @@ __metadata:
   checksum: 358e361c9ba823361fb191c1d7dddf8a1b455777bf657dbef18553d7c3b725b44822d63ecae77956e4e38fcec9147fd824d4bf5506765af54038d2e744d06c5a
   languageName: node
   linkType: hard
-
-"back-d9240d@workspace:examples/back":
-  version: 0.0.0-use.local
-  resolution: "back-d9240d@workspace:examples/back"
-  dependencies:
-    "@types/google-protobuf": 3.15.3
-    "@types/node": 16.3.1
-    google-protobuf: 3.17.3
-    grpc: 1.24.10
-    grpc-tools: 1.11.2
-    grpc_tools_node_protoc_ts: 5.3.0
-    typescript: 4.3.5
-  languageName: unknown
-  linkType: soft
 
 "balanced-match@npm:^1.0.0":
   version: 1.0.2

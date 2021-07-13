@@ -11,8 +11,8 @@ fs.mkdirSync(buildPath);
 const protocWorkerCmd = [
   'protoc',
   `--proto_path=../proto`,
-  '--plugin=protoc-gen-ng=$(yarn bin protoc-gen-ng)',
-  `--ng_out=config=./proto-codegen.config.js:${buildPath}`,
+  '--plugin=protoc-gen-worker=$(yarn bin protoc-gen-worker)',
+  `--worker_out=config=./proto-codegen.config.js:${buildPath}`,
   '../proto/*.proto',
 ].join(' ');
 

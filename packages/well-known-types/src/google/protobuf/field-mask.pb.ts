@@ -41,7 +41,7 @@ export class FieldMask implements GrpcMessage {
    */
   static deserializeBinaryFromReader(
     _instance: FieldMask,
-    _reader: BinaryReader,
+    _reader: BinaryReader
   ) {
     while (_reader.nextField()) {
       if (_reader.isEndGroup()) break;
@@ -120,7 +120,7 @@ export class FieldMask implements GrpcMessage {
    */
   toProtobufJSON(
     // @ts-ignore
-    options?: ToProtobufJSONOptions,
+    options?: ToProtobufJSONOptions
   ): FieldMask.AsProtobufJSON {
     return this.paths.join(',');
   }

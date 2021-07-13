@@ -58,7 +58,7 @@ export class Timestamp implements GrpcMessage {
    */
   static deserializeBinaryFromReader(
     _instance: Timestamp,
-    _reader: BinaryReader,
+    _reader: BinaryReader
   ) {
     while (_reader.nextField()) {
       if (_reader.isEndGroup()) break;
@@ -152,7 +152,7 @@ export class Timestamp implements GrpcMessage {
    */
   toProtobufJSON(
     // @ts-ignore
-    options?: ToProtobufJSONOptions,
+    options?: ToProtobufJSONOptions
   ): Timestamp.AsProtobufJSON {
     return this.toISOString();
   }
@@ -164,7 +164,7 @@ export class Timestamp implements GrpcMessage {
 
   toDate() {
     return new Date(
-      parseInt(this.seconds || '0') * 1e3 + (this.nanos || 0) / 1e6,
+      parseInt(this.seconds || '0') * 1e3 + (this.nanos || 0) / 1e6
     );
   }
 

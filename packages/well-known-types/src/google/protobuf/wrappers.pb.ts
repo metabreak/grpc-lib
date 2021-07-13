@@ -42,7 +42,7 @@ export class DoubleValue implements GrpcMessage {
    */
   static deserializeBinaryFromReader(
     _instance: DoubleValue,
-    _reader: BinaryReader,
+    _reader: BinaryReader
   ) {
     while (_reader.nextField()) {
       if (_reader.isEndGroup()) break;
@@ -66,7 +66,7 @@ export class DoubleValue implements GrpcMessage {
    */
   static serializeBinaryToWriter(
     _instance: DoubleValue,
-    _writer: BinaryWriter,
+    _writer: BinaryWriter
   ) {
     if (_instance.value) {
       _writer.writeDouble(1, _instance.value);
@@ -124,7 +124,7 @@ export class DoubleValue implements GrpcMessage {
    */
   toProtobufJSON(
     // @ts-ignore
-    options?: ToProtobufJSONOptions,
+    options?: ToProtobufJSONOptions
   ): DoubleValue.AsProtobufJSON {
     return this.value;
   }
@@ -174,7 +174,7 @@ export class FloatValue implements GrpcMessage {
    */
   static deserializeBinaryFromReader(
     _instance: FloatValue,
-    _reader: BinaryReader,
+    _reader: BinaryReader
   ) {
     while (_reader.nextField()) {
       if (_reader.isEndGroup()) break;
@@ -253,7 +253,7 @@ export class FloatValue implements GrpcMessage {
    */
   toProtobufJSON(
     // @ts-ignore
-    options?: ToProtobufJSONOptions,
+    options?: ToProtobufJSONOptions
   ): FloatValue.AsProtobufJSON {
     return this.value;
   }
@@ -303,7 +303,7 @@ export class Int64Value implements GrpcMessage {
    */
   static deserializeBinaryFromReader(
     _instance: Int64Value,
-    _reader: BinaryReader,
+    _reader: BinaryReader
   ) {
     while (_reader.nextField()) {
       if (_reader.isEndGroup()) break;
@@ -382,7 +382,7 @@ export class Int64Value implements GrpcMessage {
    */
   toProtobufJSON(
     // @ts-ignore
-    options?: ToProtobufJSONOptions,
+    options?: ToProtobufJSONOptions
   ): Int64Value.AsProtobufJSON {
     return this.value;
   }
@@ -432,7 +432,7 @@ export class UInt64Value implements GrpcMessage {
    */
   static deserializeBinaryFromReader(
     _instance: UInt64Value,
-    _reader: BinaryReader,
+    _reader: BinaryReader
   ) {
     while (_reader.nextField()) {
       if (_reader.isEndGroup()) break;
@@ -456,7 +456,7 @@ export class UInt64Value implements GrpcMessage {
    */
   static serializeBinaryToWriter(
     _instance: UInt64Value,
-    _writer: BinaryWriter,
+    _writer: BinaryWriter
   ) {
     if (_instance.value) {
       _writer.writeUint64String(1, _instance.value);
@@ -514,7 +514,7 @@ export class UInt64Value implements GrpcMessage {
    */
   toProtobufJSON(
     // @ts-ignore
-    options?: ToProtobufJSONOptions,
+    options?: ToProtobufJSONOptions
   ): UInt64Value.AsProtobufJSON {
     return this.value;
   }
@@ -564,7 +564,7 @@ export class Int32Value implements GrpcMessage {
    */
   static deserializeBinaryFromReader(
     _instance: Int32Value,
-    _reader: BinaryReader,
+    _reader: BinaryReader
   ) {
     while (_reader.nextField()) {
       if (_reader.isEndGroup()) break;
@@ -643,7 +643,7 @@ export class Int32Value implements GrpcMessage {
    */
   toProtobufJSON(
     // @ts-ignore
-    options?: ToProtobufJSONOptions,
+    options?: ToProtobufJSONOptions
   ): Int32Value.AsProtobufJSON {
     return this.value;
   }
@@ -693,7 +693,7 @@ export class UInt32Value implements GrpcMessage {
    */
   static deserializeBinaryFromReader(
     _instance: UInt32Value,
-    _reader: BinaryReader,
+    _reader: BinaryReader
   ) {
     while (_reader.nextField()) {
       if (_reader.isEndGroup()) break;
@@ -717,7 +717,7 @@ export class UInt32Value implements GrpcMessage {
    */
   static serializeBinaryToWriter(
     _instance: UInt32Value,
-    _writer: BinaryWriter,
+    _writer: BinaryWriter
   ) {
     if (_instance.value) {
       _writer.writeUint32(1, _instance.value);
@@ -775,7 +775,7 @@ export class UInt32Value implements GrpcMessage {
    */
   toProtobufJSON(
     // @ts-ignore
-    options?: ToProtobufJSONOptions,
+    options?: ToProtobufJSONOptions
   ): UInt32Value.AsProtobufJSON {
     return this.value;
   }
@@ -825,7 +825,7 @@ export class BoolValue implements GrpcMessage {
    */
   static deserializeBinaryFromReader(
     _instance: BoolValue,
-    _reader: BinaryReader,
+    _reader: BinaryReader
   ) {
     while (_reader.nextField()) {
       if (_reader.isEndGroup()) break;
@@ -904,7 +904,7 @@ export class BoolValue implements GrpcMessage {
    */
   toProtobufJSON(
     // @ts-ignore
-    options?: ToProtobufJSONOptions,
+    options?: ToProtobufJSONOptions
   ): BoolValue.AsProtobufJSON {
     return this.value;
   }
@@ -954,7 +954,7 @@ export class StringValue implements GrpcMessage {
    */
   static deserializeBinaryFromReader(
     _instance: StringValue,
-    _reader: BinaryReader,
+    _reader: BinaryReader
   ) {
     while (_reader.nextField()) {
       if (_reader.isEndGroup()) break;
@@ -978,7 +978,7 @@ export class StringValue implements GrpcMessage {
    */
   static serializeBinaryToWriter(
     _instance: StringValue,
-    _writer: BinaryWriter,
+    _writer: BinaryWriter
   ) {
     if (_instance.value) {
       _writer.writeString(1, _instance.value);
@@ -1036,7 +1036,7 @@ export class StringValue implements GrpcMessage {
    */
   toProtobufJSON(
     // @ts-ignore
-    options?: ToProtobufJSONOptions,
+    options?: ToProtobufJSONOptions
   ): StringValue.AsProtobufJSON {
     return this.value;
   }
@@ -1086,7 +1086,7 @@ export class BytesValue implements GrpcMessage {
    */
   static deserializeBinaryFromReader(
     _instance: BytesValue,
-    _reader: BinaryReader,
+    _reader: BinaryReader
   ) {
     while (_reader.nextField()) {
       if (_reader.isEndGroup()) break;
@@ -1165,7 +1165,7 @@ export class BytesValue implements GrpcMessage {
    */
   toProtobufJSON(
     // @ts-ignore
-    options?: ToProtobufJSONOptions,
+    options?: ToProtobufJSONOptions
   ): BytesValue.AsProtobufJSON {
     return this.value ? uint8ArrayToBase64(this.value) : '';
   }

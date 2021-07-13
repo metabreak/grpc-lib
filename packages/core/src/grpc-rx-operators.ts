@@ -34,11 +34,8 @@ export function throwStatusErrors<T extends GrpcMessage>() {
 export function takeMessages<T extends GrpcMessage>() {
   return (source$: Observable<GrpcEvent<T>>) =>
     source$.pipe(
-      filter((event: GrpcEvent<T>) => {
+      filter((event): event is GrpcDataEvent<T> => {
         return event instanceof GrpcDataEvent;
-      }),
-      map((event) => {
-        return event as GrpcDataEvent<T>;
       }),
       map((event) => {
         return event.data;

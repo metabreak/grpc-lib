@@ -24,7 +24,7 @@ export class SourceContext implements GrpcMessage {
     const instance = new SourceContext();
     SourceContext.deserializeBinaryFromReader(
       instance,
-      new BinaryReader(bytes),
+      new BinaryReader(bytes)
     );
     return instance;
   }
@@ -44,7 +44,7 @@ export class SourceContext implements GrpcMessage {
    */
   static deserializeBinaryFromReader(
     _instance: SourceContext,
-    _reader: BinaryReader,
+    _reader: BinaryReader
   ) {
     while (_reader.nextField()) {
       if (_reader.isEndGroup()) break;
@@ -68,7 +68,7 @@ export class SourceContext implements GrpcMessage {
    */
   static serializeBinaryToWriter(
     _instance: SourceContext,
-    _writer: BinaryWriter,
+    _writer: BinaryWriter
   ) {
     if (_instance.fileName) {
       _writer.writeString(1, _instance.fileName);
@@ -126,7 +126,7 @@ export class SourceContext implements GrpcMessage {
    */
   toProtobufJSON(
     // @ts-ignore
-    options?: ToProtobufJSONOptions,
+    options?: ToProtobufJSONOptions
   ): SourceContext.AsProtobufJSON {
     return {
       fileName: this.fileName,

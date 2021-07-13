@@ -97,7 +97,7 @@ export class Empty implements GrpcMessage {
    */
   toProtobufJSON(
     // @ts-ignore
-    options?: ToProtobufJSONOptions,
+    options?: ToProtobufJSONOptions
   ): Empty.AsProtobufJSON {
     return {};
   }

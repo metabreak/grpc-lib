@@ -1,4 +1,3 @@
-import { Inject, Injectable, Optional } from '@angular/core';
 import {
   GrpcClient,
   GrpcClientFactory,
@@ -11,7 +10,6 @@ import {
 } from '@metabreak/grpc-worker-common';
 import { GrpcWebClientBase, MethodDescriptor } from 'grpc-web';
 import { Observable } from 'rxjs';
-import { GRPC_WEB_CLIENT_DEFAULT_SETTINGS } from './tokens';
 
 /**
  * Settings for the chosen implementation of GrpcClient
@@ -26,15 +24,11 @@ export interface GrpcWebClientSettings {
 /**
  * GrpcClientFactory implementation based on grpc-web
  */
-@Injectable()
+
 export class GrpcWebClientFactory
   implements GrpcClientFactory<GrpcWebClientSettings>
 {
-  constructor(
-    @Optional()
-    @Inject(GRPC_WEB_CLIENT_DEFAULT_SETTINGS)
-    private defaultSettings: GrpcWebClientSettings,
-  ) {}
+  constructor(private defaultSettings: GrpcWebClientSettings) {}
 
   createClient(serviceId: string, customSettings: GrpcWebClientSettings) {
     const settings = customSettings || this.defaultSettings;

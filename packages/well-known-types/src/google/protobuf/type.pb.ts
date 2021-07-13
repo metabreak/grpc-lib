@@ -9,8 +9,8 @@ import {
   ToProtobufJSONOptions,
 } from '@metabreak/grpc-worker-common';
 import { BinaryReader, BinaryWriter, ByteSource } from 'google-protobuf';
-import * as googleProtobuf000 from './any.pb';
-import * as googleProtobuf001 from './source-context.pb';
+import * as googleProtobuf000 from '../../google/protobuf/any.pb';
+import * as googleProtobuf001 from '../../google/protobuf/source-context.pb';
 export enum Syntax {
   SYNTAX_PROTO2 = 0,
   SYNTAX_PROTO3 = 1,
@@ -61,30 +61,30 @@ export class Type implements GrpcMessage {
           const messageInitializer2 = new Field();
           _reader.readMessage(
             messageInitializer2,
-            Field.deserializeBinaryFromReader,
+            Field.deserializeBinaryFromReader
           );
           (_instance.fields = _instance.fields || []).push(messageInitializer2);
           break;
         case 3:
           (_instance.oneofs = _instance.oneofs || []).push(
-            _reader.readString(),
+            _reader.readString()
           );
           break;
         case 4:
           const messageInitializer4 = new Option();
           _reader.readMessage(
             messageInitializer4,
-            Option.deserializeBinaryFromReader,
+            Option.deserializeBinaryFromReader
           );
           (_instance.options = _instance.options || []).push(
-            messageInitializer4,
+            messageInitializer4
           );
           break;
         case 5:
           _instance.sourceContext = new googleProtobuf001.SourceContext();
           _reader.readMessage(
             _instance.sourceContext,
-            googleProtobuf001.SourceContext.deserializeBinaryFromReader,
+            googleProtobuf001.SourceContext.deserializeBinaryFromReader
           );
           break;
         case 6:
@@ -111,7 +111,7 @@ export class Type implements GrpcMessage {
       _writer.writeRepeatedMessage(
         2,
         _instance.fields as any,
-        Field.serializeBinaryToWriter,
+        Field.serializeBinaryToWriter
       );
     }
     if (_instance.oneofs && _instance.oneofs.length) {
@@ -121,14 +121,14 @@ export class Type implements GrpcMessage {
       _writer.writeRepeatedMessage(
         4,
         _instance.options as any,
-        Option.serializeBinaryToWriter,
+        Option.serializeBinaryToWriter
       );
     }
     if (_instance.sourceContext) {
       _writer.writeMessage(
         5,
         _instance.sourceContext as any,
-        googleProtobuf001.SourceContext.serializeBinaryToWriter,
+        googleProtobuf001.SourceContext.serializeBinaryToWriter
       );
     }
     if (_instance.syntax) {
@@ -236,7 +236,7 @@ export class Type implements GrpcMessage {
    */
   toProtobufJSON(
     // @ts-ignore
-    options?: ToProtobufJSONOptions,
+    options?: ToProtobufJSONOptions
   ): Type.AsProtobufJSON {
     return {
       name: this.name,
@@ -344,10 +344,10 @@ export class Field implements GrpcMessage {
           const messageInitializer9 = new Option();
           _reader.readMessage(
             messageInitializer9,
-            Option.deserializeBinaryFromReader,
+            Option.deserializeBinaryFromReader
           );
           (_instance.options = _instance.options || []).push(
-            messageInitializer9,
+            messageInitializer9
           );
           break;
         case 10:
@@ -395,7 +395,7 @@ export class Field implements GrpcMessage {
       _writer.writeRepeatedMessage(
         9,
         _instance.options as any,
-        Option.serializeBinaryToWriter,
+        Option.serializeBinaryToWriter
       );
     }
     if (_instance.jsonName) {
@@ -538,7 +538,7 @@ export class Field implements GrpcMessage {
    */
   toProtobufJSON(
     // @ts-ignore
-    options?: ToProtobufJSONOptions,
+    options?: ToProtobufJSONOptions
   ): Field.AsProtobufJSON {
     return {
       kind: Field.Kind[this.kind ?? 0],
@@ -660,27 +660,27 @@ export class Enum implements GrpcMessage {
           const messageInitializer2 = new EnumValue();
           _reader.readMessage(
             messageInitializer2,
-            EnumValue.deserializeBinaryFromReader,
+            EnumValue.deserializeBinaryFromReader
           );
           (_instance.enumvalue = _instance.enumvalue || []).push(
-            messageInitializer2,
+            messageInitializer2
           );
           break;
         case 3:
           const messageInitializer3 = new Option();
           _reader.readMessage(
             messageInitializer3,
-            Option.deserializeBinaryFromReader,
+            Option.deserializeBinaryFromReader
           );
           (_instance.options = _instance.options || []).push(
-            messageInitializer3,
+            messageInitializer3
           );
           break;
         case 4:
           _instance.sourceContext = new googleProtobuf001.SourceContext();
           _reader.readMessage(
             _instance.sourceContext,
-            googleProtobuf001.SourceContext.deserializeBinaryFromReader,
+            googleProtobuf001.SourceContext.deserializeBinaryFromReader
           );
           break;
         case 5:
@@ -707,21 +707,21 @@ export class Enum implements GrpcMessage {
       _writer.writeRepeatedMessage(
         2,
         _instance.enumvalue as any,
-        EnumValue.serializeBinaryToWriter,
+        EnumValue.serializeBinaryToWriter
       );
     }
     if (_instance.options && _instance.options.length) {
       _writer.writeRepeatedMessage(
         3,
         _instance.options as any,
-        Option.serializeBinaryToWriter,
+        Option.serializeBinaryToWriter
       );
     }
     if (_instance.sourceContext) {
       _writer.writeMessage(
         4,
         _instance.sourceContext as any,
-        googleProtobuf001.SourceContext.serializeBinaryToWriter,
+        googleProtobuf001.SourceContext.serializeBinaryToWriter
       );
     }
     if (_instance.syntax) {
@@ -820,7 +820,7 @@ export class Enum implements GrpcMessage {
    */
   toProtobufJSON(
     // @ts-ignore
-    options?: ToProtobufJSONOptions,
+    options?: ToProtobufJSONOptions
   ): Enum.AsProtobufJSON {
     return {
       name: this.name,
@@ -890,7 +890,7 @@ export class EnumValue implements GrpcMessage {
    */
   static deserializeBinaryFromReader(
     _instance: EnumValue,
-    _reader: BinaryReader,
+    _reader: BinaryReader
   ) {
     while (_reader.nextField()) {
       if (_reader.isEndGroup()) break;
@@ -906,10 +906,10 @@ export class EnumValue implements GrpcMessage {
           const messageInitializer3 = new Option();
           _reader.readMessage(
             messageInitializer3,
-            Option.deserializeBinaryFromReader,
+            Option.deserializeBinaryFromReader
           );
           (_instance.options = _instance.options || []).push(
-            messageInitializer3,
+            messageInitializer3
           );
           break;
         default:
@@ -936,7 +936,7 @@ export class EnumValue implements GrpcMessage {
       _writer.writeRepeatedMessage(
         3,
         _instance.options as any,
-        Option.serializeBinaryToWriter,
+        Option.serializeBinaryToWriter
       );
     }
   }
@@ -1010,7 +1010,7 @@ export class EnumValue implements GrpcMessage {
    */
   toProtobufJSON(
     // @ts-ignore
-    options?: ToProtobufJSONOptions,
+    options?: ToProtobufJSONOptions
   ): EnumValue.AsProtobufJSON {
     return {
       name: this.name,
@@ -1081,7 +1081,7 @@ export class Option implements GrpcMessage {
           _instance.value = new googleProtobuf000.Any();
           _reader.readMessage(
             _instance.value,
-            googleProtobuf000.Any.deserializeBinaryFromReader,
+            googleProtobuf000.Any.deserializeBinaryFromReader
           );
           break;
         default:
@@ -1105,7 +1105,7 @@ export class Option implements GrpcMessage {
       _writer.writeMessage(
         2,
         _instance.value as any,
-        googleProtobuf000.Any.serializeBinaryToWriter,
+        googleProtobuf000.Any.serializeBinaryToWriter
       );
     }
   }
@@ -1172,7 +1172,7 @@ export class Option implements GrpcMessage {
    */
   toProtobufJSON(
     // @ts-ignore
-    options?: ToProtobufJSONOptions,
+    options?: ToProtobufJSONOptions
   ): Option.AsProtobufJSON {
     return {
       name: this.name,
