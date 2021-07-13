@@ -1,13 +1,34 @@
 {
   "name": "@metabreak/protoc-gen-worker",
-  "description": "gRPC code generator for usage with web workers",
+  "description": "gRPC code generator for use with web workers",
   "author": "smnbbrv",
   "license": "MIT",
-  "main": "./main.js",
-  "bin": "./main.js",
+  "main": "./lib/main.js",
+  "bin": "./lib/main.js",
+  "scripts": {
+    "clean": "yarn rimraf ./lib",
+    "generate:grpc-worker": "yarn node test/generate-grpc-worker.js",
+    "generate:grpc-web": "yarn node test/generate-grpc-web.js",
+    "build": "yarn clean && yarn tsc -p ./tsconfig.json && chmod +x ./lib/main.js",
+    "test": "yarn jest -c ./jest.config.js"
+  },
   "dependencies": {
-    "google-protobuf": "^3.15.8",
-    "prettier": "1.19.1",
-    "winston": "^3.2.1"
+    "google-protobuf": "3.17.3",
+    "prettier": "2.3.2",
+    "winston": "3.3.3"
+  },
+  "devDependencies": {
+    "@metabreak/grpc-worker-client": "workspace:*",
+    "@metabreak/grpc-worker-common": "workspace:*",
+    "@metabreak/grpc-worker-core": "workspace:*",
+    "@types/google-protobuf": "3.15.3",
+    "@types/jest": "26.0.24",
+    "@types/node": "16.3.1",
+    "@types/prettier": "2.3.2",
+    "jest": "27.0.6",
+    "jest-environment-jsdom": "27.0.6",
+    "rimraf": "3.0.2",
+    "ts-jest": "27.0.3",
+    "typescript": "4.3.5"
   }
 }

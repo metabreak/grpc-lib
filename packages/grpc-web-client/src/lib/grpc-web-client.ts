@@ -1,5 +1,14 @@
 import { Inject, Injectable, Optional } from '@angular/core';
-import { GrpcClient, GrpcClientFactory, GrpcDataEvent, GrpcEvent, GrpcMessage, GrpcMessageClass, GrpcMetadata, GrpcStatusEvent } from '@ngx-grpc/common';
+import {
+  GrpcClient,
+  GrpcClientFactory,
+  GrpcDataEvent,
+  GrpcEvent,
+  GrpcMessage,
+  GrpcMessageClass,
+  GrpcMetadata,
+  GrpcStatusEvent,
+} from '@metabreak/grpc-worker-common';
 import { GrpcWebClientBase, MethodDescriptor } from 'grpc-web';
 import { Observable } from 'rxjs';
 import { GRPC_WEB_CLIENT_DEFAULT_SETTINGS } from './tokens';
@@ -18,34 +27,35 @@ export interface GrpcWebClientSettings {
  * GrpcClientFactory implementation based on grpc-web
  */
 @Injectable()
-export class GrpcWebClientFactory implements GrpcClientFactory<GrpcWebClientSettings> {
-
+export class GrpcWebClientFactory
+  implements GrpcClientFactory<GrpcWebClientSettings>
+{
   constructor(
-    @Optional() @Inject(GRPC_WEB_CLIENT_DEFAULT_SETTINGS) private defaultSettings: GrpcWebClientSettings,
-  ) { }
+    @Optional()
+    @Inject(GRPC_WEB_CLIENT_DEFAULT_SETTINGS)
+    private defaultSettings: GrpcWebClientSettings,
+  ) {}
 
   createClient(serviceId: string, customSettings: GrpcWebClientSettings) {
     const settings = customSettings || this.defaultSettings;
 
     if (!settings) {
-      throw new Error(`grpc-web client factory: no settings provided for ${serviceId}`);
+      throw new Error(
+        `grpc-web client factory: no settings provided for ${serviceId}`,
+      );
     }
 
     return new GrpcWebClient({ ...settings });
   }
-
 }
 
 /**
  * GrpcClient implementation based on grpc-web
  */
 export class GrpcWebClient implements GrpcClient<GrpcWebClientSettings> {
-
   private client: GrpcWebClientBase;
 
-  constructor(
-    private settings: GrpcWebClientSettings,
-  ) {
+  constructor(private settings: GrpcWebClientSettings) {
     this.client = new GrpcWebClientBase(this.settings);
   }
 
@@ -69,7 +79,7 @@ export class GrpcWebClient implements GrpcClient<GrpcWebClientSettings> {
       resclss.deserializeBinary,
     );
 
-    return new Observable(obs => {
+    return new Observable((obs) => {
       const stream = this.client.rpcCall(
         this.settings.host + path,
         req,
@@ -77,7 +87,13 @@ export class GrpcWebClient implements GrpcClient<GrpcWebClientSettings> {
         descriptor,
         (error, data) => {
           if (error) {
-            obs.next(new GrpcStatusEvent(error.code, error.message, new GrpcMetadata((error as any).metadata)));
+            obs.next(
+              new GrpcStatusEvent(
+                error.code,
+                error.message,
+                new GrpcMetadata((error as any).metadata),
+              ),
+            );
             obs.complete();
           } else {
             obs.next(new GrpcDataEvent(data as any));
@@ -86,7 +102,17 @@ export class GrpcWebClient implements GrpcClient<GrpcWebClientSettings> {
       );
 
       // take only status 0 because unary error already includes non-zero statuses
-      stream.on('status', status => status.code === 0 ? obs.next(new GrpcStatusEvent(status.code, status.details, new GrpcMetadata(status.metadata))) : null);
+      stream.on('status', (status) =>
+        status.code === 0
+          ? obs.next(
+              new GrpcStatusEvent(
+                status.code,
+                status.details,
+                new GrpcMetadata(status.metadata),
+              ),
+            )
+          : null,
+      );
       stream.on('end', () => obs.complete());
 
       return () => stream.cancel();
@@ -109,7 +135,7 @@ export class GrpcWebClient implements GrpcClient<GrpcWebClientSettings> {
       resclss.deserializeBinary,
     );
 
-    return new Observable(obs => {
+    return new Observable((obs) => {
       const stream = this.client.serverStreaming(
         this.settings.host + path,
         req,
@@ -117,16 +143,29 @@ export class GrpcWebClient implements GrpcClient<GrpcWebClientSettings> {
         descriptor,
       );
 
-      stream.on('status', status => obs.next(new GrpcStatusEvent(status.code, status.details, new GrpcMetadata(status.metadata))));
-      stream.on('error', error => {
-        obs.next(new GrpcStatusEvent(error.code, error.message, new GrpcMetadata((error as any).metadata)));
+      stream.on('status', (status) =>
+        obs.next(
+          new GrpcStatusEvent(
+            status.code,
+            status.details,
+            new GrpcMetadata(status.metadata),
+          ),
+        ),
+      );
+      stream.on('error', (error) => {
+        obs.next(
+          new GrpcStatusEvent(
+            error.code,
+            error.message,
+            new GrpcMetadata((error as any).metadata),
+          ),
+        );
         obs.complete();
       });
-      stream.on('data', data => obs.next(new GrpcDataEvent(data as any)));
+      stream.on('data', (data) => obs.next(new GrpcDataEvent(data as any)));
       stream.on('end', () => obs.complete());
 
       return () => stream.cancel();
     });
   }
-
 }

@@ -1,10 +1,10 @@
 import {
   GrpcWorkerGateway,
   GrpcWorkerClient,
-} from '@webworker-grpc-test/grpc-worker-client';
+} from '@metabreak/grpc-worker-client';
 import { EchoRequest, EchoResponse } from './proto/echo.pb';
 import { GrpcWorkerEchoServiceClientDef } from './proto/echo.pbwsc';
-import { GrpcMetadata } from '@ngx-grpc/common';
+import { GrpcMetadata } from '@metabreak/grpc-worker-common';
 import { tap } from 'rxjs/operators';
 
 const worker = new Worker('./grpc.worker', { type: 'module' });
@@ -33,7 +33,6 @@ const client = new GrpcWorkerClient(
 // // Usage
 // const EchoService = new EchoService(client);
 // const $resp = EchoService.echoOnce({ message: 'echo test' });
-
 
 async function handleEchoBtnClick() {
   console.debug('create unary request');

@@ -1,4 +1,4 @@
-import { GrpcMessagePool } from '@ngx-grpc/common';
+import { GrpcMessagePool } from '@metabreak/grpc-worker-common';
 import 'jest';
 import { TestMessage } from '../../out/data-types.pb';
 import { Any } from '../../out/google/protobuf/any.pb';
@@ -7,7 +7,6 @@ import { Timestamp } from '../../out/google/protobuf/timestamp.pb';
 import { TestRequest } from '../../out/no-package.pb';
 
 describe('Any', () => {
-
   let testAny: Any;
 
   it('should parse typeUrl and return message id', () => {
@@ -30,15 +29,23 @@ describe('Any', () => {
 
     testAny = Any.pack(new Empty());
     expect(testAny.typeUrl).toBe('type.googleapis.com/google.protobuf.Empty');
-    expect(Empty.deserializeBinary(testAny.value || new Uint8Array()).toObject()).toEqual({});
+    expect(
+      Empty.deserializeBinary(testAny.value || new Uint8Array()).toObject(),
+    ).toEqual({});
 
     testAny = Any.pack(new TestMessage({ string: 'someString' }));
-    expect(testAny.typeUrl).toBe('type.googleapis.com/test.datatypes.TestMessage');
-    expect(TestMessage.deserializeBinary(testAny.value || new Uint8Array()).string).toBe('someString');
+    expect(testAny.typeUrl).toBe(
+      'type.googleapis.com/test.datatypes.TestMessage',
+    );
+    expect(
+      TestMessage.deserializeBinary(testAny.value || new Uint8Array()).string,
+    ).toBe('someString');
 
     testAny = Any.pack(new TestRequest({ message: 'someMessage' }));
     expect(testAny.typeUrl).toBe('type.googleapis.com/TestRequest');
-    expect(TestRequest.deserializeBinary(testAny.value || new Uint8Array()).message).toBe('someMessage');
+    expect(
+      TestRequest.deserializeBinary(testAny.value || new Uint8Array()).message,
+    ).toBe('someMessage');
   });
 
   it('should pack into existing Any', () => {
@@ -46,15 +53,23 @@ describe('Any', () => {
 
     testAny.pack(new Empty());
     expect(testAny.typeUrl).toBe('type.googleapis.com/google.protobuf.Empty');
-    expect(Empty.deserializeBinary(testAny.value || new Uint8Array()).toObject()).toEqual({});
+    expect(
+      Empty.deserializeBinary(testAny.value || new Uint8Array()).toObject(),
+    ).toEqual({});
 
     testAny.pack(new TestMessage({ string: 'someString' }));
-    expect(testAny.typeUrl).toBe('type.googleapis.com/test.datatypes.TestMessage');
-    expect(TestMessage.deserializeBinary(testAny.value || new Uint8Array()).string).toBe('someString');
+    expect(testAny.typeUrl).toBe(
+      'type.googleapis.com/test.datatypes.TestMessage',
+    );
+    expect(
+      TestMessage.deserializeBinary(testAny.value || new Uint8Array()).string,
+    ).toBe('someString');
 
     testAny.pack(new TestRequest({ message: 'someMessage' }));
     expect(testAny.typeUrl).toBe('type.googleapis.com/TestRequest');
-    expect(TestRequest.deserializeBinary(testAny.value || new Uint8Array()).message).toBe('someMessage');
+    expect(
+      TestRequest.deserializeBinary(testAny.value || new Uint8Array()).message,
+    ).toBe('someMessage');
   });
 
   it('should find message in pool', () => {
@@ -91,6 +106,4 @@ describe('Any', () => {
     testAny = Any.pack(new Timestamp()); // the type not provided in GrpcMessagePool
     expect(() => testAny.unpack<Timestamp>(pool)).toThrow();
   });
-
 });
-

@@ -1,13 +1,19 @@
 {
-  "name": "@metabreak/grpc-webworker-worker",
+  "name": "@metabreak/grpc-worker",
   "description": "Angular gRPC framework: worker package",
   "author": "smnbbrv",
   "license": "MIT",
-  "peerDependencies": {
-    "@metabreak/grpc-webworker-common": ">=0.2.0",
-    "grpc-web": "1.2.1"
+  "main": "./lib/index.js",
+  "scripts": {
+    "clean": "yarn rimraf ./lib",
+    "build": "yarn clean && yarn tsc -p ./tsconfig.json"
   },
   "dependencies": {
-    "tslib": "^2.0.0"
+    "@metabreak/grpc-worker-common": "workspace:*",
+    "grpc-web": "1.2.1"
+  },
+  "devDependencies": {
+    "rimraf": "3.0.2",
+    "typescript": "4.3.5"
   }
 }

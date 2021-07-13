@@ -6,18 +6,18 @@
     "proto:generate": "yarn node scripts/generate-proto"
   },
   "dependencies": {
-    "@metabreak/grpc-webworker-client": "workspace:*",
-    "@metabreak/grpc-webworker-common": "workspace:*",
-    "@metabreak/grpc-webworker-wkt": "workspace:*",
-    "@metabreak/grpc-webworker-worker": "workspace:*",
+    "@metabreak/grpc-worker": "workspace:*",
+    "@metabreak/grpc-worker-client": "workspace:*",
+    "@metabreak/grpc-worker-common": "workspace:*",
+    "@metabreak/grpc-worker-wkt": "workspace:*",
     "google-protobuf": "3.17.3",
-    "rxjs": "7.1.0"
+    "rxjs": "7.2.0"
   },
   "devDependencies": {
     "@metabreak/protoc-gen-worker": "workspace:*",
     "grpc-tools": "1.11.2",
     "parcel": "next",
     "rimraf": "3.0.2",
-    "typescript": "4.3.4"
+    "typescript": "4.3.5"
   }
 }

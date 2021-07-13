@@ -1,10 +1,20 @@
 {
-  "name": "@metabreak/grpc-webworker-client",
+  "name": "@metabreak/grpc-worker-client",
   "description": "gRPC framework: worker client package",
   "author": "smnbbrv",
   "license": "MIT",
+  "main": "./lib/index.js",
+  "scripts": {
+    "clean": "yarn rimraf ./lib",
+    "build": "yarn clean && yarn tsc -p ./tsconfig.json"
+  },
   "dependencies": {
-    "@metabreak/grpc-webworker-common": "workspace:*",
-    "@metabreak/grpc-webworker-worker": "workspace:*"
+    "@metabreak/grpc-worker": "workspace:*",
+    "@metabreak/grpc-worker-common": "workspace:*",
+    "rxjs": "7.2.0"
+  },
+  "devDependencies": {
+    "rimraf": "3.0.2",
+    "typescript": "4.3.5"
   }
 }

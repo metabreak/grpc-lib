@@ -1,12 +1,12 @@
 {
   "name": "@metabreak/grpc-web-client",
-  "peerDependencies": {
-    "@angular/core": ">=8.0.0",
-    "@metabreak/core": ">=0.2.0",
-    "@metabreak/grpc-webworker-common": ">=0.2.0",
-    "grpc-web": "^1.2.1"
-  },
   "dependencies": {
-    "tslib": "^2.0.0"
+    "@metabreak/grpc-worker-common": "workspace:*",
+    "@metabreak/grpc-worker-core": "workspace:*",
+    "grpc-web": "1.2.1"
+  },
+  "devDependencies": {
+    "rimraf": "3.0.2",
+    "typescript": "4.3.5"
   }
 }

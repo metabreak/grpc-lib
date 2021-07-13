@@ -1,8 +1,8 @@
-# @ngx-grpc/protoc-gen-ng
+# @metabreak/protoc-gen-worker
 
-gRPC code generator for Angular.
+gRPC code generator for Web Worker.
 
-For documentation please refer to [Github page](https://github.com/ngx-grpc/ngx-grpc)
+For documentation please refer to [Github page](https://github.com/metabreak/grpc-worker)
 
 ## License
 

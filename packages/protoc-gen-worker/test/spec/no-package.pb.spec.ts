@@ -1,12 +1,10 @@
-import { GrpcHandler } from '@ngx-grpc/core';
-import { GrpcWebClientFactory } from '@ngx-grpc/grpc-web-client';
-import 'jest';
+import { GrpcHandler } from '@metabreak/grpc-worker-core';
+import { GrpcWebClientFactory } from '@metabreak/grpc-web-client';
 import * as noPackagePb from '../out/no-package.pb';
 import * as noPackagePbconf from '../out/no-package.pbconf';
 import * as noPackagePbsc from '../out/no-package.pbsc';
 
 describe('no-package.proto', () => {
-
   it('should produce TestRequest', () => {
     expect(noPackagePb.TestRequest).toBeTruthy();
     expect(new noPackagePb.TestRequest()).toBeTruthy();
@@ -23,7 +21,12 @@ describe('no-package.proto', () => {
 
   it('should produce TestServiceClient', () => {
     expect(noPackagePbsc.TestServiceClient).toBeTruthy();
-    expect(new noPackagePbsc.TestServiceClient({ host: 'test' }, new GrpcWebClientFactory({ host: 'localhost' }), new GrpcHandler([]))).toBeTruthy();
+    expect(
+      new noPackagePbsc.TestServiceClient(
+        { host: 'test' },
+        new GrpcWebClientFactory({ host: 'localhost' }),
+        new GrpcHandler([]),
+      ),
+    ).toBeTruthy();
   });
-
 });

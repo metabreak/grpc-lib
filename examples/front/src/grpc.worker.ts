@@ -1,4 +1,4 @@
-import { GrpcWorker } from '@webworker-grpc-test/grpc-worker';
+import { GrpcWorker } from '@metabreak/grpc-worker';
 import { GrpcWorkerEchoServiceClientDef } from './proto/echo.pbwsc';
 
 const worker = new GrpcWorker();

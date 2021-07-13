@@ -2,11 +2,11 @@
   "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
     "target": "ESNext",
-    "module": "ESNext",
+    "module": "CommonJS",
+    "declaration": true,
     "strict": true,
     "alwaysStrict": true,
     "sourceMap": true,
-    "jsx": "react",
     "esModuleInterop": true,
     "noImplicitAny": true,
     "noImplicitThis": true,
@@ -14,46 +14,6 @@
     "strictFunctionTypes": true,
     "removeComments": true,
     "moduleResolution": "Node",
-    "lib": ["DOM", "ESNext", "WebWorker"],
-    "paths": {
-      "@metabreak/core": [
-        "dist/core"
-      ],
-      "@metabreak/core/*": [
-        "dist/core/*"
-      ],
-      "@metabreak/worker": [
-        "dist/worker"
-      ],
-      "@metabreak/worker/*": [
-        "dist/worker/*"
-      ],
-      "@metabreak/grpc-webworker-common": [
-        "dist/common"
-      ],
-      "@metabreak/grpc-webworker-common/*": [
-        "dist/common/*"
-      ],
-      "@metabreak/worker-client": [
-        "dist/worker-client/worker-client",
-        "dist/worker-client"
-      ],
-      "@metabreak/grpc-web-client": [
-        "dist/grpc-web-client/grpc-web-client",
-        "dist/grpc-web-client"
-      ],
-      "@metabreak/well-known-types": [
-        "dist/well-known-types/well-known-types",
-        "dist/well-known-types"
-      ],
-      "@metabreak/improbable-eng-grpc-web-client": [
-        "dist/improbable-eng-grpc-web-client/improbable-eng-grpc-web-client",
-        "dist/improbable-eng-grpc-web-client"
-      ]
-    }
-  },
-  "angularCompilerOptions": {
-    "fullTemplateTypeCheck": true,
-    "strictInjectionParameters": true
+    "lib": ["ESNext"]
   }
 }

@@ -5,19 +5,13 @@ import { ExternalDependencies } from '../misc/dependencies';
 import { Printer } from '../misc/printer';
 
 export class ServiceClientConfig {
-
-  constructor(
-    private proto: Proto,
-    private service: ProtoService,
-  ) { }
+  constructor(private proto: Proto, private service: ProtoService) {}
 
   getTokenName() {
     return `GRPC_${pascalize(this.service.name)}_CLIENT_SETTINGS`;
   }
 
   print(printer: Printer) {
-    printer.addDeps(ExternalDependencies.InjectionToken);
-
     printer.addLine(`
       /**
        * Specific GrpcClientSettings for ${classify(this.service.name)}.
@@ -26,5 +20,4 @@ export class ServiceClientConfig {
       export const ${this.getTokenName()} = new InjectionToken<any>('${this.getTokenName()}');
     `);
   }
-
 }
