@@ -1,15 +1,11 @@
 {
-  "name": "@ngx-grpc/common",
-  "description": "Angular gRPC framework: common package",
+  "name": "@metabreak/grpc-webworker-common",
+  "description": "gRPC Web Workers framework: common package",
   "author": "smnbbrv",
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/ngx-grpc/ngx-grpc"
-  },
   "peerDependencies": {
-    "google-protobuf": "^3.10.0",
-    "rxjs": "^6.0.0"
+    "google-protobuf": "3.17.3",
+    "rxjs": "7.1.0"
   },
   "dependencies": {
     "tslib": "^2.0.0"

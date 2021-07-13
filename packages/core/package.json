@@ -1,21 +1,15 @@
 {
-  "name": "@ngx-grpc/core",
+  "name": "@metabreak/grpc-webworker-core",
   "description": "Angular gRPC framework: core package",
   "author": "smnbbrv",
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/ngx-grpc/ngx-grpc"
-  },
   "keywords": [
     "grpc",
-    "angular",
-    "ngx",
-    "grpc-web"
+    "grpc-web",
+    "webworker"
   ],
   "peerDependencies": {
-    "@ngx-grpc/common": ">=0.2.0",
-    "@angular/core": ">=8.0.0",
+    "@metabreak/grpc-webworker-common": ">=0.2.0",
     "rxjs": "^6.0.0"
   },
   "dependencies": {

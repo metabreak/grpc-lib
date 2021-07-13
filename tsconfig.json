@@ -1,55 +1,52 @@
 {
-  "compileOnSave": false,
+  "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
-    "baseUrl": "./",
-    "outDir": "./dist/out-tsc",
+    "target": "ESNext",
+    "module": "ESNext",
+    "strict": true,
+    "alwaysStrict": true,
     "sourceMap": true,
-    "declaration": false,
-    "downlevelIteration": true,
-    "experimentalDecorators": true,
-    "module": "es2020",
-    "moduleResolution": "node",
-    "importHelpers": true,
-    "target": "es2015",
-    "typeRoots": [
-      "node_modules/@types"
-    ],
-    "lib": [
-      "es2018",
-      "dom"
-    ],
+    "jsx": "react",
+    "esModuleInterop": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "removeComments": true,
+    "moduleResolution": "Node",
+    "lib": ["DOM", "ESNext", "WebWorker"],
     "paths": {
-      "@ngx-grpc/core": [
+      "@metabreak/core": [
         "dist/core"
       ],
-      "@ngx-grpc/core/*": [
+      "@metabreak/core/*": [
         "dist/core/*"
       ],
-      "@ngx-grpc/worker": [
+      "@metabreak/worker": [
         "dist/worker"
       ],
-      "@ngx-grpc/worker/*": [
+      "@metabreak/worker/*": [
         "dist/worker/*"
       ],
-      "@ngx-grpc/common": [
+      "@metabreak/grpc-webworker-common": [
         "dist/common"
       ],
-      "@ngx-grpc/common/*": [
+      "@metabreak/grpc-webworker-common/*": [
         "dist/common/*"
       ],
-      "@ngx-grpc/worker-client": [
+      "@metabreak/worker-client": [
         "dist/worker-client/worker-client",
         "dist/worker-client"
       ],
-      "@ngx-grpc/grpc-web-client": [
+      "@metabreak/grpc-web-client": [
         "dist/grpc-web-client/grpc-web-client",
         "dist/grpc-web-client"
       ],
-      "@ngx-grpc/well-known-types": [
+      "@metabreak/well-known-types": [
         "dist/well-known-types/well-known-types",
         "dist/well-known-types"
       ],
-      "@ngx-grpc/improbable-eng-grpc-web-client": [
+      "@metabreak/improbable-eng-grpc-web-client": [
         "dist/improbable-eng-grpc-web-client/improbable-eng-grpc-web-client",
         "dist/improbable-eng-grpc-web-client"
       ]

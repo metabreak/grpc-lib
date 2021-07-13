@@ -1,9 +1,9 @@
 {
-  "name": "@ngx-grpc/grpc-web-client",
+  "name": "@metabreak/grpc-web-client",
   "peerDependencies": {
-    "@ngx-grpc/common": ">=0.2.0",
-    "@ngx-grpc/core": ">=0.2.0",
     "@angular/core": ">=8.0.0",
+    "@metabreak/core": ">=0.2.0",
+    "@metabreak/grpc-webworker-common": ">=0.2.0",
     "grpc-web": "^1.2.1"
   },
   "dependencies": {

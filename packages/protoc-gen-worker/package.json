@@ -1,0 +1,13 @@
+{
+  "name": "@metabreak/protoc-gen-worker",
+  "description": "gRPC code generator for usage with web workers",
+  "author": "smnbbrv",
+  "license": "MIT",
+  "main": "./main.js",
+  "bin": "./main.js",
+  "dependencies": {
+    "google-protobuf": "^3.15.8",
+    "prettier": "1.19.1",
+    "winston": "^3.2.1"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "name": "@metabreak/grpc-worker-example-front",
+  "private": true,
+  "scripts": {
+    "start": "yarn parcel ./src/index.html",
+    "proto:generate": "yarn node scripts/generate-proto"
+  },
+  "dependencies": {
+    "@metabreak/grpc-webworker-client": "workspace:*",
+    "@metabreak/grpc-webworker-common": "workspace:*",
+    "@metabreak/grpc-webworker-wkt": "workspace:*",
+    "@metabreak/grpc-webworker-worker": "workspace:*",
+    "google-protobuf": "3.17.3",
+    "rxjs": "7.1.0"
+  },
+  "devDependencies": {
+    "@metabreak/protoc-gen-worker": "workspace:*",
+    "grpc-tools": "1.11.2",
+    "parcel": "next",
+    "rimraf": "3.0.2",
+    "typescript": "4.3.4"
+  }
+}

@@ -1,8 +1,8 @@
 {
-  "name": "@ngx-grpc/well-known-types",
+  "name": "@metabreak/grpc-webworker-wkt",
   "peerDependencies": {
-    "google-protobuf": "^3.10.0",
-    "@ngx-grpc/common": ">=2.0.0"
+    "@metabreak/grpc-webworker-common": ">=2.0.0",
+    "google-protobuf": "^3.10.0"
   },
   "dependencies": {
     "tslib": "^2.0.0"
