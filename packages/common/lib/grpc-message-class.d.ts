@@ -7,4 +7,3 @@ export interface GrpcMessageClass<M extends GrpcMessage> {
     deserializeBinaryFromReader: (message: M, reader: BinaryReader) => void;
     serializeBinaryToWriter: (message: M, writer: BinaryWriter) => void;
 }
-//# sourceMappingURL=grpc-message-class.d.ts.map

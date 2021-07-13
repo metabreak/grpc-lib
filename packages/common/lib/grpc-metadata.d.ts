@@ -9,4 +9,3 @@ export declare class GrpcMetadata {
     clone(): GrpcMetadata;
     toObject(): {};
 }
-//# sourceMappingURL=grpc-metadata.d.ts.map

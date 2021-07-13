@@ -2,12 +2,6 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "outDir": "./lib",
-    "rootDir": "./src",
-    "declarationMap": true,
-    "target": "ES2015",
-    "declaration": true,
-    "inlineSources": true,
-    "types": [],
-    "lib": ["DOM", "ES2018"]
+    "rootDir": "./src"
   }
 }

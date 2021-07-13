@@ -24,4 +24,3 @@ export interface GrpcRequest<Q extends GrpcMessage, S extends GrpcMessage> {
     requestClass: GrpcMessageClass<Q>;
     responseClass: GrpcMessageClass<S>;
 }
-//# sourceMappingURL=grpc-client.d.ts.map

@@ -8,4 +8,3 @@ export interface GrpcMessage {
 export interface ToProtobufJSONOptions {
     messagePool?: GrpcMessagePool;
 }
-//# sourceMappingURL=grpc-message.d.ts.map

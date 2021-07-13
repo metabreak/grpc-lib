@@ -6,4 +6,3 @@ export * from './grpc-message-pool';
 export * from './grpc-metadata';
 export * from './recursive-partial';
 export * from './utils';
-//# sourceMappingURL=index.d.ts.map

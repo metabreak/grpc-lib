@@ -1,1 +1,0 @@
-{"version":3,"file":"grpc-message.d.ts","sourceRoot":"","sources":["../src/grpc-message.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,eAAe,EAAE,MAAM,qBAAqB,CAAC;AAKtD,MAAM,WAAW,WAAW;IAC1B,eAAe,IAAI,UAAU,CAAC;IAC9B,QAAQ,IAAI,GAAG,CAAC;IAChB,MAAM,IAAI,GAAG,CAAC;IACd,cAAc,CAAC,OAAO,CAAC,EAAE,qBAAqB,GAAG,GAAG,CAAC;CACtD;AAKD,MAAM,WAAW,qBAAqB;IAKpC,WAAW,CAAC,EAAE,eAAe,CAAC;CAE/B"}

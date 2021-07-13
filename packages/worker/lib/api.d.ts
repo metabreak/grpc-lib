@@ -33,14 +33,26 @@ export declare namespace GrpcWorkerApi {
         data = 2,
         end = 3
     }
-    interface GrpcWorkerMessageRPCResponse<S> extends GrpcWorkerMessage {
+    interface GrpcWorkerMessageRPCResponseBase<S> extends GrpcWorkerMessage {
         type: GrpcWorkerMessageType.rpcResponse;
-        responseType: GrpcWorkerMessageRPCResponseType;
         id: number;
-        error?: Error;
-        status?: Status;
-        response?: S;
     }
+    interface GrpcWorkerMessageRPCResponseError<S> extends GrpcWorkerMessageRPCResponseBase<S> {
+        responseType: GrpcWorkerMessageRPCResponseType.error;
+        error: Error;
+    }
+    interface GrpcWorkerMessageRPCResponseStatus<S> extends GrpcWorkerMessageRPCResponseBase<S> {
+        responseType: GrpcWorkerMessageRPCResponseType.status;
+        status: Status;
+    }
+    interface GrpcWorkerMessageRPCResponseData<S> extends GrpcWorkerMessageRPCResponseBase<S> {
+        responseType: GrpcWorkerMessageRPCResponseType.data;
+        response: S;
+    }
+    interface GrpcWorkerMessageRPCResponseEnd<S> extends GrpcWorkerMessageRPCResponseBase<S> {
+        responseType: GrpcWorkerMessageRPCResponseType.end;
+    }
+    type GrpcWorkerMessageRPCResponse<S> = GrpcWorkerMessageRPCResponseError<S> | GrpcWorkerMessageRPCResponseData<S> | GrpcWorkerMessageRPCResponseStatus<S> | GrpcWorkerMessageRPCResponseEnd<S>;
     interface WorkerMessageEvent<D> extends Event {
         data: D;
     }

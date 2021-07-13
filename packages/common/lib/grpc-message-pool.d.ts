@@ -6,4 +6,3 @@ export declare class GrpcMessagePool {
     add(messages: GrpcMessageClass<GrpcMessage>[]): void;
     get(id: string): GrpcMessageClass<GrpcMessage> | undefined;
 }
-//# sourceMappingURL=grpc-message-pool.d.ts.map

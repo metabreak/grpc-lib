@@ -11,4 +11,3 @@ export declare class GrpcStatusEvent {
     constructor(statusCode: number, statusMessage: string, metadata: GrpcMetadata);
 }
 export declare type GrpcEvent<T extends GrpcMessage> = GrpcDataEvent<T> | GrpcStatusEvent;
-//# sourceMappingURL=grpc-event.d.ts.map

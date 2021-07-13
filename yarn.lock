@@ -734,6 +734,7 @@ __metadata:
   resolution: "@metabreak/grpc-worker-common@workspace:packages/common"
   dependencies:
     "@types/google-protobuf": 3.15.3
+    "@types/node": 16.3.1
     google-protobuf: 3.17.3
     rimraf: 3.0.2
     rxjs: 7.2.0
@@ -2115,13 +2116,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:15.12.5":
-  version: 15.12.5
-  resolution: "@types/node@npm:15.12.5"
-  checksum: 4550941a5db67f21bf1c54b2f76ef6fb56ced08583b6049fceef5972ef73791225c41b9a30ce36f496fded284dd736973b5e2107f4bd036d41f35550e3af3450
-  languageName: node
-  linkType: hard
-
 "@types/normalize-package-data@npm:^2.4.0":
   version: 2.4.1
   resolution: "@types/normalize-package-data@npm:2.4.1"
@@ -2782,7 +2776,7 @@ __metadata:
   resolution: "back-d9240d@workspace:examples/back"
   dependencies:
     "@types/google-protobuf": 3.15.3
-    "@types/node": 15.12.5
+    "@types/node": 16.3.1
     google-protobuf: 3.17.3
     grpc: 1.24.10
     grpc-tools: 1.11.2

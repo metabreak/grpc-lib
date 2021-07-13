@@ -2,8 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.GrpcMessagePool = void 0;
 class GrpcMessagePool {
+    index = new Map();
     constructor(messages) {
-        this.index = new Map();
         this.add(messages);
     }
     add(messages) {

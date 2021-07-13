@@ -1,1 +1,1 @@
-{"version":3,"file":"index.js","sourceRoot":"","sources":["../src/index.ts"],"names":[],"mappings":";;;;;;;;;;;;AAAA,uDAAqC;AACrC,wDAAsC","sourcesContent":["export * from './grpc-worker-client';\nexport * from './grpc-worker-gateway';\n"]}
+{"version":3,"file":"index.js","sourceRoot":"","sources":["../src/index.ts"],"names":[],"mappings":";;;;;;;;;;;;AAAA,uDAAqC;AACrC,wDAAsC"}

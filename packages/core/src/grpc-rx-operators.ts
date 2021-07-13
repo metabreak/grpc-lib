@@ -15,11 +15,14 @@ import { filter, map, switchMap } from 'rxjs/operators';
 export function throwStatusErrors<T extends GrpcMessage>() {
   return (source$: Observable<GrpcEvent<T>>) =>
     source$.pipe(
-      switchMap((event) =>
-        event instanceof GrpcStatusEvent && event.statusCode
-          ? throwError(event)
-          : of(event),
-      ),
+      switchMap((event) => {
+        if (event instanceof GrpcStatusEvent && event.statusCode) {
+          return throwError(() => {
+            return new Error(event.statusMessage);
+          });
+        }
+        return of(event);
+      }),
     );
 }
 
@@ -31,7 +34,14 @@ export function throwStatusErrors<T extends GrpcMessage>() {
 export function takeMessages<T extends GrpcMessage>() {
   return (source$: Observable<GrpcEvent<T>>) =>
     source$.pipe(
-      filter((event) => event instanceof GrpcDataEvent),
-      map((event: GrpcDataEvent<T>) => event.data),
+      filter((event: GrpcEvent<T>) => {
+        return event instanceof GrpcDataEvent;
+      }),
+      map((event) => {
+        return event as GrpcDataEvent<T>;
+      }),
+      map((event) => {
+        return event.data;
+      }),
     );
 }
