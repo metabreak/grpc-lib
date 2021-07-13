@@ -1,15 +1,15 @@
 {
-  "name": "@metabreak/grpc-worker-example-front",
+  "name": "@metabreak/grpc-example-front",
   "private": true,
   "scripts": {
     "start": "yarn parcel ./src/index.html",
-    "proto:generate": "yarn node scripts/generate-proto"
+    "generate": "yarn node scripts/generate"
   },
   "dependencies": {
+    "@metabreak/grpc-common": "workspace:*",
+    "@metabreak/grpc-well-known-types": "workspace:*",
     "@metabreak/grpc-worker": "workspace:*",
     "@metabreak/grpc-worker-client": "workspace:*",
-    "@metabreak/grpc-worker-common": "workspace:*",
-    "@metabreak/grpc-worker-wkt": "workspace:*",
     "google-protobuf": "3.17.3",
     "rxjs": "7.2.0"
   },

@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.GrpcWorkerClient = exports.GrpcWorkerClientFactory = void 0;
-const grpc_worker_common_1 = require("@metabreak/grpc-worker-common");
+const grpc_common_1 = require("@metabreak/grpc-common");
 const operators_1 = require("rxjs/operators");
 class GrpcWorkerClientFactory {
     defaultSettings;
@@ -36,7 +36,7 @@ class GrpcWorkerClient {
         return this.gateway
             .callUnaryFromWorker(this.serviceId, path, req.toObject(), metadata?.toObject() ?? {})
             .pipe(operators_1.tap((res) => {
-            if (res instanceof grpc_worker_common_1.GrpcDataEvent) {
+            if (res instanceof grpc_common_1.GrpcDataEvent) {
                 res.data = new resclss(res.data);
             }
         }));
@@ -45,7 +45,7 @@ class GrpcWorkerClient {
         return this.gateway
             .callServerStreamFromWorker(this.serviceId, path, req.toObject(), metadata?.toObject() ?? {})
             .pipe(operators_1.tap((res) => {
-            if (res instanceof grpc_worker_common_1.GrpcDataEvent) {
+            if (res instanceof grpc_common_1.GrpcDataEvent) {
                 res.data = new resclss(res.data);
             }
         }));

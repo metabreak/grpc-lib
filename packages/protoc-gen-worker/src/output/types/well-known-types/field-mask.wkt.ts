@@ -2,7 +2,6 @@ import { Printer } from '../../misc/printer';
 import { WKT } from '../wkt';
 
 export class FieldMaskWKT implements WKT {
-
   printToProtobufJSON(printer: Printer) {
     printer.addLine(`return this.paths.join(',');`);
   }
@@ -10,5 +9,4 @@ export class FieldMaskWKT implements WKT {
   printAsProtobufJSON(printer: Printer) {
     printer.addLine(`export type AsProtobufJSON = string;`);
   }
-
 }

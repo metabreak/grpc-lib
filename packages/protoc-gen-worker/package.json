@@ -15,12 +15,14 @@
   "dependencies": {
     "google-protobuf": "3.17.3",
     "prettier": "2.3.2",
+    "rxjs": "7.2.0",
     "winston": "3.3.3"
   },
   "devDependencies": {
+    "@metabreak/grpc-common": "workspace:*",
+    "@metabreak/grpc-web-client": "workspace:*",
     "@metabreak/grpc-worker": "workspace:*",
     "@metabreak/grpc-worker-client": "workspace:*",
-    "@metabreak/grpc-worker-common": "workspace:*",
     "@metabreak/grpc-worker-core": "workspace:*",
     "@types/google-protobuf": "3.15.3",
     "@types/jest": "26.0.24",

@@ -2,8 +2,6 @@
   "compilerOptions": {
     "module": "CommonJS",
     "target": "ES5",
-    "preserveConstEnums": true,
-    "esModuleInterop": true,
     "lib": ["DOM", "ESNext", "WebWorker"]
   }
 }

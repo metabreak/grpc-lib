@@ -3,7 +3,7 @@ import {
   GrpcEvent,
   GrpcMessage,
   GrpcStatusEvent,
-} from '@metabreak/grpc-worker-common';
+} from '@metabreak/grpc-common';
 import { Observable, of, throwError } from 'rxjs';
 import { filter, map, switchMap } from 'rxjs/operators';
 

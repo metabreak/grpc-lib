@@ -1,4 +1,4 @@
-import { GrpcEvent, GrpcMessage, GrpcRequest } from '@metabreak/grpc-worker-common';
+import { GrpcEvent, GrpcMessage, GrpcRequest } from '@metabreak/grpc-common';
 import { Observable } from 'rxjs';
 import { GrpcHandler } from './grpc-handler';
 import { GrpcInterceptor } from './grpc-interceptor';

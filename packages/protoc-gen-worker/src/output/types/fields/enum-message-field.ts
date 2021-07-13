@@ -9,7 +9,6 @@ import { MessageField } from '../message-field';
 import { OneOf } from '../oneof';
 
 export class EnumMessageField implements MessageField {
-
   private attributeName: string;
   private dataType: string;
   private notRepeatedDataType: string;
@@ -23,19 +22,28 @@ export class EnumMessageField implements MessageField {
     private oneOf?: OneOf,
   ) {
     this.attributeName = camelizeSafe(this.messageField.name);
-    this.isArray = this.messageField.label === ProtoMessageFieldCardinality.repeated;
+    this.isArray =
+      this.messageField.label === ProtoMessageFieldCardinality.repeated;
     this.isPacked = isPacked(this.proto, this.messageField);
     this.dataType = getDataType(this.proto, this.messageField);
-    this.notRepeatedDataType = getDataType(this.proto, this.messageField, { ignoreRepeating: true });
+    this.notRepeatedDataType = getDataType(this.proto, this.messageField, {
+      ignoreRepeating: true,
+    });
   }
 
   printDeserializeBinaryFromReader(printer: Printer) {
     if (this.isPacked) {
-      printer.add(`case ${this.messageField.number}: (_instance.${this.attributeName} = _instance.${this.attributeName} || []).push(...(_reader.readPackedEnum() || []));`);
+      printer.add(
+        `case ${this.messageField.number}: (_instance.${this.attributeName} = _instance.${this.attributeName} || []).push(...(_reader.readPackedEnum() || []));`,
+      );
     } else if (this.isArray) {
-      printer.add(`case ${this.messageField.number}: (_instance.${this.attributeName} = _instance.${this.attributeName} || []).push(_reader.readEnum());`);
+      printer.add(
+        `case ${this.messageField.number}: (_instance.${this.attributeName} = _instance.${this.attributeName} || []).push(_reader.readEnum());`,
+      );
     } else {
-      printer.add(`case ${this.messageField.number}: _instance.${this.attributeName} = _reader.readEnum();`);
+      printer.add(
+        `case ${this.messageField.number}: _instance.${this.attributeName} = _reader.readEnum();`,
+      );
     }
 
     printer.add('break;');
@@ -71,7 +79,9 @@ export class EnumMessageField implements MessageField {
 
   printInitializer(printer: Printer) {
     if (this.isArray) {
-      printer.add(`this.${this.attributeName} = (_value.${this.attributeName} || []).slice();`);
+      printer.add(
+        `this.${this.attributeName} = (_value.${this.attributeName} || []).slice();`,
+      );
     } else {
       printer.add(`this.${this.attributeName} = _value.${this.attributeName}`);
     }
@@ -81,18 +91,26 @@ export class EnumMessageField implements MessageField {
     if (this.oneOf || this.messageField.proto3Optional) {
       return;
     } else if (this.isArray) {
-      printer.add(`_instance.${this.attributeName} = _instance.${this.attributeName} || []`);
+      printer.add(
+        `_instance.${this.attributeName} = _instance.${this.attributeName} || []`,
+      );
     } else {
-      printer.add(`_instance.${this.attributeName} = _instance.${this.attributeName} || 0`);
+      printer.add(
+        `_instance.${this.attributeName} = _instance.${this.attributeName} || 0`,
+      );
     }
   }
 
   printGetter(printer: Printer) {
-    printer.add(`get ${this.attributeName}(): ${this.dataType} | undefined { return this._${this.attributeName} }`);
+    printer.add(
+      `get ${this.attributeName}(): ${this.dataType} | undefined { return this._${this.attributeName} }`,
+    );
   }
 
   printSetter(printer: Printer) {
-    printer.add(`set ${this.attributeName}(value: ${this.dataType} | undefined) {
+    printer.add(`set ${this.attributeName}(value: ${
+      this.dataType
+    } | undefined) {
       ${this.oneOf ? this.oneOf.createFieldSetterAddon(this.messageField) : ''}
       this._${this.attributeName} = value;
     }`);
@@ -100,7 +118,9 @@ export class EnumMessageField implements MessageField {
 
   printToObjectMapping(printer: Printer) {
     if (this.isArray) {
-      printer.add(`${this.attributeName}: (this.${this.attributeName} || []).slice(),`);
+      printer.add(
+        `${this.attributeName}: (this.${this.attributeName} || []).slice(),`,
+      );
     } else {
       printer.add(`${this.attributeName}: this.${this.attributeName},`);
     }
@@ -112,14 +132,25 @@ export class EnumMessageField implements MessageField {
 
   printToProtobufJSONMapping(printer: Printer) {
     if (this.isArray) {
-      printer.add(`${this.attributeName}: (this.${this.attributeName} || []).map(v => ${this.notRepeatedDataType}[v]),`);
+      printer.add(
+        `${this.attributeName}: (this.${this.attributeName} || []).map(v => ${this.notRepeatedDataType}[v]),`,
+      );
     } else {
-      printer.add(`${this.attributeName}: ${this.oneOf || this.messageField.proto3Optional ? `this.${this.attributeName} === undefined ? null : ` : ''}${this.notRepeatedDataType}[this.${this.attributeName} ?? 0],`);
+      printer.add(
+        `${this.attributeName}: ${
+          this.oneOf || this.messageField.proto3Optional
+            ? `this.${this.attributeName} === undefined ? null : `
+            : ''
+        }${this.notRepeatedDataType}[this.${this.attributeName} ?? 0],`,
+      );
     }
   }
 
   printAsJSONMapping(printer: Printer) {
-    printer.add(`${this.attributeName}?: string${this.isArray ? '[]' : ''}${this.oneOf || this.messageField.proto3Optional ? ' | null' : ''};`);
+    printer.add(
+      `${this.attributeName}?: string${this.isArray ? '[]' : ''}${
+        this.oneOf || this.messageField.proto3Optional ? ' | null' : ''
+      };`,
+    );
   }
-
 }

@@ -1,4 +1,3 @@
-
 /**
  * Settings for the chosen implementation of GrpcClient
  */

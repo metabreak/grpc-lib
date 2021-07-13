@@ -21,11 +21,15 @@ json.version = version;
 console.log(`Patched ${fullPath} with new version ${version}`);
 
 if (json.peerDependencies) {
-  Object.keys(json.peerDependencies).filter(key => key.startsWith('@ngx-grpc/')).forEach(key => {
-    json.peerDependencies[key] = version;
+  Object.keys(json.peerDependencies)
+    .filter((key) => key.startsWith('@ngx-grpc/'))
+    .forEach((key) => {
+      json.peerDependencies[key] = version;
 
-    console.log(`Patched ${fullPath} peer dependency ${key} with the version ${version}`);
-  })
+      console.log(
+        `Patched ${fullPath} peer dependency ${key} with the version ${version}`,
+      );
+    });
 }
 
 fs.writeFileSync(fullPath, JSON.stringify(json, null, 2));

@@ -14,10 +14,8 @@ export interface GrpcMessage {
  * Options to pass to `toProtobufJSON(options)`
  */
 export interface ToProtobufJSONOptions {
-
   /**
    * Message pool to unpack google.protobuf.Any. If you do not expect the message or any of its descendants to be google.protobuf.Any this option should be omitted.
    */
   messagePool?: GrpcMessagePool;
-
 }

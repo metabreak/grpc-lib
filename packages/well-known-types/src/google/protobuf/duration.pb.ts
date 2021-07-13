@@ -7,7 +7,7 @@ import {
   GrpcMessage,
   RecursivePartial,
   ToProtobufJSONOptions,
-} from '@metabreak/grpc-worker-common';
+} from '@metabreak/grpc-common';
 import { BinaryReader, BinaryWriter, ByteSource } from 'google-protobuf';
 
 /**
@@ -42,7 +42,7 @@ export class Duration implements GrpcMessage {
    */
   static deserializeBinaryFromReader(
     _instance: Duration,
-    _reader: BinaryReader
+    _reader: BinaryReader,
   ) {
     while (_reader.nextField()) {
       if (_reader.isEndGroup()) break;
@@ -136,7 +136,7 @@ export class Duration implements GrpcMessage {
    */
   toProtobufJSON(
     // @ts-ignore
-    options?: ToProtobufJSONOptions
+    options?: ToProtobufJSONOptions,
   ): Duration.AsProtobufJSON {
     return parseInt(this.seconds || '0') + (this.nanos || 0) / 1e9 + 's';
   }

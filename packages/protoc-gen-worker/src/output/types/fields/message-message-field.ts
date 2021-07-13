@@ -9,7 +9,6 @@ import { MessageField } from '../message-field';
 import { OneOf } from '../oneof';
 
 export class MessageMessageField implements MessageField {
-
   private attributeName: string;
   private dataType: string;
   private asObjectDataType: string;
@@ -24,11 +23,18 @@ export class MessageMessageField implements MessageField {
     private oneOf?: OneOf,
   ) {
     this.attributeName = camelizeSafe(this.messageField.name);
-    this.isArray = this.messageField.label === ProtoMessageFieldCardinality.repeated;
-    this.messageClassName = this.proto.getRelativeTypeName(this.messageField.typeName);
+    this.isArray =
+      this.messageField.label === ProtoMessageFieldCardinality.repeated;
+    this.messageClassName = this.proto.getRelativeTypeName(
+      this.messageField.typeName,
+    );
     this.dataType = getDataType(this.proto, this.messageField);
-    this.asObjectDataType = getDataType(this.proto, this.messageField, { asObjectDataType: true });
-    this.asJSONDataType = getDataType(this.proto, this.messageField, { asProtobufJSONDataType: true });
+    this.asObjectDataType = getDataType(this.proto, this.messageField, {
+      asObjectDataType: true,
+    });
+    this.asJSONDataType = getDataType(this.proto, this.messageField, {
+      asProtobufJSONDataType: true,
+    });
   }
 
   printDeserializeBinaryFromReader(printer: Printer) {
@@ -66,9 +72,13 @@ export class MessageMessageField implements MessageField {
 
   printInitializer(printer: Printer) {
     if (this.isArray) {
-      printer.add(`this.${this.attributeName} = (_value.${this.attributeName} || []).map(m => new ${this.messageClassName}(m));`);
+      printer.add(
+        `this.${this.attributeName} = (_value.${this.attributeName} || []).map(m => new ${this.messageClassName}(m));`,
+      );
     } else {
-      printer.add(`this.${this.attributeName} = _value.${this.attributeName} ? new ${this.messageClassName}(_value.${this.attributeName}) : undefined;`);
+      printer.add(
+        `this.${this.attributeName} = _value.${this.attributeName} ? new ${this.messageClassName}(_value.${this.attributeName}) : undefined;`,
+      );
     }
   }
 
@@ -76,18 +86,26 @@ export class MessageMessageField implements MessageField {
     if (this.oneOf) {
       return;
     } else if (this.isArray) {
-      printer.add(`_instance.${this.attributeName} = _instance.${this.attributeName} || []`);
+      printer.add(
+        `_instance.${this.attributeName} = _instance.${this.attributeName} || []`,
+      );
     } else {
-      printer.add(`_instance.${this.attributeName} = _instance.${this.attributeName} || undefined`);
+      printer.add(
+        `_instance.${this.attributeName} = _instance.${this.attributeName} || undefined`,
+      );
     }
   }
 
   printGetter(printer: Printer) {
-    printer.add(`get ${this.attributeName}(): ${this.dataType} | undefined { return this._${this.attributeName} }`);
+    printer.add(
+      `get ${this.attributeName}(): ${this.dataType} | undefined { return this._${this.attributeName} }`,
+    );
   }
 
   printSetter(printer: Printer) {
-    printer.add(`set ${this.attributeName}(value: ${this.dataType} | undefined) {
+    printer.add(`set ${this.attributeName}(value: ${
+      this.dataType
+    } | undefined) {
       ${this.oneOf ? this.oneOf.createFieldSetterAddon(this.messageField) : ''}
       this._${this.attributeName} = value;
     }`);
@@ -95,9 +113,13 @@ export class MessageMessageField implements MessageField {
 
   printToObjectMapping(printer: Printer) {
     if (this.isArray) {
-      printer.add(`${this.attributeName}: (this.${this.attributeName} || []).map(m => m.toObject()),`);
+      printer.add(
+        `${this.attributeName}: (this.${this.attributeName} || []).map(m => m.toObject()),`,
+      );
     } else {
-      printer.add(`${this.attributeName}: this.${this.attributeName} ? this.${this.attributeName}.toObject() : undefined,`);
+      printer.add(
+        `${this.attributeName}: this.${this.attributeName} ? this.${this.attributeName}.toObject() : undefined,`,
+      );
     }
   }
 
@@ -107,14 +129,17 @@ export class MessageMessageField implements MessageField {
 
   printToProtobufJSONMapping(printer: Printer) {
     if (this.isArray) {
-      printer.add(`${this.attributeName}: (this.${this.attributeName} || []).map(m => m.toProtobufJSON(options)),`);
+      printer.add(
+        `${this.attributeName}: (this.${this.attributeName} || []).map(m => m.toProtobufJSON(options)),`,
+      );
     } else {
-      printer.add(`${this.attributeName}: this.${this.attributeName} ? this.${this.attributeName}.toProtobufJSON(options) : null,`);
+      printer.add(
+        `${this.attributeName}: this.${this.attributeName} ? this.${this.attributeName}.toProtobufJSON(options) : null,`,
+      );
     }
   }
 
   printAsJSONMapping(printer: Printer) {
     printer.add(`${this.attributeName}?: ${this.asJSONDataType} | null;`);
   }
-
 }

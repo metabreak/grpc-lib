@@ -3,7 +3,6 @@ import { Printer } from '../../misc/printer';
 import { WKT } from '../wkt';
 
 export class AnyWKT implements WKT {
-
   printStaticMethods(printer: Printer) {
     printer.addLine(`
       private static prefix = 'type.googleapis.com/';
@@ -134,5 +133,4 @@ export class AnyWKT implements WKT {
       [prop: string]: any;
     };`);
   }
-
 }

@@ -705,34 +705,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@metabreak/grpc-web-client@workspace:packages/grpc-web-client":
+"@metabreak/grpc-common@workspace:*, @metabreak/grpc-common@workspace:packages/common":
   version: 0.0.0-use.local
-  resolution: "@metabreak/grpc-web-client@workspace:packages/grpc-web-client"
-  dependencies:
-    "@metabreak/grpc-worker-common": "workspace:*"
-    "@metabreak/grpc-worker-core": "workspace:*"
-    grpc-web: 1.2.1
-    rimraf: 3.0.2
-    rxjs: 7.2.0
-    typescript: 4.3.5
-  languageName: unknown
-  linkType: soft
-
-"@metabreak/grpc-worker-client@workspace:*, @metabreak/grpc-worker-client@workspace:packages/worker-client":
-  version: 0.0.0-use.local
-  resolution: "@metabreak/grpc-worker-client@workspace:packages/worker-client"
-  dependencies:
-    "@metabreak/grpc-worker": "workspace:*"
-    "@metabreak/grpc-worker-common": "workspace:*"
-    rimraf: 3.0.2
-    rxjs: 7.2.0
-    typescript: 4.3.5
-  languageName: unknown
-  linkType: soft
-
-"@metabreak/grpc-worker-common@workspace:*, @metabreak/grpc-worker-common@workspace:packages/common":
-  version: 0.0.0-use.local
-  resolution: "@metabreak/grpc-worker-common@workspace:packages/common"
+  resolution: "@metabreak/grpc-common@workspace:packages/common"
   dependencies:
     "@types/google-protobuf": 3.15.3
     "@types/node": 16.3.1
@@ -743,20 +718,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@metabreak/grpc-worker-core@workspace:*, @metabreak/grpc-worker-core@workspace:packages/core":
+"@metabreak/grpc-example-back@workspace:examples/back":
   version: 0.0.0-use.local
-  resolution: "@metabreak/grpc-worker-core@workspace:packages/core"
-  dependencies:
-    "@metabreak/grpc-worker-common": "workspace:*"
-    rimraf: 3.0.2
-    rxjs: 7.2.0
-    typescript: 4.3.5
-  languageName: unknown
-  linkType: soft
-
-"@metabreak/grpc-worker-example-back@workspace:examples/back":
-  version: 0.0.0-use.local
-  resolution: "@metabreak/grpc-worker-example-back@workspace:examples/back"
+  resolution: "@metabreak/grpc-example-back@workspace:examples/back"
   dependencies:
     "@types/google-protobuf": 3.15.3
     "@types/node": 16.3.1
@@ -768,14 +732,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@metabreak/grpc-worker-example-front@workspace:examples/front":
+"@metabreak/grpc-example-front@workspace:examples/front":
   version: 0.0.0-use.local
-  resolution: "@metabreak/grpc-worker-example-front@workspace:examples/front"
+  resolution: "@metabreak/grpc-example-front@workspace:examples/front"
   dependencies:
+    "@metabreak/grpc-common": "workspace:*"
+    "@metabreak/grpc-well-known-types": "workspace:*"
     "@metabreak/grpc-worker": "workspace:*"
     "@metabreak/grpc-worker-client": "workspace:*"
-    "@metabreak/grpc-worker-common": "workspace:*"
-    "@metabreak/grpc-worker-wkt": "workspace:*"
     "@metabreak/protoc-gen-worker": "workspace:*"
     google-protobuf: 3.17.3
     grpc-tools: 1.11.2
@@ -786,11 +750,24 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@metabreak/grpc-worker-wkt@workspace:*, @metabreak/grpc-worker-wkt@workspace:packages/well-known-types":
+"@metabreak/grpc-web-client@workspace:*, @metabreak/grpc-web-client@workspace:packages/web-client":
   version: 0.0.0-use.local
-  resolution: "@metabreak/grpc-worker-wkt@workspace:packages/well-known-types"
+  resolution: "@metabreak/grpc-web-client@workspace:packages/web-client"
   dependencies:
-    "@metabreak/grpc-worker-common": "workspace:*"
+    "@metabreak/grpc-common": "workspace:*"
+    "@metabreak/grpc-worker-core": "workspace:*"
+    grpc-web: 1.2.1
+    rimraf: 3.0.2
+    rxjs: 7.2.0
+    typescript: 4.3.5
+  languageName: unknown
+  linkType: soft
+
+"@metabreak/grpc-well-known-types@workspace:*, @metabreak/grpc-well-known-types@workspace:packages/well-known-types":
+  version: 0.0.0-use.local
+  resolution: "@metabreak/grpc-well-known-types@workspace:packages/well-known-types"
+  dependencies:
+    "@metabreak/grpc-common": "workspace:*"
     "@metabreak/protoc-gen-worker": "workspace:*"
     "@types/google-protobuf": 3.15.3
     google-protobuf: 3.17.3
@@ -799,11 +776,34 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@metabreak/grpc-worker-client@workspace:*, @metabreak/grpc-worker-client@workspace:packages/worker-client":
+  version: 0.0.0-use.local
+  resolution: "@metabreak/grpc-worker-client@workspace:packages/worker-client"
+  dependencies:
+    "@metabreak/grpc-common": "workspace:*"
+    "@metabreak/grpc-worker": "workspace:*"
+    rimraf: 3.0.2
+    rxjs: 7.2.0
+    typescript: 4.3.5
+  languageName: unknown
+  linkType: soft
+
+"@metabreak/grpc-worker-core@workspace:*, @metabreak/grpc-worker-core@workspace:packages/core":
+  version: 0.0.0-use.local
+  resolution: "@metabreak/grpc-worker-core@workspace:packages/core"
+  dependencies:
+    "@metabreak/grpc-common": "workspace:*"
+    rimraf: 3.0.2
+    rxjs: 7.2.0
+    typescript: 4.3.5
+  languageName: unknown
+  linkType: soft
+
 "@metabreak/grpc-worker@workspace:*, @metabreak/grpc-worker@workspace:packages/worker":
   version: 0.0.0-use.local
   resolution: "@metabreak/grpc-worker@workspace:packages/worker"
   dependencies:
-    "@metabreak/grpc-worker-common": "workspace:*"
+    "@metabreak/grpc-common": "workspace:*"
     grpc-web: 1.2.1
     rimraf: 3.0.2
     typescript: 4.3.5
@@ -814,9 +814,10 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@metabreak/protoc-gen-worker@workspace:packages/protoc-gen-worker"
   dependencies:
+    "@metabreak/grpc-common": "workspace:*"
+    "@metabreak/grpc-web-client": "workspace:*"
     "@metabreak/grpc-worker": "workspace:*"
     "@metabreak/grpc-worker-client": "workspace:*"
-    "@metabreak/grpc-worker-common": "workspace:*"
     "@metabreak/grpc-worker-core": "workspace:*"
     "@types/google-protobuf": 3.15.3
     "@types/jest": 26.0.24
@@ -827,6 +828,7 @@ __metadata:
     jest-environment-jsdom: 27.0.6
     prettier: 2.3.2
     rimraf: 3.0.2
+    rxjs: 7.2.0
     ts-jest: 27.0.3
     typescript: 4.3.5
     winston: 3.3.3
@@ -2144,13 +2146,6 @@ __metadata:
   version: 4.0.0
   resolution: "@types/parse-json@npm:4.0.0"
   checksum: fd6bce2b674b6efc3db4c7c3d336bd70c90838e8439de639b909ce22f3720d21344f52427f1d9e57b265fcb7f6c018699b99e5e0c208a1a4823014269a6bf35b
-  languageName: node
-  linkType: hard
-
-"@types/prettier@npm:2.1.5":
-  version: 2.1.5
-  resolution: "@types/prettier@npm:2.1.5"
-  checksum: 24b550210e147a32e9a63f4f8053ed691b0738b19d1a0259a6ee4e98f5e5f6b14ed535b3e2a2c7980364f7d352bff54d710f9509fb569583218e45cbc0e4b333
   languageName: node
   linkType: hard
 
@@ -11140,12 +11135,15 @@ __metadata:
     "@semantic-release/release-notes-generator": 9.0.3
     "@types/jest": 26.0.24
     "@types/node": 16.3.1
-    "@types/prettier": 2.1.5
+    "@types/prettier": 2.3.2
+    jest: 27.0.6
+    jest-environment-jsdom: 27.0.6
     nodemon: 2.0.12
     npm-run-all: 4.1.5
     prettier: 2.3.2
     rimraf: 3.0.2
     semantic-release: 17.4.4
+    ts-jest: 27.0.3
     typescript: 4.3.5
   languageName: unknown
   linkType: soft

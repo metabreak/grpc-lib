@@ -1,4 +1,4 @@
-import { GrpcMessage, RecursivePartial, ToProtobufJSONOptions } from '@metabreak/grpc-worker-common';
+import { GrpcMessage, RecursivePartial, ToProtobufJSONOptions } from '@metabreak/grpc-common';
 import { BinaryReader, BinaryWriter, ByteSource } from 'google-protobuf';
 export declare class FieldMask implements GrpcMessage {
     static id: string;

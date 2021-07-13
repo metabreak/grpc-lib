@@ -4,11 +4,7 @@ import { ExternalDependencies } from '../misc/dependencies';
 import { Printer } from '../misc/printer';
 
 export class WorkerServiceClient {
-
-  constructor(
-    private proto: Proto,
-    private service: ProtoService,
-  ) { }
+  constructor(private proto: Proto, private service: ProtoService) {}
 
   print(printer: Printer) {
     printer.addDeps(
@@ -16,13 +12,23 @@ export class WorkerServiceClient {
       ExternalDependencies.GrpcWorkerServiceClientDef,
     );
 
-    const serviceName = (this.proto.pb_package ? this.proto.pb_package + '.' : '') + this.service.name;
-    const serviceId = (this.proto.pb_package ? this.proto.pb_package + '.' : '') + this.service.name;
+    const serviceName =
+      (this.proto.pb_package ? this.proto.pb_package + '.' : '') +
+      this.service.name;
+    const serviceId =
+      (this.proto.pb_package ? this.proto.pb_package + '.' : '') +
+      this.service.name;
 
-    const methods = this.service.methodList.map(method => {
+    const methods = this.service.methodList.map((method) => {
       const callType = method.serverStreaming ? 'serverStream' : 'unary';
-      const inputType = this.proto.getRelativeTypeName(method.inputType, 'thisProto');
-      const outputType = this.proto.getRelativeTypeName(method.outputType, 'thisProto');
+      const inputType = this.proto.getRelativeTypeName(
+        method.inputType,
+        'thisProto',
+      );
+      const outputType = this.proto.getRelativeTypeName(
+        method.outputType,
+        'thisProto',
+      );
 
       return `'/${serviceName}/${method.name}': { type: GrpcCallType.${callType}, reqclss: ${inputType}, resclss: ${outputType} }`;
     });
@@ -31,7 +37,9 @@ export class WorkerServiceClient {
       /**
        * Client definition for use in worker
        */
-      export const GrpcWorker${this.service.name}ClientDef: GrpcWorkerServiceClientDef = {
+      export const GrpcWorker${
+        this.service.name
+      }ClientDef: GrpcWorkerServiceClientDef = {
         serviceId: '${serviceId}',
         methods: {
           ${methods.join(',\n')}
@@ -39,5 +47,4 @@ export class WorkerServiceClient {
       };
     `);
   }
-
 }

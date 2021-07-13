@@ -20,62 +20,133 @@ import { DurationWKT } from './well-known-types/duration.wkt';
 import { EmptyWKT } from './well-known-types/empty.wkt';
 import { FieldMaskWKT } from './well-known-types/field-mask.wkt';
 import { SourceContextWKT } from './well-known-types/source-context.wkt';
-import { ListValueWKT, StructWKT, ValueWKT } from './well-known-types/struct.wkt';
+import {
+  ListValueWKT,
+  StructWKT,
+  ValueWKT,
+} from './well-known-types/struct.wkt';
 import { TimestampWKT } from './well-known-types/timestamp.wkt';
-import { EnumValueWKT, EnumWKT, FieldWKT, OptionWKT, TypeWKT } from './well-known-types/type.wkt';
-import { BoolValueWKT, BytesValueWKT, DoubleValueWKT, FloatValueWKT, Int32ValueWKT, Int64ValueWKT, StringValueWKT, UInt32ValueWKT, UInt64ValueWKT } from './well-known-types/wrappers.wkt';
+import {
+  EnumValueWKT,
+  EnumWKT,
+  FieldWKT,
+  OptionWKT,
+  TypeWKT,
+} from './well-known-types/type.wkt';
+import {
+  BoolValueWKT,
+  BytesValueWKT,
+  DoubleValueWKT,
+  FloatValueWKT,
+  Int32ValueWKT,
+  Int64ValueWKT,
+  StringValueWKT,
+  UInt32ValueWKT,
+  UInt64ValueWKT,
+} from './well-known-types/wrappers.wkt';
 import { WKT } from './wkt';
 
 export class Message {
-
   private messageFields: MessageField[];
 
   private oneOfs: OneOf[];
 
   private wkt?: WKT;
 
-  constructor(
-    private proto: Proto,
-    private message: ProtoMessage,
-  ) {
+  constructor(private proto: Proto, private message: ProtoMessage) {
     if (this.proto.pb_package === 'google.protobuf') {
       switch (this.message.name) {
-        case 'Any': this.wkt = new AnyWKT(); break;
-        case 'Api': this.wkt = new ApiWKT(); break;
-        case 'BoolValue': this.wkt = new BoolValueWKT(); break;
-        case 'BytesValue': this.wkt = new BytesValueWKT(); break;
-        case 'DoubleValue': this.wkt = new DoubleValueWKT(); break;
-        case 'Duration': this.wkt = new DurationWKT(); break;
-        case 'Empty': this.wkt = new EmptyWKT(); break;
-        case 'Enum': this.wkt = new EnumWKT(); break;
-        case 'EnumValue': this.wkt = new EnumValueWKT(); break;
-        case 'Field': this.wkt = new FieldWKT(); break;
-        case 'FieldMask': this.wkt = new FieldMaskWKT(); break;
-        case 'FloatValue': this.wkt = new FloatValueWKT(); break;
-        case 'Int32Value': this.wkt = new Int32ValueWKT(); break;
-        case 'Int64Value': this.wkt = new Int64ValueWKT(); break;
-        case 'ListValue': this.wkt = new ListValueWKT(); break;
-        case 'Method': this.wkt = new MethodWKT(); break;
-        case 'Mixin': this.wkt = new MixinWKT(); break;
-        case 'Option': this.wkt = new OptionWKT(); break;
-        case 'SourceContext': this.wkt = new SourceContextWKT(); break;
-        case 'StringValue': this.wkt = new StringValueWKT(); break;
-        case 'Struct': this.wkt = new StructWKT(); break;
-        case 'Timestamp': this.wkt = new TimestampWKT(); break;
-        case 'Type': this.wkt = new TypeWKT(); break;
-        case 'UInt32Value': this.wkt = new UInt32ValueWKT(); break;
-        case 'UInt64Value': this.wkt = new UInt64ValueWKT(); break;
-        case 'Value': this.wkt = new ValueWKT(); break;
+        case 'Any':
+          this.wkt = new AnyWKT();
+          break;
+        case 'Api':
+          this.wkt = new ApiWKT();
+          break;
+        case 'BoolValue':
+          this.wkt = new BoolValueWKT();
+          break;
+        case 'BytesValue':
+          this.wkt = new BytesValueWKT();
+          break;
+        case 'DoubleValue':
+          this.wkt = new DoubleValueWKT();
+          break;
+        case 'Duration':
+          this.wkt = new DurationWKT();
+          break;
+        case 'Empty':
+          this.wkt = new EmptyWKT();
+          break;
+        case 'Enum':
+          this.wkt = new EnumWKT();
+          break;
+        case 'EnumValue':
+          this.wkt = new EnumValueWKT();
+          break;
+        case 'Field':
+          this.wkt = new FieldWKT();
+          break;
+        case 'FieldMask':
+          this.wkt = new FieldMaskWKT();
+          break;
+        case 'FloatValue':
+          this.wkt = new FloatValueWKT();
+          break;
+        case 'Int32Value':
+          this.wkt = new Int32ValueWKT();
+          break;
+        case 'Int64Value':
+          this.wkt = new Int64ValueWKT();
+          break;
+        case 'ListValue':
+          this.wkt = new ListValueWKT();
+          break;
+        case 'Method':
+          this.wkt = new MethodWKT();
+          break;
+        case 'Mixin':
+          this.wkt = new MixinWKT();
+          break;
+        case 'Option':
+          this.wkt = new OptionWKT();
+          break;
+        case 'SourceContext':
+          this.wkt = new SourceContextWKT();
+          break;
+        case 'StringValue':
+          this.wkt = new StringValueWKT();
+          break;
+        case 'Struct':
+          this.wkt = new StructWKT();
+          break;
+        case 'Timestamp':
+          this.wkt = new TimestampWKT();
+          break;
+        case 'Type':
+          this.wkt = new TypeWKT();
+          break;
+        case 'UInt32Value':
+          this.wkt = new UInt32ValueWKT();
+          break;
+        case 'UInt64Value':
+          this.wkt = new UInt64ValueWKT();
+          break;
+        case 'Value':
+          this.wkt = new ValueWKT();
+          break;
       }
     }
 
-    const allOneOfs = this.message.oneofDeclList.map(od => new OneOf(this.proto, this.message, od));
-    this.oneOfs = allOneOfs.filter(oneOf => !oneOf.isSyntheticOneOf());
+    const allOneOfs = this.message.oneofDeclList.map(
+      (od) => new OneOf(this.proto, this.message, od),
+    );
+    this.oneOfs = allOneOfs.filter((oneOf) => !oneOf.isSyntheticOneOf());
 
-    this.messageFields = this.message.fieldList.map(field => {
-      const oneOf = typeof field.oneofIndex === 'number' && !field.proto3Optional
-        ? allOneOfs[field.oneofIndex]
-        : undefined;
+    this.messageFields = this.message.fieldList.map((field) => {
+      const oneOf =
+        typeof field.oneofIndex === 'number' && !field.proto3Optional
+          ? allOneOfs[field.oneofIndex]
+          : undefined;
 
       if (isFieldMap(this.proto, field)) {
         return new MapMessageField(this.proto, this.message, field, oneOf);
@@ -84,13 +155,28 @@ export class Message {
       } else {
         switch (field.type) {
           case ProtoMessageFieldType.bool:
-            return new BooleanMessageField(this.proto, this.message, field, oneOf);
+            return new BooleanMessageField(
+              this.proto,
+              this.message,
+              field,
+              oneOf,
+            );
           case ProtoMessageFieldType.bytes:
-            return new BytesMessageField(this.proto, this.message, field, oneOf);
+            return new BytesMessageField(
+              this.proto,
+              this.message,
+              field,
+              oneOf,
+            );
           case ProtoMessageFieldType.enum:
             return new EnumMessageField(this.proto, this.message, field, oneOf);
           case ProtoMessageFieldType.string:
-            return new StringMessageField(this.proto, this.message, field, oneOf);
+            return new StringMessageField(
+              this.proto,
+              this.message,
+              field,
+              oneOf,
+            );
           case ProtoMessageFieldType.double:
           case ProtoMessageFieldType.fixed32:
           case ProtoMessageFieldType.float:
@@ -103,8 +189,14 @@ export class Message {
           case ProtoMessageFieldType.sfixed64:
           case ProtoMessageFieldType.sint64:
           case ProtoMessageFieldType.uint64:
-            return new NumberMessageField(this.proto, this.message, field, oneOf);
-          default: throw new Error('Unknown data type ' + field.type);
+            return new NumberMessageField(
+              this.proto,
+              this.message,
+              field,
+              oneOf,
+            );
+          default:
+            throw new Error('Unknown data type ' + field.type);
         }
       }
     });
@@ -119,9 +211,14 @@ export class Message {
       ExternalDependencies.RecursivePartial,
     );
 
-    const messageId = (this.proto.pb_package ? this.proto.pb_package + '.' : '') + this.message.name;
-    const wktUrl = 'https://developers.google.com/protocol-buffers/docs/reference/google.protobuf';
-    const constructorComment = this.wkt ? `Well known type, more at ${wktUrl}` : `Message implementation for ${messageId}`;
+    const messageId =
+      (this.proto.pb_package ? this.proto.pb_package + '.' : '') +
+      this.message.name;
+    const wktUrl =
+      'https://developers.google.com/protocol-buffers/docs/reference/google.protobuf';
+    const constructorComment = this.wkt
+      ? `Well known type, more at ${wktUrl}`
+      : `Message implementation for ${messageId}`;
 
     printer.addLine(`
     /**
@@ -152,13 +249,13 @@ export class Message {
     this.printStaticSerializeBinaryToWriter(printer);
     printer.newLine();
 
-    this.messageFields.forEach(f => {
+    this.messageFields.forEach((f) => {
       f.printPrivateAttribute(printer);
       printer.newLine();
     });
     printer.newLine();
 
-    this.oneOfs.forEach(oneof => {
+    this.oneOfs.forEach((oneof) => {
       oneof.printPrivateAttribute(printer);
       printer.newLine();
     });
@@ -166,7 +263,7 @@ export class Message {
     this.printConstructor(printer);
     this.printGettersAndSetters(printer);
 
-    this.oneOfs.forEach(oneof => {
+    this.oneOfs.forEach((oneof) => {
       oneof.printGetter(printer);
       printer.newLine();
     });
@@ -202,7 +299,7 @@ export class Message {
        */
       static refineValues(_instance: ${this.message.name}) {
     `);
-    this.messageFields.forEach(f => {
+    this.messageFields.forEach((f) => {
       f.printDefaultValueSetter(printer);
       printer.newLine();
     });
@@ -222,7 +319,7 @@ export class Message {
 
           switch (_reader.getFieldNumber()) {`);
 
-    this.messageFields.forEach(f => {
+    this.messageFields.forEach((f) => {
       f.printDeserializeBinaryFromReader(printer);
       printer.newLine();
     });
@@ -232,8 +329,7 @@ export class Message {
         }
 
         ${this.message.name}.refineValues(_instance);
-      }`,
-    );
+      }`);
   }
 
   private printStaticSerializeBinaryToWriter(printer: Printer) {
@@ -245,7 +341,7 @@ export class Message {
        */
       static serializeBinaryToWriter(_instance: ${this.message.name}, _writer: BinaryWriter) {
     `);
-    this.messageFields.forEach(f => {
+    this.messageFields.forEach((f) => {
       f.printSerializeBinaryToWriter(printer);
       printer.newLine();
     });
@@ -253,7 +349,7 @@ export class Message {
   }
 
   private printGettersAndSetters(printer: Printer) {
-    this.messageFields.forEach(f => {
+    this.messageFields.forEach((f) => {
       f.printGetter(printer);
       printer.newLine();
       f.printSetter(printer);
@@ -271,7 +367,7 @@ export class Message {
     `);
     printer.addLine('_value = _value || {};');
 
-    this.messageFields.forEach(f => {
+    this.messageFields.forEach((f) => {
       f.printInitializer(printer);
       printer.newLine();
     });
@@ -287,7 +383,7 @@ export class Message {
        */
       export interface AsObject {
     `);
-    this.messageFields.forEach(f => {
+    this.messageFields.forEach((f) => {
       f.printAsObjectMapping(printer);
       printer.newLine();
     });
@@ -302,7 +398,7 @@ export class Message {
       toObject(): ${this.message.name}.AsObject {
     `);
     printer.addLine('return {');
-    this.messageFields.forEach(f => {
+    this.messageFields.forEach((f) => {
       f.printToObjectMapping(printer);
       printer.newLine();
     });
@@ -314,13 +410,12 @@ export class Message {
     printer.addLine(`
       /**
        * Protobuf JSON representation for ${this.message.name}
-       */`,
-    );
+       */`);
     if (this.wkt?.printAsProtobufJSON) {
       this.wkt.printAsProtobufJSON(printer);
     } else {
       printer.addLine(`export interface AsProtobufJSON {`);
-      this.messageFields.forEach(f => {
+      this.messageFields.forEach((f) => {
         f.printAsJSONMapping(printer);
         printer.newLine();
       });
@@ -338,17 +433,14 @@ export class Message {
   }
 
   private printToProtobufJSON(printer: Printer) {
-    printer.addDeps(
-      ExternalDependencies.ToProtobufJSONOptions,
-    );
+    printer.addDeps(ExternalDependencies.ToProtobufJSONOptions);
 
     printer.addLine(`
       /**
        * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
        * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
        * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
-       */`,
-    );
+       */`);
     printer.addLine(`toProtobufJSON(
       // @ts-ignore
       options?: ToProtobufJSONOptions
@@ -358,7 +450,7 @@ export class Message {
       this.wkt.printToProtobufJSON(printer);
     } else {
       printer.addLine('return {');
-      this.messageFields.forEach(f => {
+      this.messageFields.forEach((f) => {
         f.printToProtobufJSONMapping(printer);
         printer.newLine();
       });
@@ -374,11 +466,14 @@ export class Message {
     this.printAsObjectInterface(printer);
     this.printAsJSONInterface(printer);
 
-    this.oneOfs.forEach(oneof => oneof.printEnum(printer));
-    this.message.enumTypeList.forEach(protoEnum => new Enum(this.proto, protoEnum).print(printer));
-    this.message.nestedTypeList.forEach(protoMessage => new Message(this.proto, protoMessage).print(printer));
+    this.oneOfs.forEach((oneof) => oneof.printEnum(printer));
+    this.message.enumTypeList.forEach((protoEnum) =>
+      new Enum(this.proto, protoEnum).print(printer),
+    );
+    this.message.nestedTypeList.forEach((protoMessage) =>
+      new Message(this.proto, protoMessage).print(printer),
+    );
 
     printer.addLine('}');
   }
-
 }

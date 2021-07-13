@@ -4,9 +4,6 @@ module.exports = {
     pb: {
       generate: true,
     },
-    pbconf: {
-      generate: false,
-    },
     pbsc: {
       generate: false,
     },

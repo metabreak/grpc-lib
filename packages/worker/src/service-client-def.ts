@@ -1,4 +1,4 @@
-import { GrpcCallType, GrpcMessageClass } from '@metabreak/grpc-worker-common';
+import { GrpcCallType, GrpcMessageClass } from '@metabreak/grpc-common';
 
 /**
  * Generated service client method definition

@@ -1,4 +1,4 @@
-import { GrpcClient, GrpcClientFactory, GrpcEvent, GrpcMessage, GrpcMessageClass, GrpcMetadata } from '@metabreak/grpc-worker-common';
+import { GrpcClient, GrpcClientFactory, GrpcEvent, GrpcMessage, GrpcMessageClass, GrpcMetadata } from '@metabreak/grpc-common';
 import { Observable } from 'rxjs';
 import { GrpcWorkerGateway } from './grpc-worker-gateway';
 export interface GrpcWorkerClientSettings {

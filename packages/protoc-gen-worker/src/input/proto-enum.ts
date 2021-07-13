@@ -1,5 +1,4 @@
 export class ProtoEnum {
-
   name: string;
   valueList: {
     name: string;
@@ -14,5 +13,4 @@ export class ProtoEnum {
     this.reservedRangeList = value.reservedRangeList;
     this.reservedNameList = value.reservedNameList;
   }
-
 }

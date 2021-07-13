@@ -1,12 +1,12 @@
 {
-  "name": "@metabreak/grpc-worker-wkt",
+  "name": "@metabreak/grpc-well-known-types",
   "scripts": {
     "clean": "yarn rimraf ./lib",
-    "generate": "yarn node scripts/generate.js",
+    "generate": "yarn node scripts/generate",
     "build": "yarn clean && yarn generate && yarn tsc -p ./tsconfig.json"
   },
   "dependencies": {
-    "@metabreak/grpc-worker-common": "workspace:*",
+    "@metabreak/grpc-common": "workspace:*",
     "google-protobuf": "3.17.3"
   },
   "devDependencies": {

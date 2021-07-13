@@ -4,7 +4,7 @@ import {
   GrpcMessage,
   GrpcMetadata,
   GrpcStatusEvent,
-} from '@metabreak/grpc-worker-common';
+} from '@metabreak/grpc-common';
 import { GrpcWorkerApi } from '@metabreak/grpc-worker';
 import { Metadata } from 'grpc-web';
 import { Observable, Observer } from 'rxjs';

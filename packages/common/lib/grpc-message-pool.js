@@ -7,7 +7,7 @@ class GrpcMessagePool {
         this.add(messages);
     }
     add(messages) {
-        messages.forEach(m => this.index.set(m.id, m));
+        messages.forEach((m) => this.index.set(m.id, m));
     }
     get(id) {
         return this.index.get(id);

@@ -27,25 +27,16 @@ describe('struct.proto', () => {
     );
 
     expect(
-      msgWebGrpc
-        .getFieldsMap()
-        .get('someDouble')
-        ?.getNumberValue(),
+      msgWebGrpc.getFieldsMap().get('someDouble')?.getNumberValue(),
     ).toEqual(3);
 
     expect(
-      msgWebGrpc
-        .getFieldsMap()
-        .get('someString')
-        ?.getStringValue(),
+      msgWebGrpc.getFieldsMap().get('someString')?.getStringValue(),
     ).toEqual('someStringValue');
 
-    expect(
-      msgWebGrpc
-        .getFieldsMap()
-        .get('someBool')
-        ?.getBoolValue(),
-    ).toEqual(true);
+    expect(msgWebGrpc.getFieldsMap().get('someBool')?.getBoolValue()).toEqual(
+      true,
+    );
 
     // finally, use the convenience method provided by google's supplied struct_pb
     // to convert the struct to json directly and check that everything
@@ -86,25 +77,16 @@ describe('struct.proto', () => {
     );
 
     expect(
-      msgWebGrpc
-        .getFieldsMap()
-        .get('someDouble')
-        ?.getNumberValue(),
+      msgWebGrpc.getFieldsMap().get('someDouble')?.getNumberValue(),
     ).toEqual(0);
 
     expect(
-      msgWebGrpc
-        .getFieldsMap()
-        .get('someString')
-        ?.getStringValue(),
+      msgWebGrpc.getFieldsMap().get('someString')?.getStringValue(),
     ).toEqual('');
 
-    expect(
-      msgWebGrpc
-        .getFieldsMap()
-        .get('someBool')
-        ?.getBoolValue(),
-    ).toEqual(false);
+    expect(msgWebGrpc.getFieldsMap().get('someBool')?.getBoolValue()).toEqual(
+      false,
+    );
 
     // finally, use the convenience method provided by google's supplied struct_pb
     // to convert the struct to json directly and check that everything

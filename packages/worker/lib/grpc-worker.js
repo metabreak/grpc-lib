@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.GrpcWorker = void 0;
-const grpc_worker_common_1 = require("@metabreak/grpc-worker-common");
+const grpc_common_1 = require("@metabreak/grpc-common");
 const grpc_web_1 = require("grpc-web");
 const api_1 = require("./api");
 class GrpcWorker {
@@ -56,8 +56,8 @@ class GrpcWorker {
         const request = new reqclss(message.request);
         const url = service.settings.host + message.path;
         const metadata = message.metadata || {};
-        const descriptor = new grpc_web_1.MethodDescriptor(message.path, type === grpc_worker_common_1.GrpcCallType.unary ? 'unary' : 'server_streaming', reqclss, resclss, (req) => req.serializeBinary(), resclss.deserializeBinary);
-        if (type === grpc_worker_common_1.GrpcCallType.unary) {
+        const descriptor = new grpc_web_1.MethodDescriptor(message.path, type === grpc_common_1.GrpcCallType.unary ? 'unary' : 'server_streaming', reqclss, resclss, (req) => req.serializeBinary(), resclss.deserializeBinary);
+        if (type === grpc_common_1.GrpcCallType.unary) {
             const stream = service.client.rpcCall(url, request, metadata, descriptor, (error, response) => {
                 if (error) {
                     this.requestCancelHandlers.delete(message.id);

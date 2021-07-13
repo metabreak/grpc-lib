@@ -1,5 +1,4 @@
 export class ProtoServiceMethodOptions {
-
   deprecated: boolean;
   idempotencyLevel: number;
   uninterpretedOptionList: any[];
@@ -9,5 +8,4 @@ export class ProtoServiceMethodOptions {
     this.idempotencyLevel = value.idempotencyLevel;
     this.uninterpretedOptionList = value.uninterpretedOptionList || [];
   }
-
 }

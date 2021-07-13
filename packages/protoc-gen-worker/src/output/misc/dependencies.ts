@@ -3,33 +3,30 @@ export class Dependency {
 }
 
 const ngxGrpcCommon = {
-  GrpcCallType: new Dependency('@metabreak/grpc-worker-common', 'GrpcCallType'),
-  GrpcClient: new Dependency('@metabreak/grpc-worker-common', 'GrpcClient'),
+  GrpcCallType: new Dependency('@metabreak/grpc-common', 'GrpcCallType'),
+  GrpcClient: new Dependency('@metabreak/grpc-common', 'GrpcClient'),
   GrpcClientFactory: new Dependency(
-    '@metabreak/grpc-worker-common',
+    '@metabreak/grpc-common',
     'GrpcClientFactory',
   ),
-  GrpcMessage: new Dependency('@metabreak/grpc-worker-common', 'GrpcMessage'),
-  GrpcMetadata: new Dependency('@metabreak/grpc-worker-common', 'GrpcMetadata'),
+  GrpcMessage: new Dependency('@metabreak/grpc-common', 'GrpcMessage'),
+  GrpcMetadata: new Dependency('@metabreak/grpc-common', 'GrpcMetadata'),
   RecursivePartial: new Dependency(
-    '@metabreak/grpc-worker-common',
+    '@metabreak/grpc-common',
     'RecursivePartial',
   ),
-  GrpcEvent: new Dependency('@metabreak/grpc-worker-common', 'GrpcEvent'),
+  GrpcEvent: new Dependency('@metabreak/grpc-common', 'GrpcEvent'),
   uint8ArrayToBase64: new Dependency(
-    '@metabreak/grpc-worker-common',
+    '@metabreak/grpc-common',
     'uint8ArrayToBase64',
   ),
-  GrpcMessagePool: new Dependency(
-    '@metabreak/grpc-worker-common',
-    'GrpcMessagePool',
-  ),
+  GrpcMessagePool: new Dependency('@metabreak/grpc-common', 'GrpcMessagePool'),
   GrpcMessageClass: new Dependency(
-    '@metabreak/grpc-worker-common',
+    '@metabreak/grpc-common',
     'GrpcMessageClass',
   ),
   ToProtobufJSONOptions: new Dependency(
-    '@metabreak/grpc-worker-common',
+    '@metabreak/grpc-common',
     'ToProtobufJSONOptions',
   ),
 };
@@ -40,10 +37,6 @@ const ngxGrpcCore = {
   throwStatusErrors: new Dependency(
     '@metabreak/grpc-worker-core',
     'throwStatusErrors',
-  ),
-  GRPC_CLIENT_FACTORY: new Dependency(
-    '@metabreak/grpc-worker-core',
-    'GRPC_CLIENT_FACTORY',
   ),
 };
 

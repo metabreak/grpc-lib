@@ -1,4 +1,4 @@
-import { GrpcMessagePool } from '@metabreak/grpc-worker-common';
+import { GrpcMessagePool } from '@metabreak/grpc-common';
 import 'jest';
 import { TestMessage } from '../../out/data-types.pb';
 import { Any } from '../../out/google/protobuf/any.pb';

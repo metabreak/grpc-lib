@@ -3,7 +3,7 @@ import {
   GrpcEvent,
   GrpcMessage,
   GrpcRequest,
-} from '@metabreak/grpc-worker-common';
+} from '@metabreak/grpc-common';
 import { Observable } from 'rxjs';
 import { GrpcInterceptor } from './grpc-interceptor';
 

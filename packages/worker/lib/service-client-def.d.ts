@@ -1,4 +1,4 @@
-import { GrpcCallType, GrpcMessageClass } from '@metabreak/grpc-worker-common';
+import { GrpcCallType, GrpcMessageClass } from '@metabreak/grpc-common';
 export interface GrpcWorkerRPCDef {
     type: GrpcCallType;
     reqclss: GrpcMessageClass<any>;

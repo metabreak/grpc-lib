@@ -26,7 +26,7 @@ goog.exportSymbol('proto.echo.EchoResponse', null, global);
  * @extends {jspb.Message}
  * @constructor
  */
-proto.echo.EchoRequest = function(opt_data) {
+proto.echo.EchoRequest = function (opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
 goog.inherits(proto.echo.EchoRequest, jspb.Message);
@@ -47,7 +47,7 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.echo.EchoResponse = function(opt_data) {
+proto.echo.EchoResponse = function (opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
 goog.inherits(proto.echo.EchoResponse, jspb.Message);
@@ -59,61 +59,59 @@ if (goog.DEBUG && !COMPILED) {
   proto.echo.EchoResponse.displayName = 'proto.echo.EchoResponse';
 }
 
-
-
 if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.echo.EchoRequest.prototype.toObject = function(opt_includeInstance) {
-  return proto.echo.EchoRequest.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.echo.EchoRequest} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.echo.EchoRequest.toObject = function(includeInstance, msg) {
-  var f, obj = {
-    message: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    shouldthrow: jspb.Message.getBooleanFieldWithDefault(msg, 2, false),
-    timestamp: (f = msg.getTimestamp()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+  /**
+   * Creates an object representation of this proto.
+   * Field names that are reserved in JavaScript and will be renamed to pb_name.
+   * Optional fields that are not set will be set to undefined.
+   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+   * For the list of reserved names please see:
+   *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+   * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+   *     JSPB instance for transitional soy proto support:
+   *     http://goto/soy-param-migration
+   * @return {!Object}
+   */
+  proto.echo.EchoRequest.prototype.toObject = function (opt_includeInstance) {
+    return proto.echo.EchoRequest.toObject(opt_includeInstance, this);
   };
 
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
+  /**
+   * Static version of the {@see toObject} method.
+   * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+   *     the JSPB instance for transitional soy proto support:
+   *     http://goto/soy-param-migration
+   * @param {!proto.echo.EchoRequest} msg The msg instance to transform.
+   * @return {!Object}
+   * @suppress {unusedLocalVariables} f is only used for nested messages
+   */
+  proto.echo.EchoRequest.toObject = function (includeInstance, msg) {
+    var f,
+      obj = {
+        message: jspb.Message.getFieldWithDefault(msg, 1, ''),
+        shouldthrow: jspb.Message.getBooleanFieldWithDefault(msg, 2, false),
+        timestamp:
+          (f = msg.getTimestamp()) &&
+          google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+      };
 
+    if (includeInstance) {
+      obj.$jspbMessageInstance = msg;
+    }
+    return obj;
+  };
+}
 
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.echo.EchoRequest}
  */
-proto.echo.EchoRequest.deserializeBinary = function(bytes) {
+proto.echo.EchoRequest.deserializeBinary = function (bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.echo.EchoRequest;
+  var msg = new proto.echo.EchoRequest();
   return proto.echo.EchoRequest.deserializeBinaryFromReader(msg, reader);
 };
-
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -122,45 +120,46 @@ proto.echo.EchoRequest.deserializeBinary = function(bytes) {
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
  * @return {!proto.echo.EchoRequest}
  */
-proto.echo.EchoRequest.deserializeBinaryFromReader = function(msg, reader) {
+proto.echo.EchoRequest.deserializeBinaryFromReader = function (msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setMessage(value);
-      break;
-    case 2:
-      var value = /** @type {boolean} */ (reader.readBool());
-      msg.setShouldthrow(value);
-      break;
-    case 3:
-      var value = new google_protobuf_timestamp_pb.Timestamp;
-      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
-      msg.setTimestamp(value);
-      break;
-    default:
-      reader.skipField();
-      break;
+      case 1:
+        var value = /** @type {string} */ (reader.readString());
+        msg.setMessage(value);
+        break;
+      case 2:
+        var value = /** @type {boolean} */ (reader.readBool());
+        msg.setShouldthrow(value);
+        break;
+      case 3:
+        var value = new google_protobuf_timestamp_pb.Timestamp();
+        reader.readMessage(
+          value,
+          google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader,
+        );
+        msg.setTimestamp(value);
+        break;
+      default:
+        reader.skipField();
+        break;
     }
   }
   return msg;
 };
 
-
 /**
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.echo.EchoRequest.prototype.serializeBinary = function() {
+proto.echo.EchoRequest.prototype.serializeBinary = function () {
   var writer = new jspb.BinaryWriter();
   proto.echo.EchoRequest.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
-
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -169,161 +168,150 @@ proto.echo.EchoRequest.prototype.serializeBinary = function() {
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.echo.EchoRequest.serializeBinaryToWriter = function(message, writer) {
+proto.echo.EchoRequest.serializeBinaryToWriter = function (message, writer) {
   var f = undefined;
   f = message.getMessage();
   if (f.length > 0) {
-    writer.writeString(
-      1,
-      f
-    );
+    writer.writeString(1, f);
   }
   f = message.getShouldthrow();
   if (f) {
-    writer.writeBool(
-      2,
-      f
-    );
+    writer.writeBool(2, f);
   }
   f = message.getTimestamp();
   if (f != null) {
     writer.writeMessage(
       3,
       f,
-      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter,
     );
   }
 };
-
 
 /**
  * optional string message = 1;
  * @return {string}
  */
-proto.echo.EchoRequest.prototype.getMessage = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+proto.echo.EchoRequest.prototype.getMessage = function () {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ''));
 };
-
 
 /**
  * @param {string} value
  * @return {!proto.echo.EchoRequest} returns this
  */
-proto.echo.EchoRequest.prototype.setMessage = function(value) {
+proto.echo.EchoRequest.prototype.setMessage = function (value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
-
 
 /**
  * optional bool shouldThrow = 2;
  * @return {boolean}
  */
-proto.echo.EchoRequest.prototype.getShouldthrow = function() {
-  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 2, false));
+proto.echo.EchoRequest.prototype.getShouldthrow = function () {
+  return /** @type {boolean} */ (
+    jspb.Message.getBooleanFieldWithDefault(this, 2, false)
+  );
 };
-
 
 /**
  * @param {boolean} value
  * @return {!proto.echo.EchoRequest} returns this
  */
-proto.echo.EchoRequest.prototype.setShouldthrow = function(value) {
+proto.echo.EchoRequest.prototype.setShouldthrow = function (value) {
   return jspb.Message.setProto3BooleanField(this, 2, value);
 };
-
 
 /**
  * optional google.protobuf.Timestamp timestamp = 3;
  * @return {?proto.google.protobuf.Timestamp}
  */
-proto.echo.EchoRequest.prototype.getTimestamp = function() {
+proto.echo.EchoRequest.prototype.getTimestamp = function () {
   return /** @type{?proto.google.protobuf.Timestamp} */ (
-    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 3));
+    jspb.Message.getWrapperField(
+      this,
+      google_protobuf_timestamp_pb.Timestamp,
+      3,
+    )
+  );
 };
-
 
 /**
  * @param {?proto.google.protobuf.Timestamp|undefined} value
  * @return {!proto.echo.EchoRequest} returns this
-*/
-proto.echo.EchoRequest.prototype.setTimestamp = function(value) {
+ */
+proto.echo.EchoRequest.prototype.setTimestamp = function (value) {
   return jspb.Message.setWrapperField(this, 3, value);
 };
-
 
 /**
  * Clears the message field making it undefined.
  * @return {!proto.echo.EchoRequest} returns this
  */
-proto.echo.EchoRequest.prototype.clearTimestamp = function() {
+proto.echo.EchoRequest.prototype.clearTimestamp = function () {
   return this.setTimestamp(undefined);
 };
-
 
 /**
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.echo.EchoRequest.prototype.hasTimestamp = function() {
+proto.echo.EchoRequest.prototype.hasTimestamp = function () {
   return jspb.Message.getField(this, 3) != null;
 };
 
-
-
-
-
 if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.echo.EchoResponse.prototype.toObject = function(opt_includeInstance) {
-  return proto.echo.EchoResponse.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.echo.EchoResponse} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.echo.EchoResponse.toObject = function(includeInstance, msg) {
-  var f, obj = {
-    message: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    timestamp: (f = msg.getTimestamp()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+  /**
+   * Creates an object representation of this proto.
+   * Field names that are reserved in JavaScript and will be renamed to pb_name.
+   * Optional fields that are not set will be set to undefined.
+   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+   * For the list of reserved names please see:
+   *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+   * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+   *     JSPB instance for transitional soy proto support:
+   *     http://goto/soy-param-migration
+   * @return {!Object}
+   */
+  proto.echo.EchoResponse.prototype.toObject = function (opt_includeInstance) {
+    return proto.echo.EchoResponse.toObject(opt_includeInstance, this);
   };
 
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
+  /**
+   * Static version of the {@see toObject} method.
+   * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+   *     the JSPB instance for transitional soy proto support:
+   *     http://goto/soy-param-migration
+   * @param {!proto.echo.EchoResponse} msg The msg instance to transform.
+   * @return {!Object}
+   * @suppress {unusedLocalVariables} f is only used for nested messages
+   */
+  proto.echo.EchoResponse.toObject = function (includeInstance, msg) {
+    var f,
+      obj = {
+        message: jspb.Message.getFieldWithDefault(msg, 1, ''),
+        timestamp:
+          (f = msg.getTimestamp()) &&
+          google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+      };
 
+    if (includeInstance) {
+      obj.$jspbMessageInstance = msg;
+    }
+    return obj;
+  };
+}
 
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.echo.EchoResponse}
  */
-proto.echo.EchoResponse.deserializeBinary = function(bytes) {
+proto.echo.EchoResponse.deserializeBinary = function (bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.echo.EchoResponse;
+  var msg = new proto.echo.EchoResponse();
   return proto.echo.EchoResponse.deserializeBinaryFromReader(msg, reader);
 };
-
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -332,41 +320,42 @@ proto.echo.EchoResponse.deserializeBinary = function(bytes) {
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
  * @return {!proto.echo.EchoResponse}
  */
-proto.echo.EchoResponse.deserializeBinaryFromReader = function(msg, reader) {
+proto.echo.EchoResponse.deserializeBinaryFromReader = function (msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setMessage(value);
-      break;
-    case 2:
-      var value = new google_protobuf_timestamp_pb.Timestamp;
-      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
-      msg.setTimestamp(value);
-      break;
-    default:
-      reader.skipField();
-      break;
+      case 1:
+        var value = /** @type {string} */ (reader.readString());
+        msg.setMessage(value);
+        break;
+      case 2:
+        var value = new google_protobuf_timestamp_pb.Timestamp();
+        reader.readMessage(
+          value,
+          google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader,
+        );
+        msg.setTimestamp(value);
+        break;
+      default:
+        reader.skipField();
+        break;
     }
   }
   return msg;
 };
 
-
 /**
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.echo.EchoResponse.prototype.serializeBinary = function() {
+proto.echo.EchoResponse.prototype.serializeBinary = function () {
   var writer = new jspb.BinaryWriter();
   proto.echo.EchoResponse.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
-
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -375,79 +364,74 @@ proto.echo.EchoResponse.prototype.serializeBinary = function() {
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.echo.EchoResponse.serializeBinaryToWriter = function(message, writer) {
+proto.echo.EchoResponse.serializeBinaryToWriter = function (message, writer) {
   var f = undefined;
   f = message.getMessage();
   if (f.length > 0) {
-    writer.writeString(
-      1,
-      f
-    );
+    writer.writeString(1, f);
   }
   f = message.getTimestamp();
   if (f != null) {
     writer.writeMessage(
       2,
       f,
-      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter,
     );
   }
 };
-
 
 /**
  * optional string message = 1;
  * @return {string}
  */
-proto.echo.EchoResponse.prototype.getMessage = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+proto.echo.EchoResponse.prototype.getMessage = function () {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ''));
 };
-
 
 /**
  * @param {string} value
  * @return {!proto.echo.EchoResponse} returns this
  */
-proto.echo.EchoResponse.prototype.setMessage = function(value) {
+proto.echo.EchoResponse.prototype.setMessage = function (value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
-
 
 /**
  * optional google.protobuf.Timestamp timestamp = 2;
  * @return {?proto.google.protobuf.Timestamp}
  */
-proto.echo.EchoResponse.prototype.getTimestamp = function() {
+proto.echo.EchoResponse.prototype.getTimestamp = function () {
   return /** @type{?proto.google.protobuf.Timestamp} */ (
-    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 2));
+    jspb.Message.getWrapperField(
+      this,
+      google_protobuf_timestamp_pb.Timestamp,
+      2,
+    )
+  );
 };
-
 
 /**
  * @param {?proto.google.protobuf.Timestamp|undefined} value
  * @return {!proto.echo.EchoResponse} returns this
-*/
-proto.echo.EchoResponse.prototype.setTimestamp = function(value) {
+ */
+proto.echo.EchoResponse.prototype.setTimestamp = function (value) {
   return jspb.Message.setWrapperField(this, 2, value);
 };
-
 
 /**
  * Clears the message field making it undefined.
  * @return {!proto.echo.EchoResponse} returns this
  */
-proto.echo.EchoResponse.prototype.clearTimestamp = function() {
+proto.echo.EchoResponse.prototype.clearTimestamp = function () {
   return this.setTimestamp(undefined);
 };
-
 
 /**
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.echo.EchoResponse.prototype.hasTimestamp = function() {
+proto.echo.EchoResponse.prototype.hasTimestamp = function () {
   return jspb.Message.getField(this, 2) != null;
 };
-
 
 goog.object.extend(exports, proto.echo);

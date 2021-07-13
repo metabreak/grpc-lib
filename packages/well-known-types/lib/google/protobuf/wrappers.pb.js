@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.BytesValue = exports.StringValue = exports.BoolValue = exports.UInt32Value = exports.Int32Value = exports.UInt64Value = exports.Int64Value = exports.FloatValue = exports.DoubleValue = void 0;
-const grpc_worker_common_1 = require("@metabreak/grpc-worker-common");
+const grpc_common_1 = require("@metabreak/grpc-common");
 const google_protobuf_1 = require("google-protobuf");
 class DoubleValue {
     static id = 'google.protobuf.DoubleValue';
@@ -530,7 +530,7 @@ class BytesValue {
         return this.toObject();
     }
     toProtobufJSON(options) {
-        return this.value ? grpc_worker_common_1.uint8ArrayToBase64(this.value) : '';
+        return this.value ? grpc_common_1.uint8ArrayToBase64(this.value) : '';
     }
 }
 exports.BytesValue = BytesValue;

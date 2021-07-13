@@ -1,7 +1,6 @@
 import { ProtoServiceMethodOptions } from './proto-service-method-options';
 
 export class ServiceMethod {
-
   name: string;
   inputType: string;
   outputType: string;
@@ -17,5 +16,4 @@ export class ServiceMethod {
     this.serverStreaming = value.serverStreaming;
     this.options = new ProtoServiceMethodOptions(value.options || {});
   }
-
 }

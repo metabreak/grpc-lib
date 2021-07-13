@@ -3,7 +3,6 @@ import { ProtoMessageField } from './proto-message-field';
 import { ProtoOneof } from './proto-oneof';
 
 export class ProtoMessage {
-
   name: string;
   fieldList: ProtoMessageField[];
   extensionList: [];
@@ -23,15 +22,18 @@ export class ProtoMessage {
 
   constructor(value: ProtoMessage) {
     this.name = value.name;
-    this.fieldList = (value.fieldList || []).map(mf => new ProtoMessageField(mf || {}));
+    this.fieldList = (value.fieldList || []).map(
+      (mf) => new ProtoMessageField(mf || {}),
+    );
     this.extensionList = value.extensionList;
-    this.nestedTypeList = value.nestedTypeList.map(t => new ProtoMessage(t));
-    this.enumTypeList = value.enumTypeList.map(e => new ProtoEnum(e));
+    this.nestedTypeList = value.nestedTypeList.map((t) => new ProtoMessage(t));
+    this.enumTypeList = value.enumTypeList.map((e) => new ProtoEnum(e));
     this.extensionRangeList = value.extensionRangeList;
-    this.oneofDeclList = (value.oneofDeclList || []).map(d => new ProtoOneof(d));
+    this.oneofDeclList = (value.oneofDeclList || []).map(
+      (d) => new ProtoOneof(d),
+    );
     this.reservedRangeList = value.reservedRangeList;
     this.reservedNameList = value.reservedNameList;
     this.options = value.options || {};
   }
-
 }

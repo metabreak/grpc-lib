@@ -5,23 +5,20 @@ import { Enum } from '../types/enum';
 import { Message } from '../types/message';
 
 export class PbFile {
-
-  constructor(
-    private proto: Proto,
-  ) { }
+  constructor(private proto: Proto) {}
 
   print(printer: Printer) {
     Services.Logger.debug(`Start printing pb for ${this.proto.name}`);
 
     printer.add(this.proto.getImportedDependencies());
 
-    this.proto.enumTypeList.forEach(protoEnum => {
+    this.proto.enumTypeList.forEach((protoEnum) => {
       const enumInstance = new Enum(this.proto, protoEnum);
 
       enumInstance.print(printer);
     });
 
-    this.proto.messageTypeList.forEach(protoMessage => {
+    this.proto.messageTypeList.forEach((protoMessage) => {
       const message = new Message(this.proto, protoMessage);
 
       message.print(printer);
@@ -29,5 +26,4 @@ export class PbFile {
 
     Services.Logger.debug(`End printing pb for ${this.proto.name}`);
   }
-
 }

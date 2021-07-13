@@ -1,4 +1,4 @@
-import { GrpcCallType, GrpcMessage } from '@metabreak/grpc-worker-common';
+import { GrpcCallType, GrpcMessage } from '@metabreak/grpc-common';
 import { Error, GrpcWebClientBase, MethodDescriptor, Status } from 'grpc-web';
 import { GrpcWorkerApi } from './api';
 import { GrpcWorkerClientSettings } from './client-settings';

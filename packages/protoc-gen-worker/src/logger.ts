@@ -1,7 +1,6 @@
 import * as winston from 'winston';
 
 export class Logger {
-
   private logger?: winston.Logger;
 
   constructor(debug: boolean) {
@@ -11,11 +10,16 @@ export class Logger {
           winston.format.timestamp({
             format: 'YYYY-MM-DDTHH:mm:ss.SSSS',
           }),
-          winston.format.printf(info => `${info.timestamp}\t${info.level}\t${info.message}`),
+          winston.format.printf(
+            (info) => `${info.timestamp}\t${info.level}\t${info.message}`,
+          ),
         ),
         level: 'debug',
         transports: [
-          new (winston.transports.File)({ filename: './debug/log.txt', options: { flags: 'w' } }),
+          new winston.transports.File({
+            filename: './debug/log.txt',
+            options: { flags: 'w' },
+          }),
         ],
       });
     }
@@ -38,5 +42,4 @@ export class Logger {
       this.logger.error(msg);
     }
   }
-
 }

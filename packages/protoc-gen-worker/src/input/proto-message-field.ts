@@ -1,7 +1,6 @@
 import { ProtoMessageFieldCardinality, ProtoMessageFieldType } from './types';
 
 export class ProtoMessageField {
-
   name: string;
   number: number;
   label: ProtoMessageFieldCardinality;
@@ -31,5 +30,4 @@ export class ProtoMessageField {
     this.options = value.options || {};
     this.proto3Optional = value.proto3Optional;
   }
-
 }

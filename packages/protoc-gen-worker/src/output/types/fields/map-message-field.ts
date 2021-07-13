@@ -3,13 +3,17 @@ import { ProtoMessage } from '../../../input/proto-message';
 import { ProtoMessageField } from '../../../input/proto-message-field';
 import { ProtoMessageFieldType } from '../../../input/types';
 import { camelizeSafe } from '../../../utils';
-import { getDataType, getMapKeyValueFields, isFieldMessage, isNumberString } from '../../misc/helpers';
+import {
+  getDataType,
+  getMapKeyValueFields,
+  isFieldMessage,
+  isNumberString,
+} from '../../misc/helpers';
 import { Printer } from '../../misc/printer';
 import { MessageField } from '../message-field';
 import { OneOf } from '../oneof';
 
 export class MapMessageField implements MessageField {
-
   private attributeName: string;
   private dataType: string;
   private keyField: ProtoMessageField;
@@ -23,15 +27,24 @@ export class MapMessageField implements MessageField {
     private oneOf?: OneOf,
   ) {
     this.attributeName = camelizeSafe(this.messageField.name);
-    [this.keyField, this.valueField] = getMapKeyValueFields(this.proto, this.messageField);
+    [this.keyField, this.valueField] = getMapKeyValueFields(
+      this.proto,
+      this.messageField,
+    );
     this.dataType = getDataType(this.proto, this.messageField);
-    this.mapMessageClassName = this.proto.getRelativeTypeName(this.messageField.typeName);
+    this.mapMessageClassName = this.proto.getRelativeTypeName(
+      this.messageField.typeName,
+    );
   }
 
   printDeserializeBinaryFromReader(printer: Printer) {
     const msgVarName = `msg_${this.messageField.number}`;
-    const isStringKey = this.keyField.type === ProtoMessageFieldType.string || isNumberString(this.keyField);
-    const castedKey = isStringKey ? `${msgVarName}.key` : `Number(${msgVarName}.key)`;
+    const isStringKey =
+      this.keyField.type === ProtoMessageFieldType.string ||
+      isNumberString(this.keyField);
+    const castedKey = isStringKey
+      ? `${msgVarName}.key`
+      : `Number(${msgVarName}.key)`;
 
     printer.add(
       `case ${this.messageField.number}:
@@ -47,7 +60,9 @@ export class MapMessageField implements MessageField {
     const varName = `_instance.${this.attributeName}`;
     const keysVarName = `keys_${this.messageField.number}`;
     const repeatedVarName = `repeated_${this.messageField.number}`;
-    const isStringKey = this.keyField.type === ProtoMessageFieldType.string || isNumberString(this.keyField);
+    const isStringKey =
+      this.keyField.type === ProtoMessageFieldType.string ||
+      isNumberString(this.keyField);
     const castedKey = isStringKey ? 'key' : 'Number(key)';
 
     printer.add(`if (!!${varName}) {
@@ -71,28 +86,39 @@ export class MapMessageField implements MessageField {
     let cloneFn = `_value!.${this.attributeName}![k]`;
 
     if (isFieldMessage(this.valueField)) {
-      cloneFn = `_value!.${this.attributeName}![k] ? new ${getDataType(this.proto, this.valueField)}(_value!.${this.attributeName}![k]) : undefined,`;
+      cloneFn = `_value!.${this.attributeName}![k] ? new ${getDataType(
+        this.proto,
+        this.valueField,
+      )}(_value!.${this.attributeName}![k]) : undefined,`;
     } else if (this.valueField.type === ProtoMessageFieldType.bytes) {
       cloneFn = `_value!.${this.attributeName}![k] ? _value!.${this.attributeName}![k].subarray(0) : undefined`;
     }
 
-    printer.add(`this.${this.attributeName} = _value!.${this.attributeName} ? Object.keys(_value!.${this.attributeName}).reduce((r, k) => ({ ...r, [k]: ${cloneFn} }), {}) : {},`);
+    printer.add(
+      `this.${this.attributeName} = _value!.${this.attributeName} ? Object.keys(_value!.${this.attributeName}).reduce((r, k) => ({ ...r, [k]: ${cloneFn} }), {}) : {},`,
+    );
   }
 
   printDefaultValueSetter(printer: Printer) {
     if (this.oneOf) {
       return;
     } else {
-      printer.add(`_instance.${this.attributeName} = _instance.${this.attributeName} || {}`);
+      printer.add(
+        `_instance.${this.attributeName} = _instance.${this.attributeName} || {}`,
+      );
     }
   }
 
   printGetter(printer: Printer) {
-    printer.add(`get ${this.attributeName}(): ${this.dataType} | undefined { return this._${this.attributeName} }`);
+    printer.add(
+      `get ${this.attributeName}(): ${this.dataType} | undefined { return this._${this.attributeName} }`,
+    );
   }
 
   printSetter(printer: Printer) {
-    printer.add(`set ${this.attributeName}(value: ${this.dataType} | undefined) {
+    printer.add(`set ${this.attributeName}(value: ${
+      this.dataType
+    } | undefined) {
       ${this.oneOf ? this.oneOf.createFieldSetterAddon(this.messageField) : ''}
       this._${this.attributeName} = value;
     }`);
@@ -107,7 +133,9 @@ export class MapMessageField implements MessageField {
       cloneFn = `this.${this.attributeName}![k] ? this.${this.attributeName}![k].subarray(0) : undefined`;
     }
 
-    printer.add(`${this.attributeName}: this.${this.attributeName} ? Object.keys(this.${this.attributeName}).reduce((r, k) => ({ ...r, [k]: ${cloneFn} }), {}) : {},`);
+    printer.add(
+      `${this.attributeName}: this.${this.attributeName} ? Object.keys(this.${this.attributeName}).reduce((r, k) => ({ ...r, [k]: ${cloneFn} }), {}) : {},`,
+    );
   }
 
   printAsObjectMapping(printer: Printer) {
@@ -123,11 +151,12 @@ export class MapMessageField implements MessageField {
       cloneFn = `this.${this.attributeName}![k] ? this.${this.attributeName}![k].subarray(0) : null`;
     }
 
-    printer.add(`${this.attributeName}: this.${this.attributeName} ? Object.keys(this.${this.attributeName}).reduce((r, k) => ({ ...r, [k]: ${cloneFn} }), {}) : {},`);
+    printer.add(
+      `${this.attributeName}: this.${this.attributeName} ? Object.keys(this.${this.attributeName}).reduce((r, k) => ({ ...r, [k]: ${cloneFn} }), {}) : {},`,
+    );
   }
 
   printAsJSONMapping(printer: Printer) {
     printer.add(`${this.attributeName}?: ${this.dataType};`);
   }
-
 }

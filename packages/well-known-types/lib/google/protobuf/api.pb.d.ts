@@ -1,4 +1,4 @@
-import { GrpcMessage, RecursivePartial, ToProtobufJSONOptions } from '@metabreak/grpc-worker-common';
+import { GrpcMessage, RecursivePartial, ToProtobufJSONOptions } from '@metabreak/grpc-common';
 import { BinaryReader, BinaryWriter, ByteSource } from 'google-protobuf';
 import * as googleProtobuf001 from '../../google/protobuf/source-context.pb';
 import * as googleProtobuf002 from '../../google/protobuf/type.pb';

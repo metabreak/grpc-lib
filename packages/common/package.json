@@ -1,5 +1,5 @@
 {
-  "name": "@metabreak/grpc-worker-common",
+  "name": "@metabreak/grpc-common",
   "description": "gRPC Web Workers framework: common package",
   "author": "smnbbrv",
   "license": "MIT",

@@ -27,8 +27,7 @@ function deserialize_echo_EchoResponse(buffer_arg) {
   return echo_pb.EchoResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-
-var EchoServiceService = exports.EchoServiceService = {
+var EchoServiceService = (exports.EchoServiceService = {
   echoOnce: {
     path: '/echo.EchoService/EchoOnce',
     requestStream: false,
@@ -51,6 +50,7 @@ var EchoServiceService = exports.EchoServiceService = {
     responseSerialize: serialize_echo_EchoResponse,
     responseDeserialize: deserialize_echo_EchoResponse,
   },
-};
+});
 
-exports.EchoServiceClient = grpc.makeGenericClientConstructor(EchoServiceService);
+exports.EchoServiceClient =
+  grpc.makeGenericClientConstructor(EchoServiceService);

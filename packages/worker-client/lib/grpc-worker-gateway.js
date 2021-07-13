@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.GrpcWorkerGateway = void 0;
-const grpc_worker_common_1 = require("@metabreak/grpc-worker-common");
+const grpc_common_1 = require("@metabreak/grpc-common");
 const grpc_worker_1 = require("@metabreak/grpc-worker");
 const rxjs_1 = require("rxjs");
 class GrpcWorkerGateway {
@@ -17,15 +17,15 @@ class GrpcWorkerGateway {
                 data.type === grpc_worker_1.GrpcWorkerApi.GrpcWorkerMessageType.rpcResponse) {
                 switch (data.responseType) {
                     case grpc_worker_1.GrpcWorkerApi.GrpcWorkerMessageRPCResponseType.error:
-                        connection.next(new grpc_worker_common_1.GrpcStatusEvent(data.error.code, data.error.message, data.error.metadata));
+                        connection.next(new grpc_common_1.GrpcStatusEvent(data.error.code, data.error.message, data.error.metadata));
                         connection.complete();
                         this.connections.delete(data.id);
                         break;
                     case grpc_worker_1.GrpcWorkerApi.GrpcWorkerMessageRPCResponseType.status:
-                        connection.next(new grpc_worker_common_1.GrpcStatusEvent(data.status.code, data.status.details, new grpc_worker_common_1.GrpcMetadata(data.status.metadata)));
+                        connection.next(new grpc_common_1.GrpcStatusEvent(data.status.code, data.status.details, new grpc_common_1.GrpcMetadata(data.status.metadata)));
                         break;
                     case grpc_worker_1.GrpcWorkerApi.GrpcWorkerMessageRPCResponseType.data:
-                        connection.next(new grpc_worker_common_1.GrpcDataEvent(data.response));
+                        connection.next(new grpc_common_1.GrpcDataEvent(data.response));
                         break;
                     case grpc_worker_1.GrpcWorkerApi.GrpcWorkerMessageRPCResponseType.end:
                         connection.complete();

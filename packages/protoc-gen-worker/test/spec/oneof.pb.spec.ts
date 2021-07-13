@@ -2,7 +2,6 @@ import 'jest';
 import * as oneOf from '../out/oneof.pb';
 
 describe('data-types.proto', () => {
-
   it('should create OneofTest', () => {
     const msg = oneOf.OneofTest.deserializeBinary('');
 

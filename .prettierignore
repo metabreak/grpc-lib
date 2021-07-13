@@ -1,5 +1,8 @@
 dist/
 generated/
+packages/protoc-gen-worker/test/out/
+packages/protoc-gen-worker/test/out-grpc-web/
 .parcel-cache/
 .yarn/
 .pnp.*
+lib/

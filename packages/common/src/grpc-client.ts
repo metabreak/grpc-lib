@@ -10,7 +10,6 @@ import { GrpcMetadata } from './grpc-metadata';
  * while GrpcClient has none
  */
 export interface GrpcClientFactory<ST> {
-
   /**
    * Create a GrpcClient
    * @param serviceId a service type in proto (passed in by generated service client), e.g.
@@ -18,7 +17,6 @@ export interface GrpcClientFactory<ST> {
    * @returns new GrpcClient
    */
   createClient(serviceId: string, settings: ST): GrpcClient<ST>;
-
 }
 
 /**
@@ -26,7 +24,6 @@ export interface GrpcClientFactory<ST> {
  * Instance of GrpcClient is created for every gRPC service client by corresponding GrpcClientFactory
  */
 export interface GrpcClient<ST> {
-
   /**
    * Returns a copy of current client settings
    */
@@ -63,7 +60,6 @@ export interface GrpcClient<ST> {
     reqclss: GrpcMessageClass<Q>,
     resclss: GrpcMessageClass<S>,
   ): Observable<GrpcEvent<S>>;
-
 }
 
 /**

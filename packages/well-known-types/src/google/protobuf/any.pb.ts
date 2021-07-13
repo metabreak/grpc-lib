@@ -9,7 +9,7 @@ import {
   GrpcMessagePool,
   RecursivePartial,
   ToProtobufJSONOptions,
-} from '@metabreak/grpc-worker-common';
+} from '@metabreak/grpc-common';
 import { BinaryReader, BinaryWriter, ByteSource } from 'google-protobuf';
 
 /**
@@ -148,7 +148,7 @@ export class Any implements GrpcMessage {
    */
   toProtobufJSON(
     // @ts-ignore
-    options?: ToProtobufJSONOptions
+    options?: ToProtobufJSONOptions,
   ): Any.AsProtobufJSON {
     if (!options?.messagePool) {
       throw new Error(`Message pool is required to cast Any to JSON`);
@@ -192,7 +192,7 @@ export class Any implements GrpcMessage {
    */
   getPackedMessageType(
     messagePool: GrpcMessagePool,
-    throwWhenNotInThePool = true
+    throwWhenNotInThePool = true,
   ) {
     const id = this.getPackedMessageId();
 
@@ -205,7 +205,7 @@ export class Any implements GrpcMessage {
     if (!msgClass) {
       if (throwWhenNotInThePool) {
         throw new Error(
-          `Message with identifier '${this.typeUrl}' is not present in message pool`
+          `Message with identifier '${this.typeUrl}' is not present in message pool`,
         );
       } else {
         return null;

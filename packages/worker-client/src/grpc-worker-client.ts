@@ -6,7 +6,7 @@ import {
   GrpcMessage,
   GrpcMessageClass,
   GrpcMetadata,
-} from '@metabreak/grpc-worker-common';
+} from '@metabreak/grpc-common';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { GrpcWorkerGateway } from './grpc-worker-gateway';

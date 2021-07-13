@@ -204,7 +204,9 @@ describe('data-types.proto', () => {
     expect(msgWebGrpc.getOptionalBytes()).toEqual(new Uint8Array());
     expect(msgWebGrpc.getOptionalString()).toEqual('');
     expect(msgWebGrpc.getOptionalBool()).toEqual(false);
-    expect(msgWebGrpc.getOptionalEnum()).toEqual(dataTypesWebGrpc.TestEnum.VALUE0);
+    expect(msgWebGrpc.getOptionalEnum()).toEqual(
+      dataTypesWebGrpc.TestEnum.VALUE0,
+    );
     expect(msgWebGrpc.getOptionalDouble()).toBeCloseTo(0, 2);
     expect(msgWebGrpc.getOptionalFloat()).toBeCloseTo(0, 2);
     expect(msgWebGrpc.getOptionalInt32()).toEqual(0);
@@ -215,12 +217,9 @@ describe('data-types.proto', () => {
       'stringValue',
     );
 
-    expect(
-      msgWebGrpc
-        .getMapInt64SubMap()
-        .get(64)
-        ?.getString(),
-    ).toEqual('someSubString');
+    expect(msgWebGrpc.getMapInt64SubMap().get(64)?.getString()).toEqual(
+      'someSubString',
+    );
     expect(msgWebGrpc.getMapBoolStringMap().get(true)).toEqual('true');
   });
 
@@ -231,12 +230,9 @@ describe('data-types.proto', () => {
     const testString = 'someSubString';
     subMsg.setString(testString);
     int64Map.set(64, subMsg);
-    expect(
-      msgWebGrpc
-        .getMapInt64SubMap()
-        .get(64)
-        ?.getString(),
-    ).toEqual(testString);
+    expect(msgWebGrpc.getMapInt64SubMap().get(64)?.getString()).toEqual(
+      testString,
+    );
   });
 
   it('should correctly produce protobuf JSON for non-repeated fields', () => {
@@ -433,14 +429,21 @@ describe('data-types.proto', () => {
         string: 'test',
       }),
     });
-    const deserializedNotNullValues = dataTypes.TestMessage.deserializeBinary(notNullValues.serializeBinary());
+    const deserializedNotNullValues = dataTypes.TestMessage.deserializeBinary(
+      notNullValues.serializeBinary(),
+    );
 
-    expect(deserializedNotNullValues.toProtobufJSON()).toEqual(notNullValues.toProtobufJSON());
+    expect(deserializedNotNullValues.toProtobufJSON()).toEqual(
+      notNullValues.toProtobufJSON(),
+    );
 
     const nullValues = new dataTypes.TestMessage();
-    const deserializedNullValues = dataTypes.TestMessage.deserializeBinary(nullValues.serializeBinary());
+    const deserializedNullValues = dataTypes.TestMessage.deserializeBinary(
+      nullValues.serializeBinary(),
+    );
 
-    expect(deserializedNullValues.toProtobufJSON()).toEqual(nullValues.toProtobufJSON());
+    expect(deserializedNullValues.toProtobufJSON()).toEqual(
+      nullValues.toProtobufJSON(),
+    );
   });
-
 });

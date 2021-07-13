@@ -9,7 +9,7 @@
     "build": "yarn clean && yarn tsc -p ./tsconfig.json"
   },
   "dependencies": {
-    "@metabreak/grpc-worker-common": "workspace:*",
+    "@metabreak/grpc-common": "workspace:*",
     "grpc-web": "1.2.1"
   },
   "devDependencies": {

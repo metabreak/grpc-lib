@@ -127,7 +127,7 @@ Unfortunately the way to generate files on Windows slightly differs. Here is a s
 ```json
 {
   "scripts": {
-    "proto:generate:win": "for /f %G in ('dir /b ..\\proto\\*.proto') do grpc_tools_node_protoc --plugin=protoc-gen-ng=.\\node_modules\\.bin\\protoc-gen-ng.cmd --ng_out=.\\output\\path -I ..\\proto ..\\proto\\%G",
+    "proto:generate:win": "for /f %G in ('dir /b ..\\proto\\*.proto') do grpc_tools_node_protoc --plugin=protoc-gen-ng=.\\node_modules\\.bin\\protoc-gen-ng.cmd --ng_out=.\\output\\path -I ..\\proto ..\\proto\\%G"
   }
 }
 ```
@@ -164,7 +164,10 @@ E.g. for a service `TestServiceClient` you need to provide the `GRPC_TEST_SERVIC
 ```ts
 @NgModule({
   providers: [
-    { provide: GRPC_TEST_SERVICE_CLIENT_SETTINGS, useValue: { host: 'http://localhost:8080' } as GrpcWebClientSettings },
+    {
+      provide: GRPC_TEST_SERVICE_CLIENT_SETTINGS,
+      useValue: { host: 'http://localhost:8080' } as GrpcWebClientSettings,
+    },
   ],
 })
 export class AppModule {}
@@ -202,7 +205,7 @@ For usage example look at any of your generated `.pbsc.ts` file. In fact, those 
 To create a new message just pass its initial values to the constructor: `new Message(myInitialValues)`. Here is some information on the message's methods:
 
 - `constructor` - accepts a message or an object with initial values. All values are safely / deeply cloned.
-- `toObject()` - casts message *as is* to a normal JavaScript object
+- `toObject()` - casts message _as is_ to a normal JavaScript object
 - `toJSON()` - convenience method to be able to pass message to `JSON.stringify(msg)`
 - `toProtobufJSON()` - constructs a [protobuf-defined JSON](https://developers.google.com/protocol-buffers/docs/proto3#json). Accepts an optional `GrpcMessagePool` (see `google.protobuf.Any` section) which is required only if the message or some of its descendants embeds `google.protobuf.Any`
 
@@ -226,14 +229,23 @@ const myAny: Any;
 const pool = new GrpcMessagePool([Empty, Timestamp, MyMessage]);
 
 try {
-  switch(myAny.getPackedMessageType(pool)) {
-    case Empty: console.log('Empty found', myAny.unpack<Empty>(pool)); break;
-    case Timestamp: console.log('Timestamp found', myAny.unpack<Timestamp>(pool)); break;
-    case MyMessage: console.log('MyMessage found', myAny.unpack<MyMessage>(pool)); break;
-    default: console.log('No packed message inside');
+  switch (myAny.getPackedMessageType(pool)) {
+    case Empty:
+      console.log('Empty found', myAny.unpack<Empty>(pool));
+      break;
+    case Timestamp:
+      console.log('Timestamp found', myAny.unpack<Timestamp>(pool));
+      break;
+    case MyMessage:
+      console.log('MyMessage found', myAny.unpack<MyMessage>(pool));
+      break;
+    default:
+      console.log('No packed message inside');
   }
 } catch (ex) {
-  console.error('Something went wrong, e.g. packed message definition is not in the pool');
+  console.error(
+    'Something went wrong, e.g. packed message definition is not in the pool',
+  );
 }
 ```
 
@@ -361,8 +373,7 @@ Finally use the following imports:
     }),
   ],
 })
-export class AppModule {
-}
+export class AppModule {}
 ```
 
 That's it. All your requests are served by worker.

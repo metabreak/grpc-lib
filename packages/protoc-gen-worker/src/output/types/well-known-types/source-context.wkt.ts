@@ -1,3 +1,3 @@
 import { WKT } from '../wkt';
 
-export class SourceContextWKT implements WKT { }
+export class SourceContextWKT implements WKT {}

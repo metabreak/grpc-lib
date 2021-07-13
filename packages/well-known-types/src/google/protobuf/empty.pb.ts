@@ -7,7 +7,7 @@ import {
   GrpcMessage,
   RecursivePartial,
   ToProtobufJSONOptions,
-} from '@metabreak/grpc-worker-common';
+} from '@metabreak/grpc-common';
 import { BinaryReader, BinaryWriter, ByteSource } from 'google-protobuf';
 
 /**
@@ -97,7 +97,7 @@ export class Empty implements GrpcMessage {
    */
   toProtobufJSON(
     // @ts-ignore
-    options?: ToProtobufJSONOptions
+    options?: ToProtobufJSONOptions,
   ): Empty.AsProtobufJSON {
     return {};
   }

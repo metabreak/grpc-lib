@@ -4,7 +4,7 @@ import {
 } from '@metabreak/grpc-worker-client';
 import { EchoRequest, EchoResponse } from './proto/echo.pb';
 import { GrpcWorkerEchoServiceClientDef } from './proto/echo.pbwsc';
-import { GrpcMetadata } from '@metabreak/grpc-worker-common';
+import { GrpcMetadata } from '@metabreak/grpc-common';
 import { tap } from 'rxjs/operators';
 
 const worker = new Worker('./grpc.worker', { type: 'module' });

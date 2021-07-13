@@ -3,7 +3,7 @@
 # /test/**/*.js
 # /src/**/*.js
 /debug
-/lib
+# /lib
 /node_modules
 /coverage
 /dev-null

@@ -1,4 +1,4 @@
-import { GrpcMessage, GrpcMessageClass, GrpcMessagePool, RecursivePartial, ToProtobufJSONOptions } from '@metabreak/grpc-worker-common';
+import { GrpcMessage, GrpcMessageClass, GrpcMessagePool, RecursivePartial, ToProtobufJSONOptions } from '@metabreak/grpc-common';
 import { BinaryReader, BinaryWriter, ByteSource } from 'google-protobuf';
 export declare class Any implements GrpcMessage {
     static id: string;

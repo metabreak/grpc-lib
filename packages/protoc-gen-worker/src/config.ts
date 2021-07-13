@@ -14,9 +14,9 @@ module.exports = {
     pb: {
       generate: true,
     },
-    pbconf: {
-      generate: true,
-    },
+    // pbconf: {
+    //   generate: true,
+    // },
     pbsc: {
       generate: true,
       serviceClientProvidedIn: 'any',
@@ -99,13 +99,13 @@ export class ConfigPbwsc {
  */
 export class ConfigFiles {
   pb: ConfigPb;
-  pbconf: ConfigPbconf;
+  // pbconf: ConfigPbconf;
   pbsc: ConfigPbsc;
   pbwsc: ConfigPbwsc;
 
   constructor(config: Partial<ConfigFiles> = {}) {
     this.pb = new ConfigPb(config.pb);
-    this.pbconf = new ConfigPbconf(config.pbconf);
+    // this.pbconf = new ConfigPbconf(config.pbconf);
     this.pbsc = new ConfigPbsc(config.pbsc);
     this.pbwsc = new ConfigPbwsc(config.pbwsc);
   }
@@ -115,7 +115,6 @@ export class ConfigFiles {
  * Generator configuration
  */
 export class Config {
-
   /**
    * Enables debug mode, mostly for internal use
    * By default false
@@ -133,7 +132,10 @@ export class Config {
   public files: ConfigFiles;
 
   static fromParameter(parameter: string) {
-    const params = (parameter || '').split(',').map(p => p.split('=')).reduce((r, p) => ({ ...r, [p[0]]: p[1] }), {}) as {
+    const params = (parameter || '')
+      .split(',')
+      .map((p) => p.split('='))
+      .reduce((r, p) => ({ ...r, [p[0]]: p[1] }), {}) as {
       config: string;
     };
 
@@ -149,5 +151,4 @@ export class Config {
     this.embedWellKnownTypes = config.embedWellKnownTypes ?? false;
     this.files = new ConfigFiles(config.files ?? {});
   }
-
 }

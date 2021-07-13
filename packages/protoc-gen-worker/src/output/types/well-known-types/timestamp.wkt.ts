@@ -2,7 +2,6 @@ import { Printer } from '../../misc/printer';
 import { WKT } from '../wkt';
 
 export class TimestampWKT implements WKT {
-
   printStaticMethods(printer: Printer) {
     printer.addLine(`
       static fromDate(date: Date) {
@@ -23,7 +22,8 @@ export class TimestampWKT implements WKT {
     `);
   }
 
-  printMemberMethods(printer: Printer) { // TODO big math
+  printMemberMethods(printer: Printer) {
+    // TODO big math
     printer.addLine(`
       fromDate(date: Date) {
         this.seconds = ''+Math.floor(date.getTime() / 1e3);
@@ -51,5 +51,4 @@ export class TimestampWKT implements WKT {
   printAsProtobufJSON(printer: Printer) {
     printer.addLine(`export type AsProtobufJSON = string;`);
   }
-
 }

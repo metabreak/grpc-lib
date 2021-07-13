@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.GrpcLoggerInterceptor = void 0;
-const grpc_worker_common_1 = require("@metabreak/grpc-worker-common");
+const grpc_common_1 = require("@metabreak/grpc-common");
 const operators_1 = require("rxjs/operators");
 class GrpcLoggerInterceptor {
     dataStyle = 'color: #5c7ced;';
@@ -22,7 +22,7 @@ class GrpcLoggerInterceptor {
         if (this.settings.enabled) {
             const start = Date.now();
             return next.handle(request).pipe(operators_1.tap((event) => {
-                const style = event instanceof grpc_worker_common_1.GrpcDataEvent
+                const style = event instanceof grpc_common_1.GrpcDataEvent
                     ? this.dataStyle
                     : event.statusCode !== 0
                         ? this.errorStyle
@@ -44,7 +44,7 @@ class GrpcLoggerInterceptor {
                     }
                 };
                 const closeGroup = () => console.groupEnd();
-                if (event instanceof grpc_worker_common_1.GrpcDataEvent) {
+                if (event instanceof grpc_common_1.GrpcDataEvent) {
                     openGroup();
                     printSettings();
                     printRequest();

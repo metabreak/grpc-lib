@@ -175,7 +175,7 @@ export class Proto {
         const path =
           genwkt || (!genwkt && !isWKT)
             ? `${root || '.'}/${pp.getGeneratedFileBaseName()}`
-            : '@ngx-grpc/well-known-types';
+            : '@metabreak/grpc-well-known-types';
 
         return `import * as ${this.getDependencyPackageName(
           pp,
