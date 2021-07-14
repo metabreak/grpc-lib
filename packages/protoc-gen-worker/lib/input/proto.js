@@ -22,10 +22,10 @@ class Proto {
     constructor(value) {
         this.name = value.name ?? '';
         this.pb_package = value.pb_package ?? '';
-        this.dependencyList = value.dependencyList || [];
+        this.dependencyList = value.dependencyList ?? [];
         this.publicDependencyList = value.publicDependencyList;
         this.weakDependencyList = value.weakDependencyList;
-        this.messageTypeList = (value.messageTypeList || []).map((e) => new proto_message_1.ProtoMessage(e));
+        this.messageTypeList = (value.messageTypeList ?? []).map((e) => new proto_message_1.ProtoMessage(e));
         this.enumTypeList = value.enumTypeList.map((e) => new proto_enum_1.ProtoEnum(e));
         this.serviceList = value.serviceList.map((e) => new proto_service_1.ProtoService(e));
         this.extensionList = value.extensionList;

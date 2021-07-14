@@ -8,7 +8,7 @@ export class BoolValueWKT implements WKT {
   }
 
   printAsProtobufJSON(printer: Printer) {
-    printer.addLine(`export type AsProtobufJSON = boolean;`);
+    printer.addLine(`export type AsProtobufJSON = boolean | undefined;`);
   }
 }
 
@@ -30,7 +30,7 @@ export class DoubleValueWKT implements WKT {
   }
 
   printAsProtobufJSON(printer: Printer) {
-    printer.addLine(`export type AsProtobufJSON = number;`);
+    printer.addLine(`export type AsProtobufJSON = number | undefined;`);
   }
 }
 
@@ -40,7 +40,7 @@ export class FloatValueWKT implements WKT {
   }
 
   printAsProtobufJSON(printer: Printer) {
-    printer.addLine(`export type AsProtobufJSON = number;`);
+    printer.addLine(`export type AsProtobufJSON = number | undefined;`);
   }
 }
 
@@ -50,7 +50,7 @@ export class Int32ValueWKT implements WKT {
   }
 
   printAsProtobufJSON(printer: Printer) {
-    printer.addLine(`export type AsProtobufJSON = number;`);
+    printer.addLine(`export type AsProtobufJSON = number | undefined;`);
   }
 }
 
@@ -60,7 +60,7 @@ export class Int64ValueWKT implements WKT {
   }
 
   printAsProtobufJSON(printer: Printer) {
-    printer.addLine(`export type AsProtobufJSON = string;`);
+    printer.addLine(`export type AsProtobufJSON = string | undefined;`);
   }
 }
 
@@ -70,7 +70,7 @@ export class StringValueWKT implements WKT {
   }
 
   printAsProtobufJSON(printer: Printer) {
-    printer.addLine(`export type AsProtobufJSON = string;`);
+    printer.addLine(`export type AsProtobufJSON = string | undefined;`);
   }
 }
 
@@ -80,7 +80,7 @@ export class UInt32ValueWKT implements WKT {
   }
 
   printAsProtobufJSON(printer: Printer) {
-    printer.addLine(`export type AsProtobufJSON = number;`);
+    printer.addLine(`export type AsProtobufJSON = number | undefined;`);
   }
 }
 
@@ -90,6 +90,6 @@ export class UInt64ValueWKT implements WKT {
   }
 
   printAsProtobufJSON(printer: Printer) {
-    printer.addLine(`export type AsProtobufJSON = string;`);
+    printer.addLine(`export type AsProtobufJSON = string | undefined;`);
   }
 }

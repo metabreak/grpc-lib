@@ -98,7 +98,7 @@ export class Any implements GrpcMessage {
    * @param _value initial values object or instance of Any to deeply clone from
    */
   constructor(_value?: RecursivePartial<Any.AsObject>) {
-    _value = _value || {};
+    _value = _value ?? {};
     this.typeUrl = _value.typeUrl;
     this.value = _value.value;
     Any.refineValues(this);

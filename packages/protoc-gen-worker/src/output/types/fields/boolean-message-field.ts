@@ -30,11 +30,11 @@ export class BooleanMessageField implements MessageField {
   printDeserializeBinaryFromReader(printer: Printer) {
     if (this.isPacked) {
       printer.add(
-        `case ${this.messageField.number}: (_instance.${this.attributeName} = _instance.${this.attributeName} || []).push(...(_reader.readPackedBool() || []));`,
+        `case ${this.messageField.number}: (_instance.${this.attributeName} = _instance.${this.attributeName} ?? []).push(...(_reader.readPackedBool() ?? []));`,
       );
     } else if (this.isArray) {
       printer.add(
-        `case ${this.messageField.number}: (_instance.${this.attributeName} = _instance.${this.attributeName} || []).push(_reader.readBool());`,
+        `case ${this.messageField.number}: (_instance.${this.attributeName} = _instance.${this.attributeName} ?? []).push(_reader.readBool());`,
       );
     } else {
       printer.add(
@@ -76,7 +76,7 @@ export class BooleanMessageField implements MessageField {
   printInitializer(printer: Printer) {
     if (this.isArray) {
       printer.add(
-        `this.${this.attributeName} = (_value.${this.attributeName} || []).slice();`,
+        `this.${this.attributeName} = (_value.${this.attributeName} ?? []).slice();`,
       );
     } else {
       printer.add(`this.${this.attributeName} = _value.${this.attributeName}`);
@@ -88,11 +88,11 @@ export class BooleanMessageField implements MessageField {
       return;
     } else if (this.isArray) {
       printer.add(
-        `_instance.${this.attributeName} = _instance.${this.attributeName} || []`,
+        `_instance.${this.attributeName} = _instance.${this.attributeName} ?? []`,
       );
     } else {
       printer.add(
-        `_instance.${this.attributeName} = _instance.${this.attributeName} || false`,
+        `_instance.${this.attributeName} = _instance.${this.attributeName} ?? false`,
       );
     }
   }
@@ -115,7 +115,7 @@ export class BooleanMessageField implements MessageField {
   printToObjectMapping(printer: Printer) {
     if (this.isArray) {
       printer.add(
-        `${this.attributeName}: (this.${this.attributeName} || []).slice(),`,
+        `${this.attributeName}: (this.${this.attributeName} ?? []).slice(),`,
       );
     } else {
       printer.add(`${this.attributeName}: this.${this.attributeName},`);
@@ -129,7 +129,7 @@ export class BooleanMessageField implements MessageField {
   printToProtobufJSONMapping(printer: Printer) {
     if (this.isArray) {
       printer.add(
-        `${this.attributeName}: (this.${this.attributeName} || []).slice(),`,
+        `${this.attributeName}: (this.${this.attributeName} ?? []).slice(),`,
       );
     } else if (this.messageField.proto3Optional) {
       printer.add(

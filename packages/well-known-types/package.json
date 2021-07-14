@@ -1,5 +1,6 @@
 {
   "name": "@metabreak/grpc-well-known-types",
+  "main": "./lib/index.js",
   "scripts": {
     "clean": "yarn rimraf ./lib",
     "generate": "yarn node scripts/generate",

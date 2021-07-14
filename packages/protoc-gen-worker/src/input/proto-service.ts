@@ -6,7 +6,7 @@ export class ProtoService {
 
   constructor(value: ProtoService) {
     this.name = value.name;
-    this.methodList = (value.methodList || []).map(
+    this.methodList = (value.methodList ?? []).map(
       (m) => new ProtoServiceMethod(m),
     );
   }

@@ -31,7 +31,7 @@ class ValueWKT {
 exports.ValueWKT = ValueWKT;
 class ListValueWKT {
     printToProtobufJSON(printer) {
-        printer.addLine(`return (this.values || []).map(v => v ? v.toProtobufJSON(options) : null);`);
+        printer.addLine(`return (this.values ?? []).map(v => v?.toProtobufJSON(options) ?? null);`);
     }
     printAsProtobufJSON(printer) {
         printer.addLine(`export type AsProtobufJSON = Value.AsProtobufJSON[];`);

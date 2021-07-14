@@ -38,7 +38,7 @@ class MessageMessageField {
             printer.add(`case ${this.messageField.number}:
         const ${varName} = new ${this.messageClassName}();
         _reader.readMessage(${varName}, ${this.messageClassName}.deserializeBinaryFromReader);
-        (_instance.${this.attributeName} = _instance.${this.attributeName} || []).push(${varName});`);
+        (_instance.${this.attributeName} = _instance.${this.attributeName} ?? []).push(${varName});`);
         }
         else {
             printer.add(`case ${this.messageField.number}:
@@ -64,7 +64,7 @@ class MessageMessageField {
     }
     printInitializer(printer) {
         if (this.isArray) {
-            printer.add(`this.${this.attributeName} = (_value.${this.attributeName} || []).map(m => new ${this.messageClassName}(m));`);
+            printer.add(`this.${this.attributeName} = (_value.${this.attributeName} ?? []).map(m => new ${this.messageClassName}(m));`);
         }
         else {
             printer.add(`this.${this.attributeName} = _value.${this.attributeName} ? new ${this.messageClassName}(_value.${this.attributeName}) : undefined;`);
@@ -75,7 +75,7 @@ class MessageMessageField {
             return;
         }
         else if (this.isArray) {
-            printer.add(`_instance.${this.attributeName} = _instance.${this.attributeName} || []`);
+            printer.add(`_instance.${this.attributeName} = _instance.${this.attributeName} ?? []`);
         }
         else {
             printer.add(`_instance.${this.attributeName} = _instance.${this.attributeName} || undefined`);
@@ -92,7 +92,7 @@ class MessageMessageField {
     }
     printToObjectMapping(printer) {
         if (this.isArray) {
-            printer.add(`${this.attributeName}: (this.${this.attributeName} || []).map(m => m.toObject()),`);
+            printer.add(`${this.attributeName}: (this.${this.attributeName} ?? []).map(m => m.toObject()),`);
         }
         else {
             printer.add(`${this.attributeName}: this.${this.attributeName} ? this.${this.attributeName}.toObject() : undefined,`);
@@ -103,7 +103,7 @@ class MessageMessageField {
     }
     printToProtobufJSONMapping(printer) {
         if (this.isArray) {
-            printer.add(`${this.attributeName}: (this.${this.attributeName} || []).map(m => m.toProtobufJSON(options)),`);
+            printer.add(`${this.attributeName}: (this.${this.attributeName} ?? []).map(m => m.toProtobufJSON(options)),`);
         }
         else {
             printer.add(`${this.attributeName}: this.${this.attributeName} ? this.${this.attributeName}.toProtobufJSON(options) : null,`);

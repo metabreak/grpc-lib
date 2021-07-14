@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.FieldMaskWKT = void 0;
 class FieldMaskWKT {
     printToProtobufJSON(printer) {
-        printer.addLine(`return this.paths.join(',');`);
+        printer.addLine(`return this.paths?.join(',') ?? '';`);
     }
     printAsProtobufJSON(printer) {
         printer.addLine(`export type AsProtobufJSON = string;`);

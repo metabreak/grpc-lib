@@ -33,7 +33,7 @@ export class FieldMask implements GrpcMessage {
    * @param _instance message instance
    */
   static refineValues(_instance: FieldMask) {
-    _instance.paths = _instance.paths || [];
+    _instance.paths = _instance.paths ?? [];
   }
 
   /**
@@ -50,7 +50,7 @@ export class FieldMask implements GrpcMessage {
 
       switch (_reader.getFieldNumber()) {
         case 1:
-          (_instance.paths = _instance.paths || []).push(_reader.readString());
+          (_instance.paths = _instance.paths ?? []).push(_reader.readString());
           break;
         default:
           _reader.skipField();
@@ -78,8 +78,8 @@ export class FieldMask implements GrpcMessage {
    * @param _value initial values object or instance of FieldMask to deeply clone from
    */
   constructor(_value?: RecursivePartial<FieldMask.AsObject>) {
-    _value = _value || {};
-    this.paths = (_value.paths || []).slice();
+    _value = _value ?? {};
+    this.paths = (_value.paths ?? []).slice();
     FieldMask.refineValues(this);
   }
   get paths(): string[] | undefined {
@@ -104,7 +104,7 @@ export class FieldMask implements GrpcMessage {
    */
   toObject(): FieldMask.AsObject {
     return {
-      paths: (this.paths || []).slice(),
+      paths: (this.paths ?? []).slice(),
     };
   }
 
@@ -124,7 +124,7 @@ export class FieldMask implements GrpcMessage {
     // @ts-ignore
     options?: ToProtobufJSONOptions,
   ): FieldMask.AsProtobufJSON {
-    return this.paths.join(',');
+    return this.paths?.join(',') ?? '';
   }
 }
 export module FieldMask {

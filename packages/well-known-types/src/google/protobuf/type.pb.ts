@@ -40,9 +40,9 @@ export class Type implements GrpcMessage {
    */
   static refineValues(_instance: Type) {
     _instance.name = _instance.name || '';
-    _instance.fields = _instance.fields || [];
-    _instance.oneofs = _instance.oneofs || [];
-    _instance.options = _instance.options || [];
+    _instance.fields = _instance.fields ?? [];
+    _instance.oneofs = _instance.oneofs ?? [];
+    _instance.options = _instance.options ?? [];
     _instance.sourceContext = _instance.sourceContext || undefined;
     _instance.syntax = _instance.syntax || 0;
   }
@@ -66,10 +66,10 @@ export class Type implements GrpcMessage {
             messageInitializer2,
             Field.deserializeBinaryFromReader,
           );
-          (_instance.fields = _instance.fields || []).push(messageInitializer2);
+          (_instance.fields = _instance.fields ?? []).push(messageInitializer2);
           break;
         case 3:
-          (_instance.oneofs = _instance.oneofs || []).push(
+          (_instance.oneofs = _instance.oneofs ?? []).push(
             _reader.readString(),
           );
           break;
@@ -79,7 +79,7 @@ export class Type implements GrpcMessage {
             messageInitializer4,
             Option.deserializeBinaryFromReader,
           );
-          (_instance.options = _instance.options || []).push(
+          (_instance.options = _instance.options ?? []).push(
             messageInitializer4,
           );
           break;
@@ -151,11 +151,11 @@ export class Type implements GrpcMessage {
    * @param _value initial values object or instance of Type to deeply clone from
    */
   constructor(_value?: RecursivePartial<Type.AsObject>) {
-    _value = _value || {};
+    _value = _value ?? {};
     this.name = _value.name;
-    this.fields = (_value.fields || []).map((m) => new Field(m));
-    this.oneofs = (_value.oneofs || []).slice();
-    this.options = (_value.options || []).map((m) => new Option(m));
+    this.fields = (_value.fields ?? []).map((m) => new Field(m));
+    this.oneofs = (_value.oneofs ?? []).slice();
+    this.options = (_value.options ?? []).map((m) => new Option(m));
     this.sourceContext = _value.sourceContext
       ? new googleProtobuf001.SourceContext(_value.sourceContext)
       : undefined;
@@ -215,9 +215,9 @@ export class Type implements GrpcMessage {
   toObject(): Type.AsObject {
     return {
       name: this.name,
-      fields: (this.fields || []).map((m) => m.toObject()),
-      oneofs: (this.oneofs || []).slice(),
-      options: (this.options || []).map((m) => m.toObject()),
+      fields: (this.fields ?? []).map((m) => m.toObject()),
+      oneofs: (this.oneofs ?? []).slice(),
+      options: (this.options ?? []).map((m) => m.toObject()),
       sourceContext: this.sourceContext
         ? this.sourceContext.toObject()
         : undefined,
@@ -243,9 +243,9 @@ export class Type implements GrpcMessage {
   ): Type.AsProtobufJSON {
     return {
       name: this.name,
-      fields: (this.fields || []).map((m) => m.toProtobufJSON(options)),
-      oneofs: (this.oneofs || []).slice(),
-      options: (this.options || []).map((m) => m.toProtobufJSON(options)),
+      fields: (this.fields ?? []).map((m) => m.toProtobufJSON(options)),
+      oneofs: (this.oneofs ?? []).slice(),
+      options: (this.options ?? []).map((m) => m.toProtobufJSON(options)),
       sourceContext: this.sourceContext
         ? this.sourceContext.toProtobufJSON(options)
         : null,
@@ -306,8 +306,8 @@ export class Field implements GrpcMessage {
     _instance.name = _instance.name || '';
     _instance.typeUrl = _instance.typeUrl || '';
     _instance.oneofIndex = _instance.oneofIndex || 0;
-    _instance.packed = _instance.packed || false;
-    _instance.options = _instance.options || [];
+    _instance.packed = _instance.packed ?? false;
+    _instance.options = _instance.options ?? [];
     _instance.jsonName = _instance.jsonName || '';
     _instance.defaultValue = _instance.defaultValue || '';
   }
@@ -349,7 +349,7 @@ export class Field implements GrpcMessage {
             messageInitializer9,
             Option.deserializeBinaryFromReader,
           );
-          (_instance.options = _instance.options || []).push(
+          (_instance.options = _instance.options ?? []).push(
             messageInitializer9,
           );
           break;
@@ -425,7 +425,7 @@ export class Field implements GrpcMessage {
    * @param _value initial values object or instance of Field to deeply clone from
    */
   constructor(_value?: RecursivePartial<Field.AsObject>) {
-    _value = _value || {};
+    _value = _value ?? {};
     this.kind = _value.kind;
     this.cardinality = _value.cardinality;
     this.number = _value.number;
@@ -433,7 +433,7 @@ export class Field implements GrpcMessage {
     this.typeUrl = _value.typeUrl;
     this.oneofIndex = _value.oneofIndex;
     this.packed = _value.packed;
-    this.options = (_value.options || []).map((m) => new Option(m));
+    this.options = (_value.options ?? []).map((m) => new Option(m));
     this.jsonName = _value.jsonName;
     this.defaultValue = _value.defaultValue;
     Field.refineValues(this);
@@ -521,7 +521,7 @@ export class Field implements GrpcMessage {
       typeUrl: this.typeUrl,
       oneofIndex: this.oneofIndex,
       packed: this.packed,
-      options: (this.options || []).map((m) => m.toObject()),
+      options: (this.options ?? []).map((m) => m.toObject()),
       jsonName: this.jsonName,
       defaultValue: this.defaultValue,
     };
@@ -551,7 +551,7 @@ export class Field implements GrpcMessage {
       typeUrl: this.typeUrl,
       oneofIndex: this.oneofIndex,
       packed: this.packed,
-      options: (this.options || []).map((m) => m.toProtobufJSON(options)),
+      options: (this.options ?? []).map((m) => m.toProtobufJSON(options)),
       jsonName: this.jsonName,
       defaultValue: this.defaultValue,
     };
@@ -640,8 +640,8 @@ export class Enum implements GrpcMessage {
    */
   static refineValues(_instance: Enum) {
     _instance.name = _instance.name || '';
-    _instance.enumvalue = _instance.enumvalue || [];
-    _instance.options = _instance.options || [];
+    _instance.enumvalue = _instance.enumvalue ?? [];
+    _instance.options = _instance.options ?? [];
     _instance.sourceContext = _instance.sourceContext || undefined;
     _instance.syntax = _instance.syntax || 0;
   }
@@ -665,7 +665,7 @@ export class Enum implements GrpcMessage {
             messageInitializer2,
             EnumValue.deserializeBinaryFromReader,
           );
-          (_instance.enumvalue = _instance.enumvalue || []).push(
+          (_instance.enumvalue = _instance.enumvalue ?? []).push(
             messageInitializer2,
           );
           break;
@@ -675,7 +675,7 @@ export class Enum implements GrpcMessage {
             messageInitializer3,
             Option.deserializeBinaryFromReader,
           );
-          (_instance.options = _instance.options || []).push(
+          (_instance.options = _instance.options ?? []).push(
             messageInitializer3,
           );
           break;
@@ -743,10 +743,10 @@ export class Enum implements GrpcMessage {
    * @param _value initial values object or instance of Enum to deeply clone from
    */
   constructor(_value?: RecursivePartial<Enum.AsObject>) {
-    _value = _value || {};
+    _value = _value ?? {};
     this.name = _value.name;
-    this.enumvalue = (_value.enumvalue || []).map((m) => new EnumValue(m));
-    this.options = (_value.options || []).map((m) => new Option(m));
+    this.enumvalue = (_value.enumvalue ?? []).map((m) => new EnumValue(m));
+    this.options = (_value.options ?? []).map((m) => new Option(m));
     this.sourceContext = _value.sourceContext
       ? new googleProtobuf001.SourceContext(_value.sourceContext)
       : undefined;
@@ -800,8 +800,8 @@ export class Enum implements GrpcMessage {
   toObject(): Enum.AsObject {
     return {
       name: this.name,
-      enumvalue: (this.enumvalue || []).map((m) => m.toObject()),
-      options: (this.options || []).map((m) => m.toObject()),
+      enumvalue: (this.enumvalue ?? []).map((m) => m.toObject()),
+      options: (this.options ?? []).map((m) => m.toObject()),
       sourceContext: this.sourceContext
         ? this.sourceContext.toObject()
         : undefined,
@@ -827,8 +827,8 @@ export class Enum implements GrpcMessage {
   ): Enum.AsProtobufJSON {
     return {
       name: this.name,
-      enumvalue: (this.enumvalue || []).map((m) => m.toProtobufJSON(options)),
-      options: (this.options || []).map((m) => m.toProtobufJSON(options)),
+      enumvalue: (this.enumvalue ?? []).map((m) => m.toProtobufJSON(options)),
+      options: (this.options ?? []).map((m) => m.toProtobufJSON(options)),
       sourceContext: this.sourceContext
         ? this.sourceContext.toProtobufJSON(options)
         : null,
@@ -883,7 +883,7 @@ export class EnumValue implements GrpcMessage {
   static refineValues(_instance: EnumValue) {
     _instance.name = _instance.name || '';
     _instance.number = _instance.number || 0;
-    _instance.options = _instance.options || [];
+    _instance.options = _instance.options ?? [];
   }
 
   /**
@@ -911,7 +911,7 @@ export class EnumValue implements GrpcMessage {
             messageInitializer3,
             Option.deserializeBinaryFromReader,
           );
-          (_instance.options = _instance.options || []).push(
+          (_instance.options = _instance.options ?? []).push(
             messageInitializer3,
           );
           break;
@@ -953,10 +953,10 @@ export class EnumValue implements GrpcMessage {
    * @param _value initial values object or instance of EnumValue to deeply clone from
    */
   constructor(_value?: RecursivePartial<EnumValue.AsObject>) {
-    _value = _value || {};
+    _value = _value ?? {};
     this.name = _value.name;
     this.number = _value.number;
-    this.options = (_value.options || []).map((m) => new Option(m));
+    this.options = (_value.options ?? []).map((m) => new Option(m));
     EnumValue.refineValues(this);
   }
   get name(): string | undefined {
@@ -995,7 +995,7 @@ export class EnumValue implements GrpcMessage {
     return {
       name: this.name,
       number: this.number,
-      options: (this.options || []).map((m) => m.toObject()),
+      options: (this.options ?? []).map((m) => m.toObject()),
     };
   }
 
@@ -1018,7 +1018,7 @@ export class EnumValue implements GrpcMessage {
     return {
       name: this.name,
       number: this.number,
-      options: (this.options || []).map((m) => m.toProtobufJSON(options)),
+      options: (this.options ?? []).map((m) => m.toProtobufJSON(options)),
     };
   }
 }
@@ -1121,7 +1121,7 @@ export class Option implements GrpcMessage {
    * @param _value initial values object or instance of Option to deeply clone from
    */
   constructor(_value?: RecursivePartial<Option.AsObject>) {
-    _value = _value || {};
+    _value = _value ?? {};
     this.name = _value.name;
     this.value = _value.value
       ? new googleProtobuf000.Any(_value.value)

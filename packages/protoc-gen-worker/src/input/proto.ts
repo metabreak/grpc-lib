@@ -33,11 +33,11 @@ export class Proto {
 
   constructor(value: FileDescriptorProto.AsObject) {
     this.name = value.name ?? '';
-    this.pb_package = value.pb_package ?? ''; // eslint-disable-line @typescript-eslint/camelcase
-    this.dependencyList = value.dependencyList || [];
+    this.pb_package = value.pb_package ?? '';
+    this.dependencyList = value.dependencyList ?? [];
     this.publicDependencyList = value.publicDependencyList;
     this.weakDependencyList = value.weakDependencyList;
-    this.messageTypeList = (value.messageTypeList || []).map(
+    this.messageTypeList = (value.messageTypeList ?? []).map(
       (e) => new ProtoMessage(e as any),
     );
     this.enumTypeList = value.enumTypeList.map((e) => new ProtoEnum(e as any));

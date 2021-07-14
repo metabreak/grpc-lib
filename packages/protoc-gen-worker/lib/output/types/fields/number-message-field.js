@@ -69,10 +69,10 @@ class NumberMessageField {
     }
     printDeserializeBinaryFromReader(printer) {
         if (this.isPacked) {
-            printer.add(`case ${this.messageField.number}: (_instance.${this.attributeName} = _instance.${this.attributeName} || []).push(...(_reader.readPacked${this.protoDataType}() || []));`);
+            printer.add(`case ${this.messageField.number}: (_instance.${this.attributeName} = _instance.${this.attributeName} ?? []).push(...(_reader.readPacked${this.protoDataType}() ?? []));`);
         }
         else if (this.isArray) {
-            printer.add(`case ${this.messageField.number}: (_instance.${this.attributeName} = _instance.${this.attributeName} || []).push(_reader.read${this.protoDataType}());`);
+            printer.add(`case ${this.messageField.number}: (_instance.${this.attributeName} = _instance.${this.attributeName} ?? []).push(_reader.read${this.protoDataType}());`);
         }
         else {
             printer.add(`case ${this.messageField.number}: _instance.${this.attributeName} = _reader.read${this.protoDataType}();`);
@@ -111,7 +111,7 @@ class NumberMessageField {
     }
     printInitializer(printer) {
         if (this.isArray) {
-            printer.add(`this.${this.attributeName} = (_value.${this.attributeName} || []).slice();`);
+            printer.add(`this.${this.attributeName} = (_value.${this.attributeName} ?? []).slice();`);
         }
         else {
             printer.add(`this.${this.attributeName} = _value.${this.attributeName}`);
@@ -122,7 +122,7 @@ class NumberMessageField {
             return;
         }
         else if (this.isArray) {
-            printer.add(`_instance.${this.attributeName} = _instance.${this.attributeName} || []`);
+            printer.add(`_instance.${this.attributeName} = _instance.${this.attributeName} ?? []`);
         }
         else {
             printer.add(`_instance.${this.attributeName} = _instance.${this.attributeName} || ${this.isStringType ? "'0'" : '0'}`);
@@ -139,7 +139,7 @@ class NumberMessageField {
     }
     printToObjectMapping(printer) {
         if (this.isArray) {
-            printer.add(`${this.attributeName}: (this.${this.attributeName} || []).slice(),`);
+            printer.add(`${this.attributeName}: (this.${this.attributeName} ?? []).slice(),`);
         }
         else {
             printer.add(`${this.attributeName}: this.${this.attributeName},`);
@@ -150,7 +150,7 @@ class NumberMessageField {
     }
     printToProtobufJSONMapping(printer) {
         if (this.isArray) {
-            printer.add(`${this.attributeName}: (this.${this.attributeName} || []).slice(),`);
+            printer.add(`${this.attributeName}: (this.${this.attributeName} ?? []).slice(),`);
         }
         else {
             printer.add(`${this.attributeName}: this.${this.attributeName}${this.oneOf || this.messageField.proto3Optional ? ' ?? null' : ''},`);

@@ -25,7 +25,7 @@ class StringMessageField {
     printDeserializeBinaryFromReader(printer) {
         const readerCall = '_reader.readString()';
         if (this.isArray) {
-            printer.add(`case ${this.messageField.number}: (_instance.${this.attributeName} = _instance.${this.attributeName} || []).push(${readerCall});`);
+            printer.add(`case ${this.messageField.number}: (_instance.${this.attributeName} = _instance.${this.attributeName} ?? []).push(${readerCall});`);
         }
         else {
             printer.add(`case ${this.messageField.number}: _instance.${this.attributeName} = ${readerCall};`);
@@ -59,7 +59,7 @@ class StringMessageField {
     }
     printInitializer(printer) {
         if (this.isArray) {
-            printer.add(`this.${this.attributeName} = (_value.${this.attributeName} || []).slice();`);
+            printer.add(`this.${this.attributeName} = (_value.${this.attributeName} ?? []).slice();`);
         }
         else {
             printer.add(`this.${this.attributeName} = _value.${this.attributeName}`);
@@ -70,7 +70,7 @@ class StringMessageField {
             return;
         }
         else if (this.isArray) {
-            printer.add(`_instance.${this.attributeName} = _instance.${this.attributeName} || []`);
+            printer.add(`_instance.${this.attributeName} = _instance.${this.attributeName} ?? []`);
         }
         else {
             printer.add(`_instance.${this.attributeName} = _instance.${this.attributeName} || ''`);
@@ -87,7 +87,7 @@ class StringMessageField {
     }
     printToObjectMapping(printer) {
         if (this.isArray) {
-            printer.add(`${this.attributeName}: (this.${this.attributeName} || []).slice(),`);
+            printer.add(`${this.attributeName}: (this.${this.attributeName} ?? []).slice(),`);
         }
         else {
             printer.add(`${this.attributeName}: this.${this.attributeName},`);
@@ -98,7 +98,7 @@ class StringMessageField {
     }
     printToProtobufJSONMapping(printer) {
         if (this.isArray) {
-            printer.add(`${this.attributeName}: (this.${this.attributeName} || []).slice(),`);
+            printer.add(`${this.attributeName}: (this.${this.attributeName} ?? []).slice(),`);
         }
         else {
             printer.add(`${this.attributeName}: this.${this.attributeName}${this.oneOf || this.messageField.proto3Optional ? ' ?? null' : ''},`);

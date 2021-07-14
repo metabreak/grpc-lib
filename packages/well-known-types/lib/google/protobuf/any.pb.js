@@ -47,7 +47,7 @@ class Any {
     _typeUrl;
     _value;
     constructor(_value) {
-        _value = _value || {};
+        _value = _value ?? {};
         this.typeUrl = _value.typeUrl;
         this.value = _value.value;
         Any.refineValues(this);

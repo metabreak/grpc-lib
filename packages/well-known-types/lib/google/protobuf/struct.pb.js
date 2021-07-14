@@ -14,7 +14,7 @@ class Struct {
         return instance;
     }
     static refineValues(_instance) {
-        _instance.fields = _instance.fields || {};
+        _instance.fields = _instance.fields ?? {};
     }
     static deserializeBinaryFromReader(_instance, _reader) {
         while (_reader.nextField()) {
@@ -24,7 +24,7 @@ class Struct {
                 case 1:
                     const msg_1 = {};
                     _reader.readMessage(msg_1, Struct.FieldsEntry.deserializeBinaryFromReader);
-                    _instance.fields = _instance.fields || {};
+                    _instance.fields = _instance.fields ?? {};
                     _instance.fields[msg_1.key] = msg_1.value;
                     break;
                 default:
@@ -46,7 +46,7 @@ class Struct {
     }
     _fields;
     constructor(_value) {
-        _value = _value || {};
+        _value = _value ?? {};
         (this.fields = _value.fields
             ? Object.keys(_value.fields).reduce((r, k) => ({
                 ...r,
@@ -130,7 +130,7 @@ exports.Struct = Struct;
         _key;
         _value;
         constructor(_value) {
-            _value = _value || {};
+            _value = _value ?? {};
             this.key = _value.key;
             this.value = _value.value ? new Value(_value.value) : undefined;
             FieldsEntry.refineValues(this);
@@ -237,7 +237,7 @@ class Value {
     _listValue;
     _kind = Value.KindCase.none;
     constructor(_value) {
-        _value = _value || {};
+        _value = _value ?? {};
         this.nullValue = _value.nullValue;
         this.numberValue = _value.numberValue;
         this.stringValue = _value.stringValue;
@@ -403,7 +403,7 @@ class ListValue {
         return instance;
     }
     static refineValues(_instance) {
-        _instance.values = _instance.values || [];
+        _instance.values = _instance.values ?? [];
     }
     static deserializeBinaryFromReader(_instance, _reader) {
         while (_reader.nextField()) {
@@ -413,7 +413,7 @@ class ListValue {
                 case 1:
                     const messageInitializer1 = new Value();
                     _reader.readMessage(messageInitializer1, Value.deserializeBinaryFromReader);
-                    (_instance.values = _instance.values || []).push(messageInitializer1);
+                    (_instance.values = _instance.values ?? []).push(messageInitializer1);
                     break;
                 default:
                     _reader.skipField();
@@ -428,8 +428,8 @@ class ListValue {
     }
     _values;
     constructor(_value) {
-        _value = _value || {};
-        this.values = (_value.values || []).map((m) => new Value(m));
+        _value = _value ?? {};
+        this.values = (_value.values ?? []).map((m) => new Value(m));
         ListValue.refineValues(this);
     }
     get values() {
@@ -445,14 +445,14 @@ class ListValue {
     }
     toObject() {
         return {
-            values: (this.values || []).map((m) => m.toObject()),
+            values: (this.values ?? []).map((m) => m.toObject()),
         };
     }
     toJSON() {
         return this.toObject();
     }
     toProtobufJSON(options) {
-        return (this.values || []).map((v) => v ? v.toProtobufJSON(options) : null);
+        return (this.values ?? []).map((v) => v?.toProtobufJSON(options) ?? null);
     }
 }
 exports.ListValue = ListValue;

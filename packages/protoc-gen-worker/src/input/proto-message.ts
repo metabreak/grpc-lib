@@ -22,18 +22,18 @@ export class ProtoMessage {
 
   constructor(value: ProtoMessage) {
     this.name = value.name;
-    this.fieldList = (value.fieldList || []).map(
-      (mf) => new ProtoMessageField(mf || {}),
+    this.fieldList = (value.fieldList ?? []).map(
+      (mf) => new ProtoMessageField(mf ?? {}),
     );
     this.extensionList = value.extensionList;
     this.nestedTypeList = value.nestedTypeList.map((t) => new ProtoMessage(t));
     this.enumTypeList = value.enumTypeList.map((e) => new ProtoEnum(e));
     this.extensionRangeList = value.extensionRangeList;
-    this.oneofDeclList = (value.oneofDeclList || []).map(
+    this.oneofDeclList = (value.oneofDeclList ?? []).map(
       (d) => new ProtoOneof(d),
     );
     this.reservedRangeList = value.reservedRangeList;
     this.reservedNameList = value.reservedNameList;
-    this.options = value.options || {};
+    this.options = value.options ?? {};
   }
 }

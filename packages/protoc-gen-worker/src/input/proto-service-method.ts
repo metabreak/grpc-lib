@@ -14,6 +14,6 @@ export class ServiceMethod {
     this.outputType = value.outputType;
     this.clientStreaming = value.clientStreaming;
     this.serverStreaming = value.serverStreaming;
-    this.options = new ProtoServiceMethodOptions(value.options || {});
+    this.options = new ProtoServiceMethodOptions(value.options ?? {});
   }
 }

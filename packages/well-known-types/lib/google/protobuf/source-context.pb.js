@@ -33,7 +33,7 @@ class SourceContext {
     }
     _fileName;
     constructor(_value) {
-        _value = _value || {};
+        _value = _value ?? {};
         this.fileName = _value.fileName;
         SourceContext.refineValues(this);
     }

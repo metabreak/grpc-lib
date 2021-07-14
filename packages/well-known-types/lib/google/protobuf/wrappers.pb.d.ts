@@ -19,7 +19,7 @@ export declare module DoubleValue {
     interface AsObject {
         value?: number;
     }
-    type AsProtobufJSON = number;
+    type AsProtobufJSON = number | undefined;
 }
 export declare class FloatValue implements GrpcMessage {
     static id: string;
@@ -40,7 +40,7 @@ export declare module FloatValue {
     interface AsObject {
         value?: number;
     }
-    type AsProtobufJSON = number;
+    type AsProtobufJSON = number | undefined;
 }
 export declare class Int64Value implements GrpcMessage {
     static id: string;
@@ -61,7 +61,7 @@ export declare module Int64Value {
     interface AsObject {
         value?: string;
     }
-    type AsProtobufJSON = string;
+    type AsProtobufJSON = string | undefined;
 }
 export declare class UInt64Value implements GrpcMessage {
     static id: string;
@@ -82,7 +82,7 @@ export declare module UInt64Value {
     interface AsObject {
         value?: string;
     }
-    type AsProtobufJSON = string;
+    type AsProtobufJSON = string | undefined;
 }
 export declare class Int32Value implements GrpcMessage {
     static id: string;
@@ -103,7 +103,7 @@ export declare module Int32Value {
     interface AsObject {
         value?: number;
     }
-    type AsProtobufJSON = number;
+    type AsProtobufJSON = number | undefined;
 }
 export declare class UInt32Value implements GrpcMessage {
     static id: string;
@@ -124,7 +124,7 @@ export declare module UInt32Value {
     interface AsObject {
         value?: number;
     }
-    type AsProtobufJSON = number;
+    type AsProtobufJSON = number | undefined;
 }
 export declare class BoolValue implements GrpcMessage {
     static id: string;
@@ -145,7 +145,7 @@ export declare module BoolValue {
     interface AsObject {
         value?: boolean;
     }
-    type AsProtobufJSON = boolean;
+    type AsProtobufJSON = boolean | undefined;
 }
 export declare class StringValue implements GrpcMessage {
     static id: string;
@@ -166,7 +166,7 @@ export declare module StringValue {
     interface AsObject {
         value?: string;
     }
-    type AsProtobufJSON = string;
+    type AsProtobufJSON = string | undefined;
 }
 export declare class BytesValue implements GrpcMessage {
     static id: string;

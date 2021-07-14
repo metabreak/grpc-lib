@@ -40,7 +40,7 @@ export class ValueWKT implements WKT {
 export class ListValueWKT implements WKT {
   printToProtobufJSON(printer: Printer) {
     printer.addLine(
-      `return (this.values || []).map(v => v ? v.toProtobufJSON(options) : null);`,
+      `return (this.values ?? []).map(v => v?.toProtobufJSON(options) ?? null);`,
     );
   }
 

@@ -19,7 +19,7 @@ class ProtoMessageField {
         this.typeName = value.typeName;
         this.jsonName = value.jsonName;
         this.oneofIndex = value.oneofIndex;
-        this.options = value.options || {};
+        this.options = value.options ?? {};
         this.proto3Optional = value.proto3Optional;
     }
 }

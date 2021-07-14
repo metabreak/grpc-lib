@@ -44,7 +44,7 @@ export class MessageMessageField implements MessageField {
       printer.add(`case ${this.messageField.number}:
         const ${varName} = new ${this.messageClassName}();
         _reader.readMessage(${varName}, ${this.messageClassName}.deserializeBinaryFromReader);
-        (_instance.${this.attributeName} = _instance.${this.attributeName} || []).push(${varName});`);
+        (_instance.${this.attributeName} = _instance.${this.attributeName} ?? []).push(${varName});`);
     } else {
       printer.add(`case ${this.messageField.number}:
         _instance.${this.attributeName} = new ${this.messageClassName}();
@@ -73,7 +73,7 @@ export class MessageMessageField implements MessageField {
   printInitializer(printer: Printer) {
     if (this.isArray) {
       printer.add(
-        `this.${this.attributeName} = (_value.${this.attributeName} || []).map(m => new ${this.messageClassName}(m));`,
+        `this.${this.attributeName} = (_value.${this.attributeName} ?? []).map(m => new ${this.messageClassName}(m));`,
       );
     } else {
       printer.add(
@@ -87,7 +87,7 @@ export class MessageMessageField implements MessageField {
       return;
     } else if (this.isArray) {
       printer.add(
-        `_instance.${this.attributeName} = _instance.${this.attributeName} || []`,
+        `_instance.${this.attributeName} = _instance.${this.attributeName} ?? []`,
       );
     } else {
       printer.add(
@@ -114,7 +114,7 @@ export class MessageMessageField implements MessageField {
   printToObjectMapping(printer: Printer) {
     if (this.isArray) {
       printer.add(
-        `${this.attributeName}: (this.${this.attributeName} || []).map(m => m.toObject()),`,
+        `${this.attributeName}: (this.${this.attributeName} ?? []).map(m => m.toObject()),`,
       );
     } else {
       printer.add(
@@ -130,7 +130,7 @@ export class MessageMessageField implements MessageField {
   printToProtobufJSONMapping(printer: Printer) {
     if (this.isArray) {
       printer.add(
-        `${this.attributeName}: (this.${this.attributeName} || []).map(m => m.toProtobufJSON(options)),`,
+        `${this.attributeName}: (this.${this.attributeName} ?? []).map(m => m.toProtobufJSON(options)),`,
       );
     } else {
       printer.add(

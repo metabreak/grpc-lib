@@ -23,7 +23,7 @@ class Empty {
     }
     static serializeBinaryToWriter(_instance, _writer) { }
     constructor(_value) {
-        _value = _value || {};
+        _value = _value ?? {};
         Empty.refineValues(this);
     }
     serializeBinary() {

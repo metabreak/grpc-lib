@@ -121,7 +121,7 @@ export class GrpcWorker {
     const { type, reqclss, resclss } = def.methods[message.path];
     const request = new reqclss(message.request);
     const url = service.settings.host + message.path;
-    const metadata = message.metadata || {};
+    const metadata = message.metadata ?? {};
     const descriptor = new MethodDescriptor<any, any>(
       message.path,
       type === GrpcCallType.unary ? 'unary' : 'server_streaming',

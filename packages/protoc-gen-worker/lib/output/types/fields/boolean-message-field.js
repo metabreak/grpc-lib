@@ -26,10 +26,10 @@ class BooleanMessageField {
     }
     printDeserializeBinaryFromReader(printer) {
         if (this.isPacked) {
-            printer.add(`case ${this.messageField.number}: (_instance.${this.attributeName} = _instance.${this.attributeName} || []).push(...(_reader.readPackedBool() || []));`);
+            printer.add(`case ${this.messageField.number}: (_instance.${this.attributeName} = _instance.${this.attributeName} ?? []).push(...(_reader.readPackedBool() ?? []));`);
         }
         else if (this.isArray) {
-            printer.add(`case ${this.messageField.number}: (_instance.${this.attributeName} = _instance.${this.attributeName} || []).push(_reader.readBool());`);
+            printer.add(`case ${this.messageField.number}: (_instance.${this.attributeName} = _instance.${this.attributeName} ?? []).push(_reader.readBool());`);
         }
         else {
             printer.add(`case ${this.messageField.number}: _instance.${this.attributeName} = _reader.readBool();`);
@@ -68,7 +68,7 @@ class BooleanMessageField {
     }
     printInitializer(printer) {
         if (this.isArray) {
-            printer.add(`this.${this.attributeName} = (_value.${this.attributeName} || []).slice();`);
+            printer.add(`this.${this.attributeName} = (_value.${this.attributeName} ?? []).slice();`);
         }
         else {
             printer.add(`this.${this.attributeName} = _value.${this.attributeName}`);
@@ -79,10 +79,10 @@ class BooleanMessageField {
             return;
         }
         else if (this.isArray) {
-            printer.add(`_instance.${this.attributeName} = _instance.${this.attributeName} || []`);
+            printer.add(`_instance.${this.attributeName} = _instance.${this.attributeName} ?? []`);
         }
         else {
-            printer.add(`_instance.${this.attributeName} = _instance.${this.attributeName} || false`);
+            printer.add(`_instance.${this.attributeName} = _instance.${this.attributeName} ?? false`);
         }
     }
     printGetter(printer) {
@@ -96,7 +96,7 @@ class BooleanMessageField {
     }
     printToObjectMapping(printer) {
         if (this.isArray) {
-            printer.add(`${this.attributeName}: (this.${this.attributeName} || []).slice(),`);
+            printer.add(`${this.attributeName}: (this.${this.attributeName} ?? []).slice(),`);
         }
         else {
             printer.add(`${this.attributeName}: this.${this.attributeName},`);
@@ -107,7 +107,7 @@ class BooleanMessageField {
     }
     printToProtobufJSONMapping(printer) {
         if (this.isArray) {
-            printer.add(`${this.attributeName}: (this.${this.attributeName} || []).slice(),`);
+            printer.add(`${this.attributeName}: (this.${this.attributeName} ?? []).slice(),`);
         }
         else if (this.messageField.proto3Optional) {
             printer.add(`${this.attributeName}: this.${this.attributeName} === undefined ? null : this.${this.attributeName},`);

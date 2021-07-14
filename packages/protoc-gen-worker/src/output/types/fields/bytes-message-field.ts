@@ -31,7 +31,7 @@ export class BytesMessageField implements MessageField {
 
     if (this.isArray) {
       printer.add(
-        `case ${this.messageField.number}: (_instance.${this.attributeName} = _instance.${this.attributeName} || []).push(${readerCall});`,
+        `case ${this.messageField.number}: (_instance.${this.attributeName} = _instance.${this.attributeName} ?? []).push(${readerCall});`,
       );
     } else {
       printer.add(
@@ -65,7 +65,7 @@ export class BytesMessageField implements MessageField {
   printInitializer(printer: Printer) {
     if (this.isArray) {
       printer.add(
-        `this.${this.attributeName} = (_value.${this.attributeName} || []).map(b => b ? b.subarray(0) : new Uint8Array());`,
+        `this.${this.attributeName} = (_value.${this.attributeName} ?? []).map(b => b ? b.subarray(0) : new Uint8Array());`,
       );
     } else {
       printer.add(`this.${this.attributeName} = _value.${this.attributeName}`);
@@ -77,7 +77,7 @@ export class BytesMessageField implements MessageField {
       return;
     } else if (this.isArray) {
       printer.add(
-        `_instance.${this.attributeName} = _instance.${this.attributeName} || []`,
+        `_instance.${this.attributeName} = _instance.${this.attributeName} ?? []`,
       );
     } else {
       printer.add(
@@ -104,7 +104,7 @@ export class BytesMessageField implements MessageField {
   printToObjectMapping(printer: Printer) {
     if (this.isArray) {
       printer.add(
-        `${this.attributeName}: (this.${this.attributeName} || []).map(b => b ? b.subarray(0) : new Uint8Array()),`,
+        `${this.attributeName}: (this.${this.attributeName} ?? []).map(b => b ? b.subarray(0) : new Uint8Array()),`,
       );
     } else {
       printer.add(
@@ -126,7 +126,7 @@ export class BytesMessageField implements MessageField {
 
     if (this.isArray) {
       printer.add(
-        `${this.attributeName}: (this.${this.attributeName} || []).map(b => b ? uint8ArrayToBase64(b) : ''),`,
+        `${this.attributeName}: (this.${this.attributeName} ?? []).map(b => b ? uint8ArrayToBase64(b) : ''),`,
       );
     } else {
       printer.add(

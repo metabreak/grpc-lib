@@ -86,7 +86,7 @@ export class Duration implements GrpcMessage {
    * @param _value initial values object or instance of Duration to deeply clone from
    */
   constructor(_value?: RecursivePartial<Duration.AsObject>) {
-    _value = _value || {};
+    _value = _value ?? {};
     this.seconds = _value.seconds;
     this.nanos = _value.nanos;
     Duration.refineValues(this);

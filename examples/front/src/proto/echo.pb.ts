@@ -3,12 +3,15 @@
 //
 // THIS IS A GENERATED FILE
 // DO NOT MODIFY IT! YOUR CHANGES WILL BE LOST
+//
+
 import {
   GrpcMessage,
   RecursivePartial,
   ToProtobufJSONOptions,
 } from '@metabreak/grpc-common';
 import { BinaryReader, BinaryWriter, ByteSource } from 'google-protobuf';
+
 import * as googleProtobuf000 from '@metabreak/grpc-well-known-types';
 /**
  * Message implementation for echo.EchoRequest
@@ -32,7 +35,7 @@ export class EchoRequest implements GrpcMessage {
    */
   static refineValues(_instance: EchoRequest) {
     _instance.message = _instance.message || '';
-    _instance.shouldThrow = _instance.shouldThrow || false;
+    _instance.shouldThrow = _instance.shouldThrow ?? false;
     _instance.timestamp = _instance.timestamp || undefined;
   }
 
@@ -103,7 +106,7 @@ export class EchoRequest implements GrpcMessage {
    * @param _value initial values object or instance of EchoRequest to deeply clone from
    */
   constructor(_value?: RecursivePartial<EchoRequest.AsObject>) {
-    _value = _value || {};
+    _value = _value ?? {};
     this.message = _value.message;
     this.shouldThrow = _value.shouldThrow;
     this.timestamp = _value.timestamp
@@ -279,7 +282,7 @@ export class EchoResponse implements GrpcMessage {
    * @param _value initial values object or instance of EchoResponse to deeply clone from
    */
   constructor(_value?: RecursivePartial<EchoResponse.AsObject>) {
-    _value = _value || {};
+    _value = _value ?? {};
     this.message = _value.message;
     this.timestamp = _value.timestamp
       ? new googleProtobuf000.Timestamp(_value.timestamp)

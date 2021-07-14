@@ -51,7 +51,7 @@ class Timestamp {
     _seconds;
     _nanos;
     constructor(_value) {
-        _value = _value || {};
+        _value = _value ?? {};
         this.seconds = _value.seconds;
         this.nanos = _value.nanos;
         Timestamp.refineValues(this);

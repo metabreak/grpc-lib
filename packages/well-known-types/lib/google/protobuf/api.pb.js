@@ -32,11 +32,11 @@ class Api {
     }
     static refineValues(_instance) {
         _instance.name = _instance.name || '';
-        _instance.methods = _instance.methods || [];
-        _instance.options = _instance.options || [];
+        _instance.methods = _instance.methods ?? [];
+        _instance.options = _instance.options ?? [];
         _instance.version = _instance.version || '';
         _instance.sourceContext = _instance.sourceContext || undefined;
-        _instance.mixins = _instance.mixins || [];
+        _instance.mixins = _instance.mixins ?? [];
         _instance.syntax = _instance.syntax || 0;
     }
     static deserializeBinaryFromReader(_instance, _reader) {
@@ -50,12 +50,12 @@ class Api {
                 case 2:
                     const messageInitializer2 = new Method();
                     _reader.readMessage(messageInitializer2, Method.deserializeBinaryFromReader);
-                    (_instance.methods = _instance.methods || []).push(messageInitializer2);
+                    (_instance.methods = _instance.methods ?? []).push(messageInitializer2);
                     break;
                 case 3:
                     const messageInitializer3 = new googleProtobuf002.Option();
                     _reader.readMessage(messageInitializer3, googleProtobuf002.Option.deserializeBinaryFromReader);
-                    (_instance.options = _instance.options || []).push(messageInitializer3);
+                    (_instance.options = _instance.options ?? []).push(messageInitializer3);
                     break;
                 case 4:
                     _instance.version = _reader.readString();
@@ -67,7 +67,7 @@ class Api {
                 case 6:
                     const messageInitializer6 = new Mixin();
                     _reader.readMessage(messageInitializer6, Mixin.deserializeBinaryFromReader);
-                    (_instance.mixins = _instance.mixins || []).push(messageInitializer6);
+                    (_instance.mixins = _instance.mixins ?? []).push(messageInitializer6);
                     break;
                 case 7:
                     _instance.syntax = _reader.readEnum();
@@ -109,15 +109,15 @@ class Api {
     _mixins;
     _syntax;
     constructor(_value) {
-        _value = _value || {};
+        _value = _value ?? {};
         this.name = _value.name;
-        this.methods = (_value.methods || []).map((m) => new Method(m));
-        this.options = (_value.options || []).map((m) => new googleProtobuf002.Option(m));
+        this.methods = (_value.methods ?? []).map((m) => new Method(m));
+        this.options = (_value.options ?? []).map((m) => new googleProtobuf002.Option(m));
         this.version = _value.version;
         this.sourceContext = _value.sourceContext
             ? new googleProtobuf001.SourceContext(_value.sourceContext)
             : undefined;
-        this.mixins = (_value.mixins || []).map((m) => new Mixin(m));
+        this.mixins = (_value.mixins ?? []).map((m) => new Mixin(m));
         this.syntax = _value.syntax;
         Api.refineValues(this);
     }
@@ -171,13 +171,13 @@ class Api {
     toObject() {
         return {
             name: this.name,
-            methods: (this.methods || []).map((m) => m.toObject()),
-            options: (this.options || []).map((m) => m.toObject()),
+            methods: (this.methods ?? []).map((m) => m.toObject()),
+            options: (this.options ?? []).map((m) => m.toObject()),
             version: this.version,
             sourceContext: this.sourceContext
                 ? this.sourceContext.toObject()
                 : undefined,
-            mixins: (this.mixins || []).map((m) => m.toObject()),
+            mixins: (this.mixins ?? []).map((m) => m.toObject()),
             syntax: this.syntax,
         };
     }
@@ -187,13 +187,13 @@ class Api {
     toProtobufJSON(options) {
         return {
             name: this.name,
-            methods: (this.methods || []).map((m) => m.toProtobufJSON(options)),
-            options: (this.options || []).map((m) => m.toProtobufJSON(options)),
+            methods: (this.methods ?? []).map((m) => m.toProtobufJSON(options)),
+            options: (this.options ?? []).map((m) => m.toProtobufJSON(options)),
             version: this.version,
             sourceContext: this.sourceContext
                 ? this.sourceContext.toProtobufJSON(options)
                 : null,
-            mixins: (this.mixins || []).map((m) => m.toProtobufJSON(options)),
+            mixins: (this.mixins ?? []).map((m) => m.toProtobufJSON(options)),
             syntax: googleProtobuf002.Syntax[this.syntax ?? 0],
         };
     }
@@ -209,10 +209,10 @@ class Method {
     static refineValues(_instance) {
         _instance.name = _instance.name || '';
         _instance.requestTypeUrl = _instance.requestTypeUrl || '';
-        _instance.requestStreaming = _instance.requestStreaming || false;
+        _instance.requestStreaming = _instance.requestStreaming ?? false;
         _instance.responseTypeUrl = _instance.responseTypeUrl || '';
-        _instance.responseStreaming = _instance.responseStreaming || false;
-        _instance.options = _instance.options || [];
+        _instance.responseStreaming = _instance.responseStreaming ?? false;
+        _instance.options = _instance.options ?? [];
         _instance.syntax = _instance.syntax || 0;
     }
     static deserializeBinaryFromReader(_instance, _reader) {
@@ -238,7 +238,7 @@ class Method {
                 case 6:
                     const messageInitializer6 = new googleProtobuf002.Option();
                     _reader.readMessage(messageInitializer6, googleProtobuf002.Option.deserializeBinaryFromReader);
-                    (_instance.options = _instance.options || []).push(messageInitializer6);
+                    (_instance.options = _instance.options ?? []).push(messageInitializer6);
                     break;
                 case 7:
                     _instance.syntax = _reader.readEnum();
@@ -280,13 +280,13 @@ class Method {
     _options;
     _syntax;
     constructor(_value) {
-        _value = _value || {};
+        _value = _value ?? {};
         this.name = _value.name;
         this.requestTypeUrl = _value.requestTypeUrl;
         this.requestStreaming = _value.requestStreaming;
         this.responseTypeUrl = _value.responseTypeUrl;
         this.responseStreaming = _value.responseStreaming;
-        this.options = (_value.options || []).map((m) => new googleProtobuf002.Option(m));
+        this.options = (_value.options ?? []).map((m) => new googleProtobuf002.Option(m));
         this.syntax = _value.syntax;
         Method.refineValues(this);
     }
@@ -344,7 +344,7 @@ class Method {
             requestStreaming: this.requestStreaming,
             responseTypeUrl: this.responseTypeUrl,
             responseStreaming: this.responseStreaming,
-            options: (this.options || []).map((m) => m.toObject()),
+            options: (this.options ?? []).map((m) => m.toObject()),
             syntax: this.syntax,
         };
     }
@@ -358,7 +358,7 @@ class Method {
             requestStreaming: this.requestStreaming,
             responseTypeUrl: this.responseTypeUrl,
             responseStreaming: this.responseStreaming,
-            options: (this.options || []).map((m) => m.toProtobufJSON(options)),
+            options: (this.options ?? []).map((m) => m.toProtobufJSON(options)),
             syntax: googleProtobuf002.Syntax[this.syntax ?? 0],
         };
     }
@@ -403,7 +403,7 @@ class Mixin {
     _name;
     _root;
     constructor(_value) {
-        _value = _value || {};
+        _value = _value ?? {};
         this.name = _value.name;
         this.root = _value.root;
         Mixin.refineValues(this);

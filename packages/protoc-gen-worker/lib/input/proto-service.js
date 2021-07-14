@@ -7,7 +7,7 @@ class ProtoService {
     methodList;
     constructor(value) {
         this.name = value.name;
-        this.methodList = (value.methodList || []).map((m) => new proto_service_method_1.ServiceMethod(m));
+        this.methodList = (value.methodList ?? []).map((m) => new proto_service_method_1.ServiceMethod(m));
     }
 }
 exports.ProtoService = ProtoService;

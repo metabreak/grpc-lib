@@ -6,6 +6,6 @@ export class ProtoServiceMethodOptions {
   constructor(value: ProtoServiceMethodOptions) {
     this.deprecated = value.deprecated;
     this.idempotencyLevel = value.idempotencyLevel;
-    this.uninterpretedOptionList = value.uninterpretedOptionList || [];
+    this.uninterpretedOptionList = value.uninterpretedOptionList ?? [];
   }
 }

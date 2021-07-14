@@ -64,7 +64,7 @@ export class Empty implements GrpcMessage {
    * @param _value initial values object or instance of Empty to deeply clone from
    */
   constructor(_value?: RecursivePartial<Empty.AsObject>) {
-    _value = _value || {};
+    _value = _value ?? {};
     Empty.refineValues(this);
   }
 

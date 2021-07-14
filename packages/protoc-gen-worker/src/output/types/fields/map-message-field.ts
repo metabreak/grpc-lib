@@ -50,7 +50,7 @@ export class MapMessageField implements MessageField {
       `case ${this.messageField.number}:
         const ${msgVarName} = {} as any;
         _reader.readMessage(${msgVarName}, ${this.mapMessageClassName}.deserializeBinaryFromReader);
-        _instance.${this.attributeName} = _instance.${this.attributeName} || {};
+        _instance.${this.attributeName} = _instance.${this.attributeName} ?? {};
         _instance.${this.attributeName}[${castedKey}] = ${msgVarName}.value;
         break;`,
     );
@@ -104,7 +104,7 @@ export class MapMessageField implements MessageField {
       return;
     } else {
       printer.add(
-        `_instance.${this.attributeName} = _instance.${this.attributeName} || {}`,
+        `_instance.${this.attributeName} = _instance.${this.attributeName} ?? {}`,
       );
     }
   }

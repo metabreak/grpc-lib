@@ -26,7 +26,7 @@ class BytesMessageField {
     printDeserializeBinaryFromReader(printer) {
         const readerCall = '_reader.readBytes()';
         if (this.isArray) {
-            printer.add(`case ${this.messageField.number}: (_instance.${this.attributeName} = _instance.${this.attributeName} || []).push(${readerCall});`);
+            printer.add(`case ${this.messageField.number}: (_instance.${this.attributeName} = _instance.${this.attributeName} ?? []).push(${readerCall});`);
         }
         else {
             printer.add(`case ${this.messageField.number}: _instance.${this.attributeName} = ${readerCall};`);
@@ -50,7 +50,7 @@ class BytesMessageField {
     }
     printInitializer(printer) {
         if (this.isArray) {
-            printer.add(`this.${this.attributeName} = (_value.${this.attributeName} || []).map(b => b ? b.subarray(0) : new Uint8Array());`);
+            printer.add(`this.${this.attributeName} = (_value.${this.attributeName} ?? []).map(b => b ? b.subarray(0) : new Uint8Array());`);
         }
         else {
             printer.add(`this.${this.attributeName} = _value.${this.attributeName}`);
@@ -61,7 +61,7 @@ class BytesMessageField {
             return;
         }
         else if (this.isArray) {
-            printer.add(`_instance.${this.attributeName} = _instance.${this.attributeName} || []`);
+            printer.add(`_instance.${this.attributeName} = _instance.${this.attributeName} ?? []`);
         }
         else {
             printer.add(`_instance.${this.attributeName} = _instance.${this.attributeName} || new Uint8Array()`);
@@ -78,7 +78,7 @@ class BytesMessageField {
     }
     printToObjectMapping(printer) {
         if (this.isArray) {
-            printer.add(`${this.attributeName}: (this.${this.attributeName} || []).map(b => b ? b.subarray(0) : new Uint8Array()),`);
+            printer.add(`${this.attributeName}: (this.${this.attributeName} ?? []).map(b => b ? b.subarray(0) : new Uint8Array()),`);
         }
         else {
             printer.add(`${this.attributeName}: this.${this.attributeName} ? this.${this.attributeName}.subarray(0) : ${this.messageField.proto3Optional ? 'undefined' : 'new Uint8Array()'},`);
@@ -90,7 +90,7 @@ class BytesMessageField {
     printToProtobufJSONMapping(printer) {
         printer.addDeps(dependencies_1.ExternalDependencies.uint8ArrayToBase64);
         if (this.isArray) {
-            printer.add(`${this.attributeName}: (this.${this.attributeName} || []).map(b => b ? uint8ArrayToBase64(b) : ''),`);
+            printer.add(`${this.attributeName}: (this.${this.attributeName} ?? []).map(b => b ? uint8ArrayToBase64(b) : ''),`);
         }
         else {
             printer.add(`${this.attributeName}: this.${this.attributeName} ? uint8ArrayToBase64(this.${this.attributeName}) : ${this.messageField.proto3Optional ? 'null' : "''"},`);

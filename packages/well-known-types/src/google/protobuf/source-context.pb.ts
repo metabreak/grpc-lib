@@ -84,7 +84,7 @@ export class SourceContext implements GrpcMessage {
    * @param _value initial values object or instance of SourceContext to deeply clone from
    */
   constructor(_value?: RecursivePartial<SourceContext.AsObject>) {
-    _value = _value || {};
+    _value = _value ?? {};
     this.fileName = _value.fileName;
     SourceContext.refineValues(this);
   }

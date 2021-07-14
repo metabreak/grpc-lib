@@ -102,7 +102,7 @@ export class Timestamp implements GrpcMessage {
    * @param _value initial values object or instance of Timestamp to deeply clone from
    */
   constructor(_value?: RecursivePartial<Timestamp.AsObject>) {
-    _value = _value || {};
+    _value = _value ?? {};
     this.seconds = _value.seconds;
     this.nanos = _value.nanos;
     Timestamp.refineValues(this);

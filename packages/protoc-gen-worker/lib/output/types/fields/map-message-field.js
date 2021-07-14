@@ -34,7 +34,7 @@ class MapMessageField {
         printer.add(`case ${this.messageField.number}:
         const ${msgVarName} = {} as any;
         _reader.readMessage(${msgVarName}, ${this.mapMessageClassName}.deserializeBinaryFromReader);
-        _instance.${this.attributeName} = _instance.${this.attributeName} || {};
+        _instance.${this.attributeName} = _instance.${this.attributeName} ?? {};
         _instance.${this.attributeName}[${castedKey}] = ${msgVarName}.value;
         break;`);
     }
@@ -75,7 +75,7 @@ class MapMessageField {
             return;
         }
         else {
-            printer.add(`_instance.${this.attributeName} = _instance.${this.attributeName} || {}`);
+            printer.add(`_instance.${this.attributeName} = _instance.${this.attributeName} ?? {}`);
         }
     }
     printGetter(printer) {

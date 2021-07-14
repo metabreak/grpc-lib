@@ -34,7 +34,7 @@ class DoubleValue {
     }
     _value;
     constructor(_value) {
-        _value = _value || {};
+        _value = _value ?? {};
         this.value = _value.value;
         DoubleValue.refineValues(this);
     }
@@ -93,7 +93,7 @@ class FloatValue {
     }
     _value;
     constructor(_value) {
-        _value = _value || {};
+        _value = _value ?? {};
         this.value = _value.value;
         FloatValue.refineValues(this);
     }
@@ -152,7 +152,7 @@ class Int64Value {
     }
     _value;
     constructor(_value) {
-        _value = _value || {};
+        _value = _value ?? {};
         this.value = _value.value;
         Int64Value.refineValues(this);
     }
@@ -211,7 +211,7 @@ class UInt64Value {
     }
     _value;
     constructor(_value) {
-        _value = _value || {};
+        _value = _value ?? {};
         this.value = _value.value;
         UInt64Value.refineValues(this);
     }
@@ -270,7 +270,7 @@ class Int32Value {
     }
     _value;
     constructor(_value) {
-        _value = _value || {};
+        _value = _value ?? {};
         this.value = _value.value;
         Int32Value.refineValues(this);
     }
@@ -329,7 +329,7 @@ class UInt32Value {
     }
     _value;
     constructor(_value) {
-        _value = _value || {};
+        _value = _value ?? {};
         this.value = _value.value;
         UInt32Value.refineValues(this);
     }
@@ -365,7 +365,7 @@ class BoolValue {
         return instance;
     }
     static refineValues(_instance) {
-        _instance.value = _instance.value || false;
+        _instance.value = _instance.value ?? false;
     }
     static deserializeBinaryFromReader(_instance, _reader) {
         while (_reader.nextField()) {
@@ -388,7 +388,7 @@ class BoolValue {
     }
     _value;
     constructor(_value) {
-        _value = _value || {};
+        _value = _value ?? {};
         this.value = _value.value;
         BoolValue.refineValues(this);
     }
@@ -447,7 +447,7 @@ class StringValue {
     }
     _value;
     constructor(_value) {
-        _value = _value || {};
+        _value = _value ?? {};
         this.value = _value.value;
         StringValue.refineValues(this);
     }
@@ -506,7 +506,7 @@ class BytesValue {
     }
     _value;
     constructor(_value) {
-        _value = _value || {};
+        _value = _value ?? {};
         this.value = _value.value;
         BytesValue.refineValues(this);
     }

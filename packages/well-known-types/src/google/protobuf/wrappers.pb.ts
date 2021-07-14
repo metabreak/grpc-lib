@@ -82,7 +82,7 @@ export class DoubleValue implements GrpcMessage {
    * @param _value initial values object or instance of DoubleValue to deeply clone from
    */
   constructor(_value?: RecursivePartial<DoubleValue.AsObject>) {
-    _value = _value || {};
+    _value = _value ?? {};
     this.value = _value.value;
     DoubleValue.refineValues(this);
   }
@@ -142,7 +142,7 @@ export module DoubleValue {
   /**
    * Protobuf JSON representation for DoubleValue
    */
-  export type AsProtobufJSON = number;
+  export type AsProtobufJSON = number | undefined;
 }
 
 /**
@@ -211,7 +211,7 @@ export class FloatValue implements GrpcMessage {
    * @param _value initial values object or instance of FloatValue to deeply clone from
    */
   constructor(_value?: RecursivePartial<FloatValue.AsObject>) {
-    _value = _value || {};
+    _value = _value ?? {};
     this.value = _value.value;
     FloatValue.refineValues(this);
   }
@@ -271,7 +271,7 @@ export module FloatValue {
   /**
    * Protobuf JSON representation for FloatValue
    */
-  export type AsProtobufJSON = number;
+  export type AsProtobufJSON = number | undefined;
 }
 
 /**
@@ -340,7 +340,7 @@ export class Int64Value implements GrpcMessage {
    * @param _value initial values object or instance of Int64Value to deeply clone from
    */
   constructor(_value?: RecursivePartial<Int64Value.AsObject>) {
-    _value = _value || {};
+    _value = _value ?? {};
     this.value = _value.value;
     Int64Value.refineValues(this);
   }
@@ -400,7 +400,7 @@ export module Int64Value {
   /**
    * Protobuf JSON representation for Int64Value
    */
-  export type AsProtobufJSON = string;
+  export type AsProtobufJSON = string | undefined;
 }
 
 /**
@@ -472,7 +472,7 @@ export class UInt64Value implements GrpcMessage {
    * @param _value initial values object or instance of UInt64Value to deeply clone from
    */
   constructor(_value?: RecursivePartial<UInt64Value.AsObject>) {
-    _value = _value || {};
+    _value = _value ?? {};
     this.value = _value.value;
     UInt64Value.refineValues(this);
   }
@@ -532,7 +532,7 @@ export module UInt64Value {
   /**
    * Protobuf JSON representation for UInt64Value
    */
-  export type AsProtobufJSON = string;
+  export type AsProtobufJSON = string | undefined;
 }
 
 /**
@@ -601,7 +601,7 @@ export class Int32Value implements GrpcMessage {
    * @param _value initial values object or instance of Int32Value to deeply clone from
    */
   constructor(_value?: RecursivePartial<Int32Value.AsObject>) {
-    _value = _value || {};
+    _value = _value ?? {};
     this.value = _value.value;
     Int32Value.refineValues(this);
   }
@@ -661,7 +661,7 @@ export module Int32Value {
   /**
    * Protobuf JSON representation for Int32Value
    */
-  export type AsProtobufJSON = number;
+  export type AsProtobufJSON = number | undefined;
 }
 
 /**
@@ -733,7 +733,7 @@ export class UInt32Value implements GrpcMessage {
    * @param _value initial values object or instance of UInt32Value to deeply clone from
    */
   constructor(_value?: RecursivePartial<UInt32Value.AsObject>) {
-    _value = _value || {};
+    _value = _value ?? {};
     this.value = _value.value;
     UInt32Value.refineValues(this);
   }
@@ -793,7 +793,7 @@ export module UInt32Value {
   /**
    * Protobuf JSON representation for UInt32Value
    */
-  export type AsProtobufJSON = number;
+  export type AsProtobufJSON = number | undefined;
 }
 
 /**
@@ -817,7 +817,7 @@ export class BoolValue implements GrpcMessage {
    * @param _instance message instance
    */
   static refineValues(_instance: BoolValue) {
-    _instance.value = _instance.value || false;
+    _instance.value = _instance.value ?? false;
   }
 
   /**
@@ -862,7 +862,7 @@ export class BoolValue implements GrpcMessage {
    * @param _value initial values object or instance of BoolValue to deeply clone from
    */
   constructor(_value?: RecursivePartial<BoolValue.AsObject>) {
-    _value = _value || {};
+    _value = _value ?? {};
     this.value = _value.value;
     BoolValue.refineValues(this);
   }
@@ -922,7 +922,7 @@ export module BoolValue {
   /**
    * Protobuf JSON representation for BoolValue
    */
-  export type AsProtobufJSON = boolean;
+  export type AsProtobufJSON = boolean | undefined;
 }
 
 /**
@@ -994,7 +994,7 @@ export class StringValue implements GrpcMessage {
    * @param _value initial values object or instance of StringValue to deeply clone from
    */
   constructor(_value?: RecursivePartial<StringValue.AsObject>) {
-    _value = _value || {};
+    _value = _value ?? {};
     this.value = _value.value;
     StringValue.refineValues(this);
   }
@@ -1054,7 +1054,7 @@ export module StringValue {
   /**
    * Protobuf JSON representation for StringValue
    */
-  export type AsProtobufJSON = string;
+  export type AsProtobufJSON = string | undefined;
 }
 
 /**
@@ -1123,7 +1123,7 @@ export class BytesValue implements GrpcMessage {
    * @param _value initial values object or instance of BytesValue to deeply clone from
    */
   constructor(_value?: RecursivePartial<BytesValue.AsObject>) {
-    _value = _value || {};
+    _value = _value ?? {};
     this.value = _value.value;
     BytesValue.refineValues(this);
   }

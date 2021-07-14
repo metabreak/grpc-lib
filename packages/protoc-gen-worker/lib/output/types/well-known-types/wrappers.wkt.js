@@ -7,7 +7,7 @@ class BoolValueWKT {
         printer.addLine(`return this.value;`);
     }
     printAsProtobufJSON(printer) {
-        printer.addLine(`export type AsProtobufJSON = boolean;`);
+        printer.addLine(`export type AsProtobufJSON = boolean | undefined;`);
     }
 }
 exports.BoolValueWKT = BoolValueWKT;
@@ -26,7 +26,7 @@ class DoubleValueWKT {
         printer.addLine(`return this.value;`);
     }
     printAsProtobufJSON(printer) {
-        printer.addLine(`export type AsProtobufJSON = number;`);
+        printer.addLine(`export type AsProtobufJSON = number | undefined;`);
     }
 }
 exports.DoubleValueWKT = DoubleValueWKT;
@@ -35,7 +35,7 @@ class FloatValueWKT {
         printer.addLine(`return this.value;`);
     }
     printAsProtobufJSON(printer) {
-        printer.addLine(`export type AsProtobufJSON = number;`);
+        printer.addLine(`export type AsProtobufJSON = number | undefined;`);
     }
 }
 exports.FloatValueWKT = FloatValueWKT;
@@ -44,7 +44,7 @@ class Int32ValueWKT {
         printer.addLine(`return this.value;`);
     }
     printAsProtobufJSON(printer) {
-        printer.addLine(`export type AsProtobufJSON = number;`);
+        printer.addLine(`export type AsProtobufJSON = number | undefined;`);
     }
 }
 exports.Int32ValueWKT = Int32ValueWKT;
@@ -53,7 +53,7 @@ class Int64ValueWKT {
         printer.addLine(`return this.value;`);
     }
     printAsProtobufJSON(printer) {
-        printer.addLine(`export type AsProtobufJSON = string;`);
+        printer.addLine(`export type AsProtobufJSON = string | undefined;`);
     }
 }
 exports.Int64ValueWKT = Int64ValueWKT;
@@ -62,7 +62,7 @@ class StringValueWKT {
         printer.addLine(`return this.value;`);
     }
     printAsProtobufJSON(printer) {
-        printer.addLine(`export type AsProtobufJSON = string;`);
+        printer.addLine(`export type AsProtobufJSON = string | undefined;`);
     }
 }
 exports.StringValueWKT = StringValueWKT;
@@ -71,7 +71,7 @@ class UInt32ValueWKT {
         printer.addLine(`return this.value;`);
     }
     printAsProtobufJSON(printer) {
-        printer.addLine(`export type AsProtobufJSON = number;`);
+        printer.addLine(`export type AsProtobufJSON = number | undefined;`);
     }
 }
 exports.UInt32ValueWKT = UInt32ValueWKT;
@@ -80,7 +80,7 @@ class UInt64ValueWKT {
         printer.addLine(`return this.value;`);
     }
     printAsProtobufJSON(printer) {
-        printer.addLine(`export type AsProtobufJSON = string;`);
+        printer.addLine(`export type AsProtobufJSON = string | undefined;`);
     }
 }
 exports.UInt64ValueWKT = UInt64ValueWKT;

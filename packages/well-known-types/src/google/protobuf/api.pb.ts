@@ -37,11 +37,11 @@ export class Api implements GrpcMessage {
    */
   static refineValues(_instance: Api) {
     _instance.name = _instance.name || '';
-    _instance.methods = _instance.methods || [];
-    _instance.options = _instance.options || [];
+    _instance.methods = _instance.methods ?? [];
+    _instance.options = _instance.options ?? [];
     _instance.version = _instance.version || '';
     _instance.sourceContext = _instance.sourceContext || undefined;
-    _instance.mixins = _instance.mixins || [];
+    _instance.mixins = _instance.mixins ?? [];
     _instance.syntax = _instance.syntax || 0;
   }
 
@@ -64,7 +64,7 @@ export class Api implements GrpcMessage {
             messageInitializer2,
             Method.deserializeBinaryFromReader,
           );
-          (_instance.methods = _instance.methods || []).push(
+          (_instance.methods = _instance.methods ?? []).push(
             messageInitializer2,
           );
           break;
@@ -74,7 +74,7 @@ export class Api implements GrpcMessage {
             messageInitializer3,
             googleProtobuf002.Option.deserializeBinaryFromReader,
           );
-          (_instance.options = _instance.options || []).push(
+          (_instance.options = _instance.options ?? []).push(
             messageInitializer3,
           );
           break;
@@ -94,7 +94,7 @@ export class Api implements GrpcMessage {
             messageInitializer6,
             Mixin.deserializeBinaryFromReader,
           );
-          (_instance.mixins = _instance.mixins || []).push(messageInitializer6);
+          (_instance.mixins = _instance.mixins ?? []).push(messageInitializer6);
           break;
         case 7:
           _instance.syntax = _reader.readEnum();
@@ -165,17 +165,17 @@ export class Api implements GrpcMessage {
    * @param _value initial values object or instance of Api to deeply clone from
    */
   constructor(_value?: RecursivePartial<Api.AsObject>) {
-    _value = _value || {};
+    _value = _value ?? {};
     this.name = _value.name;
-    this.methods = (_value.methods || []).map((m) => new Method(m));
-    this.options = (_value.options || []).map(
+    this.methods = (_value.methods ?? []).map((m) => new Method(m));
+    this.options = (_value.options ?? []).map(
       (m) => new googleProtobuf002.Option(m),
     );
     this.version = _value.version;
     this.sourceContext = _value.sourceContext
       ? new googleProtobuf001.SourceContext(_value.sourceContext)
       : undefined;
-    this.mixins = (_value.mixins || []).map((m) => new Mixin(m));
+    this.mixins = (_value.mixins ?? []).map((m) => new Mixin(m));
     this.syntax = _value.syntax;
     Api.refineValues(this);
   }
@@ -238,13 +238,13 @@ export class Api implements GrpcMessage {
   toObject(): Api.AsObject {
     return {
       name: this.name,
-      methods: (this.methods || []).map((m) => m.toObject()),
-      options: (this.options || []).map((m) => m.toObject()),
+      methods: (this.methods ?? []).map((m) => m.toObject()),
+      options: (this.options ?? []).map((m) => m.toObject()),
       version: this.version,
       sourceContext: this.sourceContext
         ? this.sourceContext.toObject()
         : undefined,
-      mixins: (this.mixins || []).map((m) => m.toObject()),
+      mixins: (this.mixins ?? []).map((m) => m.toObject()),
       syntax: this.syntax,
     };
   }
@@ -267,13 +267,13 @@ export class Api implements GrpcMessage {
   ): Api.AsProtobufJSON {
     return {
       name: this.name,
-      methods: (this.methods || []).map((m) => m.toProtobufJSON(options)),
-      options: (this.options || []).map((m) => m.toProtobufJSON(options)),
+      methods: (this.methods ?? []).map((m) => m.toProtobufJSON(options)),
+      options: (this.options ?? []).map((m) => m.toProtobufJSON(options)),
       version: this.version,
       sourceContext: this.sourceContext
         ? this.sourceContext.toProtobufJSON(options)
         : null,
-      mixins: (this.mixins || []).map((m) => m.toProtobufJSON(options)),
+      mixins: (this.mixins ?? []).map((m) => m.toProtobufJSON(options)),
       syntax: googleProtobuf002.Syntax[this.syntax ?? 0],
     };
   }
@@ -329,10 +329,10 @@ export class Method implements GrpcMessage {
   static refineValues(_instance: Method) {
     _instance.name = _instance.name || '';
     _instance.requestTypeUrl = _instance.requestTypeUrl || '';
-    _instance.requestStreaming = _instance.requestStreaming || false;
+    _instance.requestStreaming = _instance.requestStreaming ?? false;
     _instance.responseTypeUrl = _instance.responseTypeUrl || '';
-    _instance.responseStreaming = _instance.responseStreaming || false;
-    _instance.options = _instance.options || [];
+    _instance.responseStreaming = _instance.responseStreaming ?? false;
+    _instance.options = _instance.options ?? [];
     _instance.syntax = _instance.syntax || 0;
   }
 
@@ -367,7 +367,7 @@ export class Method implements GrpcMessage {
             messageInitializer6,
             googleProtobuf002.Option.deserializeBinaryFromReader,
           );
-          (_instance.options = _instance.options || []).push(
+          (_instance.options = _instance.options ?? []).push(
             messageInitializer6,
           );
           break;
@@ -428,13 +428,13 @@ export class Method implements GrpcMessage {
    * @param _value initial values object or instance of Method to deeply clone from
    */
   constructor(_value?: RecursivePartial<Method.AsObject>) {
-    _value = _value || {};
+    _value = _value ?? {};
     this.name = _value.name;
     this.requestTypeUrl = _value.requestTypeUrl;
     this.requestStreaming = _value.requestStreaming;
     this.responseTypeUrl = _value.responseTypeUrl;
     this.responseStreaming = _value.responseStreaming;
-    this.options = (_value.options || []).map(
+    this.options = (_value.options ?? []).map(
       (m) => new googleProtobuf002.Option(m),
     );
     this.syntax = _value.syntax;
@@ -503,7 +503,7 @@ export class Method implements GrpcMessage {
       requestStreaming: this.requestStreaming,
       responseTypeUrl: this.responseTypeUrl,
       responseStreaming: this.responseStreaming,
-      options: (this.options || []).map((m) => m.toObject()),
+      options: (this.options ?? []).map((m) => m.toObject()),
       syntax: this.syntax,
     };
   }
@@ -530,7 +530,7 @@ export class Method implements GrpcMessage {
       requestStreaming: this.requestStreaming,
       responseTypeUrl: this.responseTypeUrl,
       responseStreaming: this.responseStreaming,
-      options: (this.options || []).map((m) => m.toProtobufJSON(options)),
+      options: (this.options ?? []).map((m) => m.toProtobufJSON(options)),
       syntax: googleProtobuf002.Syntax[this.syntax ?? 0],
     };
   }
@@ -634,7 +634,7 @@ export class Mixin implements GrpcMessage {
    * @param _value initial values object or instance of Mixin to deeply clone from
    */
   constructor(_value?: RecursivePartial<Mixin.AsObject>) {
-    _value = _value || {};
+    _value = _value ?? {};
     this.name = _value.name;
     this.root = _value.root;
     Mixin.refineValues(this);

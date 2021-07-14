@@ -289,7 +289,7 @@ class Message {
        */
       constructor(_value?: RecursivePartial<${this.message.name}.AsObject>) {
     `);
-        printer.addLine('_value = _value || {};');
+        printer.addLine('_value = _value ?? {};');
         this.messageFields.forEach((f) => {
             f.printInitializer(printer);
             printer.newLine();

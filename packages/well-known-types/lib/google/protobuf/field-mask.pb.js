@@ -10,7 +10,7 @@ class FieldMask {
         return instance;
     }
     static refineValues(_instance) {
-        _instance.paths = _instance.paths || [];
+        _instance.paths = _instance.paths ?? [];
     }
     static deserializeBinaryFromReader(_instance, _reader) {
         while (_reader.nextField()) {
@@ -18,7 +18,7 @@ class FieldMask {
                 break;
             switch (_reader.getFieldNumber()) {
                 case 1:
-                    (_instance.paths = _instance.paths || []).push(_reader.readString());
+                    (_instance.paths = _instance.paths ?? []).push(_reader.readString());
                     break;
                 default:
                     _reader.skipField();
@@ -33,8 +33,8 @@ class FieldMask {
     }
     _paths;
     constructor(_value) {
-        _value = _value || {};
-        this.paths = (_value.paths || []).slice();
+        _value = _value ?? {};
+        this.paths = (_value.paths ?? []).slice();
         FieldMask.refineValues(this);
     }
     get paths() {
@@ -50,14 +50,14 @@ class FieldMask {
     }
     toObject() {
         return {
-            paths: (this.paths || []).slice(),
+            paths: (this.paths ?? []).slice(),
         };
     }
     toJSON() {
         return this.toObject();
     }
     toProtobufJSON(options) {
-        return this.paths.join(',');
+        return this.paths?.join(',') ?? '';
     }
 }
 exports.FieldMask = FieldMask;

@@ -37,9 +37,9 @@ class Type {
     }
     static refineValues(_instance) {
         _instance.name = _instance.name || '';
-        _instance.fields = _instance.fields || [];
-        _instance.oneofs = _instance.oneofs || [];
-        _instance.options = _instance.options || [];
+        _instance.fields = _instance.fields ?? [];
+        _instance.oneofs = _instance.oneofs ?? [];
+        _instance.options = _instance.options ?? [];
         _instance.sourceContext = _instance.sourceContext || undefined;
         _instance.syntax = _instance.syntax || 0;
     }
@@ -54,15 +54,15 @@ class Type {
                 case 2:
                     const messageInitializer2 = new Field();
                     _reader.readMessage(messageInitializer2, Field.deserializeBinaryFromReader);
-                    (_instance.fields = _instance.fields || []).push(messageInitializer2);
+                    (_instance.fields = _instance.fields ?? []).push(messageInitializer2);
                     break;
                 case 3:
-                    (_instance.oneofs = _instance.oneofs || []).push(_reader.readString());
+                    (_instance.oneofs = _instance.oneofs ?? []).push(_reader.readString());
                     break;
                 case 4:
                     const messageInitializer4 = new Option();
                     _reader.readMessage(messageInitializer4, Option.deserializeBinaryFromReader);
-                    (_instance.options = _instance.options || []).push(messageInitializer4);
+                    (_instance.options = _instance.options ?? []).push(messageInitializer4);
                     break;
                 case 5:
                     _instance.sourceContext = new googleProtobuf001.SourceContext();
@@ -104,11 +104,11 @@ class Type {
     _sourceContext;
     _syntax;
     constructor(_value) {
-        _value = _value || {};
+        _value = _value ?? {};
         this.name = _value.name;
-        this.fields = (_value.fields || []).map((m) => new Field(m));
-        this.oneofs = (_value.oneofs || []).slice();
-        this.options = (_value.options || []).map((m) => new Option(m));
+        this.fields = (_value.fields ?? []).map((m) => new Field(m));
+        this.oneofs = (_value.oneofs ?? []).slice();
+        this.options = (_value.options ?? []).map((m) => new Option(m));
         this.sourceContext = _value.sourceContext
             ? new googleProtobuf001.SourceContext(_value.sourceContext)
             : undefined;
@@ -159,9 +159,9 @@ class Type {
     toObject() {
         return {
             name: this.name,
-            fields: (this.fields || []).map((m) => m.toObject()),
-            oneofs: (this.oneofs || []).slice(),
-            options: (this.options || []).map((m) => m.toObject()),
+            fields: (this.fields ?? []).map((m) => m.toObject()),
+            oneofs: (this.oneofs ?? []).slice(),
+            options: (this.options ?? []).map((m) => m.toObject()),
             sourceContext: this.sourceContext
                 ? this.sourceContext.toObject()
                 : undefined,
@@ -174,9 +174,9 @@ class Type {
     toProtobufJSON(options) {
         return {
             name: this.name,
-            fields: (this.fields || []).map((m) => m.toProtobufJSON(options)),
-            oneofs: (this.oneofs || []).slice(),
-            options: (this.options || []).map((m) => m.toProtobufJSON(options)),
+            fields: (this.fields ?? []).map((m) => m.toProtobufJSON(options)),
+            oneofs: (this.oneofs ?? []).slice(),
+            options: (this.options ?? []).map((m) => m.toProtobufJSON(options)),
             sourceContext: this.sourceContext
                 ? this.sourceContext.toProtobufJSON(options)
                 : null,
@@ -199,8 +199,8 @@ class Field {
         _instance.name = _instance.name || '';
         _instance.typeUrl = _instance.typeUrl || '';
         _instance.oneofIndex = _instance.oneofIndex || 0;
-        _instance.packed = _instance.packed || false;
-        _instance.options = _instance.options || [];
+        _instance.packed = _instance.packed ?? false;
+        _instance.options = _instance.options ?? [];
         _instance.jsonName = _instance.jsonName || '';
         _instance.defaultValue = _instance.defaultValue || '';
     }
@@ -233,7 +233,7 @@ class Field {
                 case 9:
                     const messageInitializer9 = new Option();
                     _reader.readMessage(messageInitializer9, Option.deserializeBinaryFromReader);
-                    (_instance.options = _instance.options || []).push(messageInitializer9);
+                    (_instance.options = _instance.options ?? []).push(messageInitializer9);
                     break;
                 case 10:
                     _instance.jsonName = _reader.readString();
@@ -290,7 +290,7 @@ class Field {
     _jsonName;
     _defaultValue;
     constructor(_value) {
-        _value = _value || {};
+        _value = _value ?? {};
         this.kind = _value.kind;
         this.cardinality = _value.cardinality;
         this.number = _value.number;
@@ -298,7 +298,7 @@ class Field {
         this.typeUrl = _value.typeUrl;
         this.oneofIndex = _value.oneofIndex;
         this.packed = _value.packed;
-        this.options = (_value.options || []).map((m) => new Option(m));
+        this.options = (_value.options ?? []).map((m) => new Option(m));
         this.jsonName = _value.jsonName;
         this.defaultValue = _value.defaultValue;
         Field.refineValues(this);
@@ -377,7 +377,7 @@ class Field {
             typeUrl: this.typeUrl,
             oneofIndex: this.oneofIndex,
             packed: this.packed,
-            options: (this.options || []).map((m) => m.toObject()),
+            options: (this.options ?? []).map((m) => m.toObject()),
             jsonName: this.jsonName,
             defaultValue: this.defaultValue,
         };
@@ -394,7 +394,7 @@ class Field {
             typeUrl: this.typeUrl,
             oneofIndex: this.oneofIndex,
             packed: this.packed,
-            options: (this.options || []).map((m) => m.toProtobufJSON(options)),
+            options: (this.options ?? []).map((m) => m.toProtobufJSON(options)),
             jsonName: this.jsonName,
             defaultValue: this.defaultValue,
         };
@@ -441,8 +441,8 @@ class Enum {
     }
     static refineValues(_instance) {
         _instance.name = _instance.name || '';
-        _instance.enumvalue = _instance.enumvalue || [];
-        _instance.options = _instance.options || [];
+        _instance.enumvalue = _instance.enumvalue ?? [];
+        _instance.options = _instance.options ?? [];
         _instance.sourceContext = _instance.sourceContext || undefined;
         _instance.syntax = _instance.syntax || 0;
     }
@@ -457,12 +457,12 @@ class Enum {
                 case 2:
                     const messageInitializer2 = new EnumValue();
                     _reader.readMessage(messageInitializer2, EnumValue.deserializeBinaryFromReader);
-                    (_instance.enumvalue = _instance.enumvalue || []).push(messageInitializer2);
+                    (_instance.enumvalue = _instance.enumvalue ?? []).push(messageInitializer2);
                     break;
                 case 3:
                     const messageInitializer3 = new Option();
                     _reader.readMessage(messageInitializer3, Option.deserializeBinaryFromReader);
-                    (_instance.options = _instance.options || []).push(messageInitializer3);
+                    (_instance.options = _instance.options ?? []).push(messageInitializer3);
                     break;
                 case 4:
                     _instance.sourceContext = new googleProtobuf001.SourceContext();
@@ -500,10 +500,10 @@ class Enum {
     _sourceContext;
     _syntax;
     constructor(_value) {
-        _value = _value || {};
+        _value = _value ?? {};
         this.name = _value.name;
-        this.enumvalue = (_value.enumvalue || []).map((m) => new EnumValue(m));
-        this.options = (_value.options || []).map((m) => new Option(m));
+        this.enumvalue = (_value.enumvalue ?? []).map((m) => new EnumValue(m));
+        this.options = (_value.options ?? []).map((m) => new Option(m));
         this.sourceContext = _value.sourceContext
             ? new googleProtobuf001.SourceContext(_value.sourceContext)
             : undefined;
@@ -548,8 +548,8 @@ class Enum {
     toObject() {
         return {
             name: this.name,
-            enumvalue: (this.enumvalue || []).map((m) => m.toObject()),
-            options: (this.options || []).map((m) => m.toObject()),
+            enumvalue: (this.enumvalue ?? []).map((m) => m.toObject()),
+            options: (this.options ?? []).map((m) => m.toObject()),
             sourceContext: this.sourceContext
                 ? this.sourceContext.toObject()
                 : undefined,
@@ -562,8 +562,8 @@ class Enum {
     toProtobufJSON(options) {
         return {
             name: this.name,
-            enumvalue: (this.enumvalue || []).map((m) => m.toProtobufJSON(options)),
-            options: (this.options || []).map((m) => m.toProtobufJSON(options)),
+            enumvalue: (this.enumvalue ?? []).map((m) => m.toProtobufJSON(options)),
+            options: (this.options ?? []).map((m) => m.toProtobufJSON(options)),
             sourceContext: this.sourceContext
                 ? this.sourceContext.toProtobufJSON(options)
                 : null,
@@ -582,7 +582,7 @@ class EnumValue {
     static refineValues(_instance) {
         _instance.name = _instance.name || '';
         _instance.number = _instance.number || 0;
-        _instance.options = _instance.options || [];
+        _instance.options = _instance.options ?? [];
     }
     static deserializeBinaryFromReader(_instance, _reader) {
         while (_reader.nextField()) {
@@ -598,7 +598,7 @@ class EnumValue {
                 case 3:
                     const messageInitializer3 = new Option();
                     _reader.readMessage(messageInitializer3, Option.deserializeBinaryFromReader);
-                    (_instance.options = _instance.options || []).push(messageInitializer3);
+                    (_instance.options = _instance.options ?? []).push(messageInitializer3);
                     break;
                 default:
                     _reader.skipField();
@@ -621,10 +621,10 @@ class EnumValue {
     _number;
     _options;
     constructor(_value) {
-        _value = _value || {};
+        _value = _value ?? {};
         this.name = _value.name;
         this.number = _value.number;
-        this.options = (_value.options || []).map((m) => new Option(m));
+        this.options = (_value.options ?? []).map((m) => new Option(m));
         EnumValue.refineValues(this);
     }
     get name() {
@@ -654,7 +654,7 @@ class EnumValue {
         return {
             name: this.name,
             number: this.number,
-            options: (this.options || []).map((m) => m.toObject()),
+            options: (this.options ?? []).map((m) => m.toObject()),
         };
     }
     toJSON() {
@@ -664,7 +664,7 @@ class EnumValue {
         return {
             name: this.name,
             number: this.number,
-            options: (this.options || []).map((m) => m.toProtobufJSON(options)),
+            options: (this.options ?? []).map((m) => m.toProtobufJSON(options)),
         };
     }
 }
@@ -709,7 +709,7 @@ class Option {
     _name;
     _value;
     constructor(_value) {
-        _value = _value || {};
+        _value = _value ?? {};
         this.name = _value.name;
         this.value = _value.value
             ? new googleProtobuf000.Any(_value.value)

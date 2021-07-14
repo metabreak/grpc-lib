@@ -55,7 +55,7 @@ class GrpcWorker {
         const { type, reqclss, resclss } = def.methods[message.path];
         const request = new reqclss(message.request);
         const url = service.settings.host + message.path;
-        const metadata = message.metadata || {};
+        const metadata = message.metadata ?? {};
         const descriptor = new grpc_web_1.MethodDescriptor(message.path, type === grpc_common_1.GrpcCallType.unary ? 'unary' : 'server_streaming', reqclss, resclss, (req) => req.serializeBinary(), resclss.deserializeBinary);
         if (type === grpc_common_1.GrpcCallType.unary) {
             const stream = service.client.rpcCall(url, request, metadata, descriptor, (error, response) => {

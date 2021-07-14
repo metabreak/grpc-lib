@@ -36,7 +36,7 @@ export class Struct implements GrpcMessage {
    * @param _instance message instance
    */
   static refineValues(_instance: Struct) {
-    _instance.fields = _instance.fields || {};
+    _instance.fields = _instance.fields ?? {};
   }
 
   /**
@@ -55,7 +55,7 @@ export class Struct implements GrpcMessage {
             msg_1,
             Struct.FieldsEntry.deserializeBinaryFromReader,
           );
-          _instance.fields = _instance.fields || {};
+          _instance.fields = _instance.fields ?? {};
           _instance.fields[msg_1.key] = msg_1.value;
           break;
         default:
@@ -96,7 +96,7 @@ export class Struct implements GrpcMessage {
    * @param _value initial values object or instance of Struct to deeply clone from
    */
   constructor(_value?: RecursivePartial<Struct.AsObject>) {
-    _value = _value || {};
+    _value = _value ?? {};
     (this.fields = _value!.fields
       ? Object.keys(_value!.fields).reduce(
           (r, k) => ({
@@ -270,7 +270,7 @@ export module Struct {
      * @param _value initial values object or instance of FieldsEntry to deeply clone from
      */
     constructor(_value?: RecursivePartial<FieldsEntry.AsObject>) {
-      _value = _value || {};
+      _value = _value ?? {};
       this.key = _value.key;
       this.value = _value.value ? new Value(_value.value) : undefined;
       FieldsEntry.refineValues(this);
@@ -463,7 +463,7 @@ export class Value implements GrpcMessage {
    * @param _value initial values object or instance of Value to deeply clone from
    */
   constructor(_value?: RecursivePartial<Value.AsObject>) {
-    _value = _value || {};
+    _value = _value ?? {};
     this.nullValue = _value.nullValue;
     this.numberValue = _value.numberValue;
     this.stringValue = _value.stringValue;
@@ -685,7 +685,7 @@ export class ListValue implements GrpcMessage {
    * @param _instance message instance
    */
   static refineValues(_instance: ListValue) {
-    _instance.values = _instance.values || [];
+    _instance.values = _instance.values ?? [];
   }
 
   /**
@@ -707,7 +707,7 @@ export class ListValue implements GrpcMessage {
             messageInitializer1,
             Value.deserializeBinaryFromReader,
           );
-          (_instance.values = _instance.values || []).push(messageInitializer1);
+          (_instance.values = _instance.values ?? []).push(messageInitializer1);
           break;
         default:
           _reader.skipField();
@@ -739,8 +739,8 @@ export class ListValue implements GrpcMessage {
    * @param _value initial values object or instance of ListValue to deeply clone from
    */
   constructor(_value?: RecursivePartial<ListValue.AsObject>) {
-    _value = _value || {};
-    this.values = (_value.values || []).map((m) => new Value(m));
+    _value = _value ?? {};
+    this.values = (_value.values ?? []).map((m) => new Value(m));
     ListValue.refineValues(this);
   }
   get values(): Value[] | undefined {
@@ -765,7 +765,7 @@ export class ListValue implements GrpcMessage {
    */
   toObject(): ListValue.AsObject {
     return {
-      values: (this.values || []).map((m) => m.toObject()),
+      values: (this.values ?? []).map((m) => m.toObject()),
     };
   }
 
@@ -785,9 +785,7 @@ export class ListValue implements GrpcMessage {
     // @ts-ignore
     options?: ToProtobufJSONOptions,
   ): ListValue.AsProtobufJSON {
-    return (this.values || []).map((v) =>
-      v ? v.toProtobufJSON(options) : null,
-    );
+    return (this.values ?? []).map((v) => v?.toProtobufJSON(options) ?? null);
   }
 }
 export module ListValue {
