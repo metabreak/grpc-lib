@@ -5,6 +5,10 @@ on:
     branches:
       - main
       - dev
+env:
+  PROTOC_VERSION: '3.17.3'
+  PROTOC_GEN_GRPC_WEB_VERSION: '1.2.1'
+  NODE_VERSION: '14'
 
 jobs:
   main:
@@ -13,16 +17,20 @@ jobs:
     if: "!contains(github.event.head_commit.message, '[ci skip]')"
     steps:
       - name: Clone
-        uses: actions/checkout@v2
+        uses: actions/checkout@v2.3.4
       - name: Install node
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v2.2.0
         with:
-          node-version: '14'
+          node-version: ${{ env.NODE_VERSION }}
           cache: 'yarn'
       - name: Install Protoc
-        uses: arduino/setup-protoc@v1
+        uses: arduino/setup-protoc@v1.1.2
         with:
-          version: '3.17.3'
+          version: ${{ env.PROTOC_VERSION }}
+      - name: Install protoc-gen-grpc-web
+        run: |
+          sudo wget https://github.com/grpc/grpc-web/releases/download/${PROTOC_GEN_GRPC_WEB_VERSION}/protoc-gen-grpc-web-${PROTOC_GEN_GRPC_WEB_VERSION}-linux-x86_64 -O /usr/bin/protoc-gen-grpc-web
+          sudo chmod +x /usr/bin/protoc-gen-grpc-web
       - name: Install dependencies
         run: yarn
       - name: Build
