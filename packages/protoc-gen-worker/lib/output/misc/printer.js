@@ -21,6 +21,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Printer = void 0;
 const prettier = __importStar(require("prettier"));
+const newLine = '\n';
 class Printer {
     dependencies = new Set();
     code = '';
@@ -36,18 +37,21 @@ class Printer {
         this.newLine();
     }
     newLine() {
-        this.code += '\n';
+        this.code += newLine;
     }
     finalize() {
         return this.prettify(this.createLeadingComment() + this.createDependenciesCode() + this.code);
     }
     createLeadingComment() {
-        return `/* tslint:disable */
+        return `
+/* tslint:disable */
 /* eslint-disable */
 //
 // THIS IS A GENERATED FILE
 // DO NOT MODIFY IT! YOUR CHANGES WILL BE LOST
-    `;
+//
+
+`;
     }
     createDependenciesCode() {
         const deps = new Map();
@@ -65,6 +69,7 @@ class Printer {
             const tokens = deps.get(from);
             code += `import { ${tokens.sort().join(', ')} } from '${from}';\n`;
         });
+        code += newLine;
         return code;
     }
     prettify(code) {

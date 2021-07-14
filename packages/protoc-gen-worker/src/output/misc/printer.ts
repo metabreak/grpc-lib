@@ -1,6 +1,8 @@
 import * as prettier from 'prettier';
 import { Dependency } from './interfaces';
 
+const newLine = '\n';
+
 export class Printer {
   private dependencies = new Set<Dependency>();
 
@@ -22,7 +24,7 @@ export class Printer {
   }
 
   newLine() {
-    this.code += '\n';
+    this.code += newLine;
   }
 
   finalize() {
@@ -31,13 +33,17 @@ export class Printer {
     );
   }
 
+  // TODO: Render generation date in this comment
   private createLeadingComment() {
-    return `/* tslint:disable */
+    return `
+/* tslint:disable */
 /* eslint-disable */
 //
 // THIS IS A GENERATED FILE
 // DO NOT MODIFY IT! YOUR CHANGES WILL BE LOST
-    `;
+//
+
+`;
   }
 
   private createDependenciesCode() {
@@ -62,6 +68,8 @@ export class Printer {
 
         code += `import { ${tokens.sort().join(', ')} } from '${from}';\n`;
       });
+
+    code += newLine;
 
     return code;
   }
