@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@metabreak/grpc-common": "workspace:*",
-    "@metabreak/grpc-worker-core": "workspace:*",
+    "@metabreak/grpc-core": "workspace:*",
     "grpc-web": "1.2.1",
     "rxjs": "7.2.0"
   },

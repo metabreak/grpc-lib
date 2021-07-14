@@ -7,7 +7,7 @@
     "start": "run-s start:lib:protoc-gen-worker",
     "start:lib:protoc-gen-worker": "nodemon --watch packages/protoc-gen-worker/src --watch packages/protoc-gen-worker/test/proto -e ts,proto --exec 'npm run build:lib:protoc-gen-worker && npm run test:lib:protoc-gen-worker:generate && npm run test:lib:protoc-gen-worker:generate-grpc-web && echo \"Done\"'",
     "build": "run-s build:lib:common build:lib:core build:lib:worker build:lib:worker-client build:lib:web-client build:lib:protoc-gen-worker build:lib:well-known-types",
-    "build:lib:core": "yarn workspace @metabreak/grpc-worker-core build",
+    "build:lib:core": "yarn workspace @metabreak/grpc-core build",
     "build:lib:common": "yarn workspace @metabreak/grpc-common build",
     "build:lib:web-client": "yarn workspace @metabreak/grpc-web-client build",
     "build:lib:protoc-gen-worker": "yarn workspace @metabreak/protoc-gen-worker build",

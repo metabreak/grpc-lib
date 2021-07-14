@@ -1,4 +1,4 @@
-import { GrpcHandler } from '@metabreak/grpc-worker-core';
+import { GrpcHandler } from '@metabreak/grpc-core';
 import { GrpcWebClientFactory } from '@metabreak/grpc-web-client';
 import * as deprecatedpb from '../out/deprecated.pb';
 import * as deprecatedpbsc from '../out/deprecated.pbsc';

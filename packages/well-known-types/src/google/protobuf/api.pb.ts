@@ -3,12 +3,15 @@
 //
 // THIS IS A GENERATED FILE
 // DO NOT MODIFY IT! YOUR CHANGES WILL BE LOST
+//
+
 import {
   GrpcMessage,
   RecursivePartial,
   ToProtobufJSONOptions,
 } from '@metabreak/grpc-common';
 import { BinaryReader, BinaryWriter, ByteSource } from 'google-protobuf';
+
 import * as googleProtobuf000 from '../../google/protobuf/any.pb';
 import * as googleProtobuf001 from '../../google/protobuf/source-context.pb';
 import * as googleProtobuf002 from '../../google/protobuf/type.pb';

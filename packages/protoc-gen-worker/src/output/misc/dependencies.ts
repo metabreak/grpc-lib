@@ -2,7 +2,7 @@ export class Dependency {
   constructor(public from: string, public token: string) {}
 }
 
-const ngxGrpcCommon = {
+const grpcCommon = {
   GrpcCallType: new Dependency('@metabreak/grpc-common', 'GrpcCallType'),
   GrpcClient: new Dependency('@metabreak/grpc-common', 'GrpcClient'),
   GrpcClientFactory: new Dependency(
@@ -31,16 +31,16 @@ const ngxGrpcCommon = {
   ),
 };
 
-const ngxGrpcCore = {
-  GrpcHandler: new Dependency('@metabreak/grpc-worker-core', 'GrpcHandler'),
-  takeMessages: new Dependency('@metabreak/grpc-worker-core', 'takeMessages'),
+const grpcCore = {
+  GrpcHandler: new Dependency('@metabreak/grpc-core', 'GrpcHandler'),
+  takeMessages: new Dependency('@metabreak/grpc-core', 'takeMessages'),
   throwStatusErrors: new Dependency(
-    '@metabreak/grpc-worker-core',
+    '@metabreak/grpc-core',
     'throwStatusErrors',
   ),
 };
 
-const ngxGrpcWorker = {
+const grpcWorker = {
   GrpcWorkerServiceClientDef: new Dependency(
     '@metabreak/grpc-worker',
     'GrpcWorkerServiceClientDef',
@@ -59,8 +59,8 @@ const rxjs = {
 
 export const ExternalDependencies = {
   ...googleProtobuf,
-  ...ngxGrpcCore,
-  ...ngxGrpcCommon,
-  ...ngxGrpcWorker,
+  ...grpcCore,
+  ...grpcCommon,
+  ...grpcWorker,
   ...rxjs,
 };

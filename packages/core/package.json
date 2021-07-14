@@ -1,5 +1,5 @@
 {
-  "name": "@metabreak/grpc-worker-core",
+  "name": "@metabreak/grpc-core",
   "description": "Angular gRPC framework: core package",
   "author": "smnbbrv",
   "license": "MIT",

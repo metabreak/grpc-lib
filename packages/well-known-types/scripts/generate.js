@@ -13,7 +13,7 @@ const protocWorkerCmd = [
   'protoc',
   `--proto_path=./proto`,
   '--plugin=protoc-gen-worker=$(yarn bin protoc-gen-worker)',
-  `--worker_out=config=./proto-codegen.config.js:${srcPath}`,
+  `--worker_out=config=./protoc-gen-worker.config.js:${srcPath}`,
   './proto/*.proto',
 ].join(' ');
 

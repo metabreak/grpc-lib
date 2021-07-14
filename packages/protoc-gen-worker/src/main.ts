@@ -55,7 +55,7 @@ async function main() {
       );
       // writeFileSync(join('debug', 'protoc-input.json'), JSON.stringify(protocInput, null, 2), 'utf-8');
       writeFileSync(
-        join('debug', 'parsed-protoc-gen-ng.json'),
+        join('debug', 'parsed-protoc-gen-worker.json'),
         JSON.stringify(protos, null, 2),
         'utf-8',
       );
@@ -136,7 +136,7 @@ async function main() {
     Services.Logger?.debug(err);
     Services.Logger?.debug(err.stack);
 
-    console.error('protoc-gen-ng error: ' + err.stack + '\n');
+    console.error('protoc-gen-worker error: ' + err.stack + '\n');
     process.exit(1);
   }
 }

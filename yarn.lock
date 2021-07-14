@@ -718,6 +718,17 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@metabreak/grpc-core@workspace:*, @metabreak/grpc-core@workspace:packages/core":
+  version: 0.0.0-use.local
+  resolution: "@metabreak/grpc-core@workspace:packages/core"
+  dependencies:
+    "@metabreak/grpc-common": "workspace:*"
+    rimraf: 3.0.2
+    rxjs: 7.2.0
+    typescript: 4.3.5
+  languageName: unknown
+  linkType: soft
+
 "@metabreak/grpc-example-back@workspace:examples/back":
   version: 0.0.0-use.local
   resolution: "@metabreak/grpc-example-back@workspace:examples/back"
@@ -755,7 +766,7 @@ __metadata:
   resolution: "@metabreak/grpc-web-client@workspace:packages/web-client"
   dependencies:
     "@metabreak/grpc-common": "workspace:*"
-    "@metabreak/grpc-worker-core": "workspace:*"
+    "@metabreak/grpc-core": "workspace:*"
     grpc-web: 1.2.1
     rimraf: 3.0.2
     rxjs: 7.2.0
@@ -788,17 +799,6 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@metabreak/grpc-worker-core@workspace:*, @metabreak/grpc-worker-core@workspace:packages/core":
-  version: 0.0.0-use.local
-  resolution: "@metabreak/grpc-worker-core@workspace:packages/core"
-  dependencies:
-    "@metabreak/grpc-common": "workspace:*"
-    rimraf: 3.0.2
-    rxjs: 7.2.0
-    typescript: 4.3.5
-  languageName: unknown
-  linkType: soft
-
 "@metabreak/grpc-worker@workspace:*, @metabreak/grpc-worker@workspace:packages/worker":
   version: 0.0.0-use.local
   resolution: "@metabreak/grpc-worker@workspace:packages/worker"
@@ -815,10 +815,10 @@ __metadata:
   resolution: "@metabreak/protoc-gen-worker@workspace:packages/protoc-gen-worker"
   dependencies:
     "@metabreak/grpc-common": "workspace:*"
+    "@metabreak/grpc-core": "workspace:*"
     "@metabreak/grpc-web-client": "workspace:*"
     "@metabreak/grpc-worker": "workspace:*"
     "@metabreak/grpc-worker-client": "workspace:*"
-    "@metabreak/grpc-worker-core": "workspace:*"
     "@types/google-protobuf": 3.15.3
     "@types/jest": 26.0.24
     "@types/node": 16.3.1

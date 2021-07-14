@@ -3,12 +3,15 @@
 //
 // THIS IS A GENERATED FILE
 // DO NOT MODIFY IT! YOUR CHANGES WILL BE LOST
+//
+
 import {
   GrpcMessage,
   RecursivePartial,
   ToProtobufJSONOptions,
 } from '@metabreak/grpc-common';
 import { BinaryReader, BinaryWriter, ByteSource } from 'google-protobuf';
+
 export enum NullValue {
   NULL_VALUE = 0,
 }

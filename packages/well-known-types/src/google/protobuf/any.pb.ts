@@ -3,6 +3,8 @@
 //
 // THIS IS A GENERATED FILE
 // DO NOT MODIFY IT! YOUR CHANGES WILL BE LOST
+//
+
 import {
   GrpcMessage,
   GrpcMessageClass,

@@ -34,7 +34,7 @@ async function main() {
         if (services_1.Services.Config.debug) {
             fs_1.mkdirSync('debug', { recursive: true });
             fs_1.writeFileSync(path_1.join('debug', 'config.json'), JSON.stringify(services_1.Services.Config, null, 2), 'utf-8');
-            fs_1.writeFileSync(path_1.join('debug', 'parsed-protoc-gen-ng.json'), JSON.stringify(protos, null, 2), 'utf-8');
+            fs_1.writeFileSync(path_1.join('debug', 'parsed-protoc-gen-worker.json'), JSON.stringify(protos, null, 2), 'utf-8');
         }
         protos.forEach((p) => p.setupDependencies(protos));
         protos.forEach((p) => p.resolveTransitiveDependencies());
@@ -81,7 +81,7 @@ async function main() {
     catch (err) {
         services_1.Services.Logger?.debug(err);
         services_1.Services.Logger?.debug(err.stack);
-        console.error('protoc-gen-ng error: ' + err.stack + '\n');
+        console.error('protoc-gen-worker error: ' + err.stack + '\n');
         process.exit(1);
     }
 }

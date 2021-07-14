@@ -1,4 +1,4 @@
-import { GrpcHandler } from '@metabreak/grpc-worker-core';
+import { GrpcHandler } from '@metabreak/grpc-core';
 import { GrpcWebClientFactory } from '@metabreak/grpc-web-client';
 import * as noPackagePb from '../out/no-package.pb';
 // import * as noPackagePbconf from '../out/no-package.pbconf';
