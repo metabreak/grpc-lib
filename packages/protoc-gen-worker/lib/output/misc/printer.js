@@ -21,6 +21,17 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Printer = void 0;
 const prettier = __importStar(require("prettier"));
+const prettierConfig = {
+    printWidth: 80,
+    useTabs: false,
+    semi: true,
+    singleQuote: true,
+    trailingComma: 'all',
+    bracketSpacing: true,
+    jsxBracketSameLine: false,
+    arrowParens: 'always',
+    parser: 'typescript',
+};
 const newLine = '\n';
 class Printer {
     dependencies = new Set();
@@ -73,7 +84,7 @@ class Printer {
         return code;
     }
     prettify(code) {
-        return prettier.format(code, { parser: 'typescript', singleQuote: true });
+        return prettier.format(code, prettierConfig);
     }
 }
 exports.Printer = Printer;

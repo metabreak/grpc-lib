@@ -1,6 +1,18 @@
 import * as prettier from 'prettier';
 import { Dependency } from './interfaces';
 
+const prettierConfig: prettier.Options = {
+  printWidth: 80,
+  useTabs: false,
+  semi: true,
+  singleQuote: true,
+  trailingComma: 'all',
+  bracketSpacing: true,
+  jsxBracketSameLine: false,
+  arrowParens: 'always',
+  parser: 'typescript',
+};
+
 const newLine = '\n';
 
 export class Printer {
@@ -75,6 +87,6 @@ export class Printer {
   }
 
   private prettify(code: string) {
-    return prettier.format(code, { parser: 'typescript', singleQuote: true });
+    return prettier.format(code, prettierConfig);
   }
 }
