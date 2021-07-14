@@ -1,10 +1,8 @@
-# ngx-grpc
+# @metabreak/grpc-lib
 
-Angular gRPC framework.
+Web gRPC framework which has ability to use from Web Workers.
 
-![Workflow status](https://img.shields.io/github/workflow/status/ngx-grpc/ngx-grpc/Push) ![Npm version](https://img.shields.io/npm/v/@ngx-grpc/core)
-
-[Changelog](https://github.com/ngx-grpc/ngx-grpc/blob/master/CHANGELOG.md)
+[![Workflow status](https://img.shields.io/github/workflow/status/metabreak/grpc-lib/Push)](https://github.com/metabreak/grpc-lib/actions/workflows/push.yml)
 
 ## Features
 
@@ -46,7 +44,7 @@ Then in your Angular project's root directory run
 
 ```sh
 npm i -S @ngx-grpc/common @ngx-grpc/core @ngx-grpc/grpc-web-client @ngx-grpc/well-known-types google-protobuf grpc-web
-npm i -D @ngx-grpc/protoc-gen-ng @types/google-protobuf
+npm i -D @ngx-grpc/protoc-gen-worker @types/google-protobuf
 ```
 
 Where:
@@ -54,7 +52,7 @@ Where:
 - [@ngx-grpc/common](https://github.com/ngx-grpc/ngx-grpc/tree/master/packages/common) contains common reusable types for other ngx-grpc packages
 - [@ngx-grpc/core](https://github.com/ngx-grpc/ngx-grpc/tree/master/packages/core) contains angular specific implementation
 - [@ngx-grpc/grpc-web-client](https://github.com/ngx-grpc/ngx-grpc/tree/master/packages/grpc-web-client) provides a client based on [grpc-web](https://github.com/grpc/grpc-web)
-- [@ngx-grpc/protoc-gen-ng](https://github.com/ngx-grpc/ngx-grpc/tree/master/packages/protoc-gen-ng) generates the code based on your proto files
+- [@ngx-grpc/protoc-gen-worker](https://github.com/ngx-grpc/ngx-grpc/tree/master/packages/protoc-gen-worker) generates the code based on your proto files
 - [google-protobuf](https://github.com/protocolbuffers/protobuf/tree/master/js) is required to encode / decode the messages
 - [grpc-web](https://github.com/grpc/grpc-web) implements the transport between the browser and grpc proxy
 
@@ -73,7 +71,7 @@ Add `proto:generate` script to your `package.json` `scripts` section:
 ```json
 {
   "scripts": {
-    "proto:generate": "protoc --plugin=protoc-gen-ng=$(which protoc-gen-ng) --ng_out=<OUTPUT_PATH> -I <PROTO_DIR_PATH> <PROTO_FILES>"
+    "proto:generate": "protoc --plugin=protoc-gen-worker=$(which protoc-gen-worker) --ng_out=<OUTPUT_PATH> -I <PROTO_DIR_PATH> <PROTO_FILES>"
   }
 }
 ```
@@ -89,7 +87,7 @@ Example:
 ```json
 {
   "scripts": {
-    "proto:generate": "protoc --plugin=protoc-gen-ng=$(which protoc-gen-ng) --ng_out=./src/proto -I ../proto $(find ../proto -iname \"*.proto\")"
+    "proto:generate": "protoc --plugin=protoc-gen-worker=$(which protoc-gen-worker) --ng_out=./src/proto -I ../proto $(find ../proto -iname \"*.proto\")"
   }
 }
 ```
@@ -108,26 +106,26 @@ module.exports = {
 };
 ```
 
-More details on the configuration properties and their default values see [here](https://github.com/ngx-grpc/ngx-grpc/blob/master/packages/protoc-gen-ng/src/config.ts).
+More details on the configuration properties and their default values see [here](https://github.com/ngx-grpc/ngx-grpc/blob/master/packages/protoc-gen-worker/src/config.ts).
 
 Then update your package.json command with path to this file `config=./ngx-grpc.conf.js`:
 
 ```json
 {
   "scripts": {
-    "proto:generate": "protoc --plugin=protoc-gen-ng=$(which protoc-gen-ng) --ng_out=config=./ngx-grpc.conf.js:./src/proto -I ../proto $(find ../proto -iname \"*.proto\")"
+    "proto:generate": "protoc --plugin=protoc-gen-worker=$(which protoc-gen-worker) --ng_out=config=./ngx-grpc.conf.js:./src/proto -I ../proto $(find ../proto -iname \"*.proto\")"
   }
 }
 ```
 
 ### Windows
 
-Unfortunately the way to generate files on Windows slightly differs. Here is a sophisticated example that shows how to scan windows folder with proto files and pass it to protoc-gen-ng.
+Unfortunately the way to generate files on Windows slightly differs. Here is a sophisticated example that shows how to scan windows folder with proto files and pass it to protoc-gen-worker.
 
 ```json
 {
   "scripts": {
-    "proto:generate:win": "for /f %G in ('dir /b ..\\proto\\*.proto') do grpc_tools_node_protoc --plugin=protoc-gen-ng=.\\node_modules\\.bin\\protoc-gen-ng.cmd --ng_out=.\\output\\path -I ..\\proto ..\\proto\\%G"
+    "proto:generate:win": "for /f %G in ('dir /b ..\\proto\\*.proto') do grpc_tools_node_protoc --plugin=protoc-gen-worker=.\\node_modules\\.bin\\protoc-gen-worker.cmd --ng_out=.\\output\\path -I ..\\proto ..\\proto\\%G"
   }
 }
 ```
@@ -383,6 +381,10 @@ That's it. All your requests are served by worker.
 - [Proto 2 Extensions](https://developers.google.com/protocol-buffers/docs/proto#extensions)
 - Client streaming
 - Bidirectional streaming
+
+## Credits
+
+This library is hardly inspired with [nrgx-grpc](https://github.com/ngx-grpc/ngx-grpc) library for Angular
 
 ## License
 
