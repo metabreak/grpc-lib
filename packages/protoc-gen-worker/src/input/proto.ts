@@ -13,7 +13,7 @@ export interface MessageIndexMeta {
 
 export class Proto {
   name: string;
-  pb_package: string; // tslint:disable-line
+  pb_package: string;
   dependencyList: string[];
   publicDependencyList: number[];
   weakDependencyList: number[];
@@ -120,7 +120,9 @@ export class Proto {
       if (!meta) {
         try {
           meta = proto.resolveTypeMetadata(pbType);
-        } catch (ex) {}
+        } catch (error) {
+          console.error(error);
+        }
       }
     });
 

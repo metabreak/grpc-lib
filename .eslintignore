@@ -1,0 +1,9 @@
+coverage/
+**/dist/
+.yarn/
+**/lib/
+packages/protoc-gen-worker/test/out-grpc-web/
+examples/back/src/proto/
+
+.pnp.*
+**/*/package.json

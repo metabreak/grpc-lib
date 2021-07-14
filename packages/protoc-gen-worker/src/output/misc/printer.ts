@@ -20,7 +20,9 @@ export class Printer {
 
   private code = '';
 
-  constructor() {}
+  constructor() {
+    // just do nothing.
+  }
 
   addDeps(...deps: Dependency[]) {
     deps.forEach((item) => this.dependencies.add(item));
