@@ -1,10 +1,10 @@
-name: Push
+name: Pull request
 
 on:
   pull_request:
     branches:
-      - master
-      - develop
+      - main
+      - dev
 
 jobs:
   main:
@@ -19,13 +19,13 @@ jobs:
         with:
           node-version: '14'
       - name: Install dependencies
-        run: npm ci
+        run: yarn
       - name: Build
-        run: npm run build
+        run: yarn build
       - name: Test
         run: |
-          npm run test:lib:protoc-gen-ng:generate
-          npm run test:lib:protoc-gen-ng:generate-grpc-web
-          npm run test
+          yarn test:lib:protoc-gen-worker:generate-grpc-worker
+          yarn test:lib:protoc-gen-worker:generate-grpc-web
+          yarn test:lib:protoc-gen-worker
       - name: Lint
-        run: npm run lint
+        run: yarn lint
