@@ -1,7 +1,5 @@
-import { GrpcHandler } from '@metabreak/grpc-core';
-import { GrpcWebClientFactory } from '@metabreak/grpc-web-client';
+import { GrpcWebClient } from '@metabreak/grpc-web-client';
 import * as noPackagePb from '../out/no-package.pb';
-// import * as noPackagePbconf from '../out/no-package.pbconf';
 import * as noPackagePbsc from '../out/no-package.pbsc';
 
 describe('no-package.proto', () => {
@@ -15,18 +13,12 @@ describe('no-package.proto', () => {
     expect(new noPackagePb.TestResponse()).toBeTruthy();
   });
 
-  // it('should produce GRPC_TEST_SERVICE_CLIENT_SETTINGS', () => {
-  //   expect(noPackagePbconf.GRPC_TEST_SERVICE_CLIENT_SETTINGS).toBeTruthy();
-  // });
-
   it('should produce TestServiceClient', () => {
-    expect(noPackagePbsc.TestServiceClient).toBeTruthy();
-    expect(
-      new noPackagePbsc.TestServiceClient(
-        { host: 'test' },
-        new GrpcWebClientFactory({ host: 'localhost' }),
-        new GrpcHandler([]),
-      ),
-    ).toBeTruthy();
+    expect(noPackagePbsc.TestServiceService).toBeDefined();
+    const service = new noPackagePbsc.TestServiceService(
+      new GrpcWebClient({ host: 'localhost' }),
+    );
+
+    expect(service).toBeDefined();
   });
 });
