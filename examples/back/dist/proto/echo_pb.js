@@ -86,9 +86,10 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
      */
     proto.echo.EchoRequest.toObject = function (includeInstance, msg) {
         var f, obj = {
-            message: jspb.Message.getFieldWithDefault(msg, 1, ""),
+            message: jspb.Message.getFieldWithDefault(msg, 1, ''),
             shouldthrow: jspb.Message.getBooleanFieldWithDefault(msg, 2, false),
-            timestamp: (f = msg.getTimestamp()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+            timestamp: (f = msg.getTimestamp()) &&
+                google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
         };
         if (includeInstance) {
             obj.$jspbMessageInstance = msg;
@@ -103,7 +104,7 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  */
 proto.echo.EchoRequest.deserializeBinary = function (bytes) {
     var reader = new jspb.BinaryReader(bytes);
-    var msg = new proto.echo.EchoRequest;
+    var msg = new proto.echo.EchoRequest();
     return proto.echo.EchoRequest.deserializeBinaryFromReader(msg, reader);
 };
 /**
@@ -129,7 +130,7 @@ proto.echo.EchoRequest.deserializeBinaryFromReader = function (msg, reader) {
                 msg.setShouldthrow(value);
                 break;
             case 3:
-                var value = new google_protobuf_timestamp_pb.Timestamp;
+                var value = new google_protobuf_timestamp_pb.Timestamp();
                 reader.readMessage(value, google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
                 msg.setTimestamp(value);
                 break;
@@ -176,7 +177,7 @@ proto.echo.EchoRequest.serializeBinaryToWriter = function (message, writer) {
  * @return {string}
  */
 proto.echo.EchoRequest.prototype.getMessage = function () {
-    return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+    return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ''));
 };
 /**
  * @param {string} value
@@ -209,7 +210,7 @@ proto.echo.EchoRequest.prototype.getTimestamp = function () {
 /**
  * @param {?proto.google.protobuf.Timestamp|undefined} value
  * @return {!proto.echo.EchoRequest} returns this
-*/
+ */
 proto.echo.EchoRequest.prototype.setTimestamp = function (value) {
     return jspb.Message.setWrapperField(this, 3, value);
 };
@@ -254,8 +255,9 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
      */
     proto.echo.EchoResponse.toObject = function (includeInstance, msg) {
         var f, obj = {
-            message: jspb.Message.getFieldWithDefault(msg, 1, ""),
-            timestamp: (f = msg.getTimestamp()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+            message: jspb.Message.getFieldWithDefault(msg, 1, ''),
+            timestamp: (f = msg.getTimestamp()) &&
+                google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
         };
         if (includeInstance) {
             obj.$jspbMessageInstance = msg;
@@ -270,7 +272,7 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  */
 proto.echo.EchoResponse.deserializeBinary = function (bytes) {
     var reader = new jspb.BinaryReader(bytes);
-    var msg = new proto.echo.EchoResponse;
+    var msg = new proto.echo.EchoResponse();
     return proto.echo.EchoResponse.deserializeBinaryFromReader(msg, reader);
 };
 /**
@@ -292,7 +294,7 @@ proto.echo.EchoResponse.deserializeBinaryFromReader = function (msg, reader) {
                 msg.setMessage(value);
                 break;
             case 2:
-                var value = new google_protobuf_timestamp_pb.Timestamp;
+                var value = new google_protobuf_timestamp_pb.Timestamp();
                 reader.readMessage(value, google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
                 msg.setTimestamp(value);
                 break;
@@ -335,7 +337,7 @@ proto.echo.EchoResponse.serializeBinaryToWriter = function (message, writer) {
  * @return {string}
  */
 proto.echo.EchoResponse.prototype.getMessage = function () {
-    return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+    return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ''));
 };
 /**
  * @param {string} value
@@ -354,7 +356,7 @@ proto.echo.EchoResponse.prototype.getTimestamp = function () {
 /**
  * @param {?proto.google.protobuf.Timestamp|undefined} value
  * @return {!proto.echo.EchoResponse} returns this
-*/
+ */
 proto.echo.EchoResponse.prototype.setTimestamp = function (value) {
     return jspb.Message.setWrapperField(this, 2, value);
 };

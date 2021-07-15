@@ -87,7 +87,9 @@ class Proto {
                 try {
                     meta = proto.resolveTypeMetadata(pbType);
                 }
-                catch (ex) { }
+                catch (error) {
+                    console.error(error);
+                }
             }
         });
         if (meta) {

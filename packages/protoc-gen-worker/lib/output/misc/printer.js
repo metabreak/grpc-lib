@@ -36,7 +36,8 @@ const newLine = '\n';
 class Printer {
     dependencies = new Set();
     code = '';
-    constructor() { }
+    constructor() {
+    }
     addDeps(...deps) {
         deps.forEach((item) => this.dependencies.add(item));
     }
