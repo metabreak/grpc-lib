@@ -2196,14 +2196,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*":
-  version: 16.3.1
-  resolution: "@types/node@npm:16.3.1"
-  checksum: 2a9d69db32540157827a06893a80dcbc9c86a6287dace38e1ff27490f34ec4b4164426165f2c4146c412eca451bf1b782be17d5ce57a935b1fd1e7c5fae89f43
-  languageName: node
-  linkType: hard
-
-"@types/node@npm:16.3.2":
+"@types/node@npm:*, @types/node@npm:16.3.2":
   version: 16.3.2
   resolution: "@types/node@npm:16.3.2"
   checksum: 242d23b6f9f93afa49eecac179444762000e99667a742c8b1de18c7875c7c952436ab319ea4fe3dca3e66bacb9e4f0ed69a25df9a155c6cedfc8cdaf52cb3453

@@ -1,7 +1,8 @@
 {
   "name": "@metabreak/protoc-gen-worker",
   "description": "gRPC code generator for use with web workers",
-  "author": "smnbbrv",
+  "version": "0.0.0",
+  "author": "Oleg Shilov <me@olegshilov.com>",
   "license": "MIT",
   "main": "./lib/main.js",
   "bin": "./lib/main.js",

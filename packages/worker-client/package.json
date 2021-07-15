@@ -1,7 +1,8 @@
 {
   "name": "@metabreak/grpc-worker-client",
-  "description": "gRPC framework: worker client package",
-  "author": "smnbbrv",
+  "description": "Metabreak gRPC lib: worker client package",
+  "version": "0.0.0",
+  "author": "Oleg Shilov <me@olegshilov.com>",
   "license": "MIT",
   "main": "./lib/index.js",
   "scripts": {
