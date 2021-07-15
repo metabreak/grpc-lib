@@ -9,15 +9,14 @@ import * as google_protobuf_timestamp_pb from 'google-protobuf/google/protobuf/t
 
 export class EchoRequest extends jspb.Message {
   getMessage(): string;
-  setMessage(value: string): void;
-
+  setMessage(value: string): EchoRequest;
   getShouldthrow(): boolean;
-  setShouldthrow(value: boolean): void;
+  setShouldthrow(value: boolean): EchoRequest;
 
   hasTimestamp(): boolean;
   clearTimestamp(): void;
   getTimestamp(): google_protobuf_timestamp_pb.Timestamp | undefined;
-  setTimestamp(value?: google_protobuf_timestamp_pb.Timestamp): void;
+  setTimestamp(value?: google_protobuf_timestamp_pb.Timestamp): EchoRequest;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): EchoRequest.AsObject;
@@ -50,12 +49,12 @@ export namespace EchoRequest {
 
 export class EchoResponse extends jspb.Message {
   getMessage(): string;
-  setMessage(value: string): void;
+  setMessage(value: string): EchoResponse;
 
   hasTimestamp(): boolean;
   clearTimestamp(): void;
   getTimestamp(): google_protobuf_timestamp_pb.Timestamp | undefined;
-  setTimestamp(value?: google_protobuf_timestamp_pb.Timestamp): void;
+  setTimestamp(value?: google_protobuf_timestamp_pb.Timestamp): EchoResponse;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): EchoResponse.AsObject;

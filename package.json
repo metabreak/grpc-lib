@@ -5,34 +5,36 @@
     "yarn": ">= 2"
   },
   "scripts": {
-    "start": "run-s start:lib:protoc-gen-worker",
-    "start:lib:protoc-gen-worker": "nodemon --watch packages/protoc-gen-worker/src --watch packages/protoc-gen-worker/test/proto -e ts,proto --exec 'npm run build:lib:protoc-gen-worker && npm run test:lib:protoc-gen-worker:generate && npm run test:lib:protoc-gen-worker:generate-grpc-web && echo \"Done\"'",
-    "build": "run-s build:lib:common build:lib:core build:lib:worker build:lib:worker-client build:lib:web-client build:lib:protoc-gen-worker build:lib:well-known-types",
-    "build:lib:core": "yarn workspace @metabreak/grpc-core build",
-    "build:lib:common": "yarn workspace @metabreak/grpc-common build",
-    "build:lib:web-client": "yarn workspace @metabreak/grpc-web-client build",
-    "build:lib:protoc-gen-worker": "yarn workspace @metabreak/protoc-gen-worker build",
-    "build:lib:worker": "yarn workspace @metabreak/grpc-worker build",
-    "build:lib:worker-client": "yarn workspace @metabreak/grpc-worker-client build",
-    "build:lib:well-known-types": "yarn workspace @metabreak/grpc-well-known-types build",
-    "build:lib:well-known-types:generate": "yarn workspace @metabreak/grpc-well-known-types generate",
-    "test": "run-s test:lib:protoc-gen-worker",
-    "test:lib:protoc-gen-worker": "yarn workspace @metabreak/protoc-gen-worker test",
-    "test:lib:protoc-gen-worker:watch": "yarn workspace @metabreak/protoc-gen-worker test --watchAll",
-    "test:lib:protoc-gen-worker:generate-grpc-worker": "yarn workspace @metabreak/protoc-gen-worker generate:grpc-worker",
-    "test:lib:protoc-gen-worker:generate-grpc-web": "yarn workspace @metabreak/protoc-gen-worker generate:grpc-web",
+    "start": "run-s start:protoc-gen-worker",
+    "start:protoc-gen-worker": "nodemon --watch packages/protoc-gen-worker/src --watch packages/protoc-gen-worker/test/proto -e ts,proto --exec 'npm run build:protoc-gen-worker && npm run test:protoc-gen-worker:generate && npm run test:protoc-gen-worker:generate-grpc-web && echo \"Done\"'",
+    "build": "run-s build:common build:core build:worker build:worker-client build:web-client build:protoc-gen-worker build:well-known-types",
+    "build:core": "yarn workspace @metabreak/grpc-core build",
+    "build:common": "yarn workspace @metabreak/grpc-common build",
+    "build:worker": "yarn workspace @metabreak/grpc-worker build",
+    "build:web-client": "yarn workspace @metabreak/grpc-web-client build",
+    "build:worker-client": "yarn workspace @metabreak/grpc-worker-client build",
+    "build:protoc-gen-worker": "yarn workspace @metabreak/protoc-gen-worker build",
+    "build:well-known-types": "yarn workspace @metabreak/grpc-well-known-types build",
+    "build:well-known-types:generate": "yarn workspace @metabreak/grpc-well-known-types generate",
+    "test": "run-s test:protoc-gen-worker",
+    "test:protoc-gen-worker": "yarn workspace @metabreak/protoc-gen-worker test",
+    "test:protoc-gen-worker:watch": "yarn workspace @metabreak/protoc-gen-worker test --watchAll",
     "release": "semantic-release",
     "examples": "run-p examples:basic examples:backend",
     "examples:basic": "yarn workspace @metabreak/grpc-example-front start --port 4200",
-    "examples:backend": "yarn workspace @metabreak/grpc-example-front run:docker",
+    "examples:backend": "yarn workspace @metabreak/grpc-example-front start:docker",
     "examples:backend:no-proxy": "yarn workspace @metabreak/grpc-example-back start",
-    "examples:proto:generate": "run-s examples:proto:generate-backend examples:proto:generate-basic",
-    "examples:proto:generate-basic": "mkdir -p examples/basic-example/src/proto && rm -rf examples/basic-example/src/proto/* && $(pwd)/node_modules/.bin/grpc_tools_node_protoc --plugin=protoc-gen-worker=$(pwd)/dist/protoc-gen-worker/main.js --ng_out=config=examples/basic-example/ngx-grpc.conf.js:examples/basic-example/src/proto -I examples/proto $(find examples/proto -iname \"*.proto\")",
-    "examples:proto:generate-backend": "cd examples/backend && npm run proto:generate",
     "format": "yarn prettier --write '**/**/*.{md,html,yaml,yml,ts,js,tsx,jsx}'",
     "lint": "run-s lint:examples lint:packages",
     "lint:examples": "yarn eslint examples/ --ext ts,js,tsx,jsx",
-    "lint:packages": "yarn eslint packages/ --ext ts,js,tsx,jsx"
+    "lint:packages": "yarn eslint packages/ --ext ts,js,tsx,jsx",
+    "generate": "run-s generate:well-known-types generate:protoc-gen-worker:grpc-worker generate:protoc-gen-worker:grpc-web generate:examples format",
+    "generate:well-known-types": "yarn workspace @metabreak/grpc-well-known-types generate",
+    "generate:protoc-gen-worker:grpc-worker": "yarn workspace @metabreak/protoc-gen-worker generate:grpc-worker",
+    "generate:protoc-gen-worker:grpc-web": "yarn workspace @metabreak/protoc-gen-worker generate:grpc-web",
+    "generate:examples": "run-s generate:examples:front generate:examples:back",
+    "generate:examples:front": "yarn workspace @metabreak/grpc-example-front generate",
+    "generate:examples:back": "yarn workspace @metabreak/grpc-example-back generate"
   },
   "devDependencies": {
     "@semantic-release/changelog": "5.0.1",
@@ -63,5 +65,13 @@
     "examples/front",
     "examples/back",
     "packages/*"
-  ]
+  ],
+  "dependenciesMeta": {
+    "grpc-tools@1.11.2": {
+      "unplugged": true
+    },
+    "grpc_tools_node_protoc_ts@5.3.0": {
+      "unplugged": true
+    }
+  }
 }

@@ -16,9 +16,9 @@ interface IEchoServiceService
 
 interface IEchoServiceService_IEchoOnce
   extends grpc.MethodDefinition<echo_pb.EchoRequest, echo_pb.EchoResponse> {
-  path: string; // "/echo.EchoService/EchoOnce"
-  requestStream: boolean; // false
-  responseStream: boolean; // false
+  path: '/echo.EchoService/EchoOnce';
+  requestStream: false;
+  responseStream: false;
   requestSerialize: grpc.serialize<echo_pb.EchoRequest>;
   requestDeserialize: grpc.deserialize<echo_pb.EchoRequest>;
   responseSerialize: grpc.serialize<echo_pb.EchoResponse>;
@@ -26,9 +26,9 @@ interface IEchoServiceService_IEchoOnce
 }
 interface IEchoServiceService_IEchoStream
   extends grpc.MethodDefinition<echo_pb.EchoRequest, echo_pb.EchoResponse> {
-  path: string; // "/echo.EchoService/EchoStream"
-  requestStream: boolean; // false
-  responseStream: boolean; // true
+  path: '/echo.EchoService/EchoStream';
+  requestStream: false;
+  responseStream: true;
   requestSerialize: grpc.serialize<echo_pb.EchoRequest>;
   requestDeserialize: grpc.deserialize<echo_pb.EchoRequest>;
   responseSerialize: grpc.serialize<echo_pb.EchoResponse>;

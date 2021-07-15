@@ -20,6 +20,8 @@ exec(protocWorkerCmd, (error) => {
   if (error) {
     throw error;
   } else {
-    console.log(`Generate protobuf successfully complete\n`);
+    console.log(
+      `[protoc-gen-worker/test/grpc-web] Generate code from .proto file successfully complete`,
+    );
   }
 });
