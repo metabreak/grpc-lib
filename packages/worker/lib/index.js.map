@@ -1,1 +1,0 @@
-{"version":3,"file":"index.js","sourceRoot":"","sources":["../src/index.ts"],"names":[],"mappings":";;;;;;;;;;;;AAAA,wCAAsB;AACtB,gDAA8B;AAC9B,uDAAqC","sourcesContent":["export * from './api';\nexport * from './grpc-worker';\nexport * from './service-client-def';\n"]}
