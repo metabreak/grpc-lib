@@ -6,7 +6,7 @@
   },
   "scripts": {
     "start": "run-s start:protoc-gen-worker",
-    "start:protoc-gen-worker": "nodemon --watch packages/protoc-gen-worker/src --watch packages/protoc-gen-worker/test/proto -e ts,proto --exec 'npm run build:protoc-gen-worker && npm run test:protoc-gen-worker:generate && npm run test:protoc-gen-worker:generate-grpc-web && echo \"Done\"'",
+    "start:protoc-gen-worker": "yarn nodemon --watch packages/protoc-gen-worker/src --watch packages/protoc-gen-worker/test/proto -e ts,proto --exec 'yarn build:protoc-gen-worker && yarn generate:protoc-gen-worker:grpc-worker && yarn generate:protoc-gen-worker:grpc-web && echo \"Done\"'",
     "build": "run-s build:common build:core build:worker build:worker-client build:web-client build:protoc-gen-worker build:well-known-types",
     "build:core": "yarn workspace @metabreak/grpc-core build",
     "build:common": "yarn workspace @metabreak/grpc-common build",
