@@ -1,9 +1,16 @@
 {
+  "name": "@metabreak/grpc-lib",
+  "version": "0.0.0",
   "private": true,
   "engines": {
     "node": ">= 14",
     "yarn": ">= 2"
   },
+  "workspaces": [
+    "examples/front",
+    "examples/back",
+    "packages/*"
+  ],
   "scripts": {
     "start": "run-s start:lib:protoc-gen-worker",
     "start:lib:protoc-gen-worker": "nodemon --watch packages/protoc-gen-worker/src --watch packages/protoc-gen-worker/test/proto -e ts,proto --exec 'npm run build:lib:protoc-gen-worker && npm run test:lib:protoc-gen-worker:generate && npm run test:lib:protoc-gen-worker:generate-grpc-web && echo \"Done\"'",
@@ -21,7 +28,6 @@
     "test:lib:protoc-gen-worker:watch": "yarn workspace @metabreak/protoc-gen-worker test --watchAll",
     "test:lib:protoc-gen-worker:generate-grpc-worker": "yarn workspace @metabreak/protoc-gen-worker generate:grpc-worker",
     "test:lib:protoc-gen-worker:generate-grpc-web": "yarn workspace @metabreak/protoc-gen-worker generate:grpc-web",
-    "release": "semantic-release",
     "examples": "run-p examples:basic examples:backend",
     "examples:basic": "yarn workspace @metabreak/grpc-example-front start --port 4200",
     "examples:backend": "yarn workspace @metabreak/grpc-example-front run:docker",
@@ -32,13 +38,16 @@
     "format": "yarn prettier --write '**/**/*.{md,html,yaml,yml,ts,js,tsx,jsx}'",
     "lint": "run-s lint:examples lint:packages",
     "lint:examples": "yarn eslint examples/ --ext ts,js,tsx,jsx",
-    "lint:packages": "yarn eslint packages/ --ext ts,js,tsx,jsx"
+    "lint:packages": "yarn eslint packages/ --ext ts,js,tsx,jsx",
+    "release": "yarn multi-semantic-release"
   },
   "devDependencies": {
+    "@qiwi/multi-semantic-release": "3.15.0",
     "@semantic-release/changelog": "5.0.1",
     "@semantic-release/commit-analyzer": "8.0.1",
-    "@semantic-release/exec": "5.0.0",
     "@semantic-release/git": "9.0.0",
+    "@semantic-release/github": "7.2.3",
+    "@semantic-release/npm": "7.1.3",
     "@semantic-release/release-notes-generator": "9.0.3",
     "@types/eslint": "7.28.0",
     "@types/jest": "26.0.24",
@@ -46,6 +55,7 @@
     "@types/prettier": "2.3.2",
     "@typescript-eslint/eslint-plugin": "4.28.3",
     "@typescript-eslint/parser": "4.28.3",
+    "conventional-changelog-conventionalcommits": "4.6.0",
     "eslint": "7.30.0",
     "eslint-config-prettier": "8.3.0",
     "eslint-plugin-prettier": "3.4.0",
@@ -58,10 +68,5 @@
     "semantic-release": "17.4.4",
     "ts-jest": "27.0.3",
     "typescript": "4.3.5"
-  },
-  "workspaces": [
-    "examples/front",
-    "examples/back",
-    "packages/*"
-  ]
+  }
 }
