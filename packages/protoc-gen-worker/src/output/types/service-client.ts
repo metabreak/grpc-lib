@@ -13,11 +13,7 @@ export class ServiceClient {
       `Start printing service client ${this.service.name} in proto ${this.proto.name}`,
     );
 
-    printer.addDeps(
-      ExternalDependencies.GrpcClient,
-      ExternalDependencies.GrpcHandler,
-      ExternalDependencies.GrpcClientFactory,
-    );
+    printer.addDeps(ExternalDependencies.GrpcClient);
 
     const serviceId =
       (this.proto.pb_package ? this.proto.pb_package + '.' : '') +
@@ -27,41 +23,10 @@ export class ServiceClient {
       /**
        * Service client implementation for ${serviceId}
        */
-      export class ${this.service.name}Client {
-        private client: GrpcClient<any>;
-
-        /**
-         * Raw RPC implementation for each service client method.
-         * The raw methods provide more control on the incoming data and events. E.g. they can be useful to read status \`OK\` metadata.
-         * Attention: these methods do not throw errors when non-zero status codes are received.
-         */
-        $raw = {`);
-
-    this.service.methodList.forEach((method) => {
-      const serviceClientMethod = new ServiceClientMethod(
-        this.proto,
-        this.service,
-        method,
-      );
-
-      serviceClientMethod.printRawMethod(printer);
-
-      printer.add(',');
-      printer.newLine();
-      printer.newLine();
-    });
-
-    printer.add(`
-        };
-
-        constructor(
-          settings: any,
-          clientFactory: GrpcClientFactory<any>,
-          private handler: GrpcHandler,
-        ) {
-          this.client = clientFactory.createClient('${serviceId}', settings);
-        }
+      export class ${this.service.name}Service {
+        constructor(private client: GrpcClient<unknown>) {}
     `);
+    printer.newLine();
 
     this.service.methodList.forEach((method) => {
       const serviceClientMethod = new ServiceClientMethod(
@@ -72,7 +37,6 @@ export class ServiceClient {
 
       serviceClientMethod.printMethod(printer);
 
-      printer.newLine();
       printer.newLine();
     });
 

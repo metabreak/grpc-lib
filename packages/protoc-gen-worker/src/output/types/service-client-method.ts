@@ -38,86 +38,53 @@ export class ServiceClientMethod {
 
     printer.addDeps(
       ExternalDependencies.GrpcMetadata,
+      ExternalDependencies.GrpcEvent,
       ExternalDependencies.Observable,
-      ExternalDependencies.takeMessages,
-      ExternalDependencies.throwStatusErrors,
     );
 
+    const camelizeMethodName = camelizeSafe(this.serviceMethod.name);
+    const callType = this.serviceMethod.serverStreaming
+      ? 'Server streaming'
+      : 'Unary';
+    const clientCallType = this.serviceMethod.serverStreaming
+      ? 'serverStream'
+      : 'unary';
+    const isDeprecated =
+      !!this.serviceMethod.options && this.serviceMethod.options.deprecated;
+
+    const typeDocString = [
+      '/**',
+      ` * ${callType} RPC for ${this.rpcPath}`,
+      isDeprecated ? ' * @deprecated' : undefined,
+      ' * @param requestData Request data',
+      ' * @param requestMetadata Request metadata',
+      ` * @returns Observable<${this.outputType}>`,
+      ' */',
+    ]
+      .filter(Boolean)
+      .join('\n');
+
     printer.add(`
-      /**
-       * ${
-         this.serviceMethod.serverStreaming ? 'Server streaming' : 'Unary'
-       } RPC for ${this.rpcPath}
-       * ${
-         !!this.serviceMethod.options && this.serviceMethod.options.deprecated
-           ? '@deprecated'
-           : ''
-       }
-       * @param requestMessage Request message
-       * @param requestMetadata Request metadata
-       * @returns Observable<${this.outputType}>
-       */
-      ${camelizeSafe(this.serviceMethod.name)}(requestData: ${
-      this.inputType
-    }, requestMetadata = new GrpcMetadata()): Observable<${this.outputType}> {
-        return this.$raw.${camelizeSafe(
-          this.serviceMethod.name,
-        )}(requestData, requestMetadata).pipe(throwStatusErrors(), takeMessages());
+      ${typeDocString}
+      ${camelizeMethodName}(
+        requestData?: ${this.inputType}.AsObject,
+        requestMetadata: any = {}
+      ): Observable<GrpcEvent<${this.outputType}>> {
+        const grpcRequest = new ${this.inputType}(requestData);
+        const grpcMetadata = new GrpcMetadata(requestMetadata);
+
+        return this.client.${clientCallType}(
+          '${this.rpcPath}',
+          grpcRequest,
+          grpcMetadata,
+          ${this.inputType},
+          ${this.outputType}
+        );
       }
     `);
 
     Services.Logger.debug(
       `End printing service client method ${this.serviceMethod.name} @ ${this.service.name} in proto ${this.proto.name}`,
-    );
-  }
-
-  printRawMethod(printer: Printer) {
-    Services.Logger.debug(
-      `Start printing $raw service client method ${this.serviceMethod.name} @ ${this.service.name} in proto ${this.proto.name}`,
-    );
-
-    printer.addDeps(
-      ExternalDependencies.GrpcCallType,
-      ExternalDependencies.GrpcEvent,
-      ExternalDependencies.GrpcMetadata,
-      ExternalDependencies.Observable,
-    );
-
-    printer.add(`
-      /**
-       * ${
-         this.serviceMethod.serverStreaming ? 'Server streaming' : 'Unary'
-       } RPC for ${this.rpcPath}
-       * ${
-         !!this.serviceMethod.options && this.serviceMethod.options.deprecated
-           ? '@deprecated'
-           : ''
-       }
-       * @param requestMessage Request message
-       * @param requestMetadata Request metadata
-       * @returns Observable<GrpcEvent<${this.outputType}>>
-       */
-      ${camelizeSafe(this.serviceMethod.name)}: (requestData: ${
-      this.inputType
-    }, requestMetadata = new GrpcMetadata()): Observable<GrpcEvent<${
-      this.outputType
-    }>> => {
-        return this.handler.handle({
-          type: GrpcCallType.${
-            this.serviceMethod.serverStreaming ? 'serverStream' : 'unary'
-          },
-          client: this.client,
-          path: '${this.rpcPath}',
-          requestData,
-          requestMetadata,
-          requestClass: ${this.inputType},
-          responseClass: ${this.outputType},
-        });
-      }
-    `);
-
-    Services.Logger.debug(
-      `End printing $raw service client method ${this.serviceMethod.name} @ ${this.service.name} in proto ${this.proto.name}`,
     );
   }
 }

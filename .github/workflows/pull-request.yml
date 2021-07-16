@@ -38,8 +38,7 @@ jobs:
         run: yarn build
       - name: Test
         run: |
-          yarn test:lib:protoc-gen-worker:generate-grpc-worker
-          yarn test:lib:protoc-gen-worker:generate-grpc-web
-          yarn test:lib:protoc-gen-worker
+          yarn generate:protoc-gen-worker
+          yarn test:protoc-gen-worker
       - name: Lint
         run: yarn lint

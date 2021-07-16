@@ -1,1 +1,0 @@
-{"version":3,"file":"duration.wkt.js","sourceRoot":"","sources":["../../../../src/output/types/well-known-types/duration.wkt.ts"],"names":[],"mappings":";;;AAGA,MAAa,WAAW;IACtB,mBAAmB,CAAC,OAAgB;QAElC,OAAO,CAAC,OAAO,CACb,yEAAyE,CAC1E,CAAC;IACJ,CAAC;IAED,mBAAmB,CAAC,OAAgB;QAClC,OAAO,CAAC,OAAO,CAAC,sCAAsC,CAAC,CAAC;IAC1D,CAAC;CACF;AAXD,kCAWC"}

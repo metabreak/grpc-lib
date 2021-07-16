@@ -14,9 +14,6 @@ module.exports = {
     pb: {
       generate: true,
     },
-    // pbconf: {
-    //   generate: true,
-    // },
     pbsc: {
       generate: true,
       serviceClientProvidedIn: 'any',
@@ -41,20 +38,6 @@ export class ConfigPb {
   generate: boolean;
 
   constructor(config: Partial<ConfigPb> = {}) {
-    this.generate = config.generate ?? true;
-  }
-}
-
-/**
- * Configuration for `pbconf` files
- */
-export class ConfigPbconf {
-  /**
-   * Enable or disable generation of pbconf files
-   */
-  generate: boolean;
-
-  constructor(config: Partial<ConfigPbconf> = {}) {
     this.generate = config.generate ?? true;
   }
 }
@@ -99,13 +82,11 @@ export class ConfigPbwsc {
  */
 export class ConfigFiles {
   pb: ConfigPb;
-  // pbconf: ConfigPbconf;
   pbsc: ConfigPbsc;
   pbwsc: ConfigPbwsc;
 
   constructor(config: Partial<ConfigFiles> = {}) {
     this.pb = new ConfigPb(config.pb);
-    // this.pbconf = new ConfigPbconf(config.pbconf);
     this.pbsc = new ConfigPbsc(config.pbsc);
     this.pbwsc = new ConfigPbwsc(config.pbwsc);
   }

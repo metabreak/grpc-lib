@@ -3,6 +3,7 @@ tmp/
 node_modules/
 coverage/
 .parcel-cache/
+lib/
 
 *.log
 .DS_Store
@@ -15,4 +16,4 @@ Thumbs.db
 !.yarn/sdks
 !.yarn/versions
 .pnp.*
-tags
+

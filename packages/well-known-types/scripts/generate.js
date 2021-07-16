@@ -22,6 +22,8 @@ exec(protocWorkerCmd, (error) => {
     throw error;
   } else {
     rimraf.sync(path.resolve(srcPath, 'generate.pb.ts'));
-    console.log(`Generate protobuf successfully complete\n`);
+    console.log(
+      `[well-known-types] Generate code from .proto file successfully complete`,
+    );
   }
 });

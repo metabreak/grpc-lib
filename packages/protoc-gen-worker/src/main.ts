@@ -10,7 +10,6 @@ import { Config } from './config';
 import { Proto } from './input/proto';
 import { Logger } from './logger';
 import { PbFile } from './output/files/pb-file';
-// import { PbConfFile } from './output/files/pbconf-file';
 import { PbscFile } from './output/files/pbsc-file';
 import { PbwscFile } from './output/files/pbwsc-file';
 import { Printer } from './output/misc/printer';
@@ -75,18 +74,6 @@ async function main() {
         const files: any[] = [];
 
         if (proto.serviceList.length) {
-          // if (Services.Config.files.pbconf.generate) {
-          //   const configPrinter = new Printer();
-          //   const configFile = new PbConfFile(proto);
-
-          //   configFile.print(configPrinter);
-
-          //   files.push({
-          //     name: basename + 'conf.ts',
-          //     content: configPrinter.finalize(),
-          //   });
-          // }
-
           if (Services.Config.files.pbsc.generate) {
             const pbscPrinter = new Printer();
             const pbscFile = new PbscFile(proto);
