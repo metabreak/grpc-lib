@@ -1,9 +1,16 @@
 {
+  "name": "@metabreak/grpc-lib",
+  "version": "0.0.0",
   "private": true,
   "engines": {
     "node": ">= 14",
     "yarn": ">= 2"
   },
+  "workspaces": [
+    "examples/front",
+    "examples/back",
+    "packages/*"
+  ],
   "scripts": {
     "start": "run-s start:protoc-gen-worker",
     "start:protoc-gen-worker": "yarn nodemon --watch packages/protoc-gen-worker/src --watch packages/protoc-gen-worker/test/proto -e ts,proto --exec 'yarn build:protoc-gen-worker && yarn generate:protoc-gen-worker:grpc-worker && yarn generate:protoc-gen-worker:grpc-web && echo \"Done\"'",
@@ -19,7 +26,6 @@
     "test": "run-s test:protoc-gen-worker",
     "test:protoc-gen-worker": "yarn workspace @metabreak/protoc-gen-worker test",
     "test:protoc-gen-worker:watch": "yarn workspace @metabreak/protoc-gen-worker test --watchAll",
-    "release": "semantic-release",
     "examples": "run-p examples:basic examples:backend",
     "examples:basic": "yarn workspace @metabreak/grpc-example-front start --port 4200",
     "examples:backend": "yarn workspace @metabreak/grpc-example-front start:docker",
@@ -35,13 +41,16 @@
     "generate:protoc-gen-worker:grpc-web": "yarn workspace @metabreak/protoc-gen-worker generate:grpc-web",
     "generate:examples": "run-s generate:examples:front generate:examples:back",
     "generate:examples:front": "yarn workspace @metabreak/grpc-example-front generate",
-    "generate:examples:back": "yarn workspace @metabreak/grpc-example-back generate"
+    "generate:examples:back": "yarn workspace @metabreak/grpc-example-back generate",
+    "release": "yarn multi-semantic-release"
   },
   "devDependencies": {
+    "@qiwi/multi-semantic-release": "3.15.0",
     "@semantic-release/changelog": "5.0.1",
     "@semantic-release/commit-analyzer": "8.0.1",
-    "@semantic-release/exec": "5.0.0",
     "@semantic-release/git": "9.0.0",
+    "@semantic-release/github": "7.2.3",
+    "@semantic-release/npm": "7.1.3",
     "@semantic-release/release-notes-generator": "9.0.3",
     "@types/eslint": "7.28.0",
     "@types/jest": "26.0.24",
@@ -49,6 +58,7 @@
     "@types/prettier": "2.3.2",
     "@typescript-eslint/eslint-plugin": "4.28.3",
     "@typescript-eslint/parser": "4.28.3",
+    "conventional-changelog-conventionalcommits": "4.6.0",
     "eslint": "7.30.0",
     "eslint-config-prettier": "8.3.0",
     "eslint-plugin-prettier": "3.4.0",
@@ -62,11 +72,6 @@
     "ts-jest": "27.0.3",
     "typescript": "4.3.5"
   },
-  "workspaces": [
-    "examples/front",
-    "examples/back",
-    "packages/*"
-  ],
   "dependenciesMeta": {
     "grpc-tools@1.11.2": {
       "unplugged": true
