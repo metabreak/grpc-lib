@@ -31,15 +31,6 @@ const grpcCommon = {
   ),
 };
 
-const grpcCore = {
-  GrpcHandler: new Dependency('@metabreak/grpc-core', 'GrpcHandler'),
-  takeMessages: new Dependency('@metabreak/grpc-core', 'takeMessages'),
-  throwStatusErrors: new Dependency(
-    '@metabreak/grpc-core',
-    'throwStatusErrors',
-  ),
-};
-
 const grpcWorker = {
   GrpcWorkerServiceClientDef: new Dependency(
     '@metabreak/grpc-worker',
@@ -59,7 +50,6 @@ const rxjs = {
 
 export const ExternalDependencies = {
   ...googleProtobuf,
-  ...grpcCore,
   ...grpcCommon,
   ...grpcWorker,
   ...rxjs,
