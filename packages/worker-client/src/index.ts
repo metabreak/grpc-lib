@@ -1,2 +1,1 @@
-export * from './grpc-worker-client';
-export * from './grpc-worker-gateway';
+export * from './worker-client';

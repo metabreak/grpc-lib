@@ -1,8 +1,37 @@
-import { GrpcCallType, GrpcMessage } from '@metabreak/grpc-common';
+import {
+  GrpcCallType,
+  GrpcMessage,
+  GrpcMessageClass,
+} from '@metabreak/grpc-common';
 import { Error, GrpcWebClientBase, MethodDescriptor, Status } from 'grpc-web';
 import { GrpcWorkerApi } from './api';
-import { GrpcWorkerClientSettings } from './client-settings';
-import { GrpcWorkerServiceClientDef } from './service-client-def';
+
+/**
+ * Generated service client method definition
+ */
+export interface GrpcWorkerRPCDef {
+  type: GrpcCallType;
+  reqclss: GrpcMessageClass<any>;
+  resclss: GrpcMessageClass<any>;
+}
+
+/**
+ * Generated service client definition
+ */
+export interface GrpcWorkerServiceClientDef {
+  serviceId: string;
+  methods: { [path: string]: GrpcWorkerRPCDef };
+}
+
+/**
+ * Settings for the chosen implementation of GrpcClient
+ */
+export interface GrpcWorkerClientSettings {
+  host: string;
+  format?: string;
+  suppressCorsPreflight?: boolean;
+  withCredentials?: boolean;
+}
 
 /**
  * A worker-side service of worker client implementation based on grpc-web

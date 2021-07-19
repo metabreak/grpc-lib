@@ -8,7 +8,7 @@ import {
 import { GrpcWorkerApi } from '@metabreak/grpc-worker';
 import { Metadata } from 'grpc-web';
 import { Observable, Observer } from 'rxjs';
-import { GrpcWorkerClientSettings } from './grpc-worker-client';
+import type { GrpcWorkerClientSettings } from '@metabreak/grpc-worker-client';
 
 export class GrpcWorkerGateway {
   private lastId = 0;

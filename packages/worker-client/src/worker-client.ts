@@ -9,7 +9,7 @@ import {
 } from '@metabreak/grpc-common';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { GrpcWorkerGateway } from './grpc-worker-gateway';
+import { GrpcWorkerGateway } from '@metabreak/grpc-worker-gateway';
 
 /**
  * Settings for the chosen implementation of GrpcClient

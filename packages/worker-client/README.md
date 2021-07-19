@@ -1,8 +1,8 @@
-# @ngx-grpc/worker-client
+# @metabreak/grpc-worker-client
 
-Angular gRPC client for connecting to Web Worker @ngx-grpc/worker
+gRPC client for connecting to Web Worker `@metabreak/grpc-worker-client`
 
-For documentation please refer to [Github page](https://github.com/ngx-grpc/ngx-grpc)
+For documentation please refer to [Github page](https://github.com/metabreak/grpc-lib)
 
 ## License
 
