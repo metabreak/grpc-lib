@@ -24,7 +24,11 @@ export class PbscFile {
 
     printer.add(this.proto.getImportedDependencies());
 
-    serviceClients.forEach((serviceClient) => serviceClient.print(printer));
+    printer.addLine('\n');
+
+    serviceClients.forEach((serviceClient) => {
+      serviceClient.print(printer);
+    });
 
     Services.Logger.debug(`End printing pbsc for ${this.proto.name}`);
   }

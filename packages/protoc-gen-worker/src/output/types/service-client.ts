@@ -26,6 +26,7 @@ export class ServiceClient {
       export class ${this.service.name}Service {
         constructor(private client: GrpcClient<unknown>) {}
     `);
+
     printer.newLine();
 
     this.service.methodList.forEach((method) => {
