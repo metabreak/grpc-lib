@@ -46,7 +46,7 @@ export class GrpcWorkerGateway {
         data.type === GrpcWorkerApi.GrpcWorkerMessageType.rpcResponse
       ) {
         switch (data.responseType) {
-          case GrpcWorkerApi.GrpcWorkerMessageRPCResponseType.error:
+          case GrpcWorkerApi.GrpcWorkerMessageRPCResponseType.error: {
             const grpcError = new GrpcStatusEvent(
               data.error.code,
               data.error.message,
@@ -61,8 +61,9 @@ export class GrpcWorkerGateway {
             }
             this.connections.delete(data.id);
             break;
+          }
 
-          case GrpcWorkerApi.GrpcWorkerMessageRPCResponseType.status:
+          case GrpcWorkerApi.GrpcWorkerMessageRPCResponseType.status: {
             if (connection.type === ConnectionType.Observable) {
               connection.observer.next(
                 new GrpcStatusEvent(
@@ -73,8 +74,9 @@ export class GrpcWorkerGateway {
               );
             }
             break;
+          }
 
-          case GrpcWorkerApi.GrpcWorkerMessageRPCResponseType.data:
+          case GrpcWorkerApi.GrpcWorkerMessageRPCResponseType.data: {
             const grpcData = new GrpcDataEvent(data.response);
 
             if (connection.type === ConnectionType.Observable) {
@@ -86,8 +88,9 @@ export class GrpcWorkerGateway {
               this.connections.delete(data.id);
             }
             break;
+          }
 
-          case GrpcWorkerApi.GrpcWorkerMessageRPCResponseType.end:
+          case GrpcWorkerApi.GrpcWorkerMessageRPCResponseType.end: {
             if (connection.type === ConnectionType.Observable) {
               connection.observer.complete();
             } else {
@@ -95,6 +98,7 @@ export class GrpcWorkerGateway {
             }
             this.connections.delete(data.id);
             break;
+          }
         }
       }
     };
