@@ -4,12 +4,21 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>webworker-grpc-test</title>
+    <title>@metabreak/grpc-example-front</title>
   </head>
   <body>
-    <h1>Hello</h1>
-    <button id="echo-btn">echo</button>
-    <button id="stream-btn">stream</button>
+    <h1>@metabreak/grpc-example-front</h1>
+
+    <h3>Basic gRPC client test</h3>
+    <button id="web-unary-promise-btn">unary as promise</button>
+    <button id="web-unary-observable-btn">unary as observable</button>
+    <button id="web-stream-btn">stream</button>
+
+    <h3>Basic gRPC web worker client test</h3>
+    <button id="worker-unary-promise-btn">unary as promise</button>
+    <button id="worker-unary-observable-btn">unary as observable</button>
+    <button id="worker-stream-btn">stream</button>
+
     <script src="./index.ts"></script>
   </body>
 </html>

@@ -1,5 +1,5 @@
-import { Error, Metadata, Status } from 'grpc-web';
-import type { GrpcWorkerClientSettings } from '@metabreak/grpc-common';
+import type { Error, Metadata, Status } from 'grpc-web';
+import type { GrpcClientSettings } from '@metabreak/grpc-common';
 
 /* eslint-disable @typescript-eslint/no-namespace */
 export namespace GrpcWorkerApi {
@@ -18,7 +18,7 @@ export namespace GrpcWorkerApi {
     extends GrpcWorkerMessage {
     type: GrpcWorkerMessageType.serviceClientConfig;
     serviceId: string;
-    settings: GrpcWorkerClientSettings;
+    settings: GrpcClientSettings;
   }
 
   export interface GrpcWorkerMessageRPCRequest<Q> extends GrpcWorkerMessage {
@@ -46,26 +46,26 @@ export namespace GrpcWorkerApi {
     extends GrpcWorkerMessage {
     type: GrpcWorkerMessageType.rpcResponse;
     id: number;
-    // responseType: GrpcWorkerMessageRPCResponseType;
-    // error?: Error;
-    // status?: Status;
-    // response?: S;
   }
+
   export interface GrpcWorkerMessageRPCResponseError<S>
     extends GrpcWorkerMessageRPCResponseBase<S> {
     responseType: GrpcWorkerMessageRPCResponseType.error;
     error: Error;
   }
+
   export interface GrpcWorkerMessageRPCResponseStatus<S>
     extends GrpcWorkerMessageRPCResponseBase<S> {
     responseType: GrpcWorkerMessageRPCResponseType.status;
     status: Status;
   }
+
   export interface GrpcWorkerMessageRPCResponseData<S>
     extends GrpcWorkerMessageRPCResponseBase<S> {
     responseType: GrpcWorkerMessageRPCResponseType.data;
     response: S;
   }
+
   export interface GrpcWorkerMessageRPCResponseEnd<S>
     extends GrpcWorkerMessageRPCResponseBase<S> {
     responseType: GrpcWorkerMessageRPCResponseType.end;

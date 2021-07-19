@@ -4,16 +4,36 @@ import {
   GrpcMessage,
   GrpcMetadata,
   GrpcStatusEvent,
-  GrpcWorkerClientSettings,
+  GrpcClientSettings,
 } from '@metabreak/grpc-common';
 import { GrpcWorkerApi } from '@metabreak/grpc-worker';
 import { Metadata } from 'grpc-web';
 import { Observable, Observer } from 'rxjs';
 
+enum ConnectionType {
+  Observable,
+  Promise,
+}
+
+type ConnectionObservable = {
+  type: ConnectionType.Observable;
+  observer: Observer<any>;
+};
+
+type ConnectionPromise = {
+  type: ConnectionType.Promise;
+  promise: {
+    resolve: (...args: any[]) => void;
+    reject: (...args: any[]) => void;
+  };
+};
+
 export class GrpcWorkerGateway {
   private lastId = 0;
-
-  private connections = new Map<number, Observer<any>>();
+  private connections = new Map<
+    number,
+    ConnectionObservable | ConnectionPromise
+  >();
 
   constructor(private worker: Worker) {
     worker.onmessage = (event: MessageEvent) => {
@@ -22,35 +42,57 @@ export class GrpcWorkerGateway {
       const connection = this.connections.get(data.id);
 
       if (
-        connection &&
+        connection !== undefined &&
         data.type === GrpcWorkerApi.GrpcWorkerMessageType.rpcResponse
       ) {
         switch (data.responseType) {
           case GrpcWorkerApi.GrpcWorkerMessageRPCResponseType.error:
-            connection.next(
-              new GrpcStatusEvent(
-                data.error.code,
-                data.error.message,
-                (data.error as any).metadata,
-              ),
+            const grpcError = new GrpcStatusEvent(
+              data.error.code,
+              data.error.message,
+              new GrpcMetadata((data.error as any).metadata),
             );
-            connection.complete();
+
+            if (connection.type === ConnectionType.Observable) {
+              connection.observer.next(grpcError);
+              connection.observer.complete();
+            } else {
+              connection.promise.reject(grpcError);
+            }
             this.connections.delete(data.id);
             break;
+
           case GrpcWorkerApi.GrpcWorkerMessageRPCResponseType.status:
-            connection.next(
-              new GrpcStatusEvent(
-                data.status.code,
-                data.status.details,
-                new GrpcMetadata(data.status.metadata),
-              ),
-            );
+            if (connection.type === ConnectionType.Observable) {
+              connection.observer.next(
+                new GrpcStatusEvent(
+                  data.status.code,
+                  data.status.details,
+                  new GrpcMetadata(data.status.metadata),
+                ),
+              );
+            }
             break;
+
           case GrpcWorkerApi.GrpcWorkerMessageRPCResponseType.data:
-            connection.next(new GrpcDataEvent(data.response));
+            const grpcData = new GrpcDataEvent(data.response);
+
+            if (connection.type === ConnectionType.Observable) {
+              connection.observer.next(grpcData);
+            } else {
+              // Promise should resolves only once
+              // So, we delete this connection right after resolve
+              connection.promise.resolve(grpcData);
+              this.connections.delete(data.id);
+            }
             break;
+
           case GrpcWorkerApi.GrpcWorkerMessageRPCResponseType.end:
-            connection.complete();
+            if (connection.type === ConnectionType.Observable) {
+              connection.observer.complete();
+            } else {
+              connection.promise.reject();
+            }
             this.connections.delete(data.id);
             break;
         }
@@ -58,10 +100,11 @@ export class GrpcWorkerGateway {
     };
   }
 
-  configureServiceClient(
-    serviceId: string,
-    settings: GrpcWorkerClientSettings,
-  ) {
+  private createRequestId() {
+    return this.lastId++;
+  }
+
+  configureServiceClient(serviceId: string, settings: GrpcClientSettings) {
     this.worker.postMessage({
       type: GrpcWorkerApi.GrpcWorkerMessageType.serviceClientConfig,
       serviceId,
@@ -69,7 +112,7 @@ export class GrpcWorkerGateway {
     } as GrpcWorkerApi.GrpcWorkerMessageServiceClientConfig);
   }
 
-  callUnaryFromWorker<Q extends GrpcMessage, S extends GrpcMessage>(
+  callUnaryFromWorkerAsObservable<Q extends GrpcMessage, S extends GrpcMessage>(
     serviceId: string,
     path: string,
     request: Q,
@@ -78,7 +121,7 @@ export class GrpcWorkerGateway {
     return new Observable((observer) => {
       const id = this.createRequestId();
 
-      this.connections.set(id, observer);
+      this.connections.set(id, { type: ConnectionType.Observable, observer });
 
       this.worker.postMessage({
         type: GrpcWorkerApi.GrpcWorkerMessageType.rpcRequest,
@@ -89,7 +132,34 @@ export class GrpcWorkerGateway {
         metadata,
       } as GrpcWorkerApi.GrpcWorkerMessageRPCRequest<Q>);
 
-      return () => this.closeConnection(id);
+      return () => {
+        this.closeConnection(id);
+      };
+    });
+  }
+
+  callUnaryFromWorkerAsPromise<Q extends GrpcMessage, S extends GrpcMessage>(
+    serviceId: string,
+    path: string,
+    request: Q,
+    metadata: Metadata,
+  ): Promise<GrpcDataEvent<S>> {
+    return new Promise((resolve, reject) => {
+      const id = this.createRequestId();
+
+      this.connections.set(id, {
+        type: ConnectionType.Promise,
+        promise: { resolve, reject },
+      });
+
+      this.worker.postMessage({
+        type: GrpcWorkerApi.GrpcWorkerMessageType.rpcRequest,
+        id,
+        serviceId,
+        path,
+        request,
+        metadata,
+      } as GrpcWorkerApi.GrpcWorkerMessageRPCRequest<Q>);
     });
   }
 
@@ -102,7 +172,7 @@ export class GrpcWorkerGateway {
     return new Observable((observer) => {
       const id = this.createRequestId();
 
-      this.connections.set(id, observer);
+      this.connections.set(id, { type: ConnectionType.Observable, observer });
 
       this.worker.postMessage({
         type: GrpcWorkerApi.GrpcWorkerMessageType.rpcRequest,
@@ -124,9 +194,5 @@ export class GrpcWorkerGateway {
     } as GrpcWorkerApi.GrpcWorkerMessageRPCCancel);
 
     this.connections.delete(id);
-  }
-
-  private createRequestId() {
-    return this.lastId++;
   }
 }

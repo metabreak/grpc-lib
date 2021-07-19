@@ -1,78 +1,60 @@
 import {
   GrpcClient,
-  GrpcClientFactory,
   GrpcDataEvent,
   GrpcEvent,
   GrpcMessage,
   GrpcMessageClass,
   GrpcMetadata,
-  GrpcWorkerClientSettings,
+  GrpcClientSettings,
 } from '@metabreak/grpc-common';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { GrpcWorkerGateway } from '@metabreak/grpc-worker-gateway';
 
 /**
- * GrpcClientFactory implementation based on grpc-web running in worker
- */
-export class GrpcWorkerClientFactory
-  implements GrpcClientFactory<GrpcWorkerClientSettings>
-{
-  constructor(
-    private defaultSettings: GrpcWorkerClientSettings,
-    private gateway: GrpcWorkerGateway,
-  ) {}
-
-  createClient(serviceId: string, customSettings: GrpcWorkerClientSettings) {
-    const settings = customSettings || this.defaultSettings;
-
-    if (!settings) {
-      throw new Error(
-        `Worker client factory: no settings provided for ${serviceId}`,
-      );
-    }
-
-    return new GrpcWorkerClient(serviceId, { ...settings }, this.gateway);
-  }
-}
-
-/**
  * GrpcClient implementation based on grpc-web running in worker
  */
-export class GrpcWorkerClient implements GrpcClient<GrpcWorkerClientSettings> {
+export class GrpcWorkerClient implements GrpcClient<GrpcClientSettings> {
   constructor(
     private serviceId: string,
-    private settings: GrpcWorkerClientSettings,
+    private settings: GrpcClientSettings,
     private gateway: GrpcWorkerGateway,
   ) {
     this.gateway.configureServiceClient(this.serviceId, this.settings);
   }
 
-  getSettings(): GrpcWorkerClientSettings {
+  getSettings(): GrpcClientSettings {
     return { ...this.settings };
   }
 
-  unary<Q extends GrpcMessage, S extends GrpcMessage>(
+  unaryAsPromise<Q extends GrpcMessage, S extends GrpcMessage>(
+    path: string,
+    req: Q,
+    metadata: GrpcMetadata,
+    reqclss: GrpcMessageClass<Q>,
+    resclss: GrpcMessageClass<S>,
+  ): Promise<GrpcEvent<S>> {
+    return this.gateway.callUnaryFromWorkerAsPromise<Q, S>(
+      this.serviceId,
+      path,
+      req.toObject(),
+      metadata?.toObject() ?? {},
+    );
+  }
+
+  unaryAsObservable<Q extends GrpcMessage, S extends GrpcMessage>(
     path: string,
     req: Q,
     metadata: GrpcMetadata,
     reqclss: GrpcMessageClass<Q>,
     resclss: GrpcMessageClass<S>,
   ): Observable<GrpcEvent<S>> {
-    return this.gateway
-      .callUnaryFromWorker<Q, S>(
-        this.serviceId,
-        path,
-        req.toObject(),
-        metadata?.toObject() ?? {},
-      )
-      .pipe(
-        tap((res) => {
-          if (res instanceof GrpcDataEvent) {
-            res.data = new resclss(res.data as any);
-          }
-        }),
-      );
+    return this.gateway.callUnaryFromWorkerAsObservable<Q, S>(
+      this.serviceId,
+      path,
+      req.toObject(),
+      metadata?.toObject() ?? {},
+    );
   }
 
   serverStream<Q extends GrpcMessage, S extends GrpcMessage>(
@@ -82,19 +64,11 @@ export class GrpcWorkerClient implements GrpcClient<GrpcWorkerClientSettings> {
     reqclss: GrpcMessageClass<Q>,
     resclss: GrpcMessageClass<S>,
   ): Observable<GrpcEvent<S>> {
-    return this.gateway
-      .callServerStreamFromWorker<Q, S>(
-        this.serviceId,
-        path,
-        req.toObject(),
-        metadata?.toObject() ?? {},
-      )
-      .pipe(
-        tap((res) => {
-          if (res instanceof GrpcDataEvent) {
-            res.data = new resclss(res.data as any);
-          }
-        }),
-      );
+    return this.gateway.callServerStreamFromWorker<Q, S>(
+      this.serviceId,
+      path,
+      req.toObject(),
+      metadata?.toObject() ?? {},
+    );
   }
 }

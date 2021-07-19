@@ -2,7 +2,7 @@ import {
   GrpcCallType,
   GrpcMessage,
   GrpcMessageClass,
-  GrpcWorkerClientSettings,
+  GrpcClientSettings,
 } from '@metabreak/grpc-common';
 import { Error, GrpcWebClientBase, MethodDescriptor, Status } from 'grpc-web';
 import { GrpcWorkerApi } from './api';
@@ -51,7 +51,7 @@ export class GrpcWorker {
   private clients = new Map<
     string,
     {
-      settings: GrpcWorkerClientSettings;
+      settings: GrpcClientSettings;
       client: GrpcWebClientBase;
     }
   >();
@@ -131,12 +131,13 @@ export class GrpcWorker {
       );
     }
 
-    const respond = (msg: any) =>
-      (postMessage as any)({
+    function respond(msg: any) {
+      postMessage({
         type: GrpcWorkerApi.GrpcWorkerMessageType.rpcResponse,
         id: message.id,
         ...msg,
       });
+    }
 
     const { type, reqclss, resclss } = def.methods[message.path];
     const request = new reqclss(message.request);
@@ -147,7 +148,9 @@ export class GrpcWorker {
       type === GrpcCallType.unary ? 'unary' : 'server_streaming',
       reqclss,
       resclss,
-      (req: GrpcMessage) => req.serializeBinary(),
+      (req: GrpcMessage) => {
+        return req.serializeBinary();
+      },
       resclss.deserializeBinary,
     );
 

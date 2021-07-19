@@ -14,4 +14,3 @@ export * from './grpc-message-pool';
 export * from './grpc-metadata';
 export * from './recursive-partial';
 export * from './utils';
-export * from './grpc-worker-client';
