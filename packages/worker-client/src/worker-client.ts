@@ -6,20 +6,11 @@ import {
   GrpcMessage,
   GrpcMessageClass,
   GrpcMetadata,
+  GrpcWorkerClientSettings,
 } from '@metabreak/grpc-common';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { GrpcWorkerGateway } from '@metabreak/grpc-worker-gateway';
-
-/**
- * Settings for the chosen implementation of GrpcClient
- */
-export interface GrpcWorkerClientSettings {
-  host: string;
-  format?: string;
-  suppressCorsPreflight?: boolean;
-  withCredentials?: boolean;
-}
 
 /**
  * GrpcClientFactory implementation based on grpc-web running in worker

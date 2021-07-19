@@ -1,5 +1,5 @@
 import { Error, Metadata, Status } from 'grpc-web';
-import type { GrpcWorkerClientSettings } from './grpc-worker';
+import type { GrpcWorkerClientSettings } from '@metabreak/grpc-common';
 
 /* eslint-disable @typescript-eslint/no-namespace */
 export namespace GrpcWorkerApi {

@@ -2,6 +2,7 @@ import {
   GrpcCallType,
   GrpcMessage,
   GrpcMessageClass,
+  GrpcWorkerClientSettings,
 } from '@metabreak/grpc-common';
 import { Error, GrpcWebClientBase, MethodDescriptor, Status } from 'grpc-web';
 import { GrpcWorkerApi } from './api';
@@ -21,16 +22,6 @@ export interface GrpcWorkerRPCDef {
 export interface GrpcWorkerServiceClientDef {
   serviceId: string;
   methods: { [path: string]: GrpcWorkerRPCDef };
-}
-
-/**
- * Settings for the chosen implementation of GrpcClient
- */
-export interface GrpcWorkerClientSettings {
-  host: string;
-  format?: string;
-  suppressCorsPreflight?: boolean;
-  withCredentials?: boolean;
 }
 
 /**

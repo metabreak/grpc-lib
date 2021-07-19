@@ -12,7 +12,6 @@
   "dependencies": {
     "@metabreak/grpc-common": "workspace:*",
     "@metabreak/grpc-worker": "workspace:*",
-    "@metabreak/grpc-worker-client": "workspace:*",
     "grpc-web": "1.2.1",
     "rxjs": "7.2.0"
   },

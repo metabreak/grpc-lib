@@ -17,11 +17,12 @@
   "scripts": {
     "start": "run-s start:protoc-gen-worker",
     "start:protoc-gen-worker": "yarn nodemon --watch packages/protoc-gen-worker/src --watch packages/protoc-gen-worker/test/proto -e ts,proto --exec 'yarn build:protoc-gen-worker && yarn generate:protoc-gen-worker:grpc-worker && yarn generate:protoc-gen-worker:grpc-web && echo \"Done\"'",
-    "build": "run-s build:common build:core build:worker build:worker-client build:web-client build:protoc-gen-worker build:well-known-types",
+    "build": "run-s build:common build:core build:worker build:worker-gateway build:worker-client build:web-client build:protoc-gen-worker build:well-known-types",
     "build:core": "yarn workspace @metabreak/grpc-core build",
     "build:common": "yarn workspace @metabreak/grpc-common build",
     "build:worker": "yarn workspace @metabreak/grpc-worker build",
     "build:web-client": "yarn workspace @metabreak/grpc-web-client build",
+    "build:worker-gateway": "yarn workspace @metabreak/grpc-worker-gateway build",
     "build:worker-client": "yarn workspace @metabreak/grpc-worker-client build",
     "build:protoc-gen-worker": "yarn workspace @metabreak/protoc-gen-worker build",
     "build:well-known-types": "yarn workspace @metabreak/grpc-well-known-types build",
