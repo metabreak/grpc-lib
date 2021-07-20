@@ -6,3 +6,4 @@ packages/protoc-gen-worker/test/out-grpc-web/
 .yarn/
 .pnp.*
 lib/
+coverage/
