@@ -1,3 +1,19 @@
+### @metabreak/protoc-gen-worker [1.0.1](https://github.com/metabreak/grpc-lib/compare/@metabreak/protoc-gen-worker@1.0.0...@metabreak/protoc-gen-worker@1.0.1) (2021-07-20)
+
+
+### Bug Fixes
+
+* **protoc-gen-worker:** generate service with unary calls which return promise ([9b97fe0](https://github.com/metabreak/grpc-lib/commit/9b97fe03cb7be1010a9f57aed578d7084fb26cce))
+
+
+
+### Dependencies
+
+* **@metabreak/grpc-common:** upgraded to 1.1.0
+* **@metabreak/grpc-web-client:** upgraded to 1.1.0
+* **@metabreak/grpc-worker:** upgraded to 1.1.0
+* **@metabreak/grpc-worker-client:** upgraded to 1.1.0
+
 ## @metabreak/protoc-gen-worker 1.0.0 (2021-07-20)
 
 ### ⚠ BREAKING CHANGES
