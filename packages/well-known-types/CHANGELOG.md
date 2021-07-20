@@ -1,3 +1,12 @@
+### @metabreak/grpc-well-known-types [1.0.1](https://github.com/metabreak/grpc-lib/compare/@metabreak/grpc-well-known-types@1.0.0...@metabreak/grpc-well-known-types@1.0.1) (2021-07-20)
+
+
+
+### Dependencies
+
+* **@metabreak/grpc-common:** upgraded to 1.1.0
+* **@metabreak/protoc-gen-worker:** upgraded to 1.0.1
+
 ## @metabreak/grpc-well-known-types 1.0.0 (2021-07-20)
 
 ### ⚠ BREAKING CHANGES
