@@ -9,7 +9,7 @@
   "dependencies": {
     "@metabreak/grpc-common": "1.1.0",
     "@metabreak/grpc-web-client": "1.1.0",
-    "@metabreak/grpc-well-known-types": "1.0.0",
+    "@metabreak/grpc-well-known-types": "1.0.1",
     "@metabreak/grpc-worker": "1.1.0",
     "@metabreak/grpc-worker-client": "1.1.0",
     "@metabreak/grpc-worker-gateway": "1.0.0",
