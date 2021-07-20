@@ -5,6 +5,9 @@
   "author": "Oleg Shilov <me@olegshilov.com>",
   "license": "MIT",
   "main": "./lib/index.js",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "clean": "yarn rimraf ./lib",
     "build": "yarn clean && yarn tsc -p ./tsconfig.json"

@@ -6,6 +6,9 @@
   "license": "MIT",
   "main": "./lib/main.js",
   "bin": "./lib/main.js",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "clean": "yarn rimraf ./lib",
     "generate:grpc-worker": "yarn node test/generate-grpc-worker.js",
