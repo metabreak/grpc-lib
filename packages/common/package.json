@@ -1,7 +1,7 @@
 {
   "name": "@metabreak/grpc-common",
   "description": "Metabreak gRPC lib: common package",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": "Oleg Shilov <me@olegshilov.com>",
   "license": "MIT",
   "main": "./lib/index.js",
