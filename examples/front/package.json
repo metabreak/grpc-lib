@@ -1,23 +1,23 @@
 {
   "name": "@metabreak/grpc-example-front",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.1.0",
   "scripts": {
     "start": "yarn parcel ./src/index.html",
     "generate": "yarn node scripts/generate"
   },
   "dependencies": {
-    "@metabreak/grpc-common": "1.0.0",
-    "@metabreak/grpc-web-client": "workspace:*",
+    "@metabreak/grpc-common": "1.1.0",
+    "@metabreak/grpc-web-client": "1.1.0",
     "@metabreak/grpc-well-known-types": "1.0.0",
-    "@metabreak/grpc-worker": "1.0.0",
-    "@metabreak/grpc-worker-client": "1.0.0",
-    "@metabreak/grpc-worker-gateway": "workspace:*",
+    "@metabreak/grpc-worker": "1.1.0",
+    "@metabreak/grpc-worker-client": "1.1.0",
+    "@metabreak/grpc-worker-gateway": "1.0.0",
     "google-protobuf": "3.17.3",
     "rxjs": "7.2.0"
   },
   "devDependencies": {
-    "@metabreak/protoc-gen-worker": "1.0.0",
+    "@metabreak/protoc-gen-worker": "1.0.1",
     "parcel": "next",
     "rimraf": "3.0.2",
     "typescript": "4.3.5"
