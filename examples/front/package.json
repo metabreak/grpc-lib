@@ -1,6 +1,7 @@
 {
   "name": "@metabreak/grpc-example-front",
   "private": true,
+  "version": "0.0.0",
   "scripts": {
     "start": "yarn parcel ./src/index.html",
     "generate": "yarn node scripts/generate"
