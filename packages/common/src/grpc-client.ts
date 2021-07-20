@@ -5,18 +5,13 @@ import { GrpcMessageClass } from './grpc-message-class';
 import { GrpcMetadata } from './grpc-metadata';
 
 /**
- * This interface describes transport layer client factory, which is important in instantiating GrpcClient
- * because the GrpcClientFactory is bound to the dependency injection (use constructor to inject normal Angular services & config),
- * while GrpcClient has none
+ * Settings for the implementation of GrpcClient
  */
-export interface GrpcClientFactory<ST> {
-  /**
-   * Create a GrpcClient
-   * @param serviceId a service type in proto (passed in by generated service client), e.g.
-   * @param settings settings for underlying grpc client implementation
-   * @returns new GrpcClient
-   */
-  createClient(serviceId: string, settings: ST): GrpcClient<ST>;
+export interface GrpcClientSettings {
+  host: string;
+  format?: string;
+  suppressCorsPreflight?: boolean;
+  withCredentials?: boolean;
 }
 
 /**
@@ -30,14 +25,30 @@ export interface GrpcClient<ST> {
   getSettings(): ST;
 
   /**
-   * Handle unary RPC
+   * Handle unary RPC and return promise
    * @param path gRPC method path (rpc path)
    * @param req request data
    * @param metadata request metadata
    * @param reqclss request message class
    * @param resclss response message class
    */
-  unary<Q extends GrpcMessage, S extends GrpcMessage>(
+  unaryAsPromise<Q extends GrpcMessage, S extends GrpcMessage>(
+    path: string,
+    req: Q,
+    metadata: GrpcMetadata,
+    reqclss: GrpcMessageClass<Q>,
+    resclss: GrpcMessageClass<S>,
+  ): Promise<GrpcEvent<S>>;
+
+  /**
+   * Handle unary RPC and return observable
+   * @param path gRPC method path (rpc path)
+   * @param req request data
+   * @param metadata request metadata
+   * @param reqclss request message class
+   * @param resclss response message class
+   */
+  unaryAsObservable<Q extends GrpcMessage, S extends GrpcMessage>(
     path: string,
     req: Q,
     metadata: GrpcMetadata,

@@ -8,9 +8,11 @@
   },
   "dependencies": {
     "@metabreak/grpc-common": "1.0.0",
+    "@metabreak/grpc-web-client": "workspace:*",
     "@metabreak/grpc-well-known-types": "1.0.0",
     "@metabreak/grpc-worker": "1.0.0",
     "@metabreak/grpc-worker-client": "1.0.0",
+    "@metabreak/grpc-worker-gateway": "workspace:*",
     "google-protobuf": "3.17.3",
     "rxjs": "7.2.0"
   },

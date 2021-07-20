@@ -1,8 +1,28 @@
-import { GrpcCallType, GrpcMessage } from '@metabreak/grpc-common';
+import {
+  GrpcCallType,
+  GrpcMessage,
+  GrpcMessageClass,
+  GrpcClientSettings,
+} from '@metabreak/grpc-common';
 import { Error, GrpcWebClientBase, MethodDescriptor, Status } from 'grpc-web';
 import { GrpcWorkerApi } from './api';
-import { GrpcWorkerClientSettings } from './client-settings';
-import { GrpcWorkerServiceClientDef } from './service-client-def';
+
+/**
+ * Generated service client method definition
+ */
+export interface GrpcWorkerRPCDef {
+  type: GrpcCallType;
+  reqclss: GrpcMessageClass<any>;
+  resclss: GrpcMessageClass<any>;
+}
+
+/**
+ * Generated service client definition
+ */
+export interface GrpcWorkerServiceClientDef {
+  serviceId: string;
+  methods: { [path: string]: GrpcWorkerRPCDef };
+}
 
 /**
  * A worker-side service of worker client implementation based on grpc-web
@@ -31,7 +51,7 @@ export class GrpcWorker {
   private clients = new Map<
     string,
     {
-      settings: GrpcWorkerClientSettings;
+      settings: GrpcClientSettings;
       client: GrpcWebClientBase;
     }
   >();
@@ -111,12 +131,13 @@ export class GrpcWorker {
       );
     }
 
-    const respond = (msg: any) =>
-      (postMessage as any)({
+    function respond(msg: any) {
+      postMessage({
         type: GrpcWorkerApi.GrpcWorkerMessageType.rpcResponse,
         id: message.id,
         ...msg,
       });
+    }
 
     const { type, reqclss, resclss } = def.methods[message.path];
     const request = new reqclss(message.request);
@@ -127,7 +148,9 @@ export class GrpcWorker {
       type === GrpcCallType.unary ? 'unary' : 'server_streaming',
       reqclss,
       resclss,
-      (req: GrpcMessage) => req.serializeBinary(),
+      (req: GrpcMessage) => {
+        return req.serializeBinary();
+      },
       resclss.deserializeBinary,
     );
 

@@ -26,7 +26,6 @@
   },
   "devDependencies": {
     "@metabreak/grpc-common": "1.0.0",
-    "@metabreak/grpc-core": "1.0.0",
     "@metabreak/grpc-web-client": "1.0.0",
     "@metabreak/grpc-worker": "1.0.0",
     "@metabreak/grpc-worker-client": "1.0.0",

@@ -15,6 +15,7 @@
   "dependencies": {
     "@metabreak/grpc-common": "1.0.0",
     "@metabreak/grpc-worker": "1.0.0",
+    "@metabreak/grpc-worker-gateway": "workspace:*",
     "rxjs": "7.2.0"
   },
   "devDependencies": {

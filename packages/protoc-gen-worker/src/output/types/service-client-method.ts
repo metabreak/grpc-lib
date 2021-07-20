@@ -31,6 +31,25 @@ export class ServiceClientMethod {
     this.rpcPath = `/${this.serviceUrlPrefix}${this.service.name}/${this.serviceMethod.name}`;
   }
 
+  private getMethodTypeDef(isUnary: boolean, isPromise = false): string {
+    const callTypeDoc = isUnary ? 'Server streaming' : 'Unary';
+    const isDeprecated =
+      !!this.serviceMethod.options && this.serviceMethod.options.deprecated;
+    const typeDocString = [
+      '/**',
+      ` * ${callTypeDoc} RPC for ${this.rpcPath}`,
+      isDeprecated ? ' * @deprecated' : undefined,
+      ' * @param requestData Request data',
+      ' * @param requestMetadata Request metadata',
+      ` * @returns ${isPromise ? 'Promise' : 'Observable'}<${this.outputType}>`,
+      ' */',
+    ]
+      .filter(Boolean)
+      .join('\n');
+
+    return typeDocString;
+  }
+
   printMethod(printer: Printer) {
     Services.Logger.debug(
       `Start printing service client method ${this.serviceMethod.name} @ ${this.service.name} in proto ${this.proto.name}`,
@@ -43,29 +62,13 @@ export class ServiceClientMethod {
     );
 
     const camelizeMethodName = camelizeSafe(this.serviceMethod.name);
-    const callType = this.serviceMethod.serverStreaming
-      ? 'Server streaming'
-      : 'Unary';
     const clientCallType = this.serviceMethod.serverStreaming
       ? 'serverStream'
       : 'unary';
-    const isDeprecated =
-      !!this.serviceMethod.options && this.serviceMethod.options.deprecated;
 
-    const typeDocString = [
-      '/**',
-      ` * ${callType} RPC for ${this.rpcPath}`,
-      isDeprecated ? ' * @deprecated' : undefined,
-      ' * @param requestData Request data',
-      ' * @param requestMetadata Request metadata',
-      ` * @returns Observable<${this.outputType}>`,
-      ' */',
-    ]
-      .filter(Boolean)
-      .join('\n');
-
-    printer.add(`
-      ${typeDocString}
+    if (this.serviceMethod.serverStreaming) {
+      printer.add(`
+      ${this.getMethodTypeDef(!this.serviceMethod.serverStreaming)}
       ${camelizeMethodName}(
         requestData?: ${this.inputType}.AsObject,
         requestMetadata: any = {}
@@ -82,6 +85,56 @@ export class ServiceClientMethod {
         );
       }
     `);
+    } else {
+      printer.add(`
+        ${this.getMethodTypeDef(this.serviceMethod.serverStreaming)}
+        ${camelizeMethodName}AsObservable(
+          grpcRequest: ${this.inputType},
+          grpcMetadata: GrpcMetadata
+        ): Observable<GrpcEvent<${this.outputType}>> {
+          return this.client.${clientCallType}AsObservable(
+            '${this.rpcPath}',
+            grpcRequest,
+            grpcMetadata,
+            ${this.inputType},
+            ${this.outputType}
+          );
+        }
+      `);
+
+      printer.add(`
+        ${this.getMethodTypeDef(this.serviceMethod.serverStreaming, true)}
+        ${camelizeMethodName}AsPromise(
+          grpcRequest: ${this.inputType},
+          grpcMetadata: GrpcMetadata
+        ): Promise<GrpcEvent<${this.outputType}>> {
+          return this.client.${clientCallType}AsPromise(
+            '${this.rpcPath}',
+            grpcRequest,
+            grpcMetadata,
+            ${this.inputType},
+            ${this.outputType}
+          );
+        }
+      `);
+
+      printer.add(`
+        ${camelizeMethodName}(
+          requestData?: ${this.inputType}.AsObject,
+          requestMetadata: Record<string, string> = {},
+          asPromise = false
+        ): Promise<GrpcEvent<${this.outputType}>> | Observable<GrpcEvent<${this.outputType}>> {
+          const grpcRequest = new ${this.inputType}(requestData);
+          const grpcMetadata = new GrpcMetadata(requestMetadata);
+
+          if (asPromise) {
+            return this.${camelizeMethodName}AsPromise(grpcRequest, grpcMetadata);
+          }
+
+          return this.${camelizeMethodName}AsObservable(grpcRequest, grpcMetadata);
+        }
+      `);
+    }
 
     Services.Logger.debug(
       `End printing service client method ${this.serviceMethod.name} @ ${this.service.name} in proto ${this.proto.name}`,
