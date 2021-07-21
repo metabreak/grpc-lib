@@ -18,6 +18,7 @@
   },
   "scripts": {
     "clean": "yarn rimraf ./lib",
+    "generate": "yarn generate:grpc-worker && yarn generate:grpc-web",
     "generate:grpc-worker": "yarn node test/generate-grpc-worker.js",
     "generate:grpc-web": "yarn node test/generate-grpc-web.js",
     "build": "yarn clean && yarn tsc -p ./tsconfig.json && chmod +x ./lib/main.js",
