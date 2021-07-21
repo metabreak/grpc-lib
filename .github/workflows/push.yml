@@ -12,7 +12,7 @@ defaults:
     shell: bash
 
 concurrency:
-  group: ${{ github.ref }}
+  group: push-${{ github.ref }}
   cancel-in-progress: true
 
 env:
