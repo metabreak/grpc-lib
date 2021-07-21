@@ -1,5 +1,5 @@
 import { GrpcMessagePool } from '@metabreak/grpc-common';
-import 'jest';
+
 import { TestMessage } from '../../out/data-types.pb';
 import { Any } from '../../out/google/protobuf/any.pb';
 import { Empty } from '../../out/google/protobuf/empty.pb';

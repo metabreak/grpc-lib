@@ -1,4 +1,3 @@
-import 'jest';
 import * as oneOf from '../out/oneof.pb';
 
 describe('data-types.proto', () => {

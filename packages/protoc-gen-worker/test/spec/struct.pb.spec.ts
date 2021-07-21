@@ -1,5 +1,5 @@
 import * as structGoogle from 'google-protobuf/google/protobuf/struct_pb';
-import 'jest';
+
 import * as struct from '../out/google/protobuf/struct.pb';
 
 describe('struct.proto', () => {

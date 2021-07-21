@@ -1,4 +1,3 @@
-import 'jest';
 import * as dataTypesWebGrpc from '../out-grpc-web/data-types_pb';
 import * as dataTypes from '../out/data-types.pb';
 

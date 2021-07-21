@@ -1,4 +1,3 @@
-import 'jest';
 import * as maps from '../out/maps.pb';
 
 describe('maps.proto', () => {

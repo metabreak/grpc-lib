@@ -1,4 +1,3 @@
-import 'jest';
 import { Timestamp } from '../../out/google/protobuf/timestamp.pb';
 
 describe('Timestamp', () => {

@@ -1,4 +1,3 @@
-import 'jest';
 import * as empty from '../out/google/protobuf/empty.pb';
 
 describe('empty.proto', () => {
