@@ -39,6 +39,7 @@ jobs:
         uses: arduino/setup-protoc@v1.1.2
         with:
           version: ${{ env.PROTOC_VERSION }}
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Install protoc-gen-grpc-web
         run: |
           sudo wget https://github.com/grpc/grpc-web/releases/download/${PROTOC_GEN_GRPC_WEB_VERSION}/protoc-gen-grpc-web-${PROTOC_GEN_GRPC_WEB_VERSION}-linux-x86_64 -O /usr/bin/protoc-gen-grpc-web
@@ -74,6 +75,7 @@ jobs:
         uses: arduino/setup-protoc@v1.1.2
         with:
           version: ${{ env.PROTOC_VERSION }}
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Install protoc-gen-grpc-web
         run: |
           sudo wget https://github.com/grpc/grpc-web/releases/download/${PROTOC_GEN_GRPC_WEB_VERSION}/protoc-gen-grpc-web-${PROTOC_GEN_GRPC_WEB_VERSION}-linux-x86_64 -O /usr/bin/protoc-gen-grpc-web
