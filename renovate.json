@@ -1,0 +1,19 @@
+{
+  "extends": [
+    ":ignoreUnstable",
+    ":enableVulnerabilityAlerts",
+    ":automergePatch",
+    ":prNotPending",
+    ":prConcurrentLimitNone",
+    ":prHourlyLimitNone",
+    ":separatePatchReleases",
+    ":separateMultipleMajorReleases",
+    ":assignAndReview(olegshilov)"
+  ],
+  "semanticCommitType": "chore",
+  "automerge": true,
+  "ignoreScripts": true,
+  "labels": ["dependencies"],
+  "rangeStrategy": "pin",
+  "ignoreDeps": ["node", "yarn"]
+}
