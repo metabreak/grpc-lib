@@ -28,6 +28,10 @@ Original changelog may found [here](https://github.com/ngx-grpc/ngx-grpc/blob/e9
 - **protoc-gen-worker:** set correct return types for `toProtobufJSON` methods ([46914e8](https://github.com/metabreak/grpc-lib/commit/46914e8465a55f7c9810f17736a99558f93dc4c1))
 - **protoc-gen-worker:** use repo prettier config to format generated code ([e0dae07](https://github.com/metabreak/grpc-lib/commit/e0dae0799a56732ec0cc5142f4784ef17a855f1d))
 
+### Miscellaneous Chores
+
+- clone and squash ngrx-grpc repo ([ca53b99](https://github.com/metabreak/grpc-lib/commit/ca53b99e8311c8f84ed09f2f2f304693aea371ad))
+
 ### Dependencies
 
 - **@metabreak/grpc-common:** upgraded to 1.0.0
