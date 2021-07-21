@@ -4,6 +4,7 @@ on:
   pull_request:
     branches:
       - main
+      - next
       - dev
 
 env:
@@ -13,7 +14,7 @@ env:
 
 jobs:
   main:
-    name: Build and test
+    name: Test and build
     runs-on: ubuntu-latest
     if: "!contains(github.event.head_commit.message, '[ci skip]')"
     steps:

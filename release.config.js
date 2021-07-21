@@ -2,7 +2,7 @@ const releaseCommitMessage =
   'chore(release): ${nextRelease.gitTag}\n\n${nextRelease.notes}\n\n[skip ci]';
 
 module.exports = {
-  branches: ['main', 'dev'],
+  branches: ['main', 'next', { name: 'dev', prerelease: true }],
   plugins: [
     [
       '@semantic-release/commit-analyzer',
