@@ -1,8 +1,8 @@
-# @ngx-grpc/well-known-types
+# @metabreak/grpc-well-known-types
 
-ngx-grpc well-known types package.
+Well-known types package.
 
-For documentation please refer to [Github page](https://github.com/ngx-grpc/ngx-grpc)
+For documentation please refer to [Github page](https://github.com/metabreak/grpc-lib)
 
 ## License
 

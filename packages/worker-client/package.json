@@ -8,6 +8,11 @@
   "publishConfig": {
     "access": "public"
   },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:metabreak/grpc-lib.git",
+    "directory": "packages/worker-client"
+  },
   "scripts": {
     "clean": "yarn rimraf ./lib",
     "build": "yarn clean && yarn tsc -p ./tsconfig.json"

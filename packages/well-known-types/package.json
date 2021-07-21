@@ -8,6 +8,11 @@
   "publishConfig": {
     "access": "public"
   },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:metabreak/grpc-lib.git",
+    "directory": "packages/well-known-types"
+  },
   "scripts": {
     "clean": "yarn rimraf ./lib",
     "generate": "yarn node scripts/generate",

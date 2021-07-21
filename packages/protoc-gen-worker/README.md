@@ -2,7 +2,7 @@
 
 gRPC code generator for Web Worker.
 
-For documentation please refer to [Github page](https://github.com/metabreak/grpc-worker)
+For documentation please refer to [Github page](https://github.com/metabreak/grpc-lib)
 
 ## License
 
