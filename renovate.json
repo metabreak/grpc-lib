@@ -3,7 +3,6 @@
     ":ignoreUnstable",
     ":enableVulnerabilityAlerts",
     ":automergePatch",
-    ":prNotPending",
     ":prConcurrentLimitNone",
     ":prHourlyLimitNone",
     ":separatePatchReleases",
