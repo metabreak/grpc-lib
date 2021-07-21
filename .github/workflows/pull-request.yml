@@ -7,6 +7,10 @@ on:
       - next
       - dev
 
+defaults:
+  run:
+    shell: bash
+
 env:
   PROTOC_VERSION: '3.17.3'
   PROTOC_GEN_GRPC_WEB_VERSION: '1.2.1'
@@ -14,8 +18,14 @@ env:
 
 jobs:
   main:
-    name: Test and build
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os:
+          - ubuntu-latest
+          - macos-latest
+          - windows-latest
+    name: Test and build on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
     if: "!contains(github.event.head_commit.message, '[ci skip]')"
     steps:
       - name: Clone
