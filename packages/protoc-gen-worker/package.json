@@ -37,7 +37,7 @@
     "@metabreak/grpc-worker-client": "1.1.0",
     "@types/google-protobuf": "3.15.3",
     "@types/jest": "26.0.24",
-    "@types/node": "16.3.2",
+    "@types/node": "16.3.3",
     "@types/prettier": "2.3.2",
     "grpc-tools": "1.11.2",
     "jest": "27.0.6",
