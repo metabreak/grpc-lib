@@ -1,7 +1,7 @@
 {
   "name": "@metabreak/grpc-worker-gateway",
   "description": "Metabreak gRPC lib: worker gateway package",
-  "version": "1.0.0",
+  "version": "1.0.1-dev.1",
   "author": "Oleg Shilov <me@olegshilov.com>",
   "license": "MIT",
   "main": "./lib/index.js",
@@ -18,8 +18,8 @@
     "build": "yarn clean && yarn tsc -p ./tsconfig.json"
   },
   "dependencies": {
-    "@metabreak/grpc-common": "1.1.0",
-    "@metabreak/grpc-worker": "1.1.0",
+    "@metabreak/grpc-common": "1.1.1-dev.1",
+    "@metabreak/grpc-worker": "1.1.1-dev.1",
     "grpc-web": "1.2.1",
     "rxjs": "7.2.0"
   },
