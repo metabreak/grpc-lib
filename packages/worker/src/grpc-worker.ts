@@ -5,7 +5,15 @@ import {
   GrpcClientSettings,
 } from '@metabreak/grpc-common';
 import { Error, GrpcWebClientBase, MethodDescriptor, Status } from 'grpc-web';
-import { GrpcWorkerApi } from './api';
+import {
+  GrpcWorkerMessage,
+  GrpcWorkerMessageRPCCancel,
+  GrpcWorkerMessageRPCRequest,
+  GrpcWorkerMessageServiceClientConfig,
+  GrpcWorkerMessageType,
+  WorkerMessageEvent,
+  GrpcWorkerMessageRPCResponseType,
+} from './types';
 
 /**
  * Generated service client method definition
@@ -21,7 +29,7 @@ export interface GrpcWorkerRPCDef {
  */
 export interface GrpcWorkerServiceClientDef {
   serviceId: string;
-  methods: { [path: string]: GrpcWorkerRPCDef };
+  methods: Record<string, GrpcWorkerRPCDef>;
 }
 
 /**
@@ -32,7 +40,7 @@ export interface GrpcWorkerServiceClientDef {
  * ```
  * /// <reference lib="webworker" />
  *
- * import { GrpcWorker } from '@ngx-grpc/worker';
+ * import { GrpcWorker } from '@metabreak/grpc-worker';
  * import { GrpcWorkerEchoServiceClientDef } from '../proto/echo.pbwsc';
  *
  * const worker = new GrpcWorker();
@@ -47,7 +55,6 @@ export interface GrpcWorkerServiceClientDef {
  */
 export class GrpcWorker {
   private definitions = new Map<string, GrpcWorkerServiceClientDef>();
-
   private clients = new Map<
     string,
     {
@@ -55,7 +62,6 @@ export class GrpcWorker {
       client: GrpcWebClientBase;
     }
   >();
-
   private requestCancelHandlers = new Map<number, () => void>();
 
   /**
@@ -63,32 +69,30 @@ export class GrpcWorker {
    * Add here only the services you use, otherwise the worker size can explode.
    * @param defs generated service client definitions to register
    */
-  register(...defs: GrpcWorkerServiceClientDef[]) {
-    defs.forEach((def) => this.definitions.set(def.serviceId, def));
+  register(...defs: GrpcWorkerServiceClientDef[]): void {
+    defs.forEach((def) => {
+      return this.definitions.set(def.serviceId, def);
+    });
   }
 
   /**
    * Start the service
    */
-  start() {
+  start(): void {
     addEventListener(
       'message',
-      ({
-        data,
-      }: GrpcWorkerApi.WorkerMessageEvent<GrpcWorkerApi.GrpcWorkerMessage>) => {
+      ({ data }: WorkerMessageEvent<GrpcWorkerMessage>) => {
         switch (data.type) {
-          case GrpcWorkerApi.GrpcWorkerMessageType.serviceClientConfig:
+          case GrpcWorkerMessageType.serviceClientConfig:
             this.configureServiceClient(
-              data as GrpcWorkerApi.GrpcWorkerMessageServiceClientConfig,
+              data as GrpcWorkerMessageServiceClientConfig,
             );
             break;
-          case GrpcWorkerApi.GrpcWorkerMessageType.rpcRequest:
-            this.handleRpc(
-              data as GrpcWorkerApi.GrpcWorkerMessageRPCRequest<any>,
-            );
+          case GrpcWorkerMessageType.rpcRequest:
+            this.handleRpc(data as GrpcWorkerMessageRPCRequest<any>);
             break;
-          case GrpcWorkerApi.GrpcWorkerMessageType.rpcCancel:
-            this.cancelRpc(data as GrpcWorkerApi.GrpcWorkerMessageRPCCancel);
+          case GrpcWorkerMessageType.rpcCancel:
+            this.cancelRpc(data as GrpcWorkerMessageRPCCancel);
             break;
           default:
             throw new Error(`Unknown incoming message type ${data.type}`);
@@ -97,24 +101,32 @@ export class GrpcWorker {
     );
   }
 
-  private configureServiceClient(
-    message: GrpcWorkerApi.GrpcWorkerMessageServiceClientConfig,
-  ) {
-    const def = this.definitions.get(message.serviceId);
+  private configureServiceClient({
+    serviceId,
+    settings,
+  }: GrpcWorkerMessageServiceClientConfig): void {
+    const def = this.definitions.get(serviceId);
 
     if (!def) {
       throw new Error(
-        `Service client ${message.serviceId} is not registered in Worker`,
+        `Service client ${serviceId} is not registered in Worker`,
       );
     }
 
-    this.clients.set(message.serviceId, {
-      settings: message.settings,
-      client: new GrpcWebClientBase(message.settings),
+    const client = new GrpcWebClientBase(settings);
+
+    this.clients.set(serviceId, { settings, client });
+  }
+
+  private rpcRespond(requestId: number, msg: Record<string, unknown>): void {
+    postMessage({
+      type: GrpcWorkerMessageType.rpcResponse,
+      id: requestId,
+      ...msg,
     });
   }
 
-  private handleRpc(message: GrpcWorkerApi.GrpcWorkerMessageRPCRequest<any>) {
+  private handleRpc(message: GrpcWorkerMessageRPCRequest<any>): void {
     const def = this.definitions.get(message.serviceId);
 
     if (!def) {
@@ -129,14 +141,6 @@ export class GrpcWorker {
       throw new Error(
         `Service client ${message.serviceId} is not configured in Worker`,
       );
-    }
-
-    function respond(msg: any) {
-      postMessage({
-        type: GrpcWorkerApi.GrpcWorkerMessageType.rpcResponse,
-        id: message.id,
-        ...msg,
-      });
     }
 
     const { type, reqclss, resclss } = def.methods[message.path];
@@ -163,14 +167,13 @@ export class GrpcWorker {
         (error, response: GrpcMessage) => {
           if (error) {
             this.requestCancelHandlers.delete(message.id);
-            respond({
-              responseType:
-                GrpcWorkerApi.GrpcWorkerMessageRPCResponseType.error,
+            this.rpcRespond(message.id, {
+              responseType: GrpcWorkerMessageRPCResponseType.error,
               error,
             });
           } else {
-            respond({
-              responseType: GrpcWorkerApi.GrpcWorkerMessageRPCResponseType.data,
+            this.rpcRespond(message.id, {
+              responseType: GrpcWorkerMessageRPCResponseType.data,
               response: response.toObject(),
             });
           }
@@ -180,9 +183,8 @@ export class GrpcWorker {
       // take only status 0 because unary error already includes non-zero statuses
       stream.on('status', (status: Status) =>
         status.code === 0
-          ? respond({
-              responseType:
-                GrpcWorkerApi.GrpcWorkerMessageRPCResponseType.status,
+          ? this.rpcRespond(message.id, {
+              responseType: GrpcWorkerMessageRPCResponseType.status,
               status,
             })
           : null,
@@ -190,8 +192,8 @@ export class GrpcWorker {
 
       stream.on('end', () => {
         this.requestCancelHandlers.delete(message.id);
-        respond({
-          responseType: GrpcWorkerApi.GrpcWorkerMessageRPCResponseType.end,
+        this.rpcRespond(message.id, {
+          responseType: GrpcWorkerMessageRPCResponseType.end,
         });
       });
 
@@ -206,30 +208,30 @@ export class GrpcWorker {
 
       stream.on('error', (error: Error) => {
         this.requestCancelHandlers.delete(message.id);
-        respond({
-          responseType: GrpcWorkerApi.GrpcWorkerMessageRPCResponseType.error,
+        this.rpcRespond(message.id, {
+          responseType: GrpcWorkerMessageRPCResponseType.error,
           error,
         });
       });
 
       stream.on('status', (status: Status) =>
-        respond({
-          responseType: GrpcWorkerApi.GrpcWorkerMessageRPCResponseType.status,
+        this.rpcRespond(message.id, {
+          responseType: GrpcWorkerMessageRPCResponseType.status,
           status,
         }),
       );
 
       stream.on('data', (response: GrpcMessage) =>
-        respond({
-          responseType: GrpcWorkerApi.GrpcWorkerMessageRPCResponseType.data,
+        this.rpcRespond(message.id, {
+          responseType: GrpcWorkerMessageRPCResponseType.data,
           response: response.toObject(),
         }),
       );
 
       stream.on('end', () => {
         this.requestCancelHandlers.delete(message.id);
-        respond({
-          responseType: GrpcWorkerApi.GrpcWorkerMessageRPCResponseType.end,
+        this.rpcRespond(message.id, {
+          responseType: GrpcWorkerMessageRPCResponseType.end,
         });
       });
 
@@ -237,7 +239,7 @@ export class GrpcWorker {
     }
   }
 
-  private cancelRpc(message: GrpcWorkerApi.GrpcWorkerMessageRPCCancel) {
+  private cancelRpc(message: GrpcWorkerMessageRPCCancel) {
     const cancel = this.requestCancelHandlers.get(message.id);
 
     if (cancel) {
