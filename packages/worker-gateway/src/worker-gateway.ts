@@ -6,7 +6,14 @@ import {
   GrpcStatusEvent,
   GrpcClientSettings,
 } from '@metabreak/grpc-common';
-import { GrpcWorkerApi } from '@metabreak/grpc-worker';
+import {
+  GrpcWorkerMessageType,
+  GrpcWorkerMessageServiceClientConfig,
+  GrpcWorkerMessageRPCRequest,
+  GrpcWorkerMessageRPCResponse,
+  GrpcWorkerMessageRPCResponseType,
+  GrpcWorkerMessageRPCCancel,
+} from '@metabreak/grpc-worker';
 import { Metadata } from 'grpc-web';
 import { Observable, Observer } from 'rxjs';
 
@@ -37,16 +44,15 @@ export class GrpcWorkerGateway {
 
   constructor(private worker: Worker) {
     worker.onmessage = (event: MessageEvent) => {
-      const data =
-        event.data as GrpcWorkerApi.GrpcWorkerMessageRPCResponse<any>;
+      const data = event.data as GrpcWorkerMessageRPCResponse<any>;
       const connection = this.connections.get(data.id);
 
       if (
         connection !== undefined &&
-        data.type === GrpcWorkerApi.GrpcWorkerMessageType.rpcResponse
+        data.type === GrpcWorkerMessageType.rpcResponse
       ) {
         switch (data.responseType) {
-          case GrpcWorkerApi.GrpcWorkerMessageRPCResponseType.error: {
+          case GrpcWorkerMessageRPCResponseType.error: {
             const grpcError = new GrpcStatusEvent(
               data.error.code,
               data.error.message,
@@ -63,7 +69,7 @@ export class GrpcWorkerGateway {
             break;
           }
 
-          case GrpcWorkerApi.GrpcWorkerMessageRPCResponseType.status: {
+          case GrpcWorkerMessageRPCResponseType.status: {
             if (connection.type === ConnectionType.Observable) {
               connection.observer.next(
                 new GrpcStatusEvent(
@@ -76,7 +82,7 @@ export class GrpcWorkerGateway {
             break;
           }
 
-          case GrpcWorkerApi.GrpcWorkerMessageRPCResponseType.data: {
+          case GrpcWorkerMessageRPCResponseType.data: {
             const grpcData = new GrpcDataEvent(data.response);
 
             if (connection.type === ConnectionType.Observable) {
@@ -90,7 +96,7 @@ export class GrpcWorkerGateway {
             break;
           }
 
-          case GrpcWorkerApi.GrpcWorkerMessageRPCResponseType.end: {
+          case GrpcWorkerMessageRPCResponseType.end: {
             if (connection.type === ConnectionType.Observable) {
               connection.observer.complete();
             } else {
@@ -104,16 +110,28 @@ export class GrpcWorkerGateway {
     };
   }
 
-  private createRequestId() {
+  private createRequestId(): number {
     return this.lastId++;
   }
 
-  configureServiceClient(serviceId: string, settings: GrpcClientSettings) {
+  private closeConnection(id: number): void {
     this.worker.postMessage({
-      type: GrpcWorkerApi.GrpcWorkerMessageType.serviceClientConfig,
+      type: GrpcWorkerMessageType.rpcCancel,
+      id,
+    } as GrpcWorkerMessageRPCCancel);
+
+    this.connections.delete(id);
+  }
+
+  configureServiceClient(
+    serviceId: string,
+    settings: GrpcClientSettings,
+  ): void {
+    this.worker.postMessage({
+      type: GrpcWorkerMessageType.serviceClientConfig,
       serviceId,
       settings,
-    } as GrpcWorkerApi.GrpcWorkerMessageServiceClientConfig);
+    } as GrpcWorkerMessageServiceClientConfig);
   }
 
   callUnaryFromWorkerAsObservable<Q extends GrpcMessage, S extends GrpcMessage>(
@@ -128,13 +146,13 @@ export class GrpcWorkerGateway {
       this.connections.set(id, { type: ConnectionType.Observable, observer });
 
       this.worker.postMessage({
-        type: GrpcWorkerApi.GrpcWorkerMessageType.rpcRequest,
+        type: GrpcWorkerMessageType.rpcRequest,
         id,
         serviceId,
         path,
         request,
         metadata,
-      } as GrpcWorkerApi.GrpcWorkerMessageRPCRequest<Q>);
+      } as GrpcWorkerMessageRPCRequest<Q>);
 
       return () => {
         this.closeConnection(id);
@@ -157,13 +175,13 @@ export class GrpcWorkerGateway {
       });
 
       this.worker.postMessage({
-        type: GrpcWorkerApi.GrpcWorkerMessageType.rpcRequest,
+        type: GrpcWorkerMessageType.rpcRequest,
         id,
         serviceId,
         path,
         request,
         metadata,
-      } as GrpcWorkerApi.GrpcWorkerMessageRPCRequest<Q>);
+      } as GrpcWorkerMessageRPCRequest<Q>);
     });
   }
 
@@ -179,24 +197,15 @@ export class GrpcWorkerGateway {
       this.connections.set(id, { type: ConnectionType.Observable, observer });
 
       this.worker.postMessage({
-        type: GrpcWorkerApi.GrpcWorkerMessageType.rpcRequest,
+        type: GrpcWorkerMessageType.rpcRequest,
         id,
         serviceId,
         path,
         request,
         metadata,
-      } as GrpcWorkerApi.GrpcWorkerMessageRPCRequest<Q>);
+      } as GrpcWorkerMessageRPCRequest<Q>);
 
       return () => this.closeConnection(id);
     });
-  }
-
-  closeConnection(id: number) {
-    this.worker.postMessage({
-      type: GrpcWorkerApi.GrpcWorkerMessageType.rpcCancel,
-      id,
-    } as GrpcWorkerApi.GrpcWorkerMessageRPCCancel);
-
-    this.connections.delete(id);
   }
 }
