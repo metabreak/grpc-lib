@@ -1,35 +1,41 @@
 export class GrpcMetadata {
   private map: Map<string, string>;
 
-  constructor(initial: { [prop: string]: string } = {}) {
-    // initial = initial ?? {};
-
-    this.map = Object.keys(initial).reduce(
-      (m, k) => m.set(k, initial[k]),
-      new Map(),
-    );
+  constructor(initial: Record<string, string> = {}) {
+    this.map = Object.keys(initial).reduce((accumulator, currentKey) => {
+      return accumulator.set(currentKey, initial[currentKey]);
+    }, new Map<string, string>());
   }
 
-  set(name: string, value: string) {
+  set(name: string, value: string): void {
     this.map.set(name, value);
   }
 
-  get(name: string) {
+  get(name: string): string | undefined {
     return this.map.get(name);
   }
 
-  has(name: string) {
+  has(name: string): boolean {
     return this.map.has(name);
   }
 
-  clone() {
+  clone(): GrpcMetadata {
     return new GrpcMetadata(this.toObject());
   }
 
-  toObject() {
-    return [...this.map.keys()].reduce(
-      (o, k) => ({ ...o, [k]: this.map.get(k) }),
-      {},
-    );
+  toObject(): Record<string, string> {
+    const keysArray = [...this.map.keys()];
+    return keysArray.reduce((accumulator, currentKey) => {
+      const currentValue = this.map.get(currentKey);
+
+      if (currentValue) {
+        return {
+          ...accumulator,
+          [currentKey]: currentValue,
+        };
+      }
+
+      return accumulator;
+    }, {} as Record<string, string>);
   }
 }

@@ -18,7 +18,9 @@ export interface GrpcClientSettings {
  * A transport layer client implementation interface
  * Instance of GrpcClient is created for every gRPC service client by corresponding GrpcClientFactory
  */
-export interface GrpcClient<ST> {
+export interface GrpcClient<
+  ST extends GrpcClientSettings = GrpcClientSettings,
+> {
   /**
    * Returns a copy of current client settings
    */
@@ -86,7 +88,7 @@ export enum GrpcCallType {
  */
 export interface GrpcRequest<Q extends GrpcMessage, S extends GrpcMessage> {
   path: string;
-  client: GrpcClient<any>;
+  client: GrpcClient;
   type: GrpcCallType;
   requestData: Q;
   requestMetadata: GrpcMetadata;

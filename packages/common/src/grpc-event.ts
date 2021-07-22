@@ -4,8 +4,8 @@ import { GrpcMetadata } from './grpc-metadata';
 /**
  * Data event. This event is emitted when the new message arrives from the server
  */
-export class GrpcDataEvent<T extends GrpcMessage> {
-  constructor(public data: T) {}
+export class GrpcDataEvent<D extends GrpcMessage> {
+  constructor(public data: D) {}
 }
 
 /**

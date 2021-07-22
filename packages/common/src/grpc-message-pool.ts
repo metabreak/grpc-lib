@@ -12,11 +12,13 @@ export class GrpcMessagePool {
     this.add(messages);
   }
 
-  add(messages: GrpcMessageClass<GrpcMessage>[]) {
-    messages.forEach((m) => this.index.set(m.id, m));
+  add(messages: GrpcMessageClass<GrpcMessage>[]): void {
+    messages.forEach((message) => {
+      this.index.set(message.id, message);
+    });
   }
 
-  get(id: string) {
+  get(id: string): GrpcMessageClass<GrpcMessage> | undefined {
     return this.index.get(id);
   }
 }
