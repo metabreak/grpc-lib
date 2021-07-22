@@ -24,7 +24,7 @@ export class ServiceClient {
        * Service client implementation for ${serviceId}
        */
       export class ${this.service.name}Service {
-        constructor(private client: GrpcClient<unknown>) {}
+        constructor(private client: GrpcClient) {}
     `);
 
     printer.newLine();
