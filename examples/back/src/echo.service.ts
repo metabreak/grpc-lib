@@ -19,7 +19,7 @@ function createTimestamp(date: Date) {
 }
 
 export class EchoServiceServiceImpl implements IEchoServiceServer {
-  echoStream = async (call: ServerWritableStream<EchoRequest>) => {
+  async echoStream(call: ServerWritableStream<EchoRequest>): Promise<void> {
     const message = call.request.getMessage();
 
     console.log(`Received message: ${message}`);
@@ -30,8 +30,6 @@ export class EchoServiceServiceImpl implements IEchoServiceServer {
           if (call.cancelled) {
             console.log('Request is cancelled');
             reject();
-
-            // return;
           }
 
           const messageBack = `Response ${i + 1} for "${message}"`;
@@ -52,7 +50,6 @@ export class EchoServiceServiceImpl implements IEchoServiceServer {
             });
 
             reject();
-            // return;
           }
 
           resolve(undefined);
@@ -65,24 +62,20 @@ export class EchoServiceServiceImpl implements IEchoServiceServer {
     meta.set('x-custom-header-1', 'bla');
 
     call.end(meta);
-  };
+  }
 
-  echoOnce = (
+  echoOnce(
     call: ServerUnaryCall<EchoRequest>,
     callback: sendUnaryData<EchoResponse>,
-  ) => {
+  ): void {
     const message = call.request.getMessage();
 
     console.log(`Received message: ${message}`);
 
     if (call.request.getShouldthrow()) {
-      const trailer = new Metadata();
-
-      trailer.set('x-custom-header-1', 'wow');
-
       const metadata = new Metadata();
 
-      trailer.set('x-custom-header-1', 'wow,');
+      metadata.set('x-custom-header-1', 'wow');
 
       callback(
         {
@@ -91,7 +84,7 @@ export class EchoServiceServiceImpl implements IEchoServiceServer {
           metadata,
         } as ServiceError,
         null,
-        trailer,
+        metadata,
       );
 
       return;
@@ -106,5 +99,5 @@ export class EchoServiceServiceImpl implements IEchoServiceServer {
     console.log(`Responding with: ${messageBack}`);
 
     callback(null, response);
-  };
+  }
 }
