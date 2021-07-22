@@ -15,11 +15,9 @@ import { Observable } from 'rxjs';
  * GrpcClient implementation based on grpc-web
  */
 export class GrpcWebClient implements GrpcClient<GrpcClientSettings> {
-  private settings: GrpcClientSettings;
   private client: GrpcWebClientBase;
 
-  constructor(settings: GrpcClientSettings) {
-    this.settings = settings;
+  constructor(private settings: GrpcClientSettings) {
     this.client = new GrpcWebClientBase(this.settings);
   }
 
@@ -34,6 +32,7 @@ export class GrpcWebClient implements GrpcClient<GrpcClientSettings> {
     reqclss: GrpcMessageClass<Q>,
     resclss: GrpcMessageClass<S>,
   ): Promise<GrpcEvent<S>> {
+    const meta = metadata?.toObject() ?? {};
     const descriptor = new MethodDescriptor<Q, S>(
       path,
       'unary',
@@ -49,7 +48,7 @@ export class GrpcWebClient implements GrpcClient<GrpcClientSettings> {
       const stream = this.client.rpcCall<Q, S>(
         this.settings.host + path,
         req,
-        metadata?.toObject() ?? {},
+        meta,
         descriptor,
         (error, data) => {
           if (error) {
@@ -79,6 +78,7 @@ export class GrpcWebClient implements GrpcClient<GrpcClientSettings> {
     reqclss: GrpcMessageClass<Q>,
     resclss: GrpcMessageClass<S>,
   ): Observable<GrpcEvent<S>> {
+    const meta = metadata?.toObject() ?? {};
     const descriptor = new MethodDescriptor<Q, S>(
       path,
       'unary',
@@ -94,7 +94,7 @@ export class GrpcWebClient implements GrpcClient<GrpcClientSettings> {
       const stream = this.client.rpcCall<Q, S>(
         this.settings.host + path,
         req,
-        metadata?.toObject() ?? {},
+        meta,
         descriptor,
         (error, data) => {
           if (error) {
