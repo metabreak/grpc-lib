@@ -80,6 +80,8 @@ jobs:
           sudo chmod +x /usr/bin/protoc-gen-grpc-web
       - name: Install dependencies
         run: yarn
+      - name: Build
+        run: yarn build
       - name: Release
         env:
           GIT_AUTHOR_NAME: ${{ env.GIT_AUTHOR_NAME }}
