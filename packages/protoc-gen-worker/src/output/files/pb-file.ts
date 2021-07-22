@@ -7,7 +7,7 @@ import { Message } from '../types/message';
 export class PbFile {
   constructor(private proto: Proto) {}
 
-  print(printer: Printer) {
+  print(printer: Printer): void {
     Services.Logger.debug(`Start printing pb for ${this.proto.name}`);
 
     printer.add(this.proto.getImportedDependencies());

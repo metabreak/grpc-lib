@@ -202,7 +202,7 @@ export class Message {
     });
   }
 
-  print(printer: Printer) {
+  print(printer: Printer): void {
     printer.addDeps(
       ExternalDependencies.BinaryReader,
       ExternalDependencies.BinaryWriter,
@@ -291,7 +291,7 @@ export class Message {
     this.printSubTypes(printer);
   }
 
-  private printStaticRefineValues(printer: Printer) {
+  private printStaticRefineValues(printer: Printer): void {
     printer.addLine(`
       /**
        * Check all the properties and set default protobuf values if necessary
@@ -306,7 +306,7 @@ export class Message {
     printer.addLine('}');
   }
 
-  private printStaticDeserializeBinaryFromReader(printer: Printer) {
+  private printStaticDeserializeBinaryFromReader(printer: Printer): void {
     printer.addLine(`
       /**
        * Deserializes / reads binary message into message instance using provided binary reader
@@ -332,7 +332,7 @@ export class Message {
       }`);
   }
 
-  private printStaticSerializeBinaryToWriter(printer: Printer) {
+  private printStaticSerializeBinaryToWriter(printer: Printer): void {
     printer.addLine(`
       /**
        * Serializes a message to binary format using provided binary reader
@@ -348,7 +348,7 @@ export class Message {
     printer.addLine('}');
   }
 
-  private printGettersAndSetters(printer: Printer) {
+  private printGettersAndSetters(printer: Printer): void {
     this.messageFields.forEach((f) => {
       f.printGetter(printer);
       printer.newLine();
@@ -357,7 +357,7 @@ export class Message {
     });
   }
 
-  private printConstructor(printer: Printer) {
+  private printConstructor(printer: Printer): void {
     printer.addLine(`
       /**
        * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -376,7 +376,7 @@ export class Message {
     printer.addLine('}');
   }
 
-  private printAsObjectInterface(printer: Printer) {
+  private printAsObjectInterface(printer: Printer): void {
     printer.addLine(`
       /**
        * Standard JavaScript object representation for ${this.message.name}
@@ -390,7 +390,7 @@ export class Message {
     printer.addLine('}');
   }
 
-  private printToObject(printer: Printer) {
+  private printToObject(printer: Printer): void {
     printer.addLine(`
       /**
        * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
@@ -406,7 +406,7 @@ export class Message {
     printer.addLine('}');
   }
 
-  private printAsJSONInterface(printer: Printer) {
+  private printAsJSONInterface(printer: Printer): void {
     printer.addLine(`
       /**
        * Protobuf JSON representation for ${this.message.name}
@@ -423,7 +423,7 @@ export class Message {
     }
   }
 
-  private printToJSON(printer: Printer) {
+  private printToJSON(printer: Printer): void {
     printer.addLine(`
       /**
        * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
@@ -432,7 +432,7 @@ export class Message {
     `);
   }
 
-  private printToProtobufJSON(printer: Printer) {
+  private printToProtobufJSON(printer: Printer): void {
     printer.addDeps(ExternalDependencies.ToProtobufJSONOptions);
 
     printer.addLine(`
@@ -460,7 +460,7 @@ export class Message {
     printer.addLine('}');
   }
 
-  private printSubTypes(printer: Printer) {
+  private printSubTypes(printer: Printer): void {
     printer.addLine(`export module ${this.message.name} {`);
 
     this.printAsObjectInterface(printer);

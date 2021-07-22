@@ -26,7 +26,7 @@ export class BytesMessageField implements MessageField {
     this.dataType = getDataType(this.proto, this.messageField);
   }
 
-  printDeserializeBinaryFromReader(printer: Printer) {
+  printDeserializeBinaryFromReader(printer: Printer): void {
     const readerCall = '_reader.readBytes()';
 
     if (this.isArray) {
@@ -42,7 +42,7 @@ export class BytesMessageField implements MessageField {
     printer.add('break;');
   }
 
-  printSerializeBinaryToWriter(printer: Printer) {
+  printSerializeBinaryToWriter(printer: Printer): void {
     if (this.messageField.proto3Optional) {
       printer.add(`if (_instance.${this.attributeName} !== undefined && _instance.${this.attributeName} !== null) {
         _writer.writeBytes(${this.messageField.number}, _instance.${this.attributeName});
@@ -58,11 +58,11 @@ export class BytesMessageField implements MessageField {
     }
   }
 
-  printPrivateAttribute(printer: Printer) {
+  printPrivateAttribute(printer: Printer): void {
     printer.add(`private _${this.attributeName}?: ${this.dataType};`);
   }
 
-  printInitializer(printer: Printer) {
+  printInitializer(printer: Printer): void {
     if (this.isArray) {
       printer.add(
         `this.${this.attributeName} = (_value.${this.attributeName} ?? []).map(b => b ? b.subarray(0) : new Uint8Array());`,
@@ -72,7 +72,7 @@ export class BytesMessageField implements MessageField {
     }
   }
 
-  printDefaultValueSetter(printer: Printer) {
+  printDefaultValueSetter(printer: Printer): void {
     if (this.oneOf || this.messageField.proto3Optional) {
       return;
     } else if (this.isArray) {
@@ -86,13 +86,13 @@ export class BytesMessageField implements MessageField {
     }
   }
 
-  printGetter(printer: Printer) {
+  printGetter(printer: Printer): void {
     printer.add(
       `get ${this.attributeName}(): ${this.dataType} | undefined { return this._${this.attributeName} }`,
     );
   }
 
-  printSetter(printer: Printer) {
+  printSetter(printer: Printer): void {
     printer.add(`set ${this.attributeName}(value: ${
       this.dataType
     } | undefined) {
@@ -101,7 +101,7 @@ export class BytesMessageField implements MessageField {
     }`);
   }
 
-  printToObjectMapping(printer: Printer) {
+  printToObjectMapping(printer: Printer): void {
     if (this.isArray) {
       printer.add(
         `${this.attributeName}: (this.${this.attributeName} ?? []).map(b => b ? b.subarray(0) : new Uint8Array()),`,
@@ -117,11 +117,11 @@ export class BytesMessageField implements MessageField {
     }
   }
 
-  printAsObjectMapping(printer: Printer) {
+  printAsObjectMapping(printer: Printer): void {
     printer.add(`${this.attributeName}?: ${this.dataType};`);
   }
 
-  printToProtobufJSONMapping(printer: Printer) {
+  printToProtobufJSONMapping(printer: Printer): void {
     printer.addDeps(ExternalDependencies.uint8ArrayToBase64);
 
     if (this.isArray) {
@@ -139,7 +139,7 @@ export class BytesMessageField implements MessageField {
     }
   }
 
-  printAsJSONMapping(printer: Printer) {
+  printAsJSONMapping(printer: Printer): void {
     if (this.messageField.proto3Optional) {
       printer.add(`${this.attributeName}?: string | null;`);
     } else {

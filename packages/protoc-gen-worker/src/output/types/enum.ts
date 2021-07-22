@@ -6,7 +6,7 @@ import { Printer } from '../misc/printer';
 export class Enum {
   constructor(private proto: Proto, private protoEnum: ProtoEnum) {}
 
-  print(printer: Printer) {
+  print(printer: Printer): void {
     printer.add(`export enum ${classify(this.protoEnum.name)} {
       ${this.protoEnum.valueList
         .map((v) => `${preserveCaseSafe(v.name)} = ${v.number}`)

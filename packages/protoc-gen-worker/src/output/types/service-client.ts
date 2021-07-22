@@ -8,7 +8,7 @@ import { ServiceClientMethod } from './service-client-method';
 export class ServiceClient {
   constructor(private proto: Proto, private service: ProtoService) {}
 
-  print(printer: Printer) {
+  print(printer: Printer): void {
     Services.Logger.debug(
       `Start printing service client ${this.service.name} in proto ${this.proto.name}`,
     );

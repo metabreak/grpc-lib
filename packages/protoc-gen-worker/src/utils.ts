@@ -4,19 +4,19 @@ const STRING_CAMELIZE_REGEXP = /(-|_|\.|\s)+(.)?/g;
 const STRING_UNDERSCORE_REGEXP_1 = /([a-z\d])([A-Z]+)/g;
 const STRING_UNDERSCORE_REGEXP_2 = /-|\s+/g;
 
-export function decamelize(str: string) {
+export function decamelize(str: string): string {
   return str.replace(STRING_DECAMELIZE_REGEXP, '$1_$2').toLowerCase();
 }
 
-export function capitalize(str: string) {
+export function capitalize(str: string): string {
   return str.charAt(0).toUpperCase() + str.substr(1);
 }
 
-export function dasherize(str: string) {
+export function dasherize(str: string): string {
   return decamelize(str).replace(STRING_DASHERIZE_REGEXP, '-');
 }
 
-export function camelize(str: string) {
+export function camelize(str: string): string {
   if (str.toUpperCase() === str) {
     str = str.toLowerCase();
   }
@@ -28,34 +28,34 @@ export function camelize(str: string) {
     .replace(/^([A-Z])/, (match) => match.toLowerCase());
 }
 
-export function classify(str: string) {
+export function classify(str: string): string {
   return str
     .split('.')
     .map((part) => capitalize(camelize(part)))
     .join('.');
 }
 
-export function underscore(str: string) {
+export function underscore(str: string): string {
   return str
     .replace(STRING_UNDERSCORE_REGEXP_1, '$1_$2')
     .replace(STRING_UNDERSCORE_REGEXP_2, '_')
     .toLowerCase();
 }
 
-export function pascalize(str: string) {
+export function pascalize(str: string): string {
   return str
     .replace(STRING_UNDERSCORE_REGEXP_1, '$1_$2')
     .replace(STRING_UNDERSCORE_REGEXP_2, '_')
     .toUpperCase();
 }
 
-export function preserveCaseSafe(name: string) {
+export function preserveCaseSafe(name: string): string {
   return ['default', 'var', 'let', 'const', 'function', 'class'].includes(name)
     ? 'pb_' + name
     : name;
 }
 
-export function camelizeSafe(name: string) {
+export function camelizeSafe(name: string): string {
   const escaped = [
     'default',
     'var',

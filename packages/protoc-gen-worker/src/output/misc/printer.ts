@@ -18,50 +18,49 @@ const newLine = '\n';
 export class Printer {
   private dependencies = new Set<Dependency>();
 
-  private code = '';
+  constructor(private code = '') {}
 
-  constructor() {
-    // just do nothing.
-  }
-
-  addDeps(...deps: Dependency[]) {
+  addDeps(...deps: Dependency[]): void {
     deps.forEach((item) => this.dependencies.add(item));
   }
 
-  add(code: string) {
+  add(code: string): void {
     this.code += code;
   }
 
-  addLine(code: string) {
+  addLine(code: string): void {
     this.add(code);
     this.newLine();
   }
 
-  newLine() {
+  newLine(): void {
     this.code += newLine;
   }
 
-  finalize() {
+  finalize(): string {
     return this.prettify(
       this.createLeadingComment() + this.createDependenciesCode() + this.code,
     );
   }
 
-  // TODO: Render generation date in this comment
-  private createLeadingComment() {
-    return `
-/* tslint:disable */
-/* eslint-disable */
-//
-// THIS IS A GENERATED FILE
-// DO NOT MODIFY IT! YOUR CHANGES WILL BE LOST
-//
+  private createLeadingComment(): string {
+    const generationISODate = new Date().toISOString();
+    const leadingCommentStrArr = [
+      `/* tslint:disable */`,
+      `/* eslint-disable */`,
+      newLine,
+      `// THIS IS A GENERATED FILE`,
+      `// DO NOT MODIFY IT! YOUR CHANGES WILL BE LOST`,
+      `// File was generated at: ${generationISODate}`,
+      newLine,
+    ];
 
-`;
+    return leadingCommentStrArr.filter(Boolean).join(newLine);
   }
 
-  private createDependenciesCode() {
+  private createDependenciesCode(): string {
     const deps = new Map<string, string[]>();
+    let code = '';
 
     Array.from(this.dependencies).forEach((dep) => {
       let group = deps.get(dep.from);
@@ -73,14 +72,14 @@ export class Printer {
       group.push(dep.token);
     });
 
-    let code = '';
-
     Array.from(deps.keys())
       .sort()
       .forEach((from) => {
-        const tokens = deps.get(from) as string[];
+        const tokens = deps.get(from) ?? [];
 
-        code += `import { ${tokens.sort().join(', ')} } from '${from}';\n`;
+        if (tokens.length > 0) {
+          code += `import { ${tokens.sort().join(', ')} } from '${from}';\n`;
+        }
       });
 
     code += newLine;
@@ -88,7 +87,7 @@ export class Printer {
     return code;
   }
 
-  private prettify(code: string) {
+  private prettify(code: string): string {
     return prettier.format(code, prettierConfig);
   }
 }

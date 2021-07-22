@@ -74,7 +74,7 @@ export class NumberMessageField implements MessageField {
     }
   }
 
-  printDeserializeBinaryFromReader(printer: Printer) {
+  printDeserializeBinaryFromReader(printer: Printer): void {
     if (this.isPacked) {
       printer.add(
         `case ${this.messageField.number}: (_instance.${this.attributeName} = _instance.${this.attributeName} ?? []).push(...(_reader.readPacked${this.protoDataType}() ?? []));`,
@@ -92,7 +92,7 @@ export class NumberMessageField implements MessageField {
     printer.add('break;');
   }
 
-  printSerializeBinaryToWriter(printer: Printer) {
+  printSerializeBinaryToWriter(printer: Printer): void {
     if (this.isPacked) {
       printer.add(`if (_instance.${this.attributeName} && _instance.${this.attributeName}.length) {
         _writer.writePacked${this.protoDataType}(${this.messageField.number}, _instance.${this.attributeName});
@@ -120,11 +120,11 @@ export class NumberMessageField implements MessageField {
     }
   }
 
-  printPrivateAttribute(printer: Printer) {
+  printPrivateAttribute(printer: Printer): void {
     printer.add(`private _${this.attributeName}?: ${this.dataType};`);
   }
 
-  printInitializer(printer: Printer) {
+  printInitializer(printer: Printer): void {
     if (this.isArray) {
       printer.add(
         `this.${this.attributeName} = (_value.${this.attributeName} ?? []).slice();`,
@@ -134,7 +134,7 @@ export class NumberMessageField implements MessageField {
     }
   }
 
-  printDefaultValueSetter(printer: Printer) {
+  printDefaultValueSetter(printer: Printer): void {
     if (this.oneOf || this.messageField.proto3Optional) {
       return;
     } else if (this.isArray) {
@@ -150,13 +150,13 @@ export class NumberMessageField implements MessageField {
     }
   }
 
-  printGetter(printer: Printer) {
+  printGetter(printer: Printer): void {
     printer.add(
       `get ${this.attributeName}(): ${this.dataType} | undefined { return this._${this.attributeName} }`,
     );
   }
 
-  printSetter(printer: Printer) {
+  printSetter(printer: Printer): void {
     printer.add(`set ${this.attributeName}(value: ${
       this.dataType
     } | undefined) {
@@ -165,7 +165,7 @@ export class NumberMessageField implements MessageField {
     }`);
   }
 
-  printToObjectMapping(printer: Printer) {
+  printToObjectMapping(printer: Printer): void {
     if (this.isArray) {
       printer.add(
         `${this.attributeName}: (this.${this.attributeName} ?? []).slice(),`,
@@ -175,11 +175,11 @@ export class NumberMessageField implements MessageField {
     }
   }
 
-  printAsObjectMapping(printer: Printer) {
+  printAsObjectMapping(printer: Printer): void {
     printer.add(`${this.attributeName}?: ${this.dataType};`);
   }
 
-  printToProtobufJSONMapping(printer: Printer) {
+  printToProtobufJSONMapping(printer: Printer): void {
     if (this.isArray) {
       printer.add(
         `${this.attributeName}: (this.${this.attributeName} ?? []).slice(),`,
@@ -193,7 +193,7 @@ export class NumberMessageField implements MessageField {
     }
   }
 
-  printAsJSONMapping(printer: Printer) {
+  printAsJSONMapping(printer: Printer): void {
     printer.add(
       `${this.attributeName}?: ${this.dataType}${
         this.oneOf || this.messageField.proto3Optional ? ' | null' : ''

@@ -6,11 +6,11 @@ import {
   ProtoMessageFieldType,
 } from '../../input/types';
 
-export function isFieldMap(proto: Proto, field: ProtoMessageField) {
+export function isFieldMap(proto: Proto, field: ProtoMessageField): boolean {
   if (isFieldMessage(field)) {
-    const msg = proto.resolveTypeMetadata(field.typeName).message;
+    const { message } = proto.resolveTypeMetadata(field.typeName);
 
-    if (msg && msg.options.mapEntry) {
+    if (message !== undefined && message.options.mapEntry) {
       return true;
     }
   }
@@ -18,17 +18,22 @@ export function isFieldMap(proto: Proto, field: ProtoMessageField) {
   return false;
 }
 
-export function getMapKeyValueFields(proto: Proto, field: ProtoMessageField) {
+export function getMapKeyValueFields(
+  proto: Proto,
+  field: ProtoMessageField,
+): [ProtoMessageField, ProtoMessageField] {
   const msg = proto.resolveTypeMetadata(field.typeName).message as ProtoMessage;
-  const key = msg.fieldList.find((f) => f.name === 'key') as ProtoMessageField;
-  const value = msg.fieldList.find(
-    (f) => f.name === 'value',
-  ) as ProtoMessageField;
+  const key = msg.fieldList.find((field) => {
+    return field.name === 'key';
+  }) as ProtoMessageField;
+  const value = msg.fieldList.find((field) => {
+    return field.name === 'value';
+  }) as ProtoMessageField;
 
   return [key, value];
 }
 
-export function isFieldMessage(field: ProtoMessageField) {
+export function isFieldMessage(field: ProtoMessageField): boolean {
   return (
     field.type === ProtoMessageFieldType.message ||
     field.type === ProtoMessageFieldType.group
@@ -100,7 +105,7 @@ export function getDataType(
   }
 }
 
-export function isPacked(proto: Proto, field: ProtoMessageField) {
+export function isPacked(proto: Proto, field: ProtoMessageField): boolean {
   const explicitlyPacked = !!field.options.packed;
   const implicitlyPacked =
     proto.syntax === 'proto3' &&
@@ -144,7 +149,7 @@ const implicitlyString = [
   ProtoMessageFieldType.uint64,
 ];
 
-export function isNumberNumber(field: ProtoMessageField) {
+export function isNumberNumber(field: ProtoMessageField): boolean {
   const always = alwaysNumber.includes(field.type);
   const explicitly =
     implicitlyString.includes(field.type) && field.options.jstype === 2;
@@ -152,10 +157,10 @@ export function isNumberNumber(field: ProtoMessageField) {
   return isNumeric(field) && (always || explicitly);
 }
 
-export function isNumberString(field: ProtoMessageField) {
+export function isNumberString(field: ProtoMessageField): boolean {
   return isNumeric(field) && !isNumberNumber(field);
 }
 
-export function isNumeric(field: ProtoMessageField) {
+export function isNumeric(field: ProtoMessageField): boolean {
   return [...alwaysNumber, ...implicitlyString].includes(field.type);
 }

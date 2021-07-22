@@ -50,7 +50,7 @@ export class ServiceClientMethod {
     return typeDocString;
   }
 
-  printMethod(printer: Printer) {
+  printMethod(printer: Printer): void {
     Services.Logger.debug(
       `Start printing service client method ${this.serviceMethod.name} @ ${this.service.name} in proto ${this.proto.name}`,
     );

@@ -3,7 +3,7 @@ import { Printer } from '../../misc/printer';
 import { WKT } from '../wkt';
 
 export class AnyWKT implements WKT {
-  printStaticMethods(printer: Printer) {
+  printStaticMethods(printer: Printer): void {
     printer.addLine(`
       private static prefix = 'type.googleapis.com/';
 
@@ -20,7 +20,7 @@ export class AnyWKT implements WKT {
     `);
   }
 
-  printMemberMethods(printer: Printer) {
+  printMemberMethods(printer: Printer): void {
     printer.addDeps(
       ExternalDependencies.GrpcMessage,
       ExternalDependencies.GrpcMessageClass,
@@ -104,7 +104,7 @@ export class AnyWKT implements WKT {
     `);
   }
 
-  printToProtobufJSON(printer: Printer) {
+  printToProtobufJSON(printer: Printer): void {
     printer.addLine(`
       if (!options?.messagePool) {
         throw new Error(\`Message pool is required to cast Any to JSON\`);
@@ -126,7 +126,7 @@ export class AnyWKT implements WKT {
     `);
   }
 
-  printAsProtobufJSON(printer: Printer) {
+  printAsProtobufJSON(printer: Printer): void {
     printer.addLine(`export type AsProtobufJSON = {
       '@type': string;
       value?: string;

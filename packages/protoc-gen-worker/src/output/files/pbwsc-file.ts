@@ -7,7 +7,7 @@ import { WorkerServiceClient } from '../types/worker-service-client';
 export class PbwscFile {
   constructor(private proto: Proto) {}
 
-  print(printer: Printer) {
+  print(printer: Printer): void {
     Services.Logger.debug(`Start printing pbwsc for ${this.proto.name}`);
 
     const fileName = basename(this.proto.getGeneratedFileBaseName());

@@ -3,93 +3,93 @@ import { Printer } from '../../misc/printer';
 import { WKT } from '../wkt';
 
 export class BoolValueWKT implements WKT {
-  printToProtobufJSON(printer: Printer) {
+  printToProtobufJSON(printer: Printer): void {
     printer.addLine(`return this.value;`);
   }
 
-  printAsProtobufJSON(printer: Printer) {
+  printAsProtobufJSON(printer: Printer): void {
     printer.addLine(`export type AsProtobufJSON = boolean | undefined;`);
   }
 }
 
 export class BytesValueWKT implements WKT {
-  printToProtobufJSON(printer: Printer) {
+  printToProtobufJSON(printer: Printer): void {
     printer.addDeps(ExternalDependencies.uint8ArrayToBase64);
 
     printer.addLine(`return this.value ? uint8ArrayToBase64(this.value) : '';`);
   }
 
-  printAsProtobufJSON(printer: Printer) {
+  printAsProtobufJSON(printer: Printer): void {
     printer.addLine(`export type AsProtobufJSON = string;`);
   }
 }
 
 export class DoubleValueWKT implements WKT {
-  printToProtobufJSON(printer: Printer) {
+  printToProtobufJSON(printer: Printer): void {
     printer.addLine(`return this.value;`);
   }
 
-  printAsProtobufJSON(printer: Printer) {
+  printAsProtobufJSON(printer: Printer): void {
     printer.addLine(`export type AsProtobufJSON = number | undefined;`);
   }
 }
 
 export class FloatValueWKT implements WKT {
-  printToProtobufJSON(printer: Printer) {
+  printToProtobufJSON(printer: Printer): void {
     printer.addLine(`return this.value;`);
   }
 
-  printAsProtobufJSON(printer: Printer) {
+  printAsProtobufJSON(printer: Printer): void {
     printer.addLine(`export type AsProtobufJSON = number | undefined;`);
   }
 }
 
 export class Int32ValueWKT implements WKT {
-  printToProtobufJSON(printer: Printer) {
+  printToProtobufJSON(printer: Printer): void {
     printer.addLine(`return this.value;`);
   }
 
-  printAsProtobufJSON(printer: Printer) {
+  printAsProtobufJSON(printer: Printer): void {
     printer.addLine(`export type AsProtobufJSON = number | undefined;`);
   }
 }
 
 export class Int64ValueWKT implements WKT {
-  printToProtobufJSON(printer: Printer) {
+  printToProtobufJSON(printer: Printer): void {
     printer.addLine(`return this.value;`);
   }
 
-  printAsProtobufJSON(printer: Printer) {
+  printAsProtobufJSON(printer: Printer): void {
     printer.addLine(`export type AsProtobufJSON = string | undefined;`);
   }
 }
 
 export class StringValueWKT implements WKT {
-  printToProtobufJSON(printer: Printer) {
+  printToProtobufJSON(printer: Printer): void {
     printer.addLine(`return this.value;`);
   }
 
-  printAsProtobufJSON(printer: Printer) {
+  printAsProtobufJSON(printer: Printer): void {
     printer.addLine(`export type AsProtobufJSON = string | undefined;`);
   }
 }
 
 export class UInt32ValueWKT implements WKT {
-  printToProtobufJSON(printer: Printer) {
+  printToProtobufJSON(printer: Printer): void {
     printer.addLine(`return this.value;`);
   }
 
-  printAsProtobufJSON(printer: Printer) {
+  printAsProtobufJSON(printer: Printer): void {
     printer.addLine(`export type AsProtobufJSON = number | undefined;`);
   }
 }
 
 export class UInt64ValueWKT implements WKT {
-  printToProtobufJSON(printer: Printer) {
+  printToProtobufJSON(printer: Printer): void {
     printer.addLine(`return this.value;`);
   }
 
-  printAsProtobufJSON(printer: Printer) {
+  printAsProtobufJSON(printer: Printer): void {
     printer.addLine(`export type AsProtobufJSON = string | undefined;`);
   }
 }

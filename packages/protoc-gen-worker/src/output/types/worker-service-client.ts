@@ -6,7 +6,7 @@ import { Printer } from '../misc/printer';
 export class WorkerServiceClient {
   constructor(private proto: Proto, private service: ProtoService) {}
 
-  print(printer: Printer) {
+  print(printer: Printer): void {
     printer.addDeps(
       ExternalDependencies.GrpcCallType,
       ExternalDependencies.GrpcWorkerServiceClientDef,

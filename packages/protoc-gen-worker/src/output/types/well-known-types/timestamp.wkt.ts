@@ -2,7 +2,7 @@ import { Printer } from '../../misc/printer';
 import { WKT } from '../wkt';
 
 export class TimestampWKT implements WKT {
-  printStaticMethods(printer: Printer) {
+  printStaticMethods(printer: Printer): void {
     printer.addLine(`
       static fromDate(date: Date) {
         const timestamp = new Timestamp();
@@ -22,7 +22,7 @@ export class TimestampWKT implements WKT {
     `);
   }
 
-  printMemberMethods(printer: Printer) {
+  printMemberMethods(printer: Printer): void {
     // TODO big math
     printer.addLine(`
       fromDate(date: Date) {
@@ -44,11 +44,11 @@ export class TimestampWKT implements WKT {
     `);
   }
 
-  printToProtobufJSON(printer: Printer) {
+  printToProtobufJSON(printer: Printer): void {
     printer.addLine(`return this.toISOString();`);
   }
 
-  printAsProtobufJSON(printer: Printer) {
+  printAsProtobufJSON(printer: Printer): void {
     printer.addLine(`export type AsProtobufJSON = string;`);
   }
 }

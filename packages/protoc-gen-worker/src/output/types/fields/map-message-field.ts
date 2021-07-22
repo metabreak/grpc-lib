@@ -37,7 +37,7 @@ export class MapMessageField implements MessageField {
     );
   }
 
-  printDeserializeBinaryFromReader(printer: Printer) {
+  printDeserializeBinaryFromReader(printer: Printer): void {
     const msgVarName = `msg_${this.messageField.number}`;
     const isStringKey =
       this.keyField.type === ProtoMessageFieldType.string ||
@@ -56,7 +56,7 @@ export class MapMessageField implements MessageField {
     );
   }
 
-  printSerializeBinaryToWriter(printer: Printer) {
+  printSerializeBinaryToWriter(printer: Printer): void {
     const varName = `_instance.${this.attributeName}`;
     const keysVarName = `keys_${this.messageField.number}`;
     const repeatedVarName = `repeated_${this.messageField.number}`;
@@ -78,11 +78,11 @@ export class MapMessageField implements MessageField {
     }`);
   }
 
-  printPrivateAttribute(printer: Printer) {
+  printPrivateAttribute(printer: Printer): void {
     printer.add(`private _${this.attributeName}?: ${this.dataType};`);
   }
 
-  printInitializer(printer: Printer) {
+  printInitializer(printer: Printer): void {
     let cloneFn = `_value!.${this.attributeName}![k]`;
 
     if (isFieldMessage(this.valueField)) {
@@ -99,7 +99,7 @@ export class MapMessageField implements MessageField {
     );
   }
 
-  printDefaultValueSetter(printer: Printer) {
+  printDefaultValueSetter(printer: Printer): void {
     if (this.oneOf) {
       return;
     } else {
@@ -109,13 +109,13 @@ export class MapMessageField implements MessageField {
     }
   }
 
-  printGetter(printer: Printer) {
+  printGetter(printer: Printer): void {
     printer.add(
       `get ${this.attributeName}(): ${this.dataType} | undefined { return this._${this.attributeName} }`,
     );
   }
 
-  printSetter(printer: Printer) {
+  printSetter(printer: Printer): void {
     printer.add(`set ${this.attributeName}(value: ${
       this.dataType
     } | undefined) {
@@ -124,7 +124,7 @@ export class MapMessageField implements MessageField {
     }`);
   }
 
-  printToObjectMapping(printer: Printer) {
+  printToObjectMapping(printer: Printer): void {
     let cloneFn = `this.${this.attributeName}![k]`;
 
     if (isFieldMessage(this.valueField)) {
@@ -138,11 +138,11 @@ export class MapMessageField implements MessageField {
     );
   }
 
-  printAsObjectMapping(printer: Printer) {
+  printAsObjectMapping(printer: Printer): void {
     printer.add(`${this.attributeName}?: ${this.dataType};`);
   }
 
-  printToProtobufJSONMapping(printer: Printer) {
+  printToProtobufJSONMapping(printer: Printer): void {
     let cloneFn = `this.${this.attributeName}![k]`;
 
     if (isFieldMessage(this.valueField)) {
@@ -156,7 +156,7 @@ export class MapMessageField implements MessageField {
     );
   }
 
-  printAsJSONMapping(printer: Printer) {
+  printAsJSONMapping(printer: Printer): void {
     printer.add(`${this.attributeName}?: ${this.dataType};`);
   }
 }

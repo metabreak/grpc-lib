@@ -1,4 +1,4 @@
-import * as winston from 'winston';
+import winston from 'winston';
 
 export class Logger {
   private logger?: winston.Logger;
@@ -25,19 +25,19 @@ export class Logger {
     }
   }
 
-  info(msg: string) {
+  info(msg: string): void {
     if (this.logger) {
       this.logger.info(msg);
     }
   }
 
-  debug(msg: string) {
+  debug(msg: string): void {
     if (this.logger) {
       this.logger.debug(msg);
     }
   }
 
-  error(msg: string) {
+  error(msg: string): void {
     if (this.logger) {
       this.logger.error(msg);
     }

@@ -26,11 +26,11 @@ export class OneOf {
     this.synthetic = this.fields.every((field) => field.proto3Optional);
   }
 
-  isSyntheticOneOf() {
+  isSyntheticOneOf(): boolean {
     return this.synthetic;
   }
 
-  printEnum(printer: Printer) {
+  printEnum(printer: Printer): void {
     const protoEnum = new ProtoEnum({
       name: this.enumName,
       reservedNameList: [],
@@ -47,19 +47,19 @@ export class OneOf {
     new Enum(this.proto, protoEnum).print(printer);
   }
 
-  printPrivateAttribute(printer: Printer) {
+  printPrivateAttribute(printer: Printer): void {
     const type = `${this.message.name}.${this.enumName}`;
 
     printer.add(`private _${this.attributeName}: ${type} = ${type}.none;`);
   }
 
-  printGetter(printer: Printer) {
+  printGetter(printer: Printer): void {
     printer.add(
       `get ${this.attributeName}() { return this._${this.attributeName}; }`,
     );
   }
 
-  createFieldSetterAddon(field: ProtoMessageField) {
+  createFieldSetterAddon(field: ProtoMessageField): string {
     const otherFields = this.message.fieldList
       .filter(
         (ff) => ff.oneofIndex === field.oneofIndex && ff.name !== field.name,

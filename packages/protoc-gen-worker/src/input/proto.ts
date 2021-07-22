@@ -48,7 +48,7 @@ export class Proto {
     this.index();
   }
 
-  private index() {
+  private index(): void {
     const indexEnums = (path: string, enums: ProtoEnum[]) => {
       enums.forEach((oneEnum) => {
         this.messageIndex.set(path + '.' + oneEnum.name, {
@@ -79,7 +79,7 @@ export class Proto {
     indexEnums(this.pb_package ? '.' + this.pb_package : '', this.enumTypeList);
   }
 
-  setupDependencies(protos: Proto[]) {
+  setupDependencies(protos: Proto[]): void {
     this.resolved.dependencies = this.dependencyList.map(
       (d) => protos.find((pp) => pp.name === d) as Proto,
     );
@@ -88,7 +88,7 @@ export class Proto {
     );
   }
 
-  resolveTransitiveDependencies() {
+  resolveTransitiveDependencies(): void {
     const getTransitiveDependencies = (protos: Proto[]): Proto[] => {
       return protos.reduce((res, proto) => {
         return [
@@ -107,7 +107,7 @@ export class Proto {
     ];
   }
 
-  resolveTypeMetadata(pbType: string) {
+  resolveTypeMetadata(pbType: string): MessageIndexMeta {
     let meta = this.messageIndex.get(pbType);
 
     if (meta) {
@@ -133,7 +133,7 @@ export class Proto {
     throw new Error('Error finding ' + pbType);
   }
 
-  getDependencyPackageName(dependency: Proto) {
+  getDependencyPackageName(dependency: Proto): string {
     const name = dependency.pb_package
       ? dependency.pb_package
           .replace(/\.([a-z])/g, (v) => v.toUpperCase())
@@ -146,7 +146,7 @@ export class Proto {
     return name + index;
   }
 
-  getRelativeTypeName(pbType: string, thisProtoPackageName = '') {
+  getRelativeTypeName(pbType: string, thisProtoPackageName = ''): string {
     Services.Logger.debug(
       `Getting relative type "${pbType}" name from package "${thisProtoPackageName}"`,
     );
@@ -165,7 +165,7 @@ export class Proto {
     return this.getDependencyPackageName(meta.proto) + '.' + typeName;
   }
 
-  getImportedDependencies() {
+  getImportedDependencies(): string {
     const root = Array(this.name.split('/').length - 1)
       .fill('..')
       .join('/');
@@ -186,7 +186,7 @@ export class Proto {
       .join('\n');
   }
 
-  getGeneratedFileBaseName() {
+  getGeneratedFileBaseName(): string {
     return `${dasherize(this.name.replace(/\.proto$/, ''))}.pb`;
   }
 }

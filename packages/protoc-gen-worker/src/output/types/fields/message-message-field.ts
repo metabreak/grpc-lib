@@ -37,7 +37,7 @@ export class MessageMessageField implements MessageField {
     });
   }
 
-  printDeserializeBinaryFromReader(printer: Printer) {
+  printDeserializeBinaryFromReader(printer: Printer): void {
     const varName = `messageInitializer${this.messageField.number}`;
 
     if (this.isArray) {
@@ -54,7 +54,7 @@ export class MessageMessageField implements MessageField {
     printer.add('break;');
   }
 
-  printSerializeBinaryToWriter(printer: Printer) {
+  printSerializeBinaryToWriter(printer: Printer): void {
     if (this.isArray) {
       printer.add(`if (_instance.${this.attributeName} && _instance.${this.attributeName}.length) {
         _writer.writeRepeatedMessage(${this.messageField.number}, _instance.${this.attributeName} as any, ${this.messageClassName}.serializeBinaryToWriter);
@@ -66,11 +66,11 @@ export class MessageMessageField implements MessageField {
     }
   }
 
-  printPrivateAttribute(printer: Printer) {
+  printPrivateAttribute(printer: Printer): void {
     printer.add(`private _${this.attributeName}?: ${this.dataType};`);
   }
 
-  printInitializer(printer: Printer) {
+  printInitializer(printer: Printer): void {
     if (this.isArray) {
       printer.add(
         `this.${this.attributeName} = (_value.${this.attributeName} ?? []).map(m => new ${this.messageClassName}(m));`,
@@ -82,7 +82,7 @@ export class MessageMessageField implements MessageField {
     }
   }
 
-  printDefaultValueSetter(printer: Printer) {
+  printDefaultValueSetter(printer: Printer): void {
     if (this.oneOf) {
       return;
     } else if (this.isArray) {
@@ -96,13 +96,13 @@ export class MessageMessageField implements MessageField {
     }
   }
 
-  printGetter(printer: Printer) {
+  printGetter(printer: Printer): void {
     printer.add(
       `get ${this.attributeName}(): ${this.dataType} | undefined { return this._${this.attributeName} }`,
     );
   }
 
-  printSetter(printer: Printer) {
+  printSetter(printer: Printer): void {
     printer.add(`set ${this.attributeName}(value: ${
       this.dataType
     } | undefined) {
@@ -111,7 +111,7 @@ export class MessageMessageField implements MessageField {
     }`);
   }
 
-  printToObjectMapping(printer: Printer) {
+  printToObjectMapping(printer: Printer): void {
     if (this.isArray) {
       printer.add(
         `${this.attributeName}: (this.${this.attributeName} ?? []).map(m => m.toObject()),`,
@@ -123,11 +123,11 @@ export class MessageMessageField implements MessageField {
     }
   }
 
-  printAsObjectMapping(printer: Printer) {
+  printAsObjectMapping(printer: Printer): void {
     printer.add(`${this.attributeName}?: ${this.asObjectDataType};`);
   }
 
-  printToProtobufJSONMapping(printer: Printer) {
+  printToProtobufJSONMapping(printer: Printer): void {
     if (this.isArray) {
       printer.add(
         `${this.attributeName}: (this.${this.attributeName} ?? []).map(m => m.toProtobufJSON(options)),`,
@@ -139,7 +139,7 @@ export class MessageMessageField implements MessageField {
     }
   }
 
-  printAsJSONMapping(printer: Printer) {
+  printAsJSONMapping(printer: Printer): void {
     printer.add(`${this.attributeName}?: ${this.asJSONDataType} | null;`);
   }
 }

@@ -112,13 +112,15 @@ export class Config {
    */
   public files: ConfigFiles;
 
-  static fromParameter(parameter: string) {
+  static fromParameter(parameter: string): Config {
     const params = (parameter || '')
       .split(',')
-      .map((p) => p.split('='))
-      .reduce((r, p) => ({ ...r, [p[0]]: p[1] }), {}) as {
-      config: string;
-    };
+      .map((param) => {
+        return param.split('=');
+      })
+      .reduce((accumulator, current) => {
+        return { ...accumulator, [current[0]]: current[1] };
+      }, {} as Record<string, string | undefined>);
 
     if (params.config && !existsSync(params.config)) {
       throw new Error(`The config file "${params.config}" cannot be found`);

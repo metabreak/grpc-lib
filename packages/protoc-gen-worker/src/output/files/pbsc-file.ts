@@ -7,7 +7,7 @@ import { ServiceClient } from '../types/service-client';
 export class PbscFile {
   constructor(private proto: Proto) {}
 
-  print(printer: Printer) {
+  print(printer: Printer): void {
     Services.Logger.debug(`Start printing pbsc for ${this.proto.name}`);
 
     const serviceClients: ServiceClient[] = [];
