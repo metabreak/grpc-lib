@@ -820,7 +820,7 @@ __metadata:
     "@types/google-protobuf": 3.15.3
     "@types/node": 16.4.1
     google-protobuf: 3.17.3
-    grpc: 1.24.10
+    grpc: 1.24.11
     grpc-tools: 1.11.2
     grpc_tools_node_protoc_ts: 5.3.0
     rimraf: 3.0.2
@@ -6258,9 +6258,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"grpc@npm:1.24.10":
-  version: 1.24.10
-  resolution: "grpc@npm:1.24.10"
+"grpc@npm:1.24.11":
+  version: 1.24.11
+  resolution: "grpc@npm:1.24.11"
   dependencies:
     "@mapbox/node-pre-gyp": ^1.0.4
     "@types/bytebuffer": ^5.0.40
@@ -6268,7 +6268,7 @@ __metadata:
     lodash.clone: ^4.5.0
     nan: ^2.13.2
     protobufjs: ^5.0.3
-  checksum: 5e528b638838a65c55da0b843ff80bd60e6dbc8e9b4a571d32c21c45cabdc8130fee5a902417e52b882b3c41123fe12dc4e254c5b29bec230e6771a40a3014e3
+  checksum: a437525786329ff541d7bbb54e472f52001a4d9b1c2fd896468241e2f070bf558b380b3d19d2b87f401602bd5a319b171e119598f4035958a9519851e91110db
   languageName: node
   linkType: hard
 
