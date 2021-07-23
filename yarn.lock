@@ -823,7 +823,7 @@ __metadata:
     "@metabreak/grpc-worker-gateway": 1.0.1-dev.1
     "@metabreak/protoc-gen-worker": 1.0.2-dev.1
     google-protobuf: 3.17.3
-    parcel: next
+    parcel: 2.0.0-beta.3.1
     rimraf: 3.0.2
     rxjs: 7.2.0
     typescript: 4.3.5
@@ -10250,7 +10250,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"parcel@npm:next":
+"parcel@npm:2.0.0-beta.3.1":
   version: 2.0.0-beta.3.1
   resolution: "parcel@npm:2.0.0-beta.3.1"
   dependencies:
