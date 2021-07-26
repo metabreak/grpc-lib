@@ -805,7 +805,7 @@ __metadata:
   resolution: "@metabreak/grpc-common@workspace:packages/common"
   dependencies:
     "@types/google-protobuf": 3.15.3
-    "@types/node": 16.4.2
+    "@types/node": 16.4.3
     google-protobuf: 3.17.3
     rimraf: 3.0.2
     rxjs: 7.2.0
@@ -818,7 +818,7 @@ __metadata:
   resolution: "@metabreak/grpc-example-back@workspace:examples/back"
   dependencies:
     "@types/google-protobuf": 3.15.3
-    "@types/node": 16.4.2
+    "@types/node": 16.4.3
     google-protobuf: 3.17.3
     grpc: 1.24.11
     grpc-tools: 1.11.2
@@ -860,7 +860,7 @@ __metadata:
     "@semantic-release/release-notes-generator": 9.0.3
     "@types/eslint": 7.28.0
     "@types/jest": 26.0.24
-    "@types/node": 16.4.2
+    "@types/node": 16.4.3
     "@types/prettier": 2.3.2
     "@typescript-eslint/eslint-plugin": 4.28.4
     "@typescript-eslint/parser": 4.28.4
@@ -957,7 +957,7 @@ __metadata:
     "@metabreak/grpc-worker-client": 1.1.1-dev.1
     "@types/google-protobuf": 3.15.3
     "@types/jest": 26.0.24
-    "@types/node": 16.4.2
+    "@types/node": 16.4.3
     "@types/prettier": 2.3.2
     google-protobuf: 3.17.3
     grpc-tools: 1.11.2
@@ -2373,10 +2373,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:16.4.2":
-  version: 16.4.2
-  resolution: "@types/node@npm:16.4.2"
-  checksum: d9b02aeb2b9633a8f0e18bd9d322a3ff6c937715b96ad1c80b5f941c46a3f97f2419ffabdb44a3c9305e7b82579aef852f0adfa2e755b7ab32d4334a4ca070c7
+"@types/node@npm:16.4.3":
+  version: 16.4.3
+  resolution: "@types/node@npm:16.4.3"
+  checksum: 6b5fa8b524a9c770dcb96a24d862f240ce8c0072d7360fd088bfb9c5265b48bd1af58a3dd7f59e266b3214684c251e56bea2b2b0702b9901e57804221b6e07f2
   languageName: node
   linkType: hard
 
