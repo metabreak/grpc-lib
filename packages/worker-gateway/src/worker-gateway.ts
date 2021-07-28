@@ -205,7 +205,9 @@ export class GrpcWorkerGateway {
         metadata,
       } as GrpcWorkerMessageRPCRequest<Q>);
 
-      return () => this.closeConnection(id);
+      return () => {
+        this.closeConnection(id);
+      };
     });
   }
 }

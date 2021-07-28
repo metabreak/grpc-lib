@@ -35,7 +35,7 @@
     "build:examples:back": "yarn workspace @metabreak/grpc-example-back build",
     "test": "run-s test:protoc-gen-worker",
     "test:protoc-gen-worker": "yarn workspace @metabreak/protoc-gen-worker test",
-    "test:protoc-gen-worker:watch": "yarn workspace @metabreak/protoc-gen-worker test --watchAll",
+    "test:protoc-gen-worker:watch": "yarn test:protoc-gen-worker --watchAll",
     "format": "yarn prettier --write '**/**/*.{md,html,yaml,yml,ts,js,tsx,jsx}'",
     "lint": "run-s lint:examples lint:packages",
     "lint:examples": "yarn eslint examples/ --ext ts,js,tsx,jsx",
