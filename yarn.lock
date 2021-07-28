@@ -788,7 +788,6 @@ __metadata:
   resolution: "@metabreak/grpc-common@workspace:packages/common"
   dependencies:
     "@types/google-protobuf": 3.15.3
-    "@types/node": 16.4.5
     google-protobuf: 3.17.3
     rimraf: 3.0.2
     rxjs: 7.2.0
@@ -801,7 +800,6 @@ __metadata:
   resolution: "@metabreak/grpc-example-back@workspace:examples/back"
   dependencies:
     "@types/google-protobuf": 3.15.3
-    "@types/node": 16.4.5
     google-protobuf: 3.17.3
     grpc: 1.24.11
     grpc-tools: 1.11.2
