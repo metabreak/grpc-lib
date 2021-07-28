@@ -44,31 +44,11 @@ export class GrpcWebClient implements GrpcClient<GrpcClientSettings> {
       resclss.deserializeBinary,
     );
 
-    return new Promise((resolve, reject) => {
-      const stream = this.client.rpcCall<Q, S>(
-        this.settings.host + path,
-        req,
-        meta,
-        descriptor,
-        (error, data) => {
-          if (error) {
-            reject(
-              new GrpcStatusEvent(
-                error.code,
-                error.message,
-                new GrpcMetadata((error as any).metadata),
-              ),
-            );
-          } else {
-            resolve(new GrpcDataEvent(data));
-          }
-        },
-      );
-
-      stream.on('end', () => {
-        reject();
+    return this.client
+      .thenableCall(this.settings.host + path, req, meta, descriptor)
+      .then((data) => {
+        return new GrpcDataEvent(data.toObject());
       });
-    });
   }
 
   unaryAsObservable<Q extends GrpcMessage, S extends GrpcMessage>(
@@ -107,7 +87,7 @@ export class GrpcWebClient implements GrpcClient<GrpcClientSettings> {
             );
             observer.complete();
           } else {
-            observer.next(new GrpcDataEvent(data));
+            observer.next(new GrpcDataEvent(data.toObject()));
           }
         },
       );
@@ -184,7 +164,7 @@ export class GrpcWebClient implements GrpcClient<GrpcClientSettings> {
       });
 
       stream.on('data', (data) => {
-        observer.next(new GrpcDataEvent(data));
+        observer.next(new GrpcDataEvent(data.toObject()));
       });
 
       stream.on('end', () => {
