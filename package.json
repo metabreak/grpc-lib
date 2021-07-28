@@ -2,6 +2,7 @@
   "name": "@metabreak/grpc-lib",
   "version": "0.0.0",
   "private": true,
+  "source": true,
   "publishConfig": {
     "access": "public"
   },
@@ -85,5 +86,5 @@
       "unplugged": true
     }
   },
-  "packageManager": "yarn@3.0.0-rc.12"
+  "packageManager": "yarn@3.0.0"
 }
