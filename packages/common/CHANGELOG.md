@@ -1,9 +1,8 @@
 ### @metabreak/grpc-common [1.1.1-dev.1](https://github.com/metabreak/grpc-lib/compare/@metabreak/grpc-common@1.1.0...@metabreak/grpc-common@1.1.1-dev.1) (2021-07-22)
 
-
 ### Bug Fixes
 
-* **common:** fix types, refactor some methods ([33059ea](https://github.com/metabreak/grpc-lib/commit/33059ea1e615ee1ee239a2ad5b535da710e27c53))
+- **common:** fix types, refactor some methods ([33059ea](https://github.com/metabreak/grpc-lib/commit/33059ea1e615ee1ee239a2ad5b535da710e27c53))
 
 ## @metabreak/grpc-common [1.1.0](https://github.com/metabreak/grpc-lib/compare/@metabreak/grpc-common@1.0.0...@metabreak/grpc-common@1.1.0) (2021-07-20)
 

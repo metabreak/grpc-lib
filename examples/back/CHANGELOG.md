@@ -1,9 +1,8 @@
 ### @metabreak/grpc-example-back [1.0.1-dev.1](https://github.com/metabreak/grpc-lib/compare/@metabreak/grpc-example-back@1.0.0...@metabreak/grpc-example-back@1.0.1-dev.1) (2021-07-22)
 
-
 ### Bug Fixes
 
-* **example-back:** fix grpc metadata creation at echo service ([e772a87](https://github.com/metabreak/grpc-lib/commit/e772a87b3faca5d766cdf75197c823f7f0866169))
+- **example-back:** fix grpc metadata creation at echo service ([e772a87](https://github.com/metabreak/grpc-lib/commit/e772a87b3faca5d766cdf75197c823f7f0866169))
 
 ## @metabreak/grpc-example-back 1.0.0 (2021-07-20)
 

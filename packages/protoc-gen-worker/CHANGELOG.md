@@ -1,19 +1,16 @@
 ### @metabreak/protoc-gen-worker [1.0.2-dev.1](https://github.com/metabreak/grpc-lib/compare/@metabreak/protoc-gen-worker@1.0.1...@metabreak/protoc-gen-worker@1.0.2-dev.1) (2021-07-22)
 
-
 ### Bug Fixes
 
-* **protoc-gen-worker:** fix some generator issues ([989da1f](https://github.com/metabreak/grpc-lib/commit/989da1fc031f6bbebaedc2e0005f39f2a81ec214))
-* **protoc-gen-wrapper:** remove unnecessary generic ([a4aae38](https://github.com/metabreak/grpc-lib/commit/a4aae3815eadeabeea550af7bcfeee431f2f6d57))
-
-
+- **protoc-gen-worker:** fix some generator issues ([989da1f](https://github.com/metabreak/grpc-lib/commit/989da1fc031f6bbebaedc2e0005f39f2a81ec214))
+- **protoc-gen-wrapper:** remove unnecessary generic ([a4aae38](https://github.com/metabreak/grpc-lib/commit/a4aae3815eadeabeea550af7bcfeee431f2f6d57))
 
 ### Dependencies
 
-* **@metabreak/grpc-common:** upgraded to 1.1.1-dev.1
-* **@metabreak/grpc-web-client:** upgraded to 1.1.1-dev.1
-* **@metabreak/grpc-worker:** upgraded to 1.1.1-dev.1
-* **@metabreak/grpc-worker-client:** upgraded to 1.1.1-dev.1
+- **@metabreak/grpc-common:** upgraded to 1.1.1-dev.1
+- **@metabreak/grpc-web-client:** upgraded to 1.1.1-dev.1
+- **@metabreak/grpc-worker:** upgraded to 1.1.1-dev.1
+- **@metabreak/grpc-worker-client:** upgraded to 1.1.1-dev.1
 
 ### @metabreak/protoc-gen-worker [1.0.1](https://github.com/metabreak/grpc-lib/compare/@metabreak/protoc-gen-worker@1.0.0...@metabreak/protoc-gen-worker@1.0.1) (2021-07-20)
 

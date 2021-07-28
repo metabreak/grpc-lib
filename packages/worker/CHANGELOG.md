@@ -1,15 +1,12 @@
 ### @metabreak/grpc-worker [1.1.1-dev.1](https://github.com/metabreak/grpc-lib/compare/@metabreak/grpc-worker@1.1.0...@metabreak/grpc-worker@1.1.1-dev.1) (2021-07-22)
 
-
 ### Bug Fixes
 
-* **worker:** use correct typings ([1632fb8](https://github.com/metabreak/grpc-lib/commit/1632fb8a062484e2c3b8e3d65d6f077febacd01a))
-
-
+- **worker:** use correct typings ([1632fb8](https://github.com/metabreak/grpc-lib/commit/1632fb8a062484e2c3b8e3d65d6f077febacd01a))
 
 ### Dependencies
 
-* **@metabreak/grpc-common:** upgraded to 1.1.1-dev.1
+- **@metabreak/grpc-common:** upgraded to 1.1.1-dev.1
 
 ## @metabreak/grpc-worker [1.1.0](https://github.com/metabreak/grpc-lib/compare/@metabreak/grpc-worker@1.0.0...@metabreak/grpc-worker@1.1.0) (2021-07-20)
 

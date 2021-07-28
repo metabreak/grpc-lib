@@ -1,16 +1,14 @@
 ### @metabreak/grpc-example-front [1.1.1-dev.1](https://github.com/metabreak/grpc-lib/compare/@metabreak/grpc-example-front@1.1.0...@metabreak/grpc-example-front@1.1.1-dev.1) (2021-07-22)
 
-
-
 ### Dependencies
 
-* **@metabreak/grpc-common:** upgraded to 1.1.1-dev.1
-* **@metabreak/grpc-web-client:** upgraded to 1.1.1-dev.1
-* **@metabreak/grpc-well-known-types:** upgraded to 1.0.2-dev.1
-* **@metabreak/grpc-worker:** upgraded to 1.1.1-dev.1
-* **@metabreak/grpc-worker-client:** upgraded to 1.1.1-dev.1
-* **@metabreak/grpc-worker-gateway:** upgraded to 1.0.1-dev.1
-* **@metabreak/protoc-gen-worker:** upgraded to 1.0.2-dev.1
+- **@metabreak/grpc-common:** upgraded to 1.1.1-dev.1
+- **@metabreak/grpc-web-client:** upgraded to 1.1.1-dev.1
+- **@metabreak/grpc-well-known-types:** upgraded to 1.0.2-dev.1
+- **@metabreak/grpc-worker:** upgraded to 1.1.1-dev.1
+- **@metabreak/grpc-worker-client:** upgraded to 1.1.1-dev.1
+- **@metabreak/grpc-worker-gateway:** upgraded to 1.0.1-dev.1
+- **@metabreak/protoc-gen-worker:** upgraded to 1.0.2-dev.1
 
 ## @metabreak/grpc-example-front [1.1.0](https://github.com/metabreak/grpc-lib/compare/@metabreak/grpc-example-front@1.0.0...@metabreak/grpc-example-front@1.1.0) (2021-07-20)
 

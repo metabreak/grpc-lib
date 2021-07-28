@@ -1,17 +1,14 @@
 ### @metabreak/grpc-worker-client [1.1.1-dev.1](https://github.com/metabreak/grpc-lib/compare/@metabreak/grpc-worker-client@1.1.0...@metabreak/grpc-worker-client@1.1.1-dev.1) (2021-07-22)
 
-
 ### Bug Fixes
 
-* **worker-client:** correctly create grpc metadata ([e81a0d6](https://github.com/metabreak/grpc-lib/commit/e81a0d69c423bf16f55434a9a166c0329da31177))
-
-
+- **worker-client:** correctly create grpc metadata ([e81a0d6](https://github.com/metabreak/grpc-lib/commit/e81a0d69c423bf16f55434a9a166c0329da31177))
 
 ### Dependencies
 
-* **@metabreak/grpc-common:** upgraded to 1.1.1-dev.1
-* **@metabreak/grpc-worker:** upgraded to 1.1.1-dev.1
-* **@metabreak/grpc-worker-gateway:** upgraded to 1.0.1-dev.1
+- **@metabreak/grpc-common:** upgraded to 1.1.1-dev.1
+- **@metabreak/grpc-worker:** upgraded to 1.1.1-dev.1
+- **@metabreak/grpc-worker-gateway:** upgraded to 1.0.1-dev.1
 
 ## @metabreak/grpc-worker-client [1.1.0](https://github.com/metabreak/grpc-lib/compare/@metabreak/grpc-worker-client@1.0.0...@metabreak/grpc-worker-client@1.1.0) (2021-07-20)
 
