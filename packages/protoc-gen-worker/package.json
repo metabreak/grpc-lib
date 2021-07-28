@@ -30,7 +30,7 @@
   },
   "devDependencies": {
     "@metabreak/grpc-common": "1.1.1-dev.1",
-    "@metabreak/grpc-web-client": "1.1.1-dev.2",
+    "@metabreak/grpc-web-client": "1.2.0-dev.1",
     "@metabreak/grpc-worker": "1.1.1-dev.1",
     "@metabreak/grpc-worker-client": "1.1.1-dev.2",
     "@types/google-protobuf": "3.15.3",

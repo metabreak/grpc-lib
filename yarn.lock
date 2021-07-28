@@ -814,12 +814,12 @@ __metadata:
   resolution: "@metabreak/grpc-example-front@workspace:examples/front"
   dependencies:
     "@metabreak/grpc-common": 1.1.1-dev.1
-    "@metabreak/grpc-web-client": 1.1.1-dev.1
-    "@metabreak/grpc-well-known-types": 1.0.2-dev.1
+    "@metabreak/grpc-web-client": 1.2.0-dev.1
+    "@metabreak/grpc-well-known-types": 1.0.2-dev.2
     "@metabreak/grpc-worker": 1.1.1-dev.1
-    "@metabreak/grpc-worker-client": 1.1.1-dev.1
-    "@metabreak/grpc-worker-gateway": 1.0.1-dev.1
-    "@metabreak/protoc-gen-worker": 1.0.2-dev.1
+    "@metabreak/grpc-worker-client": 1.1.1-dev.2
+    "@metabreak/grpc-worker-gateway": 1.0.1-dev.2
+    "@metabreak/protoc-gen-worker": 1.0.2-dev.2
     google-protobuf: 3.17.3
     parcel: 2.0.0-beta.3.1
     rimraf: 3.0.2
@@ -866,7 +866,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@metabreak/grpc-web-client@1.1.1-dev.1, @metabreak/grpc-web-client@workspace:packages/web-client":
+"@metabreak/grpc-web-client@1.2.0-dev.1, @metabreak/grpc-web-client@workspace:packages/web-client":
   version: 0.0.0-use.local
   resolution: "@metabreak/grpc-web-client@workspace:packages/web-client"
   dependencies:
@@ -878,12 +878,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@metabreak/grpc-well-known-types@1.0.2-dev.1, @metabreak/grpc-well-known-types@workspace:packages/well-known-types":
+"@metabreak/grpc-well-known-types@1.0.2-dev.2, @metabreak/grpc-well-known-types@workspace:packages/well-known-types":
   version: 0.0.0-use.local
   resolution: "@metabreak/grpc-well-known-types@workspace:packages/well-known-types"
   dependencies:
     "@metabreak/grpc-common": 1.1.1-dev.1
-    "@metabreak/protoc-gen-worker": 1.0.2-dev.1
+    "@metabreak/protoc-gen-worker": 1.0.2-dev.2
     "@types/google-protobuf": 3.15.3
     google-protobuf: 3.17.3
     rimraf: 3.0.2
@@ -891,20 +891,20 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@metabreak/grpc-worker-client@1.1.1-dev.1, @metabreak/grpc-worker-client@workspace:packages/worker-client":
+"@metabreak/grpc-worker-client@1.1.1-dev.2, @metabreak/grpc-worker-client@workspace:packages/worker-client":
   version: 0.0.0-use.local
   resolution: "@metabreak/grpc-worker-client@workspace:packages/worker-client"
   dependencies:
     "@metabreak/grpc-common": 1.1.1-dev.1
     "@metabreak/grpc-worker": 1.1.1-dev.1
-    "@metabreak/grpc-worker-gateway": 1.0.1-dev.1
+    "@metabreak/grpc-worker-gateway": 1.0.1-dev.2
     rimraf: 3.0.2
     rxjs: 7.2.0
     typescript: 4.3.5
   languageName: unknown
   linkType: soft
 
-"@metabreak/grpc-worker-gateway@1.0.1-dev.1, @metabreak/grpc-worker-gateway@workspace:packages/worker-gateway":
+"@metabreak/grpc-worker-gateway@1.0.1-dev.2, @metabreak/grpc-worker-gateway@workspace:packages/worker-gateway":
   version: 0.0.0-use.local
   resolution: "@metabreak/grpc-worker-gateway@workspace:packages/worker-gateway"
   dependencies:
@@ -928,14 +928,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@metabreak/protoc-gen-worker@1.0.2-dev.1, @metabreak/protoc-gen-worker@workspace:packages/protoc-gen-worker":
+"@metabreak/protoc-gen-worker@1.0.2-dev.2, @metabreak/protoc-gen-worker@workspace:packages/protoc-gen-worker":
   version: 0.0.0-use.local
   resolution: "@metabreak/protoc-gen-worker@workspace:packages/protoc-gen-worker"
   dependencies:
     "@metabreak/grpc-common": 1.1.1-dev.1
-    "@metabreak/grpc-web-client": 1.1.1-dev.1
+    "@metabreak/grpc-web-client": 1.2.0-dev.1
     "@metabreak/grpc-worker": 1.1.1-dev.1
-    "@metabreak/grpc-worker-client": 1.1.1-dev.1
+    "@metabreak/grpc-worker-client": 1.1.1-dev.2
     "@types/google-protobuf": 3.15.3
     "@types/jest": 26.0.24
     "@types/node": 16.4.5
