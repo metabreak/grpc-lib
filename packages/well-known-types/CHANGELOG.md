@@ -1,15 +1,12 @@
 ### @metabreak/grpc-well-known-types [1.0.2-dev.2](https://github.com/metabreak/grpc-lib/compare/@metabreak/grpc-well-known-types@1.0.2-dev.1...@metabreak/grpc-well-known-types@1.0.2-dev.2) (2021-07-28)
 
-
 ### Bug Fixes
 
-* **well-known-types:** update tsconfig ([7aedb82](https://github.com/metabreak/grpc-lib/commit/7aedb82226904f6bb725a2c9636ebb45d0471ac9))
-
-
+- **well-known-types:** update tsconfig ([7aedb82](https://github.com/metabreak/grpc-lib/commit/7aedb82226904f6bb725a2c9636ebb45d0471ac9))
 
 ### Dependencies
 
-* **@metabreak/protoc-gen-worker:** upgraded to 1.0.2-dev.2
+- **@metabreak/protoc-gen-worker:** upgraded to 1.0.2-dev.2
 
 ### @metabreak/grpc-well-known-types [1.0.2-dev.1](https://github.com/metabreak/grpc-lib/compare/@metabreak/grpc-well-known-types@1.0.1...@metabreak/grpc-well-known-types@1.0.2-dev.1) (2021-07-22)
 

@@ -1,16 +1,13 @@
 ### @metabreak/protoc-gen-worker [1.0.2-dev.2](https://github.com/metabreak/grpc-lib/compare/@metabreak/protoc-gen-worker@1.0.2-dev.1...@metabreak/protoc-gen-worker@1.0.2-dev.2) (2021-07-28)
 
-
 ### Bug Fixes
 
-* **protoc-gen-worker:** use more call signatures to service client unary methods ([3d3eaca](https://github.com/metabreak/grpc-lib/commit/3d3eaca6e51554713b37b4715c6cdd63c65c309d))
-
-
+- **protoc-gen-worker:** use more call signatures to service client unary methods ([3d3eaca](https://github.com/metabreak/grpc-lib/commit/3d3eaca6e51554713b37b4715c6cdd63c65c309d))
 
 ### Dependencies
 
-* **@metabreak/grpc-web-client:** upgraded to 1.2.0-dev.1
-* **@metabreak/grpc-worker-client:** upgraded to 1.1.1-dev.2
+- **@metabreak/grpc-web-client:** upgraded to 1.2.0-dev.1
+- **@metabreak/grpc-worker-client:** upgraded to 1.1.1-dev.2
 
 ### @metabreak/protoc-gen-worker [1.0.2-dev.1](https://github.com/metabreak/grpc-lib/compare/@metabreak/protoc-gen-worker@1.0.1...@metabreak/protoc-gen-worker@1.0.2-dev.1) (2021-07-22)
 

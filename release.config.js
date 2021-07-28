@@ -19,6 +19,12 @@ module.exports = {
       },
     ],
     '@semantic-release/changelog',
+    [
+      '@semantic-release/exec',
+      {
+        prepare: 'yarn && yarn format',
+      },
+    ],
     '@semantic-release/npm',
     [
       '@semantic-release/git',

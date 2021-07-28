@@ -1,9 +1,8 @@
 ## @metabreak/grpc-web-client [1.2.0-dev.1](https://github.com/metabreak/grpc-lib/compare/@metabreak/grpc-web-client@1.1.1-dev.1...@metabreak/grpc-web-client@1.2.0-dev.1) (2021-07-28)
 
-
 ### Features
 
-* **web-client:** use `thenableCall` method from grpc-web client for `unaryAsPromise` method ([5c15865](https://github.com/metabreak/grpc-lib/commit/5c15865b43d064530f6d045ea309b5b0ce47f163))
+- **web-client:** use `thenableCall` method from grpc-web client for `unaryAsPromise` method ([5c15865](https://github.com/metabreak/grpc-lib/commit/5c15865b43d064530f6d045ea309b5b0ce47f163))
 
 ### @metabreak/grpc-web-client [1.1.1-dev.1](https://github.com/metabreak/grpc-lib/compare/@metabreak/grpc-web-client@1.1.0...@metabreak/grpc-web-client@1.1.1-dev.1) (2021-07-22)
 
