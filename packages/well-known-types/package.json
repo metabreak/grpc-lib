@@ -1,7 +1,7 @@
 {
   "name": "@metabreak/grpc-well-known-types",
   "description": "Metabreak gRPC lib: well-known-types package",
-  "version": "1.0.2-dev.1",
+  "version": "1.0.2-dev.2",
   "author": "Oleg Shilov <me@olegshilov.com>",
   "license": "MIT",
   "main": "./lib/index.js",
@@ -23,7 +23,7 @@
     "google-protobuf": "3.17.3"
   },
   "devDependencies": {
-    "@metabreak/protoc-gen-worker": "1.0.2-dev.1",
+    "@metabreak/protoc-gen-worker": "1.0.2-dev.2",
     "@types/google-protobuf": "3.15.3",
     "rimraf": "3.0.2",
     "typescript": "4.3.5"
