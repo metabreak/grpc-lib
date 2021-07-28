@@ -1,7 +1,7 @@
 {
   "name": "@metabreak/grpc-worker-gateway",
   "description": "Metabreak gRPC lib: worker gateway package",
-  "version": "1.0.1-dev.1",
+  "version": "1.0.1-dev.2",
   "author": "Oleg Shilov <me@olegshilov.com>",
   "license": "MIT",
   "main": "./lib/index.js",

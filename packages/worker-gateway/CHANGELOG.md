@@ -1,3 +1,10 @@
+### @metabreak/grpc-worker-gateway [1.0.1-dev.2](https://github.com/metabreak/grpc-lib/compare/@metabreak/grpc-worker-gateway@1.0.1-dev.1...@metabreak/grpc-worker-gateway@1.0.1-dev.2) (2021-07-28)
+
+
+### Bug Fixes
+
+* **protoc-gen-worker:** update `test:protoc-gen-worker:watch` script ([9703ded](https://github.com/metabreak/grpc-lib/commit/9703ded42a137e54307b3cc75c0a2d0ce136f76f))
+
 ### @metabreak/grpc-worker-gateway [1.0.1-dev.1](https://github.com/metabreak/grpc-lib/compare/@metabreak/grpc-worker-gateway@1.0.0...@metabreak/grpc-worker-gateway@1.0.1-dev.1) (2021-07-22)
 
 ### Bug Fixes
