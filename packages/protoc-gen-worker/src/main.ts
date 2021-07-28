@@ -17,7 +17,7 @@ import { Services } from './services';
 
 // credits to https://stackoverflow.com/a/54565854/1990451
 async function readStream(stream: NodeJS.ReadStream) {
-  const chunks: any[] = [];
+  const chunks: Uint8Array[] = [];
 
   for await (const chunk of stream) {
     chunks.push(chunk);
@@ -25,6 +25,11 @@ async function readStream(stream: NodeJS.ReadStream) {
 
   return Buffer.concat(chunks);
 }
+
+type GeneratedFile = {
+  name: string;
+  content: string;
+};
 
 async function main() {
   const inputBuff = await readStream(process.stdin);
@@ -71,7 +76,7 @@ async function main() {
         Services.Logger.debug(`Start processing proto ${proto.name}`);
 
         const basename = proto.getGeneratedFileBaseName();
-        const files: any[] = [];
+        const files: GeneratedFile[] = [];
 
         if (proto.serviceList.length) {
           if (Services.Config.files.pbsc.generate) {

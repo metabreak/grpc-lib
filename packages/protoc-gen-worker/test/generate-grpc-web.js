@@ -11,7 +11,7 @@ fs.mkdirSync(buildPath);
 const protocWorkerCmd = [
   'protoc',
   `--proto_path=./test/proto`,
-  `--js_out=import_style=commonjs:${buildPath}`,
+  `--js_out=import_style=commonjs,binary:${buildPath}`,
   `--grpc-web_out=import_style=typescript,mode=grpcwebtext:${buildPath}`,
   './test/proto/*.proto',
 ].join(' ');

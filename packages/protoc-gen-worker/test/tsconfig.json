@@ -1,13 +1,9 @@
 {
   "extends": "../../../tsconfig.json",
   "compilerOptions": {
-    "target": "es5",
-    "module": "commonjs",
-    "lib": [
-      "es6",
-      "es2015",
-      "dom"
-    ],
+    "target": "ESNext",
+    "module": "CommonJS",
+    "lib": ["ESNext", "DOM"],
     "rootDir": ".",
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
@@ -17,10 +13,6 @@
     "noImplicitReturns": true,
     "noImplicitThis": true,
     "noUnusedLocals": true,
-    "types": [
-      "node",
-      "jest"
-    ],
     "esModuleInterop": true
   },
   "compileOnSave": false

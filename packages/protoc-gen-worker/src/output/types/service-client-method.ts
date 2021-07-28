@@ -68,23 +68,23 @@ export class ServiceClientMethod {
 
     if (this.serviceMethod.serverStreaming) {
       printer.add(`
-      ${this.getMethodTypeDef(!this.serviceMethod.serverStreaming)}
-      ${camelizeMethodName}(
-        requestData?: ${this.inputType}.AsObject,
-        requestMetadata: any = {}
-      ): Observable<GrpcEvent<${this.outputType}>> {
-        const grpcRequest = new ${this.inputType}(requestData);
-        const grpcMetadata = new GrpcMetadata(requestMetadata);
+        ${this.getMethodTypeDef(!this.serviceMethod.serverStreaming)}
+        ${camelizeMethodName}(
+          requestData: ${this.inputType}.AsObject = {},
+          requestMetadata: Record<string, string> = {},
+        ): Observable<GrpcEvent<${this.outputType}>> {
+          const grpcRequest = new ${this.inputType}(requestData);
+          const grpcMetadata = new GrpcMetadata(requestMetadata);
 
-        return this.client.${clientCallType}(
-          '${this.rpcPath}',
-          grpcRequest,
-          grpcMetadata,
-          ${this.inputType},
-          ${this.outputType}
-        );
-      }
-    `);
+          return this.client.${clientCallType}(
+            '${this.rpcPath}',
+            grpcRequest,
+            grpcMetadata,
+            ${this.inputType},
+            ${this.outputType}
+          );
+        }
+      `);
     } else {
       printer.add(`
         ${this.getMethodTypeDef(this.serviceMethod.serverStreaming)}
@@ -120,10 +120,20 @@ export class ServiceClientMethod {
 
       printer.add(`
         ${camelizeMethodName}(
-          requestData?: ${this.inputType}.AsObject,
+          requestData: ${this.inputType}.AsObject,
+          requestMetadata: Record<string, string>,
+          asPromise: true
+        ): Promise<GrpcEvent<${this.outputType}>>
+        ${camelizeMethodName}(
+          requestData: ${this.inputType}.AsObject,
+          requestMetadata: Record<string, string>,
+          asPromise: false
+        ): Observable<GrpcEvent<${this.outputType}>>
+        ${camelizeMethodName}(
+          requestData: ${this.inputType}.AsObject = {},
           requestMetadata: Record<string, string> = {},
           asPromise = false
-        ): Promise<GrpcEvent<${this.outputType}>> | Observable<GrpcEvent<${this.outputType}>> {
+        ) {
           const grpcRequest = new ${this.inputType}(requestData);
           const grpcMetadata = new GrpcMetadata(requestMetadata);
 
