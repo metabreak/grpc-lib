@@ -1,3 +1,10 @@
+## @metabreak/grpc-example-front [1.2.0-dev.1](https://github.com/metabreak/grpc-lib/compare/@metabreak/grpc-example-front@1.1.1-dev.2...@metabreak/grpc-example-front@1.2.0-dev.1) (2021-07-28)
+
+
+### Features
+
+* **example-front:** add generated service usage example ([04e2db4](https://github.com/metabreak/grpc-lib/commit/04e2db44c9813798831b13a0b293264fd5b33a69))
+
 ### @metabreak/grpc-example-front [1.1.1-dev.2](https://github.com/metabreak/grpc-lib/compare/@metabreak/grpc-example-front@1.1.1-dev.1...@metabreak/grpc-example-front@1.1.1-dev.2) (2021-07-28)
 
 ### Bug Fixes
