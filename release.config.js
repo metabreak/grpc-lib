@@ -22,7 +22,7 @@ module.exports = {
     [
       '@semantic-release/exec',
       {
-        prepareCmd: 'yarn && yarn format',
+        prepareCmd: 'yarn format',
       },
     ],
     '@semantic-release/npm',
