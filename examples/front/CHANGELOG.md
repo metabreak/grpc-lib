@@ -1,9 +1,28 @@
-## @metabreak/grpc-example-front [1.2.0-dev.1](https://github.com/metabreak/grpc-lib/compare/@metabreak/grpc-example-front@1.1.1-dev.2...@metabreak/grpc-example-front@1.2.0-dev.1) (2021-07-28)
-
+## @metabreak/grpc-example-front [1.2.0](https://github.com/metabreak/grpc-lib/compare/@metabreak/grpc-example-front@1.1.0...@metabreak/grpc-example-front@1.2.0) (2021-08-02)
 
 ### Features
 
-* **example-front:** add generated service usage example ([04e2db4](https://github.com/metabreak/grpc-lib/commit/04e2db44c9813798831b13a0b293264fd5b33a69))
+- **example-front:** add generated service usage example ([04e2db4](https://github.com/metabreak/grpc-lib/commit/04e2db44c9813798831b13a0b293264fd5b33a69))
+
+### Bug Fixes
+
+- **example-front:** add build script and update tsconfig ([5ef46bc](https://github.com/metabreak/grpc-lib/commit/5ef46bc39ec8cab1b6e4cb80099e826363a465c0))
+
+### Dependencies
+
+- **@metabreak/grpc-common:** upgraded to 1.1.1
+- **@metabreak/grpc-web-client:** upgraded to 1.2.0
+- **@metabreak/grpc-well-known-types:** upgraded to 1.0.2
+- **@metabreak/grpc-worker:** upgraded to 1.1.1
+- **@metabreak/grpc-worker-client:** upgraded to 1.1.1
+- **@metabreak/grpc-worker-gateway:** upgraded to 1.0.1
+- **@metabreak/protoc-gen-worker:** upgraded to 1.0.2
+
+## @metabreak/grpc-example-front [1.2.0-dev.1](https://github.com/metabreak/grpc-lib/compare/@metabreak/grpc-example-front@1.1.1-dev.2...@metabreak/grpc-example-front@1.2.0-dev.1) (2021-07-28)
+
+### Features
+
+- **example-front:** add generated service usage example ([04e2db4](https://github.com/metabreak/grpc-lib/commit/04e2db44c9813798831b13a0b293264fd5b33a69))
 
 ### @metabreak/grpc-example-front [1.1.1-dev.2](https://github.com/metabreak/grpc-lib/compare/@metabreak/grpc-example-front@1.1.1-dev.1...@metabreak/grpc-example-front@1.1.1-dev.2) (2021-07-28)
 
