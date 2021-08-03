@@ -803,7 +803,7 @@ __metadata:
     google-protobuf: 3.17.3
     grpc: 1.24.11
     grpc-tools: 1.11.2
-    grpc_tools_node_protoc_ts: 5.3.0
+    grpc_tools_node_protoc_ts: 5.3.1
     rimraf: 3.0.2
     typescript: 4.3.5
   languageName: unknown
@@ -6328,15 +6328,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"grpc_tools_node_protoc_ts@npm:5.3.0":
-  version: 5.3.0
-  resolution: "grpc_tools_node_protoc_ts@npm:5.3.0"
+"grpc_tools_node_protoc_ts@npm:5.3.1":
+  version: 5.3.1
+  resolution: "grpc_tools_node_protoc_ts@npm:5.3.1"
   dependencies:
     google-protobuf: 3.15.8
     handlebars: 4.7.7
   bin:
     protoc-gen-ts: bin/protoc-gen-ts
-  checksum: efcdb0b83f8bc2783d88144457b1789aadf868a08af43ee828226fd1cfd9129b6cc1bce79e95e6aea82633db50752b6dfeac920c6e4f07ebd04ff785789f1820
+  checksum: 692318bceaa231fa7d1ba33aa3e3f575220880955480754b73042c6f5315c82c01c7a6e06eaeb1de3e886f993d6512e5da2f114a7f0620b4f2228f2277a5de90
   languageName: node
   linkType: hard
 
