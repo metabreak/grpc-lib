@@ -83,9 +83,9 @@
     "grpc-tools@1.11.2": {
       "unplugged": true
     },
-    "grpc_tools_node_protoc_ts@5.3.0": {
+    "grpc_tools_node_protoc_ts@5.3.2": {
       "unplugged": true
     }
   },
-  "packageManager": "yarn@3.0.0"
+  "packageManager": "yarn@3.0.1"
 }

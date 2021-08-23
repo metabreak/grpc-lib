@@ -7,10 +7,11 @@ import { GrpcMetadata } from '@metabreak/grpc-common';
 import { tap } from 'rxjs/operators';
 import { EchoServiceService } from './proto/echo.pbsc';
 
-// Raw clients usage example
 const clientSettings = { host: 'http://localhost:8080' };
 const webClient = new GrpcWebClient(clientSettings);
-const worker = new Worker('./grpc.worker', { type: 'module' });
+const worker = new Worker(new URL('./grpc.worker', import.meta.url), {
+  type: 'module',
+});
 const gateway = new GrpcWorkerGateway(worker);
 const workerClient = new GrpcWorkerClient(
   GrpcWorkerEchoServiceClientDef.serviceId,
@@ -18,6 +19,7 @@ const workerClient = new GrpcWorkerClient(
   gateway,
 );
 
+// Raw clients usage example
 async function handleUnaryAsPromiseWebBtnClick() {
   const resp = await webClient.unaryAsPromise(
     '/echo.EchoService/EchoOnce',
