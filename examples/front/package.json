@@ -2,9 +2,13 @@
   "name": "@metabreak/grpc-example-front",
   "private": true,
   "version": "1.2.0",
+  "source": [
+    "./src/index.html",
+    "./src/bench.html"
+  ],
   "scripts": {
-    "build": "yarn parcel build ./src/index.html",
-    "start": "yarn parcel serve ./src/index.html --port 4200",
+    "build": "yarn parcel build ",
+    "start": "yarn parcel serve --port 4200",
     "generate": "yarn node scripts/generate"
   },
   "dependencies": {

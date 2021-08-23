@@ -83,3 +83,76 @@ export namespace EchoResponse {
     timestamp?: google_protobuf_timestamp_pb.Timestamp.AsObject;
   };
 }
+
+export class EchoComplexRequest extends jspb.Message {
+  getChunksize(): number;
+  setChunksize(value: number): EchoComplexRequest;
+  getUpdates(): number;
+  setUpdates(value: number): EchoComplexRequest;
+  getMessage(): string;
+  setMessage(value: string): EchoComplexRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): EchoComplexRequest.AsObject;
+  static toObject(
+    includeInstance: boolean,
+    msg: EchoComplexRequest,
+  ): EchoComplexRequest.AsObject;
+  static extensions: { [key: number]: jspb.ExtensionFieldInfo<jspb.Message> };
+  static extensionsBinary: {
+    [key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>;
+  };
+  static serializeBinaryToWriter(
+    message: EchoComplexRequest,
+    writer: jspb.BinaryWriter,
+  ): void;
+  static deserializeBinary(bytes: Uint8Array): EchoComplexRequest;
+  static deserializeBinaryFromReader(
+    message: EchoComplexRequest,
+    reader: jspb.BinaryReader,
+  ): EchoComplexRequest;
+}
+
+export namespace EchoComplexRequest {
+  export type AsObject = {
+    chunksize: number;
+    updates: number;
+    message: string;
+  };
+}
+
+export class EchoComplexResponse extends jspb.Message {
+  getChunk(): number;
+  setChunk(value: number): EchoComplexResponse;
+  clearMessaggesList(): void;
+  getMessaggesList(): Array<string>;
+  setMessaggesList(value: Array<string>): EchoComplexResponse;
+  addMessagges(value: string, index?: number): string;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): EchoComplexResponse.AsObject;
+  static toObject(
+    includeInstance: boolean,
+    msg: EchoComplexResponse,
+  ): EchoComplexResponse.AsObject;
+  static extensions: { [key: number]: jspb.ExtensionFieldInfo<jspb.Message> };
+  static extensionsBinary: {
+    [key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>;
+  };
+  static serializeBinaryToWriter(
+    message: EchoComplexResponse,
+    writer: jspb.BinaryWriter,
+  ): void;
+  static deserializeBinary(bytes: Uint8Array): EchoComplexResponse;
+  static deserializeBinaryFromReader(
+    message: EchoComplexResponse,
+    reader: jspb.BinaryReader,
+  ): EchoComplexResponse;
+}
+
+export namespace EchoComplexResponse {
+  export type AsObject = {
+    chunk: number;
+    messaggesList: Array<string>;
+  };
+}

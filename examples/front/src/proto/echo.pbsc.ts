@@ -3,7 +3,7 @@
 
 // THIS IS A GENERATED FILE
 // DO NOT MODIFY IT! YOUR CHANGES WILL BE LOST
-// File was generated at: 2021-08-23T16:05:37.912Z
+// File was generated at: 2021-08-23T19:34:01.938Z
 
 import { GrpcClient, GrpcEvent, GrpcMetadata } from '@metabreak/grpc-common';
 import { Observable } from 'rxjs';
@@ -99,6 +99,28 @@ export class EchoServiceService {
       grpcMetadata,
       thisProto.EchoRequest,
       thisProto.EchoResponse,
+    );
+  }
+
+  /**
+   * Unary RPC for /echo.EchoService/EchoComplexStream
+   * @param requestData Request data
+   * @param requestMetadata Request metadata
+   * @returns Observable<thisProto.EchoComplexResponse>
+   */
+  echoComplexStream(
+    requestData: thisProto.EchoComplexRequest.AsObject = {},
+    requestMetadata: Record<string, string> = {},
+  ): Observable<GrpcEvent<thisProto.EchoComplexResponse>> {
+    const grpcRequest = new thisProto.EchoComplexRequest(requestData);
+    const grpcMetadata = new GrpcMetadata(requestMetadata);
+
+    return this.client.serverStream(
+      '/echo.EchoService/EchoComplexStream',
+      grpcRequest,
+      grpcMetadata,
+      thisProto.EchoComplexRequest,
+      thisProto.EchoComplexResponse,
     );
   }
 }

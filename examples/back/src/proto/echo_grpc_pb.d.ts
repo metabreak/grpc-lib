@@ -12,6 +12,7 @@ interface IEchoServiceService
   extends grpc.ServiceDefinition<grpc.UntypedServiceImplementation> {
   echoOnce: IEchoServiceService_IEchoOnce;
   echoStream: IEchoServiceService_IEchoStream;
+  echoComplexStream: IEchoServiceService_IEchoComplexStream;
 }
 
 interface IEchoServiceService_IEchoOnce
@@ -34,6 +35,19 @@ interface IEchoServiceService_IEchoStream
   responseSerialize: grpc.serialize<echo_pb.EchoResponse>;
   responseDeserialize: grpc.deserialize<echo_pb.EchoResponse>;
 }
+interface IEchoServiceService_IEchoComplexStream
+  extends grpc.MethodDefinition<
+    echo_pb.EchoComplexRequest,
+    echo_pb.EchoComplexResponse
+  > {
+  path: '/echo.EchoService/EchoComplexStream';
+  requestStream: false;
+  responseStream: true;
+  requestSerialize: grpc.serialize<echo_pb.EchoComplexRequest>;
+  requestDeserialize: grpc.deserialize<echo_pb.EchoComplexRequest>;
+  responseSerialize: grpc.serialize<echo_pb.EchoComplexResponse>;
+  responseDeserialize: grpc.deserialize<echo_pb.EchoComplexResponse>;
+}
 
 export const EchoServiceService: IEchoServiceService;
 
@@ -42,6 +56,10 @@ export interface IEchoServiceServer {
   echoStream: grpc.handleServerStreamingCall<
     echo_pb.EchoRequest,
     echo_pb.EchoResponse
+  >;
+  echoComplexStream: grpc.handleServerStreamingCall<
+    echo_pb.EchoComplexRequest,
+    echo_pb.EchoComplexResponse
   >;
 }
 
@@ -79,6 +97,15 @@ export interface IEchoServiceClient {
     metadata?: grpc.Metadata,
     options?: Partial<grpc.CallOptions>,
   ): grpc.ClientReadableStream<echo_pb.EchoResponse>;
+  echoComplexStream(
+    request: echo_pb.EchoComplexRequest,
+    options?: Partial<grpc.CallOptions>,
+  ): grpc.ClientReadableStream<echo_pb.EchoComplexResponse>;
+  echoComplexStream(
+    request: echo_pb.EchoComplexRequest,
+    metadata?: grpc.Metadata,
+    options?: Partial<grpc.CallOptions>,
+  ): grpc.ClientReadableStream<echo_pb.EchoComplexResponse>;
 }
 
 export class EchoServiceClient
@@ -123,4 +150,13 @@ export class EchoServiceClient
     metadata?: grpc.Metadata,
     options?: Partial<grpc.CallOptions>,
   ): grpc.ClientReadableStream<echo_pb.EchoResponse>;
+  public echoComplexStream(
+    request: echo_pb.EchoComplexRequest,
+    options?: Partial<grpc.CallOptions>,
+  ): grpc.ClientReadableStream<echo_pb.EchoComplexResponse>;
+  public echoComplexStream(
+    request: echo_pb.EchoComplexRequest,
+    metadata?: grpc.Metadata,
+    options?: Partial<grpc.CallOptions>,
+  ): grpc.ClientReadableStream<echo_pb.EchoComplexResponse>;
 }

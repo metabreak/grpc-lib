@@ -8,7 +8,12 @@ import {
   status,
 } from 'grpc';
 import { IEchoServiceServer } from './proto/echo_grpc_pb';
-import { EchoRequest, EchoResponse } from './proto/echo_pb';
+import {
+  EchoRequest,
+  EchoResponse,
+  EchoComplexRequest,
+  EchoComplexResponse,
+} from './proto/echo_pb';
 
 function createTimestamp(date: Date) {
   const ts = new Timestamp();
@@ -99,5 +104,41 @@ export class EchoServiceServiceImpl implements IEchoServiceServer {
     console.log(`Responding with: ${messageBack}`);
 
     callback(null, response);
+  }
+
+  async echoComplexStream(
+    call: ServerWritableStream<EchoComplexRequest>,
+  ): Promise<void> {
+    const message = call.request.getMessage();
+    const updates = call.request.getUpdates();
+    const chunksize = call.request.getChunksize();
+
+    console.log(`Received message: ${message}`);
+
+    for (let i = 0; i < updates; i++) {
+      await new Promise((resolve, reject) => {
+        if (call.cancelled) {
+          console.log('Request is cancelled');
+          reject();
+        }
+
+        const response = new EchoComplexResponse();
+        const respMessages = [];
+        for (let index = 0; index < chunksize; index++) {
+          respMessages.push(`[${i + 1}:${index + 1}] ${message}`);
+        }
+
+        response.setChunk(i);
+        response.setMessaggesList(respMessages);
+
+        call.write(response);
+
+        resolve(undefined);
+      });
+    }
+
+    const meta = new Metadata();
+
+    call.end(meta);
   }
 }

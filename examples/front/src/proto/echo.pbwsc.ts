@@ -3,7 +3,7 @@
 
 // THIS IS A GENERATED FILE
 // DO NOT MODIFY IT! YOUR CHANGES WILL BE LOST
-// File was generated at: 2021-08-23T16:05:38.165Z
+// File was generated at: 2021-08-23T19:34:02.174Z
 
 import { GrpcCallType } from '@metabreak/grpc-common';
 import { GrpcWorkerServiceClientDef } from '@metabreak/grpc-worker';
@@ -25,6 +25,11 @@ export const GrpcWorkerEchoServiceClientDef: GrpcWorkerServiceClientDef = {
       type: GrpcCallType.serverStream,
       reqclss: thisProto.EchoRequest,
       resclss: thisProto.EchoResponse,
+    },
+    '/echo.EchoService/EchoComplexStream': {
+      type: GrpcCallType.serverStream,
+      reqclss: thisProto.EchoComplexRequest,
+      resclss: thisProto.EchoComplexResponse,
     },
   },
 };
