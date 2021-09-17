@@ -842,7 +842,7 @@ __metadata:
     "@semantic-release/exec": 5.0.0
     "@semantic-release/git": 9.0.0
     "@semantic-release/github": 7.2.3
-    "@semantic-release/npm": 7.1.3
+    "@semantic-release/npm": 8.0.0
     "@semantic-release/release-notes-generator": 9.0.3
     "@types/eslint": 7.28.0
     "@types/jest": 27.0.1
@@ -2112,7 +2112,30 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@semantic-release/npm@npm:7.1.3, @semantic-release/npm@npm:^7.0.0":
+"@semantic-release/npm@npm:8.0.0":
+  version: 8.0.0
+  resolution: "@semantic-release/npm@npm:8.0.0"
+  dependencies:
+    "@semantic-release/error": ^2.2.0
+    aggregate-error: ^3.0.0
+    execa: ^5.0.0
+    fs-extra: ^10.0.0
+    lodash: ^4.17.15
+    nerf-dart: ^1.0.0
+    normalize-url: ^6.0.0
+    npm: ^7.0.0
+    rc: ^1.2.8
+    read-pkg: ^5.0.0
+    registry-auth-token: ^4.0.0
+    semver: ^7.1.2
+    tempy: ^1.0.0
+  peerDependencies:
+    semantic-release: ">=18.0.0-beta.1"
+  checksum: 8a5130150af48871da739e000520643e44adbd7c61cf474559075a5a782b2701e2a307bf503caac21c4ff5202ef275015e12f9ad15ad6464c052e355430bd074
+  languageName: node
+  linkType: hard
+
+"@semantic-release/npm@npm:^7.0.0":
   version: 7.1.3
   resolution: "@semantic-release/npm@npm:7.1.3"
   dependencies:
