@@ -876,7 +876,7 @@ __metadata:
   resolution: "@metabreak/grpc-web-client@workspace:packages/web-client"
   dependencies:
     "@metabreak/grpc-common": 1.1.1
-    grpc-web: 1.2.1
+    grpc-web: 1.3.0
     rimraf: 3.0.2
     rxjs: 7.3.0
     typescript: 4.3.5
@@ -915,7 +915,7 @@ __metadata:
   dependencies:
     "@metabreak/grpc-common": 1.1.1
     "@metabreak/grpc-worker": 1.1.1
-    grpc-web: 1.2.1
+    grpc-web: 1.3.0
     rimraf: 3.0.2
     rxjs: 7.3.0
     typescript: 4.3.5
@@ -927,7 +927,7 @@ __metadata:
   resolution: "@metabreak/grpc-worker@workspace:packages/worker"
   dependencies:
     "@metabreak/grpc-common": 1.1.1
-    grpc-web: 1.2.1
+    grpc-web: 1.3.0
     rimraf: 3.0.2
     typescript: 4.3.5
   languageName: unknown
@@ -6266,10 +6266,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"grpc-web@npm:1.2.1":
-  version: 1.2.1
-  resolution: "grpc-web@npm:1.2.1"
-  checksum: 3860a3761793ccff10db513126957acf2794bcdb0fb82fc20fc4ffbc16e25b9742500d966acc88fbb258bf1d88ef7a4014189287bffbc79177560d7d83eadec1
+"grpc-web@npm:1.3.0":
+  version: 1.3.0
+  resolution: "grpc-web@npm:1.3.0"
+  checksum: 7d774840fc1088c0f8fc0e25a788356f2d2185957bd9567485fd9220de1e3300f0727862247fde1a55ca18d8e7cb7b40cceee3b15ab5d5b5f85a58a399913e5c
   languageName: node
   linkType: hard
 
