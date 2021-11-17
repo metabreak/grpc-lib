@@ -836,7 +836,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@metabreak/grpc-lib@workspace:."
   dependencies:
-    "@qiwi/multi-semantic-release": 3.15.0
+    "@qiwi/multi-semantic-release": 3.17.0
     "@semantic-release/changelog": 5.0.1
     "@semantic-release/commit-analyzer": 8.0.1
     "@semantic-release/exec": 5.0.0
@@ -1986,9 +1986,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@qiwi/multi-semantic-release@npm:3.15.0":
-  version: 3.15.0
-  resolution: "@qiwi/multi-semantic-release@npm:3.15.0"
+"@qiwi/multi-semantic-release@npm:3.17.0":
+  version: 3.17.0
+  resolution: "@qiwi/multi-semantic-release@npm:3.17.0"
   dependencies:
     "@manypkg/get-packages": ^1.1.1
     blork: ^9.3.0
@@ -2010,7 +2010,7 @@ __metadata:
     tempy: ^1.0.1
   bin:
     multi-semantic-release: bin/cli.js
-  checksum: a908a343bb38c4cc54ad0610e1a014b67c859b900f7c046e897f337b8251f46394ada7a05606f4234e4f8f57fc71128243b304842b0427ade8527d0adebac7ae
+  checksum: e4071db7fe73544d9b7ffd6d99a28a468d23f5129a68f046d83ff8862808d559bd86583a4ca7e356afc63ea3bc2c6294b8b8f36124ab7b2d8a1e65ebb70b69d5
   languageName: node
   linkType: hard
 
