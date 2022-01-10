@@ -26,7 +26,7 @@
     "google-protobuf": "3.17.3",
     "prettier": "2.3.2",
     "rxjs": "7.3.0",
-    "winston": "3.3.3"
+    "winston": "3.3.4"
   },
   "devDependencies": {
     "@metabreak/grpc-common": "1.1.1",
