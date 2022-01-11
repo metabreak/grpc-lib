@@ -794,7 +794,7 @@ __metadata:
     "@types/google-protobuf": 3.15.5
     google-protobuf: 3.17.3
     rimraf: 3.0.2
-    rxjs: 7.3.0
+    rxjs: 7.5.2
     typescript: 4.3.5
   languageName: unknown
   linkType: soft
@@ -827,7 +827,7 @@ __metadata:
     google-protobuf: 3.17.3
     parcel: 2.0.0-rc.0
     rimraf: 3.0.2
-    rxjs: 7.3.0
+    rxjs: 7.5.2
     typescript: 4.3.5
   languageName: unknown
   linkType: soft
@@ -878,7 +878,7 @@ __metadata:
     "@metabreak/grpc-common": 1.1.1
     grpc-web: 1.2.1
     rimraf: 3.0.2
-    rxjs: 7.3.0
+    rxjs: 7.5.2
     typescript: 4.3.5
   languageName: unknown
   linkType: soft
@@ -904,7 +904,7 @@ __metadata:
     "@metabreak/grpc-worker": 1.1.1
     "@metabreak/grpc-worker-gateway": 1.0.1
     rimraf: 3.0.2
-    rxjs: 7.3.0
+    rxjs: 7.5.2
     typescript: 4.3.5
   languageName: unknown
   linkType: soft
@@ -917,7 +917,7 @@ __metadata:
     "@metabreak/grpc-worker": 1.1.1
     grpc-web: 1.2.1
     rimraf: 3.0.2
-    rxjs: 7.3.0
+    rxjs: 7.5.2
     typescript: 4.3.5
   languageName: unknown
   linkType: soft
@@ -951,7 +951,7 @@ __metadata:
     jest-environment-jsdom: 27.0.6
     prettier: 2.3.2
     rimraf: 3.0.2
-    rxjs: 7.3.0
+    rxjs: 7.5.2
     ts-jest: 27.0.5
     typescript: 4.3.5
     winston: 3.3.3
@@ -11845,12 +11845,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rxjs@npm:7.3.0":
-  version: 7.3.0
-  resolution: "rxjs@npm:7.3.0"
+"rxjs@npm:7.5.2":
+  version: 7.5.2
+  resolution: "rxjs@npm:7.5.2"
   dependencies:
-    tslib: ~2.1.0
-  checksum: e63adb8808ea6c299a020d56d2af92bcf71efe641adf838499932e29b8f5fd5ff00873653ad48ba3ecf6c9fc11c3c595acf995e8d456f9d8cb85c7d37a1fd72e
+    tslib: ^2.1.0
+  checksum: daf1fe7289de500b25d822fd96cde3c138c7902e8bf0e6aa12a3e70847a5cabeeb4d677f10e19387e1db44b12c5b1be0ff5c79b8cd63ed6ce891d765e566cf4d
   languageName: node
   linkType: hard
 
@@ -13131,10 +13131,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tslib@npm:~2.1.0":
-  version: 2.1.0
-  resolution: "tslib@npm:2.1.0"
-  checksum: aa189c8179de0427b0906da30926fd53c59d96ec239dff87d6e6bc831f608df0cbd6f77c61dabc074408bd0aa0b9ae4ec35cb2c15f729e32f37274db5730cb78
+"tslib@npm:^2.1.0":
+  version: 2.3.1
+  resolution: "tslib@npm:2.3.1"
+  checksum: de17a98d4614481f7fcb5cd53ffc1aaf8654313be0291e1bfaee4b4bb31a20494b7d218ff2e15017883e8ea9626599b3b0e0229c18383ba9dce89da2adf15cb9
   languageName: node
   linkType: hard
 

@@ -21,7 +21,7 @@
     "@metabreak/grpc-common": "1.1.1",
     "@metabreak/grpc-worker": "1.1.1",
     "@metabreak/grpc-worker-gateway": "1.0.1",
-    "rxjs": "7.3.0"
+    "rxjs": "7.5.2"
   },
   "devDependencies": {
     "rimraf": "3.0.2",
