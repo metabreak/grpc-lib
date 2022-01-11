@@ -792,7 +792,7 @@ __metadata:
   resolution: "@metabreak/grpc-common@workspace:packages/common"
   dependencies:
     "@types/google-protobuf": 3.15.5
-    google-protobuf: 3.17.3
+    google-protobuf: 3.19.3
     rimraf: 3.0.2
     rxjs: 7.3.0
     typescript: 4.3.5
@@ -804,7 +804,7 @@ __metadata:
   resolution: "@metabreak/grpc-example-back@workspace:examples/back"
   dependencies:
     "@types/google-protobuf": 3.15.5
-    google-protobuf: 3.17.3
+    google-protobuf: 3.19.3
     grpc: 1.24.11
     grpc-tools: 1.11.2
     grpc_tools_node_protoc_ts: 5.3.2
@@ -824,7 +824,7 @@ __metadata:
     "@metabreak/grpc-worker-client": 1.1.1
     "@metabreak/grpc-worker-gateway": 1.0.1
     "@metabreak/protoc-gen-worker": 1.0.2
-    google-protobuf: 3.17.3
+    google-protobuf: 3.19.3
     parcel: 2.0.0-rc.0
     rimraf: 3.0.2
     rxjs: 7.3.0
@@ -890,7 +890,7 @@ __metadata:
     "@metabreak/grpc-common": 1.1.1
     "@metabreak/protoc-gen-worker": 1.0.2
     "@types/google-protobuf": 3.15.5
-    google-protobuf: 3.17.3
+    google-protobuf: 3.19.3
     rimraf: 3.0.2
     typescript: 4.3.5
   languageName: unknown
@@ -945,7 +945,7 @@ __metadata:
     "@types/jest": 27.0.1
     "@types/node": 16.6.1
     "@types/prettier": 2.3.2
-    google-protobuf: 3.17.3
+    google-protobuf: 3.19.3
     grpc-tools: 1.11.2
     jest: 27.0.6
     jest-environment-jsdom: 27.0.6
@@ -6221,10 +6221,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"google-protobuf@npm:3.17.3":
-  version: 3.17.3
-  resolution: "google-protobuf@npm:3.17.3"
-  checksum: efe264f3cf854a78f7197c4d8c84eabd1ce8c4ef2806cb3e0bb7f2b5e18f559739ab31adfefbd99e81312c3683f482400fa370896a8b0cc66adfedb114256420
+"google-protobuf@npm:3.19.3":
+  version: 3.19.3
+  resolution: "google-protobuf@npm:3.19.3"
+  checksum: 329d251dcd6e8778fc85239d0f2155a2cb8baf4154027e8b4bee83888e161b2784a80ccd6e60dbdfdce6d7396d568c5b902c7bbb80c786735d42ec4ca41deb5d
   languageName: node
   linkType: hard
 
