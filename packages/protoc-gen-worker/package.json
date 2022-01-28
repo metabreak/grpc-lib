@@ -23,7 +23,7 @@
     "test": "yarn jest -c ./jest.config.js"
   },
   "dependencies": {
-    "google-protobuf": "3.17.3",
+    "google-protobuf": "3.19.4",
     "prettier": "2.3.2",
     "rxjs": "7.3.0",
     "winston": "3.3.3"
