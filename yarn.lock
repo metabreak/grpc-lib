@@ -846,7 +846,7 @@ __metadata:
     "@semantic-release/release-notes-generator": 9.0.3
     "@types/eslint": 7.28.0
     "@types/jest": 27.0.1
-    "@types/node": 16.6.1
+    "@types/node": 16.11.22
     "@types/prettier": 2.3.2
     "@typescript-eslint/eslint-plugin": 4.29.2
     "@typescript-eslint/parser": 4.29.2
@@ -943,7 +943,7 @@ __metadata:
     "@metabreak/grpc-worker-client": 1.1.1
     "@types/google-protobuf": 3.15.5
     "@types/jest": 27.0.1
-    "@types/node": 16.6.1
+    "@types/node": 16.11.22
     "@types/prettier": 2.3.2
     google-protobuf: 3.17.3
     grpc-tools: 1.11.2
@@ -2375,10 +2375,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:16.6.1":
-  version: 16.6.1
-  resolution: "@types/node@npm:16.6.1"
-  checksum: c13aa0da0c2bf9070e521d1b537ba38f64b213dd1b8aeec66c279fc21f8c0ccaf380364f6dc2ec8f84440c4cd1460b67dfe47de2cafcb6eaf4b648817cb27dc4
+"@types/node@npm:16.11.22":
+  version: 16.11.22
+  resolution: "@types/node@npm:16.11.22"
+  checksum: 9d879b9b0427e21a11e3162917553d5bc3c7d68d1ef4aa631512144801fe59bc3b4da5965e7ea7c2db99394487b543d4f2499b318e12392574802ac4f975b7c4
   languageName: node
   linkType: hard
 
