@@ -18,7 +18,7 @@
     "build": "yarn clean && yarn tsc -p ./tsconfig.json"
   },
   "dependencies": {
-    "google-protobuf": "3.17.3",
+    "google-protobuf": "3.20.0",
     "rxjs": "7.3.0"
   },
   "devDependencies": {

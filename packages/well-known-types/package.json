@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@metabreak/grpc-common": "1.1.1",
-    "google-protobuf": "3.17.3"
+    "google-protobuf": "3.20.0"
   },
   "devDependencies": {
     "@metabreak/protoc-gen-worker": "1.0.2",
