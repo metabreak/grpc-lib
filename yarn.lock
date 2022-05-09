@@ -795,7 +795,7 @@ __metadata:
     google-protobuf: 3.17.3
     rimraf: 3.0.2
     rxjs: 7.3.0
-    typescript: 4.3.5
+    typescript: 4.6.4
   languageName: unknown
   linkType: soft
 
@@ -809,7 +809,7 @@ __metadata:
     grpc-tools: 1.11.2
     grpc_tools_node_protoc_ts: 5.3.2
     rimraf: 3.0.2
-    typescript: 4.3.5
+    typescript: 4.6.4
   languageName: unknown
   linkType: soft
 
@@ -828,7 +828,7 @@ __metadata:
     parcel: 2.0.0-rc.0
     rimraf: 3.0.2
     rxjs: 7.3.0
-    typescript: 4.3.5
+    typescript: 4.6.4
   languageName: unknown
   linkType: soft
 
@@ -862,7 +862,7 @@ __metadata:
     rimraf: 3.0.2
     semantic-release: 17.4.5
     ts-jest: 27.0.5
-    typescript: 4.3.5
+    typescript: 4.6.4
   dependenciesMeta:
     grpc-tools@1.11.2:
       unplugged: true
@@ -879,7 +879,7 @@ __metadata:
     grpc-web: 1.2.1
     rimraf: 3.0.2
     rxjs: 7.3.0
-    typescript: 4.3.5
+    typescript: 4.6.4
   languageName: unknown
   linkType: soft
 
@@ -892,7 +892,7 @@ __metadata:
     "@types/google-protobuf": 3.15.5
     google-protobuf: 3.17.3
     rimraf: 3.0.2
-    typescript: 4.3.5
+    typescript: 4.6.4
   languageName: unknown
   linkType: soft
 
@@ -905,7 +905,7 @@ __metadata:
     "@metabreak/grpc-worker-gateway": 1.0.1
     rimraf: 3.0.2
     rxjs: 7.3.0
-    typescript: 4.3.5
+    typescript: 4.6.4
   languageName: unknown
   linkType: soft
 
@@ -918,7 +918,7 @@ __metadata:
     grpc-web: 1.2.1
     rimraf: 3.0.2
     rxjs: 7.3.0
-    typescript: 4.3.5
+    typescript: 4.6.4
   languageName: unknown
   linkType: soft
 
@@ -929,7 +929,7 @@ __metadata:
     "@metabreak/grpc-common": 1.1.1
     grpc-web: 1.2.1
     rimraf: 3.0.2
-    typescript: 4.3.5
+    typescript: 4.6.4
   languageName: unknown
   linkType: soft
 
@@ -953,7 +953,7 @@ __metadata:
     rimraf: 3.0.2
     rxjs: 7.3.0
     ts-jest: 27.0.5
-    typescript: 4.3.5
+    typescript: 4.6.4
     winston: 3.3.3
   bin:
     protoc-gen-worker: lib/main.js
@@ -13248,23 +13248,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-typescript@4.3.5:
-  version: 4.3.5
-  resolution: "typescript@npm:4.3.5"
+typescript@4.6.4:
+  version: 4.6.4
+  resolution: "typescript@npm:4.6.4"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: bab033b5e2b0790dd35b77fd005df976ef80b8d84fd2c6e63cc31808151875beae9216e5a315fe7068e8499905c3c354248fe83272cdfc13b7705635f0c66c97
+  checksum: e7bfcc39cd4571a63a54e5ea21f16b8445268b9900bf55aee0e02ad981be576acc140eba24f1af5e3c1457767c96cea6d12861768fb386cf3ffb34013718631a
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@4.3.5#~builtin<compat/typescript>":
-  version: 4.3.5
-  resolution: "typescript@patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=d8b4e7"
+"typescript@patch:typescript@4.6.4#~builtin<compat/typescript>":
+  version: 4.6.4
+  resolution: "typescript@patch:typescript@npm%3A4.6.4#~builtin<compat/typescript>::version=4.6.4&hash=d8b4e7"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: bc2c4fdf0f1557fdafe4ef74848c72ebd9c8c60829568248f869121aea2bb20e16649a252431d0acb185ec118143be22bed73d08f64379557810d82756afedde
+  checksum: 984becf501fe4a0dec5f7fd7bed69785ee84a777e8c6fae5bec7241ac81467ea03d0b6211fb54997dc66e204608a9b70c4e56042566042f8348d3356b8a70f71
   languageName: node
   linkType: hard
 
